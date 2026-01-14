@@ -21,6 +21,11 @@ const translations = {
     next: "Weiter",
     back: "Zurück",
     reset: "Neu starten",
+    pronounce: "Aussprache prüfen",
+    listening: "Ich höre zu…",
+    pronunciationCorrect: "Aussprache stimmt.",
+    pronunciationIncorrect: "Aussprache nicht erkannt.",
+    pronunciationUnsupported: "Spracherkennung wird nicht unterstützt.",
     darkMode: "Dark Mode",
     language: "Sprache",
     levelLabel: "Level",
@@ -55,6 +60,11 @@ const translations = {
     next: "التالي",
     back: "عودة",
     reset: "ابدأ من جديد",
+    pronounce: "تحقق من النطق",
+    listening: "أنا أستمع…",
+    pronunciationCorrect: "النطق صحيح.",
+    pronunciationIncorrect: "لم يتم التعرف على النطق.",
+    pronunciationUnsupported: "التعرّف على الصوت غير مدعوم.",
     darkMode: "الوضع الداكن",
     language: "اللغة",
     levelLabel: "المستوى",
@@ -412,6 +422,7 @@ function renderFlashcards() {
   }
   let index = 0;
   let flipped = false;
+  let pronunciationMessage = "";
 
   function update() {
     const item = items[index % items.length];
@@ -424,8 +435,10 @@ function renderFlashcards() {
           </div>
           <div class="card-actions">
             <button class="primary-button" id="nextCard">${translations[state.locale].next}</button>
+            <button class="secondary-button" id="pronounceCheck">${translations[state.locale].pronounce}</button>
             <button class="icon-button" data-speak="${item.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
           </div>
+          <p class="muted" id="pronounceResult">${pronunciationMessage}</p>
         </div>
       </div>
     `;
@@ -433,11 +446,42 @@ function renderFlashcards() {
     container.querySelector("#nextCard").addEventListener("click", () => {
       if (!flipped) {
         flipped = true;
+        pronunciationMessage = "";
       } else {
         index += 1;
         flipped = false;
+        pronunciationMessage = "";
       }
       update();
+    });
+    container.querySelector("#pronounceCheck").addEventListener("click", () => {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const result = container.querySelector("#pronounceResult");
+      if (!SpeechRecognition) {
+        pronunciationMessage = translations[state.locale].pronunciationUnsupported;
+        result.textContent = pronunciationMessage;
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = "de-DE";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      pronunciationMessage = translations[state.locale].listening;
+      result.textContent = pronunciationMessage;
+      recognition.onresult = (event) => {
+        const transcript = (event.results[0]?.[0]?.transcript || "").toLowerCase().trim();
+        const target = item.german.toLowerCase().trim();
+        pronunciationMessage =
+          transcript === target
+            ? translations[state.locale].pronunciationCorrect
+            : translations[state.locale].pronunciationIncorrect;
+        result.textContent = pronunciationMessage;
+      };
+      recognition.onerror = () => {
+        pronunciationMessage = translations[state.locale].pronunciationIncorrect;
+        result.textContent = pronunciationMessage;
+      };
+      recognition.start();
     });
     bindSpeakButtons(container);
   }
