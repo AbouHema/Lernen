@@ -613,9 +613,12 @@ function renderMiniQuiz() {
     `;
 
     let selection = null;
-    container.querySelectorAll(".option").forEach((button) => {
+    const optionButtons = container.querySelectorAll(".option");
+    optionButtons.forEach((button) => {
       button.addEventListener("click", () => {
         selection = button.dataset.option;
+        optionButtons.forEach((option) => option.classList.remove("active"));
+        button.classList.add("active");
       });
     });
 
