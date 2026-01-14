@@ -57,6 +57,15 @@ export function ExercisePanel() {
       : [];
   }, [quizItems, quizStep]);
 
+  const handleFlashcardAdvance = () => {
+    if (!showBack) {
+      setShowBack(true);
+      return;
+    }
+    setCardIndex((prev) => prev + 1);
+    setShowBack(false);
+  };
+
   const checkGap = () => {
     const normalized = gapAnswer.trim().toLowerCase();
     const correct = gapWord.toLowerCase();
@@ -97,17 +106,7 @@ export function ExercisePanel() {
               <p className="mt-3 text-sm text-slate-500">{showBack ? currentCard.example_de : currentCard.example_ar}</p>
             </motion.div>
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setShowBack((prev) => !prev)}>
-                {showBack ? t.back : t.next}
-              </Button>
-              <Button
-                onClick={() => {
-                  setCardIndex((prev) => prev + 1);
-                  setShowBack(false);
-                }}
-              >
-                {t.next}
-              </Button>
+              <Button onClick={handleFlashcardAdvance}>{t.next}</Button>
             </div>
           </CardContent>
         </Card>
