@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lernen – Deutsch lernen für arabische Nutzer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-content">
+        <div class="brand">
+          <div class="logo">✦</div>
+          <span>Lernen</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#home">Start</a>
+          <a href="#features">Features</a>
+          <a href="#learn">Dashboard</a>
+          <a href="#vocabulary">Vokabeln</a>
+          <a href="#progress">Fortschritt</a>
+        </nav>
+        <div class="controls">
+          <div class="dropdown">
+            <button id="languageToggle" class="ghost-button">Sprache</button>
+            <div class="dropdown-menu" id="languageMenu">
+              <button data-lang="de">Deutsch</button>
+              <button data-lang="ar">العربية</button>
+            </div>
+          </div>
+          <div class="toggle">
+            <span id="darkModeLabel">Dark Mode</span>
+            <button id="themeToggle" class="switch"></button>
+          </div>
+          <a class="primary-button" href="#learn">Jetzt lernen</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero-section">
+        <div class="container hero-grid">
+          <div class="hero-text">
+            <span class="eyebrow">Lernen</span>
+            <h1 id="heroTitle">Deutsch lernen auf B1-Niveau</h1>
+            <p id="heroSubtitle">
+              Trainiere Deutsch mit B1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für
+              arabischsprachige Lernende.
+            </p>
+            <div class="hero-actions">
+              <a class="primary-button" href="#learn" id="ctaButton">Jetzt lernen</a>
+              <a class="secondary-button" href="#vocabulary">Vokabeln ansehen</a>
+            </div>
+          </div>
+          <div class="hero-cards">
+            <div class="stat-card">
+              <span>Daily Word</span>
+              <strong>12 neue Wörter</strong>
+            </div>
+            <div class="stat-card">
+              <span>Streak</span>
+              <strong>7 Tage</strong>
+            </div>
+            <div class="stat-card">
+              <span>Quiz</span>
+              <strong>80% Score</strong>
+            </div>
+            <div class="stat-card">
+              <span>Favorites</span>
+              <strong>24 Wörter</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip">
+        <div class="container trust-content">
+          <p id="trustText">Über 12.000 Lernende nutzen Lernen täglich</p>
+          <div class="stars">
+            <span>★★★★★</span>
+            <span>★★★★★</span>
+            <span>★★★★★</span>
+            <span>★★★★★</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="features" class="features-section">
+        <div class="container">
+          <div class="section-heading">
+            <h2 id="featuresTitle">Alles, was du brauchst</h2>
+            <p id="featuresSubtitle">B1-Vokabeln, Sätze und Übungen – alles in einem ruhigen, modernen Workflow.</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="icon">📚</div>
+              <h3>Smart Vocabulary</h3>
+              <p>60+ kuratierte Vokabeln mit Beispielen und Artikeln.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">🧠</div>
+              <h3>Interaktive Übungen</h3>
+              <p>Flashcards, Lückentext und Mini-Quiz für schnelles Lernen.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">↔️</div>
+              <h3>RTL & Deutsch</h3>
+              <p>Sprachumschalter mit perfekter RTL-Unterstützung.</p>
+            </article>
+            <article class="feature-card">
+              <div class="icon">✨</div>
+              <h3>Progress Tracking</h3>
+              <p>Streaks, Verlauf und Favoriten lokal gespeichert.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="screens-section">
+        <div class="container screens-grid">
+          <div class="screen-card">
+            <div class="card-header">
+              <h3>Lern-Dashboard</h3>
+            </div>
+            <div class="card-content">
+              <div class="list-item">
+                <span>✔ Daily Word</span>
+                <span class="badge">Live</span>
+              </div>
+              <div class="list-item">
+                <span>✔ Flashcards</span>
+                <span class="badge">Live</span>
+              </div>
+              <div class="list-item">
+                <span>✔ Mini-Quiz</span>
+                <span class="badge">Live</span>
+              </div>
+            </div>
+          </div>
+          <div class="screen-card">
+            <div class="card-header">
+              <h3>Vocabulary View</h3>
+            </div>
+            <div class="card-content">
+              <div class="mini-card">
+                <strong>قهوة</strong>
+                <span>der Kaffee</span>
+              </div>
+              <div class="mini-card">
+                <strong>شقة</strong>
+                <span>die Wohnung</span>
+              </div>
+              <div class="mini-card">
+                <strong>موعد</strong>
+                <span>der Termin</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="learn" class="dashboard-section">
+        <div class="container">
+          <div class="section-heading">
+            <p id="dashboardTitle">Dein Lern-Dashboard</p>
+            <h2>Dashboard</h2>
+          </div>
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="tab-vocabulary">Vokabeln</button>
+            <button class="tab" data-tab="tab-sentences">Sätze</button>
+            <button class="tab" data-tab="tab-exercises">Übungen</button>
+            <button class="tab" data-tab="tab-progress">Fortschritt</button>
+          </div>
+          <div class="tab-content active" id="tab-vocabulary">
+            <div class="dashboard-grid">
+              <div class="card">
+                <div class="card-header">
+                  <h3 id="dailyWordLabel">Wort des Tages</h3>
+                </div>
+                <div class="card-content" id="dailyWordCard"></div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3>Dein Fortschritt</h3>
+                </div>
+                <div class="card-content" id="progressSummary"></div>
+              </div>
+            </div>
+            <div class="card callout">
+              <div>
+                <h3>Schnell starten</h3>
+                <p>Springe direkt zu den Lernmodulen.</p>
+              </div>
+              <a class="primary-button" href="#vocabulary">Vokabeln öffnen</a>
+            </div>
+          </div>
+          <div class="tab-content" id="tab-sentences">
+            <div class="card">
+              <div class="card-content">
+                <h3>Sätze üben</h3>
+                <p>Trainiere komplette Sätze mit direkter Übersetzung.</p>
+                <a class="primary-button" href="#sentences">Zu den Sätzen</a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="tab-exercises">
+            <div class="card">
+              <div class="card-content">
+                <h3>Interaktive Übungen</h3>
+                <p>Flashcards, Multiple Choice und Mini-Quiz.</p>
+                <a class="primary-button" href="#exercises">Zu den Übungen</a>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" id="tab-progress">
+            <div class="card">
+              <div class="card-content">
+                <h3>Fortschritt verfolgen</h3>
+                <p>Sieh dir deinen Streak und deine Quiz-Scores an.</p>
+                <a class="primary-button" href="#progress">Zum Fortschritt</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="vocabulary" class="content-section">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Vokabeln</h2>
+            <p>Arabisch ↔ Deutsch mit Artikeln, Beispielen und Favoriten.</p>
+          </div>
+          <div class="search-row">
+            <input type="search" id="vocabSearch" placeholder="Suche nach Arabisch oder Deutsch" />
+            <div class="favorite-count" id="favoriteCount">0 Favoriten</div>
+          </div>
+          <div class="grid" id="vocabGrid"></div>
+        </div>
+      </section>
+
+      <section id="sentences" class="content-section alt">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Sätze</h2>
+            <p>Praxisnahe Satzbeispiele für Alltag und Arbeit.</p>
+          </div>
+          <input type="search" id="sentenceSearch" placeholder="Suche nach Arabisch oder Deutsch" />
+          <div class="grid" id="sentenceGrid"></div>
+        </div>
+      </section>
+
+      <section id="exercises" class="content-section">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Übungen</h2>
+            <p>Wähle einen Modus: Flashcards, Multiple Choice, Lückentext oder Mini-Quiz.</p>
+          </div>
+          <div class="tabs exercise-tabs" role="tablist">
+            <button class="tab active" data-tab="flashcards">Flashcards</button>
+            <button class="tab" data-tab="multiple">Multiple Choice</button>
+            <button class="tab" data-tab="gap">Lückentext</button>
+            <button class="tab" data-tab="quiz">Mini-Quiz</button>
+          </div>
+          <div class="tab-content active" id="flashcards"></div>
+          <div class="tab-content" id="multiple"></div>
+          <div class="tab-content" id="gap"></div>
+          <div class="tab-content" id="quiz"></div>
+        </div>
+      </section>
+
+      <section id="progress" class="content-section alt">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Fortschritt</h2>
+            <p>Dein Lernfortschritt wird lokal im Browser gespeichert.</p>
+          </div>
+          <div class="dashboard-grid">
+            <div class="card" id="progressSummaryCard"></div>
+            <div class="card">
+              <div class="card-header">
+                <h3>Quiz-Verlauf</h3>
+              </div>
+              <div class="card-content" id="quizChart"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-content">
+        <div>
+          <h3>Lernen</h3>
+          <p>Deutsch lernen für arabische Lernende.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#learn">Dashboard</a>
+          <a href="#vocabulary">Vokabeln</a>
+          <a href="#exercises">Übungen</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
