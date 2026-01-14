@@ -28,6 +28,7 @@ export function ExercisePanel() {
 
   const [cardIndex, setCardIndex] = React.useState(0);
   const [showBack, setShowBack] = React.useState(false);
+  const [pronunciationStatus, setPronunciationStatus] = React.useState<"idle" | "listening" | "correct" | "incorrect" | "unsupported">("idle");
 
   const [mcIndex, setMcIndex] = React.useState(0);
   const [mcAnswer, setMcAnswer] = React.useState<string | null>(null);
@@ -56,6 +57,45 @@ export function ExercisePanel() {
       ? getRandomOptions(`${current.article} ${current.german}`, vocabulary.map((item) => `${item.article} ${item.german}`))
       : [];
   }, [quizItems, quizStep]);
+
+  const handleFlashcardAdvance = () => {
+    if (!showBack) {
+      setShowBack(true);
+      return;
+    }
+    setCardIndex((prev) => prev + 1);
+    setShowBack(false);
+  };
+
+  const handlePronunciationCheck = () => {
+    const SpeechRecognition =
+      typeof window !== "undefined"
+        ? (window.SpeechRecognition || (window as typeof window & { webkitSpeechRecognition?: typeof window.SpeechRecognition }).webkitSpeechRecognition)
+        : undefined;
+
+    if (!SpeechRecognition) {
+      setPronunciationStatus("unsupported");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "de-DE";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    setPronunciationStatus("listening");
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0]?.[0]?.transcript?.toLowerCase().trim() ?? "";
+      const target = currentCard.german.toLowerCase().trim();
+      setPronunciationStatus(transcript === target ? "correct" : "incorrect");
+    };
+
+    recognition.onerror = () => {
+      setPronunciationStatus("incorrect");
+    };
+
+    recognition.start();
+  };
 
   const checkGap = () => {
     const normalized = gapAnswer.trim().toLowerCase();
@@ -97,18 +137,19 @@ export function ExercisePanel() {
               <p className="mt-3 text-sm text-slate-500">{showBack ? currentCard.example_de : currentCard.example_ar}</p>
             </motion.div>
             <div className="flex gap-3">
-              <Button variant="outline" onClick={() => setShowBack((prev) => !prev)}>
-                {showBack ? t.back : t.next}
-              </Button>
-              <Button
-                onClick={() => {
-                  setCardIndex((prev) => prev + 1);
-                  setShowBack(false);
-                }}
-              >
-                {t.next}
+              <Button onClick={handleFlashcardAdvance}>{t.next}</Button>
+              <Button variant="outline" onClick={handlePronunciationCheck}>
+                {t.pronounce}
               </Button>
             </div>
+            {pronunciationStatus !== "idle" && (
+              <p className="text-sm text-slate-500">
+                {pronunciationStatus === "listening" && t.listening}
+                {pronunciationStatus === "correct" && t.pronunciationCorrect}
+                {pronunciationStatus === "incorrect" && t.pronunciationIncorrect}
+                {pronunciationStatus === "unsupported" && t.pronunciationUnsupported}
+              </p>
+            )}
           </CardContent>
         </Card>
       </TabsContent>
