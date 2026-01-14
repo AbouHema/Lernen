@@ -1,12 +1,12 @@
 const translations = {
   de: {
-    heroTitle: "Deutsch lernen, klar und fokussiert",
+    heroTitle: "Deutsch lernen auf B1-Niveau",
     heroSubtitle:
-      "Lerne Deutsch mit hochwertigen Übungen, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
+      "Trainiere Deutsch mit B1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
     cta: "Jetzt lernen",
     trust: "Über 12.000 Lernende nutzen Lernen täglich",
     featuresTitle: "Alles, was du brauchst",
-    featuresSubtitle: "Vokabeln, Sätze und Übungen – alles in einem ruhigen, modernen Workflow.",
+    featuresSubtitle: "B1-Vokabeln, Sätze und Übungen – alles in einem ruhigen, modernen Workflow.",
     dashboardTitle: "Dein Lern-Dashboard",
     dailyWord: "Wort des Tages",
     searchPlaceholder: "Suche nach Arabisch oder Deutsch",
@@ -24,13 +24,13 @@ const translations = {
     language: "Sprache"
   },
   ar: {
-    heroTitle: "تعلّم الألمانية بوضوح وتركيز",
+    heroTitle: "تعلّم الألمانية بمستوى B1",
     heroSubtitle:
-      "تعلّم الألمانية من خلال تمارين عالية الجودة، تصميم أنيق، وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
+      "تدرّب على محتوى مستوى B1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
     cta: "ابدأ التعلّم",
     trust: "أكثر من ١٢٬٠٠٠ متعلم يستخدمون Lernen يوميًا",
     featuresTitle: "كل ما تحتاجه",
-    featuresSubtitle: "مفردات، جُمل وتمارين في تجربة هادئة وعصرية.",
+    featuresSubtitle: "مفردات وجُمل وتمارين بمستوى B1 في تجربة هادئة وعصرية.",
     dashboardTitle: "لوحة التعلّم الخاصة بك",
     dailyWord: "كلمة اليوم",
     searchPlaceholder: "ابحث بالعربية أو الألمانية",

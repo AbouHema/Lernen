@@ -1,6 +1,6 @@
 # Lernen (HTML-Version)
 
-Statische, responsive Lern-Webseite für Deutsch (Arabisch → Deutsch) mit reinem HTML, CSS und JavaScript.
+Statische, responsive Lern-Webseite für Deutsch (Arabisch → Deutsch) auf B1-Niveau mit reinem HTML, CSS und JavaScript.
 
 ## Nutzung
 
