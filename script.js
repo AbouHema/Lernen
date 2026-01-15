@@ -421,7 +421,6 @@ function renderFlashcards() {
     return;
   }
   let index = 0;
-  let flipped = false;
   let pronunciationMessage = "";
 
   function update() {
@@ -430,8 +429,10 @@ function renderFlashcards() {
       <div class="card">
         <div class="card-content">
           <div class="flashcard">
-            <strong>${flipped ? `${item.article} ${item.german}` : item.arabic}</strong>
-            <p class="muted">${flipped ? item.example_de : item.example_ar}</p>
+            <strong>${item.article} ${item.german}</strong>
+            <p class="muted">${item.arabic}</p>
+            <p>${item.example_de}</p>
+            <p class="muted">${item.example_ar}</p>
           </div>
           <div class="card-actions">
             <button class="primary-button" id="nextCard">${translations[state.locale].next}</button>
@@ -444,44 +445,23 @@ function renderFlashcards() {
     `;
 
     container.querySelector("#nextCard").addEventListener("click", () => {
-      if (!flipped) {
-        flipped = true;
-        pronunciationMessage = "";
-      } else {
-        index += 1;
-        flipped = false;
-        pronunciationMessage = "";
-      }
+      index += 1;
+      pronunciationMessage = "";
       update();
     });
     container.querySelector("#pronounceCheck").addEventListener("click", () => {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      const result = container.querySelector("#pronounceResult");
-      if (!SpeechRecognition) {
-        pronunciationMessage = translations[state.locale].pronunciationUnsupported;
-        result.textContent = pronunciationMessage;
-        return;
-      }
-      const recognition = new SpeechRecognition();
-      recognition.lang = "de-DE";
-      recognition.interimResults = false;
-      recognition.maxAlternatives = 1;
-      pronunciationMessage = translations[state.locale].listening;
-      result.textContent = pronunciationMessage;
-      recognition.onresult = (event) => {
-        const transcript = (event.results[0]?.[0]?.transcript || "").toLowerCase().trim();
-        const target = item.german.toLowerCase().trim();
-        pronunciationMessage =
-          transcript === target
-            ? translations[state.locale].pronunciationCorrect
-            : translations[state.locale].pronunciationIncorrect;
-        result.textContent = pronunciationMessage;
-      };
-      recognition.onerror = () => {
-        pronunciationMessage = translations[state.locale].pronunciationIncorrect;
-        result.textContent = pronunciationMessage;
-      };
-      recognition.start();
+      handlePronunciation({
+        targetText: item.german,
+        resultElement: container.querySelector("#pronounceResult"),
+        onCorrect: () => {
+          index += 1;
+          pronunciationMessage = "";
+          update();
+        },
+        onIncorrect: () => {
+          pronunciationMessage = translations[state.locale].pronunciationIncorrect;
+        }
+      });
     });
     bindSpeakButtons(container);
   }
@@ -550,6 +530,7 @@ function renderGap() {
     return;
   }
   let index = 0;
+  let pronunciationMessage = "";
 
   function update() {
     const sentence = items[index % items.length];
@@ -565,8 +546,11 @@ function renderGap() {
           <div class="card-actions">
             <input type="text" id="gapInput" placeholder="${translations[state.locale].submit}" />
             <button class="primary-button" id="gapCheck">${translations[state.locale].submit}</button>
+            <button class="secondary-button" id="gapPronounce">${translations[state.locale].pronounce}</button>
+            <button class="icon-button" data-speak="${sentence.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
           </div>
           <p class="muted" id="gapResult"></p>
+          <p class="muted" id="gapPronounceResult">${pronunciationMessage}</p>
           <button class="secondary-button" id="gapNext">${translations[state.locale].next}</button>
         </div>
       </div>
@@ -580,8 +564,26 @@ function renderGap() {
 
     container.querySelector("#gapNext").addEventListener("click", () => {
       index += 1;
+      pronunciationMessage = "";
       update();
     });
+
+    container.querySelector("#gapPronounce").addEventListener("click", () => {
+      handlePronunciation({
+        targetText: sentence.german,
+        resultElement: container.querySelector("#gapPronounceResult"),
+        onCorrect: () => {
+          index += 1;
+          pronunciationMessage = "";
+          update();
+        },
+        onIncorrect: () => {
+          pronunciationMessage = translations[state.locale].pronunciationIncorrect;
+        }
+      });
+    });
+
+    bindSpeakButtons(container);
   }
 
   update();
@@ -800,4 +802,53 @@ function speakGerman(text) {
   }
   window.speechSynthesis.cancel();
   window.speechSynthesis.speak(utterance);
+}
+
+function normalizeSpeech(text) {
+  return text
+    .toLowerCase()
+    .replace(/[.,!?؛،]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function handlePronunciation({ targetText, resultElement, onCorrect, onIncorrect }) {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    const message = translations[state.locale].pronunciationUnsupported;
+    if (resultElement) {
+      resultElement.textContent = message;
+    }
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = "de-DE";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  if (resultElement) {
+    resultElement.textContent = translations[state.locale].listening;
+  }
+  recognition.onresult = (event) => {
+    const transcript = normalizeSpeech(event.results[0]?.[0]?.transcript || "");
+    const target = normalizeSpeech(targetText);
+    const isCorrect = transcript === target;
+    if (resultElement) {
+      resultElement.textContent = isCorrect
+        ? translations[state.locale].pronunciationCorrect
+        : translations[state.locale].pronunciationIncorrect;
+    }
+    if (isCorrect) {
+      onCorrect?.();
+    } else {
+      onIncorrect?.();
+    }
+  };
+  recognition.onerror = () => {
+    if (resultElement) {
+      resultElement.textContent = translations[state.locale].pronunciationIncorrect;
+    }
+    onIncorrect?.();
+  };
+  recognition.start();
 }
