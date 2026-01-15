@@ -109,6 +109,31 @@ const CATEGORY_IMAGE_KEYWORDS = {
   Arzt: ["Arzt", "Gesundheit", "Krankenhaus"],
   Wohnung: ["Wohnung", "Haus", "Zimmer"]
 };
+const LOCAL_IMAGE_MAP = [
+  { keywords: ["wasser", "trinken", "regen"], file: "wasser.svg" },
+  { keywords: ["essen", "koch", "restaurant", "snack", "küche"], file: "essen.svg" },
+  { keywords: ["auto", "wagen", "fahrt"], file: "auto.svg" },
+  { keywords: ["haus", "wohnung", "zimmer", "miete"], file: "haus.svg" },
+  { keywords: ["park", "stadt", "schule", "bahnhof", "ort"], file: "ort.svg" },
+  { keywords: ["arbeit", "büro", "chef", "kollege", "team"], file: "arbeit.svg" },
+  { keywords: ["reise", "zug", "flug", "hotel", "urlaub"], file: "reisen.svg" },
+  { keywords: ["strategie", "analyse", "konferenz", "projekt"], file: "komplex.svg" },
+  { keywords: ["situation", "diskussion", "planung"], file: "abstrakt.svg" }
+];
+const LEVEL_FALLBACK_IMAGES = {
+  A1: "haus.svg",
+  A2: "ort.svg",
+  B1: "arbeit.svg",
+  B2: "abstrakt.svg",
+  C1: "komplex.svg"
+};
+const CATEGORY_FALLBACK_IMAGES = {
+  Alltag: "ort.svg",
+  Essen: "essen.svg",
+  Arbeit: "arbeit.svg",
+  Arzt: "abstrakt.svg",
+  Wohnung: "haus.svg"
+};
 const GERMAN_STOP_WORDS = new Set([
   "der",
   "die",
@@ -950,12 +975,33 @@ function buildSentenceImageUrl({ sentence = "", level = "", category = "" }) {
   return `${IMAGE_BASE_URL}?${encodeURIComponent(finalQuery)}`;
 }
 
+// Wählt ein lokales Platzhalterbild anhand von Stichwörtern, Kategorie oder Level.
+function pickLocalImage({ sentence = "", level = "", category = "" }) {
+  const normalized = sentence.toLowerCase();
+  const keywordMatch = LOCAL_IMAGE_MAP.find((entry) =>
+    entry.keywords.some((keyword) => normalized.includes(keyword))
+  );
+  if (keywordMatch) {
+    return `/images/${keywordMatch.file}`;
+  }
+  const categoryFallback = CATEGORY_FALLBACK_IMAGES[category];
+  if (categoryFallback) {
+    return `/images/${categoryFallback}`;
+  }
+  const levelFallback = LEVEL_FALLBACK_IMAGES[level];
+  if (levelFallback) {
+    return `/images/${levelFallback}`;
+  }
+  return "/images/allgemein.svg";
+}
+
 // Baut das gemeinsame Bild-/Satz-Modul für Übungen und Beispielsätze.
 function renderExerciseMedia({ sentence, displayText, level, category }) {
-  const imageUrl = buildSentenceImageUrl({ sentence, level, category });
+  const localImageUrl = pickLocalImage({ sentence, level, category });
+  const imageUrl = navigator.onLine ? buildSentenceImageUrl({ sentence, level, category }) : localImageUrl;
   return `
     <div class="exercise">
-      <img src="${imageUrl}" alt="sentence image" loading="lazy" class="exercise-image" />
+      <img src="${imageUrl}" alt="sentence image" loading="lazy" class="exercise-image" onerror="this.onerror=null;this.src='${localImageUrl}'" />
       <button class="secondary-button exercise-speak" data-speak="${sentence}">🎤 Satz sprechen</button>
       <p>${displayText}</p>
     </div>
