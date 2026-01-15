@@ -1,12 +1,12 @@
 const translations = {
   de: {
-    heroTitle: "Deutsch lernen auf B1–C1-Niveau",
+    heroTitle: "Deutsch lernen auf A1–C1-Niveau",
     heroSubtitle:
-      "Trainiere Deutsch mit B1–C1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
+      "Trainiere Deutsch mit A1–C1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
     cta: "Jetzt lernen",
     trust: "Über 12.000 Lernende nutzen Lernen täglich",
     featuresTitle: "Alles, was du brauchst",
-    featuresSubtitle: "B1–C1 Vokabeln, Sätze und Übungen – jetzt mit 160+ Wörtern und 90+ Sätzen.",
+    featuresSubtitle: "A1–C1 Vokabeln, Sätze und Übungen – jetzt mit deutlich mehr Lerninhalten.",
     dashboardTitle: "Dein Lern-Dashboard",
     dailyWord: "Wort des Tages",
     searchPlaceholder: "Suche nach Arabisch oder Deutsch",
@@ -40,19 +40,19 @@ const translations = {
     exerciseLevelLabel: "Übungs-Level",
     allLevels: "Alle Level",
     allCategories: "Alle Kategorien",
-    levelHint: "Starte mit B1 und arbeite dich bis C1 vor – du kannst jederzeit umschalten.",
+    levelHint: "Starte mit A1 und arbeite dich bis C1 vor – du kannst jederzeit umschalten.",
     audioHint: "🔊 Tippe auf das Audio-Icon, um die deutsche Aussprache zu hören.",
     speak: "Aussprache anhören",
     audioUnavailable: "Audio ist in diesem Browser nicht verfügbar."
   },
   ar: {
-    heroTitle: "تعلّم الألمانية بمستوى B1–C1",
+    heroTitle: "تعلّم الألمانية بمستوى A1–C1",
     heroSubtitle:
-      "تدرّب على محتوى مستويات B1–C1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
+      "تدرّب على محتوى مستويات A1–C1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
     cta: "ابدأ التعلّم",
     trust: "أكثر من ١٢٬٠٠٠ متعلم يستخدمون Lernen يوميًا",
     featuresTitle: "كل ما تحتاجه",
-    featuresSubtitle: "مفردات وجُمل وتمارين بمستويات B1–C1 مع أكثر من ١٦٠ كلمة و٩٠ جملة.",
+    featuresSubtitle: "مفردات وجُمل وتمارين بمستويات A1–C1 مع المزيد من المحتوى التعليمي.",
     dashboardTitle: "لوحة التعلّم الخاصة بك",
     dailyWord: "كلمة اليوم",
     searchPlaceholder: "ابحث بالعربية أو الألمانية",
@@ -86,14 +86,22 @@ const translations = {
     exerciseLevelLabel: "مستوى التمارين",
     allLevels: "كل المستويات",
     allCategories: "كل الفئات",
-    levelHint: "ابدأ بـ B1 ثم انتقل إلى B2 و C1، ويمكنك التبديل في أي وقت.",
+    levelHint: "ابدأ بـ A1 ثم انتقل إلى المستويات الأعلى حتى C1، ويمكنك التبديل في أي وقت.",
     audioHint: "🔊 اضغط على أيقونة الصوت لسماع النطق بالألمانية.",
     speak: "استمع للنطق",
     audioUnavailable: "الصوت غير متاح في هذا المتصفح."
   }
 };
 
-const LEVEL_ORDER = ["B1", "B2", "C1"];
+const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const scrollToTopInstant = () => {
+  window.scrollTo(0, 0);
+};
 
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
@@ -229,11 +237,11 @@ function toggleLocale(locale) {
 
 function populateFilters() {
   const t = translations[state.locale];
-  const currentVocabLevel = elements.vocabLevel.value || "B1";
+  const currentVocabLevel = elements.vocabLevel.value || "all";
   const currentVocabCategory = elements.vocabCategory.value || "all";
-  const currentSentenceLevel = elements.sentenceLevel.value || "B1";
+  const currentSentenceLevel = elements.sentenceLevel.value || "all";
   const currentSentenceCategory = elements.sentenceCategory.value || "all";
-  const currentExerciseLevel = elements.exerciseLevel.value || "B1";
+  const currentExerciseLevel = elements.exerciseLevel.value || "all";
 
   const vocabLevels = getOrderedLevels(vocabulary);
   const vocabCategories = Array.from(new Set(vocabulary.map((item) => item.category)));
@@ -320,12 +328,12 @@ function toggleLearned(id) {
 function renderVocabulary() {
   const t = translations[state.locale];
   const filtered = getFilteredVocabulary();
+  const grouped = groupByLevelCategory(filtered);
 
-  elements.vocabGrid.innerHTML = filtered
-    .map((item) => {
-      const isFavorite = state.favorites.includes(item.id);
-      const isLearned = state.learned.includes(item.id);
-      return `
+  elements.vocabGrid.innerHTML = renderAccordion(grouped, "vocab", (item) => {
+    const isFavorite = state.favorites.includes(item.id);
+    const isLearned = state.learned.includes(item.id);
+    return `
       <article class="vocab-card">
         <div class="card-header">
           <div>
@@ -351,8 +359,7 @@ function renderVocabulary() {
         </div>
       </article>
     `;
-    })
-    .join("");
+  });
 
   elements.favoriteCount.textContent = `${state.favorites.length} ${t.favorites}`;
 
@@ -363,15 +370,16 @@ function renderVocabulary() {
     button.addEventListener("click", () => toggleLearned(button.dataset.learned))
   );
   bindSpeakButtons(elements.vocabGrid);
+  bindAccordion(elements.vocabGrid);
+  bindActiveCards(elements.vocabGrid);
   updateVocabPractice(filtered, { autoStart: true });
 }
 
 function renderSentences() {
   const filtered = getFilteredSentences();
+  const grouped = groupByLevelCategory(filtered);
 
-  elements.sentenceGrid.innerHTML = filtered
-    .map(
-      (item) => `
+  elements.sentenceGrid.innerHTML = renderAccordion(grouped, "sentences", (item) => `
       <article class="sentence-card">
         <div class="card-header">
           <div class="sentence-meta">
@@ -385,10 +393,10 @@ function renderSentences() {
           <p class="muted">${item.arabic}</p>
         </div>
       </article>
-    `
-    )
-    .join("");
+    `);
   bindSpeakButtons(elements.sentenceGrid);
+  bindAccordion(elements.sentenceGrid);
+  bindActiveCards(elements.sentenceGrid);
   updateSentencePractice(filtered, { autoStart: true });
 }
 
@@ -737,6 +745,126 @@ function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
+function groupByLevelCategory(items) {
+  const grouped = {};
+  items.forEach((item) => {
+    const level = item.level || "Unbekannt";
+    const category = item.category || item.topic || "Sonstiges";
+    if (!grouped[level]) {
+      grouped[level] = {};
+    }
+    if (!grouped[level][category]) {
+      grouped[level][category] = [];
+    }
+    grouped[level][category].push(item);
+  });
+  return grouped;
+}
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\u00c0-\u017f]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function renderAccordion(grouped, prefix, renderItem) {
+  const levels = Object.keys(grouped).sort((a, b) => LEVEL_ORDER.indexOf(a) - LEVEL_ORDER.indexOf(b));
+  if (levels.length === 0) {
+    return `<p class="muted empty-state">${translations[state.locale].noPracticeItems}</p>`;
+  }
+  return `
+    <div class="accordion level-accordion" data-single="true">
+      ${levels
+        .map((level) => {
+          const categories = Object.keys(grouped[level]).sort((a, b) => a.localeCompare(b));
+          const levelId = `${prefix}-level-${slugify(level)}`;
+          const totalCount = categories.reduce((sum, category) => sum + grouped[level][category].length, 0);
+          return `
+            <div class="accordion-item">
+              <button class="accordion-trigger level-trigger" data-target="${levelId}" aria-expanded="false">
+                <span class="accordion-arrow">▶</span>
+                <span class="accordion-title">Level ${level}</span>
+                <span class="accordion-count">${totalCount}</span>
+              </button>
+              <div class="accordion-panel" id="${levelId}" aria-hidden="true">
+                <div class="accordion category-accordion" data-single="true">
+                  ${categories
+                    .map((category) => {
+                      const categoryId = `${levelId}-${slugify(category)}`;
+                      return `
+                        <div class="accordion-item">
+                          <button class="accordion-trigger category-trigger" data-target="${categoryId}" aria-expanded="false">
+                            <span class="accordion-arrow">▶</span>
+                            <span class="accordion-title">${category}</span>
+                            <span class="accordion-count">${grouped[level][category].length}</span>
+                          </button>
+                          <div class="accordion-panel" id="${categoryId}" aria-hidden="true">
+                            <div class="accordion-items">
+                              ${grouped[level][category].map(renderItem).join("")}
+                            </div>
+                          </div>
+                        </div>
+                      `;
+                    })
+                    .join("")}
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function bindAccordion(container) {
+  const accordions = container.querySelectorAll(".accordion");
+  accordions.forEach((accordion) => {
+    accordion.addEventListener("click", (event) => {
+      const trigger = event.target.closest(".accordion-trigger");
+      if (!trigger || !accordion.contains(trigger)) {
+        return;
+      }
+      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+      if (accordion.dataset.single === "true") {
+        accordion.querySelectorAll(".accordion-trigger[aria-expanded='true']").forEach((openTrigger) => {
+          if (openTrigger !== trigger) {
+            setAccordionState(openTrigger, false);
+          }
+        });
+      }
+      setAccordionState(trigger, !isExpanded);
+    });
+  });
+}
+
+function setAccordionState(trigger, isOpen) {
+  const panelId = trigger.dataset.target;
+  const panel = panelId ? document.getElementById(panelId) : null;
+  trigger.setAttribute("aria-expanded", String(isOpen));
+  const arrow = trigger.querySelector(".accordion-arrow");
+  if (arrow) {
+    arrow.textContent = isOpen ? "▼" : "▶";
+  }
+  if (panel) {
+    panel.classList.toggle("is-open", isOpen);
+    panel.setAttribute("aria-hidden", String(!isOpen));
+  }
+}
+
+function bindActiveCards(container) {
+  container.querySelectorAll(".vocab-card, .sentence-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      container.querySelectorAll(".vocab-card.is-active, .sentence-card.is-active").forEach((active) => {
+        active.classList.remove("is-active");
+      });
+      card.classList.add("is-active");
+    });
+  });
+}
+
 function getOrderedLevels(items) {
   const unique = Array.from(new Set(items.map((item) => item.level)));
   return unique.sort((a, b) => LEVEL_ORDER.indexOf(a) - LEVEL_ORDER.indexOf(b));
@@ -746,7 +874,7 @@ function setDefaultLevel(value, availableLevels) {
   if (value === "all") {
     return value;
   }
-  return availableLevels.includes(value) ? value : "B1";
+  return availableLevels.includes(value) ? value : availableLevels[0];
 }
 
 function sortByLevelThenName(a, b) {
@@ -1014,6 +1142,11 @@ function init() {
   renderSentences();
   renderExercises();
   renderProgress();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scrollToTopInstant, { once: true });
+  } else {
+    scrollToTopInstant();
+  }
 }
 
 init();
