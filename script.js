@@ -1,12 +1,12 @@
 const translations = {
   de: {
-    heroTitle: "Deutsch lernen auf B1–C1-Niveau",
+    heroTitle: "Deutsch lernen auf A1–C1-Niveau",
     heroSubtitle:
-      "Trainiere Deutsch mit B1–C1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
+      "Trainiere Deutsch mit A1–C1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
     cta: "Jetzt lernen",
     trust: "Über 12.000 Lernende nutzen Lernen täglich",
     featuresTitle: "Alles, was du brauchst",
-    featuresSubtitle: "B1–C1 Vokabeln, Sätze und Übungen – jetzt mit 160+ Wörtern und 90+ Sätzen.",
+    featuresSubtitle: "A1–C1 Vokabeln, Sätze und Übungen – jetzt mit deutlich mehr Lerninhalten.",
     dashboardTitle: "Dein Lern-Dashboard",
     dailyWord: "Wort des Tages",
     searchPlaceholder: "Suche nach Arabisch oder Deutsch",
@@ -40,19 +40,19 @@ const translations = {
     exerciseLevelLabel: "Übungs-Level",
     allLevels: "Alle Level",
     allCategories: "Alle Kategorien",
-    levelHint: "Starte mit B1 und arbeite dich bis C1 vor – du kannst jederzeit umschalten.",
+    levelHint: "Starte mit A1 und arbeite dich bis C1 vor – du kannst jederzeit umschalten.",
     audioHint: "🔊 Tippe auf das Audio-Icon, um die deutsche Aussprache zu hören.",
     speak: "Aussprache anhören",
     audioUnavailable: "Audio ist in diesem Browser nicht verfügbar."
   },
   ar: {
-    heroTitle: "تعلّم الألمانية بمستوى B1–C1",
+    heroTitle: "تعلّم الألمانية بمستوى A1–C1",
     heroSubtitle:
-      "تدرّب على محتوى مستويات B1–C1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
+      "تدرّب على محتوى مستويات A1–C1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
     cta: "ابدأ التعلّم",
     trust: "أكثر من ١٢٬٠٠٠ متعلم يستخدمون Lernen يوميًا",
     featuresTitle: "كل ما تحتاجه",
-    featuresSubtitle: "مفردات وجُمل وتمارين بمستويات B1–C1 مع أكثر من ١٦٠ كلمة و٩٠ جملة.",
+    featuresSubtitle: "مفردات وجُمل وتمارين بمستويات A1–C1 مع المزيد من المحتوى التعليمي.",
     dashboardTitle: "لوحة التعلّم الخاصة بك",
     dailyWord: "كلمة اليوم",
     searchPlaceholder: "ابحث بالعربية أو الألمانية",
@@ -86,14 +86,18 @@ const translations = {
     exerciseLevelLabel: "مستوى التمارين",
     allLevels: "كل المستويات",
     allCategories: "كل الفئات",
-    levelHint: "ابدأ بـ B1 ثم انتقل إلى B2 و C1، ويمكنك التبديل في أي وقت.",
+    levelHint: "ابدأ بـ A1 ثم انتقل إلى المستويات الأعلى حتى C1، ويمكنك التبديل في أي وقت.",
     audioHint: "🔊 اضغط على أيقونة الصوت لسماع النطق بالألمانية.",
     speak: "استمع للنطق",
     audioUnavailable: "الصوت غير متاح في هذا المتصفح."
   }
 };
 
-const LEVEL_ORDER = ["B1", "B2", "C1"];
+const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
+
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
 
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
@@ -229,11 +233,11 @@ function toggleLocale(locale) {
 
 function populateFilters() {
   const t = translations[state.locale];
-  const currentVocabLevel = elements.vocabLevel.value || "B1";
+  const currentVocabLevel = elements.vocabLevel.value || "all";
   const currentVocabCategory = elements.vocabCategory.value || "all";
-  const currentSentenceLevel = elements.sentenceLevel.value || "B1";
+  const currentSentenceLevel = elements.sentenceLevel.value || "all";
   const currentSentenceCategory = elements.sentenceCategory.value || "all";
-  const currentExerciseLevel = elements.exerciseLevel.value || "B1";
+  const currentExerciseLevel = elements.exerciseLevel.value || "all";
 
   const vocabLevels = getOrderedLevels(vocabulary);
   const vocabCategories = Array.from(new Set(vocabulary.map((item) => item.category)));
@@ -746,7 +750,7 @@ function setDefaultLevel(value, availableLevels) {
   if (value === "all") {
     return value;
   }
-  return availableLevels.includes(value) ? value : "B1";
+  return availableLevels.includes(value) ? value : availableLevels[0];
 }
 
 function sortByLevelThenName(a, b) {
@@ -916,6 +920,7 @@ function initTabs() {
         if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
           renderMiniQuiz();
         }
+        window.scrollTo(0, 0);
       });
     });
   });
@@ -1014,6 +1019,7 @@ function init() {
   renderSentences();
   renderExercises();
   renderProgress();
+  window.scrollTo(0, 0);
 }
 
 init();
