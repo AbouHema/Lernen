@@ -7,6 +7,8 @@ import { sentences } from "@/data/sentences";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Flashcard } from "@/components/flashcard";
+import { SpeechTrainerPanel } from "@/components/speech-trainer-panel";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
 
@@ -52,22 +54,35 @@ export function SentenceList() {
       )}
 
       {!loading && (
-        <div className="grid gap-4">
-        {filtered.map((item) => (
-          <Card key={item.id} className="card-surface">
-            <CardContent className={cn("space-y-3 p-6", isRtl && "text-right")}> 
-              <div className="flex items-center justify-between">
-                <Badge variant="outline">{item.category}</Badge>
-                <Badge variant="primary">{item.level}</Badge>
-              </div>
-              <div>
-                <p className="text-lg font-semibold text-slate-900">{item.german}</p>
-                <p className="text-sm text-slate-500">{item.arabic}</p>
-              </div>
+        <>
+          <Card className="card-surface">
+            <CardContent className="space-y-4 p-6">
+              <SpeechTrainerPanel
+                title={t.pronounce}
+                items={sentences}
+                getExpectedText={(item) => item.german}
+                getGermanText={(item) => item.german}
+                getArabicText={(item) => item.arabic}
+                getMetaText={(item) => `${item.category} · ${item.level}`}
+                enableSimilarity
+              />
             </CardContent>
           </Card>
-        ))}
-        </div>
+
+          <div className="grid gap-4">
+            {filtered.map((item) => (
+              <Card key={item.id} className="card-surface">
+                <CardContent className={cn("space-y-3 p-6", isRtl && "text-right")}> 
+                  <div className="flex items-center justify-between">
+                    <Badge variant="outline">{item.category}</Badge>
+                    <Badge variant="primary">{item.level}</Badge>
+                  </div>
+                  <Flashcard german={item.german} arabic={item.arabic} className="p-4" />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );

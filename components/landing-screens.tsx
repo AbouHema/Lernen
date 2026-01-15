@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Flashcard } from "@/components/flashcard";
 import { Badge } from "@/components/ui/badge";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
@@ -63,8 +64,7 @@ export function LandingScreens() {
                   key={item.de}
                   className="rounded-2xl border border-slate-100 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
                 >
-                  <p className={cn("text-lg font-semibold", isRtl && "text-right")}>{item.ar}</p>
-                  <p className={cn("text-sm text-slate-500", isRtl && "text-right")}>{item.de}</p>
+                  <Flashcard german={item.de} arabic={item.ar} className="p-3" />
                 </div>
               ))}
             </CardContent>
