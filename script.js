@@ -1143,9 +1143,11 @@ function init() {
   renderSentences();
   renderExercises();
   renderProgress();
-  window.addEventListener("load", () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scrollToTopInstant, { once: true });
+  } else {
     scrollToTopInstant();
-  }, { once: true });
+  }
 }
 
 init();
