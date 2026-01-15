@@ -658,3 +658,89 @@ button:disabled {
 [dir="rtl"] .tab {
   font-weight: 500;
 }
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-item {
+  background: color-mix(in srgb, #ffffff 92%, var(--primary) 8%);
+  border: 1px solid color-mix(in srgb, var(--primary) 10%, #ffffff);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion-trigger:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.accordion-arrow {
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.accordion-count {
+  margin-left: auto;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 15%, transparent);
+  color: var(--primary);
+}
+
+.accordion-panel {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease, opacity 200ms ease;
+}
+
+.accordion-panel.is-open {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.accordion-items {
+  padding: 0 18px 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.level-trigger {
+  font-size: 1.05rem;
+}
+
+.category-trigger {
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.vocab-card.is-active,
+.sentence-card.is-active {
+  border-color: var(--primary);
+  box-shadow: 0 12px 24px -20px rgba(59, 91, 255, 0.5);
+  background: color-mix(in srgb, var(--primary) 8%, #ffffff);
+}
+
+.empty-state {
+  margin: 0;
+  padding: 16px 0;
+}
