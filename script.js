@@ -21,11 +21,18 @@ const translations = {
     next: "Weiter",
     back: "Zurück",
     reset: "Neu starten",
+    repeat: "Wiederholen",
     pronounce: "Aussprache prüfen",
     listening: "Ich höre zu…",
     pronunciationCorrect: "Aussprache stimmt.",
     pronunciationIncorrect: "Aussprache nicht erkannt.",
     pronunciationUnsupported: "Spracherkennung wird nicht unterstützt.",
+    transcript: "Erkannt",
+    correctAnswer: "Richtig wäre",
+    practiceVocabTitle: "Vokabeln sprechen",
+    practiceSentenceTitle: "Sätze sprechen",
+    autoListen: "Auto-Start",
+    noPracticeItems: "Keine Treffer für diese Filter.",
     darkMode: "Dark Mode",
     language: "Sprache",
     levelLabel: "Level",
@@ -60,11 +67,18 @@ const translations = {
     next: "التالي",
     back: "عودة",
     reset: "ابدأ من جديد",
+    repeat: "أعد المحاولة",
     pronounce: "تحقق من النطق",
     listening: "أنا أستمع…",
     pronunciationCorrect: "النطق صحيح.",
     pronunciationIncorrect: "لم يتم التعرف على النطق.",
     pronunciationUnsupported: "التعرّف على الصوت غير مدعوم.",
+    transcript: "تم التعرف",
+    correctAnswer: "الإجابة الصحيحة",
+    practiceVocabTitle: "تدريب المفردات",
+    practiceSentenceTitle: "تدريب الجُمل",
+    autoListen: "بدء تلقائي",
+    noPracticeItems: "لا توجد نتائج لهذه المرشحات.",
     darkMode: "الوضع الداكن",
     language: "اللغة",
     levelLabel: "المستوى",
@@ -86,7 +100,9 @@ const state = {
   theme: localStorage.getItem("lernen_theme") || "light",
   favorites: JSON.parse(localStorage.getItem("lernen_favorites") || "[]"),
   learned: JSON.parse(localStorage.getItem("lernen_learned") || "[]"),
-  quizHistory: JSON.parse(localStorage.getItem("lernen_quiz") || "[]")
+  quizHistory: JSON.parse(localStorage.getItem("lernen_quiz") || "[]"),
+  autoListenVocab: localStorage.getItem("lernen_auto_listen_vocab") === "true",
+  autoListenSentence: localStorage.getItem("lernen_auto_listen_sentence") === "true"
 };
 
 const elements = {
@@ -122,7 +138,29 @@ const elements = {
   audioHint: document.getElementById("audioHint"),
   levelHint: document.getElementById("levelHint"),
   exerciseLevel: document.getElementById("exerciseLevel"),
-  exerciseLevelLabel: document.getElementById("exerciseLevelLabel")
+  exerciseLevelLabel: document.getElementById("exerciseLevelLabel"),
+  vocabPracticeTitle: document.getElementById("vocabPracticeTitle"),
+  vocabRepeat: document.getElementById("vocabRepeat"),
+  vocabNext: document.getElementById("vocabNext"),
+  vocabAutoListen: document.getElementById("vocabAutoListen"),
+  vocabAutoLabel: document.getElementById("vocabAutoLabel"),
+  vocabPracticeGerman: document.getElementById("vocabPracticeGerman"),
+  vocabPracticeArabic: document.getElementById("vocabPracticeArabic"),
+  vocabMic: document.getElementById("vocabMic"),
+  vocabSpeak: document.getElementById("vocabSpeak"),
+  vocabTranscript: document.getElementById("vocabTranscript"),
+  vocabFeedback: document.getElementById("vocabFeedback"),
+  sentencePracticeTitle: document.getElementById("sentencePracticeTitle"),
+  sentenceRepeat: document.getElementById("sentenceRepeat"),
+  sentenceNext: document.getElementById("sentenceNext"),
+  sentenceAutoListen: document.getElementById("sentenceAutoListen"),
+  sentenceAutoLabel: document.getElementById("sentenceAutoLabel"),
+  sentencePracticeGerman: document.getElementById("sentencePracticeGerman"),
+  sentencePracticeArabic: document.getElementById("sentencePracticeArabic"),
+  sentenceMic: document.getElementById("sentenceMic"),
+  sentenceSpeak: document.getElementById("sentenceSpeak"),
+  sentenceTranscript: document.getElementById("sentenceTranscript"),
+  sentenceFeedback: document.getElementById("sentenceFeedback")
 };
 
 function applyLocale() {
@@ -150,6 +188,22 @@ function applyLocale() {
   elements.exerciseLevelLabel.textContent = t.exerciseLevelLabel;
   elements.audioHint.textContent = t.audioHint;
   elements.levelHint.textContent = t.levelHint;
+  elements.vocabPracticeTitle.textContent = t.practiceVocabTitle;
+  elements.sentencePracticeTitle.textContent = t.practiceSentenceTitle;
+  elements.vocabRepeat.textContent = t.repeat;
+  elements.vocabNext.textContent = t.next;
+  elements.vocabAutoLabel.textContent = t.autoListen;
+  elements.sentenceRepeat.textContent = t.repeat;
+  elements.sentenceNext.textContent = t.next;
+  elements.sentenceAutoLabel.textContent = t.autoListen;
+  elements.vocabMic.setAttribute("aria-label", t.pronounce);
+  elements.vocabMic.setAttribute("title", t.pronounce);
+  elements.sentenceMic.setAttribute("aria-label", t.pronounce);
+  elements.sentenceMic.setAttribute("title", t.pronounce);
+  elements.vocabSpeak.setAttribute("aria-label", t.speak);
+  elements.vocabSpeak.setAttribute("title", t.speak);
+  elements.sentenceSpeak.setAttribute("aria-label", t.speak);
+  elements.sentenceSpeak.setAttribute("title", t.speak);
   populateFilters();
 }
 
@@ -264,19 +318,8 @@ function toggleLearned(id) {
 }
 
 function renderVocabulary() {
-  const query = elements.vocabSearch.value.toLowerCase();
   const t = translations[state.locale];
-  const level = elements.vocabLevel.value;
-  const category = elements.vocabCategory.value;
-  const filtered = getOrderedVocabulary().filter((item) => {
-    const matchesQuery = [item.arabic, item.german, item.example_de, item.example_ar]
-      .join(" ")
-      .toLowerCase()
-      .includes(query);
-    const matchesLevel = level === "all" || item.level === level;
-    const matchesCategory = category === "all" || item.category === category;
-    return matchesQuery && matchesLevel && matchesCategory;
-  });
+  const filtered = getFilteredVocabulary();
 
   elements.vocabGrid.innerHTML = filtered
     .map((item) => {
@@ -320,18 +363,11 @@ function renderVocabulary() {
     button.addEventListener("click", () => toggleLearned(button.dataset.learned))
   );
   bindSpeakButtons(elements.vocabGrid);
+  updateVocabPractice(filtered, { autoStart: true });
 }
 
 function renderSentences() {
-  const query = elements.sentenceSearch.value.toLowerCase();
-  const level = elements.sentenceLevel.value;
-  const category = elements.sentenceCategory.value;
-  const filtered = getOrderedSentences().filter((item) => {
-    const matchesQuery = [item.arabic, item.german].join(" ").toLowerCase().includes(query);
-    const matchesLevel = level === "all" || item.level === level;
-    const matchesCategory = category === "all" || item.category === category;
-    return matchesQuery && matchesLevel && matchesCategory;
-  });
+  const filtered = getFilteredSentences();
 
   elements.sentenceGrid.innerHTML = filtered
     .map(
@@ -353,6 +389,34 @@ function renderSentences() {
     )
     .join("");
   bindSpeakButtons(elements.sentenceGrid);
+  updateSentencePractice(filtered, { autoStart: true });
+}
+
+function getFilteredVocabulary() {
+  const query = elements.vocabSearch.value.toLowerCase();
+  const level = elements.vocabLevel.value;
+  const category = elements.vocabCategory.value;
+  return getOrderedVocabulary().filter((item) => {
+    const matchesQuery = [item.arabic, item.german, item.example_de, item.example_ar]
+      .join(" ")
+      .toLowerCase()
+      .includes(query);
+    const matchesLevel = level === "all" || item.level === level;
+    const matchesCategory = category === "all" || item.category === category;
+    return matchesQuery && matchesLevel && matchesCategory;
+  });
+}
+
+function getFilteredSentences() {
+  const query = elements.sentenceSearch.value.toLowerCase();
+  const level = elements.sentenceLevel.value;
+  const category = elements.sentenceCategory.value;
+  return getOrderedSentences().filter((item) => {
+    const matchesQuery = [item.arabic, item.german].join(" ").toLowerCase().includes(query);
+    const matchesLevel = level === "all" || item.level === level;
+    const matchesCategory = category === "all" || item.category === category;
+    return matchesQuery && matchesLevel && matchesCategory;
+  });
 }
 
 function renderProgress() {
@@ -421,7 +485,6 @@ function renderFlashcards() {
     return;
   }
   let index = 0;
-  let pronunciationMessage = "";
 
   function update() {
     const item = items[index % items.length];
@@ -439,28 +502,23 @@ function renderFlashcards() {
             <button class="secondary-button" id="pronounceCheck">${translations[state.locale].pronounce}</button>
             <button class="icon-button" data-speak="${item.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
           </div>
-          <p class="muted" id="pronounceResult">${pronunciationMessage}</p>
+          <p class="muted speech-feedback" id="pronounceTranscript"></p>
+          <p class="muted speech-feedback" id="pronounceResult"></p>
         </div>
       </div>
     `;
 
     container.querySelector("#nextCard").addEventListener("click", () => {
       index += 1;
-      pronunciationMessage = "";
       update();
     });
     container.querySelector("#pronounceCheck").addEventListener("click", () => {
-      handlePronunciation({
-        targetText: item.german,
-        resultElement: container.querySelector("#pronounceResult"),
-        onCorrect: () => {
-          index += 1;
-          pronunciationMessage = "";
-          update();
-        },
-        onIncorrect: () => {
-          pronunciationMessage = translations[state.locale].pronunciationIncorrect;
-        }
+      const resultElement = container.querySelector("#pronounceResult");
+      const transcriptElement = container.querySelector("#pronounceTranscript");
+      setSpeechTargets({ resultElement, transcriptElement });
+      startSpeechCheck(item.german, () => {
+        index += 1;
+        update();
       });
     });
     bindSpeakButtons(container);
@@ -530,7 +588,6 @@ function renderGap() {
     return;
   }
   let index = 0;
-  let pronunciationMessage = "";
 
   function update() {
     const sentence = items[index % items.length];
@@ -550,7 +607,8 @@ function renderGap() {
             <button class="icon-button" data-speak="${sentence.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
           </div>
           <p class="muted" id="gapResult"></p>
-          <p class="muted" id="gapPronounceResult">${pronunciationMessage}</p>
+          <p class="muted speech-feedback" id="gapTranscript"></p>
+          <p class="muted speech-feedback" id="gapPronounceResult"></p>
           <button class="secondary-button" id="gapNext">${translations[state.locale].next}</button>
         </div>
       </div>
@@ -564,22 +622,16 @@ function renderGap() {
 
     container.querySelector("#gapNext").addEventListener("click", () => {
       index += 1;
-      pronunciationMessage = "";
       update();
     });
 
     container.querySelector("#gapPronounce").addEventListener("click", () => {
-      handlePronunciation({
-        targetText: sentence.german,
-        resultElement: container.querySelector("#gapPronounceResult"),
-        onCorrect: () => {
-          index += 1;
-          pronunciationMessage = "";
-          update();
-        },
-        onIncorrect: () => {
-          pronunciationMessage = translations[state.locale].pronunciationIncorrect;
-        }
+      const resultElement = container.querySelector("#gapPronounceResult");
+      const transcriptElement = container.querySelector("#gapTranscript");
+      setSpeechTargets({ resultElement, transcriptElement });
+      startSpeechCheck(sentence.german, () => {
+        index += 1;
+        update();
       });
     });
 
@@ -725,6 +777,130 @@ function getExerciseSentences() {
   return level === "all" ? ordered : ordered.filter((item) => item.level === level);
 }
 
+let vocabPracticeIndex = 0;
+let sentencePracticeIndex = 0;
+
+function updateVocabPractice(list = getFilteredVocabulary(), options = {}) {
+  const { autoStart = false } = options;
+  const t = translations[state.locale];
+  if (list.length === 0) {
+    elements.vocabPracticeGerman.textContent = t.noPracticeItems;
+    elements.vocabPracticeArabic.textContent = "";
+    elements.vocabTranscript.textContent = "";
+    elements.vocabFeedback.textContent = "";
+    elements.vocabNext.disabled = true;
+    elements.vocabRepeat.disabled = true;
+    elements.vocabMic.disabled = true;
+    elements.vocabSpeak.disabled = true;
+    return;
+  }
+
+  if (vocabPracticeIndex >= list.length) {
+    vocabPracticeIndex = 0;
+  }
+
+  const item = list[vocabPracticeIndex];
+  elements.vocabPracticeGerman.textContent = `${item.article} ${item.german}`;
+  elements.vocabPracticeArabic.textContent = item.arabic;
+  elements.vocabTranscript.textContent = "";
+  elements.vocabFeedback.textContent = "";
+  elements.vocabFeedback.dataset.status = "";
+  elements.vocabTranscript.dataset.status = "";
+  elements.vocabNext.disabled = false;
+  elements.vocabRepeat.disabled = false;
+  elements.vocabMic.disabled = false;
+  elements.vocabSpeak.disabled = false;
+
+  if (autoStart && state.autoListenVocab) {
+    startVocabPracticeListening();
+  }
+}
+
+function updateSentencePractice(list = getFilteredSentences(), options = {}) {
+  const { autoStart = false } = options;
+  const t = translations[state.locale];
+  if (list.length === 0) {
+    elements.sentencePracticeGerman.textContent = t.noPracticeItems;
+    elements.sentencePracticeArabic.textContent = "";
+    elements.sentenceTranscript.textContent = "";
+    elements.sentenceFeedback.textContent = "";
+    elements.sentenceNext.disabled = true;
+    elements.sentenceRepeat.disabled = true;
+    elements.sentenceMic.disabled = true;
+    elements.sentenceSpeak.disabled = true;
+    return;
+  }
+
+  if (sentencePracticeIndex >= list.length) {
+    sentencePracticeIndex = 0;
+  }
+
+  const item = list[sentencePracticeIndex];
+  elements.sentencePracticeGerman.textContent = item.german;
+  elements.sentencePracticeArabic.textContent = item.arabic;
+  elements.sentenceTranscript.textContent = "";
+  elements.sentenceFeedback.textContent = "";
+  elements.sentenceFeedback.dataset.status = "";
+  elements.sentenceTranscript.dataset.status = "";
+  elements.sentenceNext.disabled = false;
+  elements.sentenceRepeat.disabled = false;
+  elements.sentenceMic.disabled = false;
+  elements.sentenceSpeak.disabled = false;
+
+  if (autoStart && state.autoListenSentence) {
+    startSentencePracticeListening();
+  }
+}
+
+function startVocabPracticeListening() {
+  const list = getFilteredVocabulary();
+  if (list.length === 0) {
+    return;
+  }
+  const item = list[vocabPracticeIndex % list.length];
+  const t = translations[state.locale];
+  setSpeechTargets({ resultElement: elements.vocabFeedback, transcriptElement: elements.vocabTranscript });
+  startSpeechCheck(
+    item.german,
+    () => {
+      vocabPracticeIndex = (vocabPracticeIndex + 1) % list.length;
+      updateVocabPractice(list, { autoStart: true });
+    },
+    () => {
+      const correct = `${item.article} ${item.german}`;
+      updateSpeechFeedback(elements.vocabFeedback, `${t.pronunciationIncorrect} ${t.correctAnswer}: ${correct}`, "error");
+      speakGerman(item.german);
+      setTimeout(() => startVocabPracticeListening(), 800);
+    }
+  );
+}
+
+function startSentencePracticeListening() {
+  const list = getFilteredSentences();
+  if (list.length === 0) {
+    return;
+  }
+  const item = list[sentencePracticeIndex % list.length];
+  const t = translations[state.locale];
+  setSpeechTargets({ resultElement: elements.sentenceFeedback, transcriptElement: elements.sentenceTranscript });
+  startSpeechCheck(
+    item.german,
+    () => {
+      sentencePracticeIndex = (sentencePracticeIndex + 1) % list.length;
+      updateSentencePractice(list, { autoStart: true });
+    },
+    () => {
+      updateSpeechFeedback(
+        elements.sentenceFeedback,
+        `${t.pronunciationIncorrect} ${t.correctAnswer}: ${item.german}`,
+        "error"
+      );
+      speakGerman(item.german);
+      setTimeout(() => startSentencePracticeListening(), 800);
+    }
+  );
+}
+
 function initTabs() {
   document.querySelectorAll(".tabs").forEach((tabGroup) => {
     const tabs = tabGroup.querySelectorAll(".tab");
@@ -766,11 +942,71 @@ function initControls() {
   elements.sentenceLevel.addEventListener("change", renderSentences);
   elements.sentenceCategory.addEventListener("change", renderSentences);
   elements.exerciseLevel.addEventListener("change", renderExercises);
+  elements.vocabNext.addEventListener("click", () => {
+    const list = getFilteredVocabulary();
+    if (list.length === 0) {
+      return;
+    }
+    vocabPracticeIndex = (vocabPracticeIndex + 1) % list.length;
+    updateVocabPractice(list, { autoStart: true });
+  });
+  elements.vocabRepeat.addEventListener("click", () => {
+    startVocabPracticeListening();
+  });
+  elements.vocabMic.addEventListener("click", () => {
+    startVocabPracticeListening();
+  });
+  elements.vocabSpeak.addEventListener("click", () => {
+    const list = getFilteredVocabulary();
+    if (list.length === 0) {
+      return;
+    }
+    const item = list[vocabPracticeIndex % list.length];
+    speakGerman(item.german);
+  });
+  elements.vocabAutoListen.addEventListener("change", () => {
+    state.autoListenVocab = elements.vocabAutoListen.checked;
+    localStorage.setItem("lernen_auto_listen_vocab", state.autoListenVocab);
+    if (state.autoListenVocab) {
+      startVocabPracticeListening();
+    }
+  });
+  elements.sentenceNext.addEventListener("click", () => {
+    const list = getFilteredSentences();
+    if (list.length === 0) {
+      return;
+    }
+    sentencePracticeIndex = (sentencePracticeIndex + 1) % list.length;
+    updateSentencePractice(list, { autoStart: true });
+  });
+  elements.sentenceRepeat.addEventListener("click", () => {
+    startSentencePracticeListening();
+  });
+  elements.sentenceMic.addEventListener("click", () => {
+    startSentencePracticeListening();
+  });
+  elements.sentenceSpeak.addEventListener("click", () => {
+    const list = getFilteredSentences();
+    if (list.length === 0) {
+      return;
+    }
+    const item = list[sentencePracticeIndex % list.length];
+    speakGerman(item.german);
+  });
+  elements.sentenceAutoListen.addEventListener("change", () => {
+    state.autoListenSentence = elements.sentenceAutoListen.checked;
+    localStorage.setItem("lernen_auto_listen_sentence", state.autoListenSentence);
+    if (state.autoListenSentence) {
+      startSentencePracticeListening();
+    }
+  });
 }
 
 function init() {
   applyLocale();
   applyTheme();
+  elements.vocabAutoListen.checked = state.autoListenVocab;
+  elements.sentenceAutoListen.checked = state.autoListenSentence;
   initControls();
   initTabs();
   renderDailyWord();
@@ -812,43 +1048,89 @@ function normalizeSpeech(text) {
     .trim();
 }
 
-function handlePronunciation({ targetText, resultElement, onCorrect, onIncorrect }) {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) {
-    const message = translations[state.locale].pronunciationUnsupported;
-    if (resultElement) {
-      resultElement.textContent = message;
-    }
-    return;
-  }
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const speechState = {
+  recognition: SpeechRecognition ? new SpeechRecognition() : null,
+  expectedText: "",
+  onCorrect: null,
+  onWrong: null,
+  resultElement: null,
+  transcriptElement: null
+};
 
-  const recognition = new SpeechRecognition();
-  recognition.lang = "de-DE";
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-  if (resultElement) {
-    resultElement.textContent = translations[state.locale].listening;
-  }
-  recognition.onresult = (event) => {
-    const transcript = normalizeSpeech(event.results[0]?.[0]?.transcript || "");
-    const target = normalizeSpeech(targetText);
-    const isCorrect = transcript === target;
-    if (resultElement) {
-      resultElement.textContent = isCorrect
-        ? translations[state.locale].pronunciationCorrect
-        : translations[state.locale].pronunciationIncorrect;
+if (speechState.recognition) {
+  speechState.recognition.lang = "de-DE";
+  speechState.recognition.interimResults = false;
+  speechState.recognition.maxAlternatives = 1;
+  speechState.recognition.onresult = (event) => {
+    const t = translations[state.locale];
+    const rawTranscript = event.results[0]?.[0]?.transcript || "";
+    if (speechState.transcriptElement) {
+      speechState.transcriptElement.textContent = rawTranscript
+        ? `${t.transcript}: ${rawTranscript}`
+        : "";
+    }
+    const isCorrect = normalizeSpeech(rawTranscript) === normalizeSpeech(speechState.expectedText);
+    if (speechState.resultElement) {
+      updateSpeechFeedback(
+        speechState.resultElement,
+        isCorrect ? t.pronunciationCorrect : t.pronunciationIncorrect,
+        isCorrect ? "success" : "error"
+      );
     }
     if (isCorrect) {
-      onCorrect?.();
+      speechState.onCorrect?.();
     } else {
-      onIncorrect?.();
+      speechState.onWrong?.(rawTranscript);
     }
   };
-  recognition.onerror = () => {
-    if (resultElement) {
-      resultElement.textContent = translations[state.locale].pronunciationIncorrect;
+  speechState.recognition.onerror = () => {
+    const t = translations[state.locale];
+    if (speechState.resultElement) {
+      updateSpeechFeedback(speechState.resultElement, t.pronunciationIncorrect, "error");
     }
-    onIncorrect?.();
+    speechState.onWrong?.("");
   };
-  recognition.start();
+}
+
+function setSpeechTargets({ resultElement, transcriptElement }) {
+  speechState.resultElement = resultElement;
+  speechState.transcriptElement = transcriptElement;
+  if (speechState.resultElement) {
+    speechState.resultElement.textContent = "";
+    speechState.resultElement.dataset.status = "";
+  }
+  if (speechState.transcriptElement) {
+    speechState.transcriptElement.textContent = "";
+    speechState.transcriptElement.dataset.status = "";
+  }
+}
+
+function updateSpeechFeedback(element, message, status) {
+  if (!element) {
+    return;
+  }
+  element.textContent = message;
+  if (status) {
+    element.dataset.status = status;
+  } else {
+    element.dataset.status = "";
+  }
+}
+
+function startSpeechCheck(expectedText, onCorrect, onWrong) {
+  if (!speechState.recognition) {
+    const message = translations[state.locale].pronunciationUnsupported;
+    updateSpeechFeedback(speechState.resultElement, message, "error");
+    return;
+  }
+  speechState.expectedText = expectedText;
+  speechState.onCorrect = onCorrect;
+  speechState.onWrong = onWrong;
+  updateSpeechFeedback(speechState.resultElement, translations[state.locale].listening);
+  if (speechState.transcriptElement) {
+    speechState.transcriptElement.textContent = "";
+  }
+  speechState.recognition.abort();
+  speechState.recognition.start();
 }
