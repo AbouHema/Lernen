@@ -113,7 +113,14 @@ const resetScrollOnInitialLoad = (event) => {
     return;
   }
   hasInitialScrollReset = true;
-  window.scrollTo(0, 0);
+  if (location.hash) {
+    history.replaceState(null, "", `${location.pathname}${location.search}`);
+  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
+    });
+  });
 };
 
 const state = {
