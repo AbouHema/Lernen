@@ -160,6 +160,10 @@ const resetScrollOnInitialLoad = (event) => {
   });
 };
 
+function scrollToTopInstant() {
+  window.scrollTo(0, 0);
+}
+
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
   theme: localStorage.getItem("lernen_theme") || "light",
@@ -1193,7 +1197,6 @@ function initTabs() {
         if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
           renderMiniQuiz();
         }
-        scrollToTopInstant();
       });
     });
   });
