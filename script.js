@@ -94,46 +94,6 @@ const translations = {
 };
 
 const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
-const IMAGE_BASE_URL = "https://source.unsplash.com/featured/600x400";
-const LEVEL_IMAGE_KEYWORDS = {
-  A1: ["Haus", "Wasser", "Essen", "Auto"],
-  A2: ["Alltag", "Stadt", "Park", "Schule"],
-  B1: ["Arbeit", "Reise", "Büro", "Zug"],
-  B2: ["Situation", "Diskussion", "Planung", "Team"],
-  C1: ["Strategie", "Analyse", "Konferenz", "Projekt"]
-};
-const CATEGORY_IMAGE_KEYWORDS = {
-  Alltag: ["Alltag", "Menschen", "Leben"],
-  Essen: ["Essen", "Küche", "Restaurant"],
-  Arbeit: ["Arbeit", "Büro", "Meeting"],
-  Arzt: ["Arzt", "Gesundheit", "Krankenhaus"],
-  Wohnung: ["Wohnung", "Haus", "Zimmer"]
-};
-const LOCAL_IMAGE_MAP = [
-  { keywords: ["wasser", "trinken", "regen"], file: "wasser.svg" },
-  { keywords: ["essen", "koch", "restaurant", "snack", "küche"], file: "essen.svg" },
-  { keywords: ["auto", "wagen", "fahrt"], file: "auto.svg" },
-  { keywords: ["haus", "wohnung", "zimmer", "miete"], file: "haus.svg" },
-  { keywords: ["park", "stadt", "schule", "bahnhof", "ort"], file: "ort.svg" },
-  { keywords: ["arbeit", "büro", "chef", "kollege", "team"], file: "arbeit.svg" },
-  { keywords: ["reise", "zug", "flug", "hotel", "urlaub"], file: "reisen.svg" },
-  { keywords: ["strategie", "analyse", "konferenz", "projekt"], file: "komplex.svg" },
-  { keywords: ["situation", "diskussion", "planung"], file: "abstrakt.svg" }
-];
-const LEVEL_FALLBACK_IMAGES = {
-  A1: "haus.svg",
-  A2: "ort.svg",
-  B1: "arbeit.svg",
-  B2: "abstrakt.svg",
-  C1: "komplex.svg"
-};
-const CATEGORY_FALLBACK_IMAGES = {
-  Alltag: "ort.svg",
-  Essen: "essen.svg",
-  Arbeit: "arbeit.svg",
-  Arzt: "abstrakt.svg",
-  Wohnung: "haus.svg"
-};
 const GERMAN_STOP_WORDS = new Set([
   "der",
   "die",
