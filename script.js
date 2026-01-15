@@ -99,7 +99,20 @@ if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
-const scrollToTopInstant = () => {
+let hasInitialScrollReset = false;
+
+const resetScrollOnInitialLoad = (event) => {
+  if (hasInitialScrollReset) {
+    return;
+  }
+  if (event && event.persisted) {
+    return;
+  }
+  const navigationEntry = performance.getEntriesByType("navigation")[0];
+  if (navigationEntry && navigationEntry.type === "back_forward") {
+    return;
+  }
+  hasInitialScrollReset = true;
   window.scrollTo(0, 0);
 };
 
@@ -1144,10 +1157,11 @@ function init() {
   renderExercises();
   renderProgress();
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", scrollToTopInstant, { once: true });
+    document.addEventListener("DOMContentLoaded", resetScrollOnInitialLoad, { once: true });
   } else {
-    scrollToTopInstant();
+    resetScrollOnInitialLoad();
   }
+  window.addEventListener("pageshow", resetScrollOnInitialLoad, { once: true });
 }
 
 init();
