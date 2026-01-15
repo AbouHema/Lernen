@@ -10,9 +10,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Flashcard } from "@/components/flashcard";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
 import { getQuizHistory, setQuizHistory, getStreak, setStreak } from "@/lib/storage";
+import { useSpeechTrainer } from "@/lib/use-speech-trainer";
 
 function getRandomOptions(correct: string, pool: string[], count = 4) {
   const options = new Set([correct]);
@@ -27,8 +30,15 @@ export function ExercisePanel() {
   const isRtl = locale === "ar";
 
   const [cardIndex, setCardIndex] = React.useState(0);
-  const [showBack, setShowBack] = React.useState(false);
-  const [pronunciationStatus, setPronunciationStatus] = React.useState<"idle" | "listening" | "correct" | "incorrect" | "unsupported">("idle");
+  const [speechFeedback, setSpeechFeedback] = React.useState<{
+    tone: "success" | "warning" | "error";
+    message: string;
+    solution?: string;
+  } | null>(null);
+  const [strictMode, setStrictMode] = React.useState(true);
+  const [ttsEnabled, setTtsEnabled] = React.useState(false);
+  const [autoListening, setAutoListening] = React.useState(false);
+  const lastHandledTranscriptRef = React.useRef<string>("");
 
   const [mcIndex, setMcIndex] = React.useState(0);
   const [mcAnswer, setMcAnswer] = React.useState<string | null>(null);
@@ -58,43 +68,65 @@ export function ExercisePanel() {
       : [];
   }, [quizItems, quizStep]);
 
+  const { state: speechState, startListening, stopListening } = useSpeechTrainer({
+    strictMode,
+    ignoreArticles: !strictMode,
+    enableSimilarity: false
+  });
+
+  const speakText = React.useCallback((text: string) => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "de-DE";
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  }, []);
+
+  const startPronunciation = React.useCallback(
+    (index: number) => {
+      const card = vocabulary[index % vocabulary.length];
+      startListening(`${card.article} ${card.german}`, () => undefined, () => undefined);
+    },
+    [startListening]
+  );
+
+  React.useEffect(() => {
+    if (!speechState.transcript || speechState.transcript === lastHandledTranscriptRef.current) return;
+    lastHandledTranscriptRef.current = speechState.transcript;
+    if (speechState.lastResult === "correct") {
+      setSpeechFeedback({ tone: "success", message: t.speechCorrect });
+      if (ttsEnabled) {
+        speakText(t.speechCorrect);
+      }
+      setCardIndex((prev) => (prev + 1) % vocabulary.length);
+      return;
+    }
+    if (speechState.lastResult === "almost" || speechState.lastResult === "incorrect") {
+      const expected = `${currentCard.article} ${currentCard.german}`;
+      const isAlmost = speechState.lastResult === "almost";
+      setSpeechFeedback({
+        tone: isAlmost ? "warning" : "error",
+        message: isAlmost ? t.speechAlmost : t.speechIncorrect,
+        solution: expected
+      });
+      if (ttsEnabled) {
+        speakText(expected);
+      }
+    }
+  }, [currentCard.article, currentCard.german, speechState.lastResult, speechState.transcript, t.speechAlmost, t.speechCorrect, t.speechIncorrect, ttsEnabled, speakText]);
+
+  React.useEffect(() => {
+    if (!autoListening || !speechFeedback) return;
+    startPronunciation(cardIndex);
+  }, [autoListening, cardIndex, speechFeedback, startPronunciation]);
+
+  React.useEffect(() => stopListening, [stopListening]);
+
   const handleFlashcardAdvance = () => {
-    if (!showBack) {
-      setShowBack(true);
-      return;
-    }
     setCardIndex((prev) => prev + 1);
-    setShowBack(false);
-  };
-
-  const handlePronunciationCheck = () => {
-    const SpeechRecognition =
-      typeof window !== "undefined"
-        ? (window.SpeechRecognition || (window as typeof window & { webkitSpeechRecognition?: typeof window.SpeechRecognition }).webkitSpeechRecognition)
-        : undefined;
-
-    if (!SpeechRecognition) {
-      setPronunciationStatus("unsupported");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "de-DE";
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-    setPronunciationStatus("listening");
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0]?.[0]?.transcript?.toLowerCase().trim() ?? "";
-      const target = currentCard.german.toLowerCase().trim();
-      setPronunciationStatus(transcript === target ? "correct" : "incorrect");
-    };
-
-    recognition.onerror = () => {
-      setPronunciationStatus("incorrect");
-    };
-
-    recognition.start();
+    setSpeechFeedback(null);
+    setAutoListening(false);
+    stopListening();
   };
 
   const checkGap = () => {
@@ -127,27 +159,67 @@ export function ExercisePanel() {
         <Card className="card-surface">
           <CardContent className="space-y-6 p-6">
             <motion.div
-              key={currentCard.id + showBack}
+              key={currentCard.id}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="rounded-2xl border border-slate-100 bg-white p-8 text-center"
+              className="rounded-2xl"
             >
-              <p className="text-3xl font-semibold">{showBack ? `${currentCard.article} ${currentCard.german}` : currentCard.arabic}</p>
-              <p className="mt-3 text-sm text-slate-500">{showBack ? currentCard.example_de : currentCard.example_ar}</p>
+              <Flashcard german={`${currentCard.article} ${currentCard.german}`} arabic={currentCard.arabic} />
+              <div className="mt-3 space-y-1 text-sm text-slate-500">
+                <p>{currentCard.example_de}</p>
+                <p dir="rtl">{currentCard.example_ar}</p>
+              </div>
             </motion.div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <Button onClick={handleFlashcardAdvance}>{t.next}</Button>
-              <Button variant="outline" onClick={handlePronunciationCheck}>
-                {t.pronounce}
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setAutoListening(true);
+                  setSpeechFeedback(null);
+                  startPronunciation(cardIndex);
+                }}
+                disabled={speechState.lastResult === "unsupported"}
+              >
+                {speechState.isListening ? t.listening : t.startListening}
               </Button>
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setAutoListening(false);
+                  stopListening();
+                }}
+              >
+                {t.stopListening}
+              </Button>
+              <div className="flex items-center gap-2 text-xs text-slate-500">
+                <span>{t.strictMode}</span>
+                <Switch checked={strictMode} onCheckedChange={setStrictMode} />
+              </div>
+              <div className="flex items-center gap-2 text-xs text-slate-500">
+                <span>{t.tts}</span>
+                <Switch checked={ttsEnabled} onCheckedChange={setTtsEnabled} />
+              </div>
             </div>
-            {pronunciationStatus !== "idle" && (
-              <p className="text-sm text-slate-500">
-                {pronunciationStatus === "listening" && t.listening}
-                {pronunciationStatus === "correct" && t.pronunciationCorrect}
-                {pronunciationStatus === "incorrect" && t.pronunciationIncorrect}
-                {pronunciationStatus === "unsupported" && t.pronunciationUnsupported}
+            {speechState.lastResult === "unsupported" && (
+              <p className="text-sm text-slate-500">{t.pronunciationUnsupported}</p>
+            )}
+            {speechFeedback && (
+              <p
+                className={cn(
+                  "text-sm",
+                  speechFeedback.tone === "success" && "text-emerald-600",
+                  speechFeedback.tone === "warning" && "text-amber-600",
+                  speechFeedback.tone === "error" && "text-rose-600"
+                )}
+              >
+                {speechFeedback.message}
+                {speechFeedback.solution && (
+                  <span className="ml-2 text-slate-500">
+                    {t.correctSolution} {speechFeedback.solution}
+                  </span>
+                )}
               </p>
             )}
           </CardContent>
