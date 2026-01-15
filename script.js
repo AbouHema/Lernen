@@ -99,6 +99,10 @@ if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
+const scrollToTopInstant = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+};
+
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
   theme: localStorage.getItem("lernen_theme") || "light",
@@ -324,12 +328,12 @@ function toggleLearned(id) {
 function renderVocabulary() {
   const t = translations[state.locale];
   const filtered = getFilteredVocabulary();
+  const grouped = groupByLevelCategory(filtered);
 
-  elements.vocabGrid.innerHTML = filtered
-    .map((item) => {
-      const isFavorite = state.favorites.includes(item.id);
-      const isLearned = state.learned.includes(item.id);
-      return `
+  elements.vocabGrid.innerHTML = renderAccordion(grouped, "vocab", (item) => {
+    const isFavorite = state.favorites.includes(item.id);
+    const isLearned = state.learned.includes(item.id);
+    return `
       <article class="vocab-card">
         <div class="card-header">
           <div>
@@ -355,8 +359,7 @@ function renderVocabulary() {
         </div>
       </article>
     `;
-    })
-    .join("");
+  });
 
   elements.favoriteCount.textContent = `${state.favorites.length} ${t.favorites}`;
 
@@ -367,15 +370,16 @@ function renderVocabulary() {
     button.addEventListener("click", () => toggleLearned(button.dataset.learned))
   );
   bindSpeakButtons(elements.vocabGrid);
+  bindAccordion(elements.vocabGrid);
+  bindActiveCards(elements.vocabGrid);
   updateVocabPractice(filtered, { autoStart: true });
 }
 
 function renderSentences() {
   const filtered = getFilteredSentences();
+  const grouped = groupByLevelCategory(filtered);
 
-  elements.sentenceGrid.innerHTML = filtered
-    .map(
-      (item) => `
+  elements.sentenceGrid.innerHTML = renderAccordion(grouped, "sentences", (item) => `
       <article class="sentence-card">
         <div class="card-header">
           <div class="sentence-meta">
@@ -389,10 +393,10 @@ function renderSentences() {
           <p class="muted">${item.arabic}</p>
         </div>
       </article>
-    `
-    )
-    .join("");
+    `);
   bindSpeakButtons(elements.sentenceGrid);
+  bindAccordion(elements.sentenceGrid);
+  bindActiveCards(elements.sentenceGrid);
   updateSentencePractice(filtered, { autoStart: true });
 }
 
@@ -741,6 +745,126 @@ function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
+function groupByLevelCategory(items) {
+  const grouped = {};
+  items.forEach((item) => {
+    const level = item.level || "Unbekannt";
+    const category = item.category || item.topic || "Sonstiges";
+    if (!grouped[level]) {
+      grouped[level] = {};
+    }
+    if (!grouped[level][category]) {
+      grouped[level][category] = [];
+    }
+    grouped[level][category].push(item);
+  });
+  return grouped;
+}
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\u00c0-\u017f]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function renderAccordion(grouped, prefix, renderItem) {
+  const levels = Object.keys(grouped).sort((a, b) => LEVEL_ORDER.indexOf(a) - LEVEL_ORDER.indexOf(b));
+  if (levels.length === 0) {
+    return `<p class="muted empty-state">${translations[state.locale].noPracticeItems}</p>`;
+  }
+  return `
+    <div class="accordion level-accordion" data-single="true">
+      ${levels
+        .map((level) => {
+          const categories = Object.keys(grouped[level]).sort((a, b) => a.localeCompare(b));
+          const levelId = `${prefix}-level-${slugify(level)}`;
+          const totalCount = categories.reduce((sum, category) => sum + grouped[level][category].length, 0);
+          return `
+            <div class="accordion-item">
+              <button class="accordion-trigger level-trigger" data-target="${levelId}" aria-expanded="false">
+                <span class="accordion-arrow">▶</span>
+                <span class="accordion-title">Level ${level}</span>
+                <span class="accordion-count">${totalCount}</span>
+              </button>
+              <div class="accordion-panel" id="${levelId}" aria-hidden="true">
+                <div class="accordion category-accordion" data-single="true">
+                  ${categories
+                    .map((category) => {
+                      const categoryId = `${levelId}-${slugify(category)}`;
+                      return `
+                        <div class="accordion-item">
+                          <button class="accordion-trigger category-trigger" data-target="${categoryId}" aria-expanded="false">
+                            <span class="accordion-arrow">▶</span>
+                            <span class="accordion-title">${category}</span>
+                            <span class="accordion-count">${grouped[level][category].length}</span>
+                          </button>
+                          <div class="accordion-panel" id="${categoryId}" aria-hidden="true">
+                            <div class="accordion-items">
+                              ${grouped[level][category].map(renderItem).join("")}
+                            </div>
+                          </div>
+                        </div>
+                      `;
+                    })
+                    .join("")}
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function bindAccordion(container) {
+  const accordions = container.querySelectorAll(".accordion");
+  accordions.forEach((accordion) => {
+    accordion.addEventListener("click", (event) => {
+      const trigger = event.target.closest(".accordion-trigger");
+      if (!trigger || !accordion.contains(trigger)) {
+        return;
+      }
+      const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+      if (accordion.dataset.single === "true") {
+        accordion.querySelectorAll(".accordion-trigger[aria-expanded='true']").forEach((openTrigger) => {
+          if (openTrigger !== trigger) {
+            setAccordionState(openTrigger, false);
+          }
+        });
+      }
+      setAccordionState(trigger, !isExpanded);
+    });
+  });
+}
+
+function setAccordionState(trigger, isOpen) {
+  const panelId = trigger.dataset.target;
+  const panel = panelId ? document.getElementById(panelId) : null;
+  trigger.setAttribute("aria-expanded", String(isOpen));
+  const arrow = trigger.querySelector(".accordion-arrow");
+  if (arrow) {
+    arrow.textContent = isOpen ? "▼" : "▶";
+  }
+  if (panel) {
+    panel.classList.toggle("is-open", isOpen);
+    panel.setAttribute("aria-hidden", String(!isOpen));
+  }
+}
+
+function bindActiveCards(container) {
+  container.querySelectorAll(".vocab-card, .sentence-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      container.querySelectorAll(".vocab-card.is-active, .sentence-card.is-active").forEach((active) => {
+        active.classList.remove("is-active");
+      });
+      card.classList.add("is-active");
+    });
+  });
+}
+
 function getOrderedLevels(items) {
   const unique = Array.from(new Set(items.map((item) => item.level)));
   return unique.sort((a, b) => LEVEL_ORDER.indexOf(a) - LEVEL_ORDER.indexOf(b));
@@ -920,7 +1044,7 @@ function initTabs() {
         if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
           renderMiniQuiz();
         }
-        window.scrollTo(0, 0);
+        scrollToTopInstant();
       });
     });
   });
@@ -1019,7 +1143,14 @@ function init() {
   renderSentences();
   renderExercises();
   renderProgress();
-  window.scrollTo(0, 0);
+  scrollToTopInstant();
+  window.addEventListener("hashchange", scrollToTopInstant);
+  window.addEventListener("popstate", scrollToTopInstant);
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      scrollToTopInstant();
+    });
+  });
 }
 
 init();
