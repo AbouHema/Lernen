@@ -1064,6 +1064,7 @@ function initTabs() {
         if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
           renderMiniQuiz();
         }
+        scrollToTopInstant();
       });
     });
   });
