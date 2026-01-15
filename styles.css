@@ -8,6 +8,8 @@
   --muted: #64748b;
   --border: #e2e8f0;
   --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  --success: #16a34a;
+  --danger: #ef4444;
   --radius: 28px;
 }
 
@@ -320,6 +322,32 @@ body.dark .switch::after {
   gap: 1rem;
 }
 
+.practice-card .card-header {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.practice-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.toggle-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.toggle-inline input {
+  accent-color: var(--primary);
+}
+
 .sentence-meta {
   display: flex;
   align-items: center;
@@ -395,6 +423,18 @@ body.dark .switch::after {
 .muted {
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+.speech-feedback {
+  min-height: 1.2em;
+}
+
+.speech-feedback[data-status="success"] {
+  color: var(--success);
+}
+
+.speech-feedback[data-status="error"] {
+  color: var(--danger);
 }
 
 .progress-stats {
@@ -510,6 +550,13 @@ select {
 
 .icon-button:hover {
   transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
 }
 
 .vocab-card h3 {
