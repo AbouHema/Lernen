@@ -94,6 +94,21 @@ const translations = {
 };
 
 const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
+const LOCAL_IMAGE_MAP = [];
+const LEVEL_FALLBACK_IMAGES = {};
+const CATEGORY_FALLBACK_IMAGES = {};
+const CATEGORY_IMAGE_KEYWORDS = {};
+
+function pickLocalImage() {
+  return null;
+}
+
+function renderExerciseMedia({ displayText = "" } = {}) {
+  if (!displayText) {
+    return "";
+  }
+  return `<p>${displayText}</p>`;
+}
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -122,6 +137,10 @@ const resetScrollOnInitialLoad = (event) => {
     });
   });
 };
+
+function scrollToTopInstant() {
+  window.scrollTo(0, 0);
+}
 
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
@@ -1064,7 +1083,6 @@ function initTabs() {
         if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
           renderMiniQuiz();
         }
-        scrollToTopInstant();
       });
     });
   });
