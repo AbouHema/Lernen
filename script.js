@@ -100,7 +100,7 @@ if ("scrollRestoration" in history) {
 }
 
 const scrollToTopInstant = () => {
-  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  window.scrollTo(0, 0);
 };
 
 const state = {
@@ -1143,14 +1143,9 @@ function init() {
   renderSentences();
   renderExercises();
   renderProgress();
-  scrollToTopInstant();
-  window.addEventListener("hashchange", scrollToTopInstant);
-  window.addEventListener("popstate", scrollToTopInstant);
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => {
-      scrollToTopInstant();
-    });
-  });
+  window.addEventListener("load", () => {
+    scrollToTopInstant();
+  }, { once: true });
 }
 
 init();
