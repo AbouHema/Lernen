@@ -385,7 +385,12 @@ function renderVocabulary() {
           </div>
         </div>
         <div class="card-content">
-          <p>${item.example_de}</p>
+          ${renderExerciseMedia({
+            sentence: item.example_de,
+            displayText: item.example_de,
+            level: item.level,
+            category: item.category
+          })}
           <p class="muted">${item.example_ar}</p>
         </div>
         <div class="card-actions">
@@ -428,7 +433,12 @@ function renderSentences() {
           <button class="icon-button" data-speak="${item.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
         </div>
         <div class="card-content">
-          <strong>${item.german}</strong>
+          ${renderExerciseMedia({
+            sentence: item.german,
+            displayText: item.german,
+            level: item.level,
+            category: item.category
+          })}
           <p class="muted">${item.arabic}</p>
         </div>
       </article>
@@ -541,7 +551,12 @@ function renderFlashcards() {
           <div class="flashcard">
             <strong>${item.article} ${item.german}</strong>
             <p class="muted">${item.arabic}</p>
-            <p>${item.example_de}</p>
+            ${renderExerciseMedia({
+              sentence: item.example_de,
+              displayText: item.example_de,
+              level: item.level,
+              category: item.category
+            })}
             <p class="muted">${item.example_ar}</p>
           </div>
           <div class="card-actions">
@@ -595,6 +610,12 @@ function renderMultipleChoice() {
         <div class="card-content">
           <h3>${item.arabic}</h3>
           <p class="muted">${item.example_ar}</p>
+          ${renderExerciseMedia({
+            sentence: item.example_de,
+            displayText: item.example_de,
+            level: item.level,
+            category: item.category
+          })}
           <div class="option-grid">
             ${options
               .map(
@@ -622,6 +643,8 @@ function renderMultipleChoice() {
       index += 1;
       update();
     });
+
+    bindSpeakButtons(container);
   }
 
   update();
@@ -647,6 +670,12 @@ function renderGap() {
         <div class="card-content">
           <h3>${masked}</h3>
           <p class="muted">${sentence.arabic}</p>
+          ${renderExerciseMedia({
+            sentence: sentence.german,
+            displayText: masked,
+            level: sentence.level,
+            category: sentence.category
+          })}
           <div class="card-actions">
             <input type="text" id="gapInput" placeholder="${translations[state.locale].submit}" />
             <button class="primary-button" id="gapCheck">${translations[state.locale].submit}</button>
@@ -745,6 +774,12 @@ function renderMiniQuiz() {
         <div class="card-content">
           <span class="tag">Frage ${step + 1}/10</span>
           <h3>${item.arabic}</h3>
+          ${renderExerciseMedia({
+            sentence: item.example_de,
+            displayText: item.example_de,
+            level: item.level,
+            category: item.category
+          })}
           <div class="option-grid">
             ${options
               .map(
@@ -775,6 +810,8 @@ function renderMiniQuiz() {
       }
       update();
     });
+
+    bindSpeakButtons(container);
   }
 
   update();
@@ -854,6 +891,61 @@ function renderAccordion(grouped, prefix, renderItem) {
           `;
         })
         .join("")}
+    </div>
+  `;
+}
+
+// Erstellt eine suchbasierte Bild-URL aus Satz, Level und Kategorie.
+function buildSentenceImageUrl({ sentence = "", level = "", category = "" }) {
+  const keywords = new Set();
+  const levelKeywords = LEVEL_IMAGE_KEYWORDS[level] || [];
+  const categoryKeywords = CATEGORY_IMAGE_KEYWORDS[category] || [];
+  levelKeywords.forEach((word) => keywords.add(word));
+  categoryKeywords.forEach((word) => keywords.add(word));
+
+  // Extrahiere die wichtigsten Wörter aus dem Satz, um die Suche anzureichern.
+  sentence
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, " ")
+    .split(/\s+/)
+    .filter((word) => word && !GERMAN_STOP_WORDS.has(word) && word.length > 2)
+    .slice(0, 4)
+    .forEach((word) => keywords.add(word));
+
+  const query = Array.from(keywords).slice(0, 6).join(", ");
+  const finalQuery = query || "lernen, deutsch";
+  return `${IMAGE_BASE_URL}?${encodeURIComponent(finalQuery)}`;
+}
+
+// Wählt ein lokales Platzhalterbild anhand von Stichwörtern, Kategorie oder Level.
+function pickLocalImage({ sentence = "", level = "", category = "" }) {
+  const normalized = sentence.toLowerCase();
+  const keywordMatch = LOCAL_IMAGE_MAP.find((entry) =>
+    entry.keywords.some((keyword) => normalized.includes(keyword))
+  );
+  if (keywordMatch) {
+    return `/images/${keywordMatch.file}`;
+  }
+  const categoryFallback = CATEGORY_FALLBACK_IMAGES[category];
+  if (categoryFallback) {
+    return `/images/${categoryFallback}`;
+  }
+  const levelFallback = LEVEL_FALLBACK_IMAGES[level];
+  if (levelFallback) {
+    return `/images/${levelFallback}`;
+  }
+  return "/images/allgemein.svg";
+}
+
+// Baut das gemeinsame Bild-/Satz-Modul für Übungen und Beispielsätze.
+function renderExerciseMedia({ sentence, displayText, level, category }) {
+  const localImageUrl = pickLocalImage({ sentence, level, category });
+  const imageUrl = navigator.onLine ? buildSentenceImageUrl({ sentence, level, category }) : localImageUrl;
+  return `
+    <div class="exercise">
+      <img src="${imageUrl}" alt="sentence image" loading="lazy" class="exercise-image" onerror="this.onerror=null;this.src='${localImageUrl}'" />
+      <button class="secondary-button exercise-speak" data-speak="${sentence}">🎤 Satz sprechen</button>
+      <p>${displayText}</p>
     </div>
   `;
 }

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Reisen">
+  <rect width="600" height="400" fill="#e0e7ff" />
+  <path d="M80 260 L520 200" stroke="#6366f1" stroke-width="10" />
+  <circle cx="420" cy="160" r="50" fill="#818cf8" />
+  <text x="50%" y="90%" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#312e81">Reisen</text>
+</svg>
