@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-slate-900 antialiased;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+.dark body {
+  @apply bg-slate-950 text-slate-100;
+}
+
+.dark .card-surface {
+  @apply bg-slate-900/80 border-slate-800;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
