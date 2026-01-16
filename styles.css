@@ -28,6 +28,10 @@ body.dark {
   padding: 0;
 }
 
+img {
+  display: none !important;
+}
+
 body {
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   background: var(--surface);
