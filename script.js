@@ -306,20 +306,19 @@ function renderFlashcards() {
             <p class="muted">${flipped ? item.example_de : item.example_ar}</p>
           </div>
           <div class="card-actions">
-            <button class="secondary-button" id="flipCard">${flipped ? translations[state.locale].back : translations[state.locale].next}</button>
             <button class="primary-button" id="nextCard">${translations[state.locale].next}</button>
           </div>
         </div>
       </div>
     `;
 
-    container.querySelector("#flipCard").addEventListener("click", () => {
-      flipped = !flipped;
-      update();
-    });
     container.querySelector("#nextCard").addEventListener("click", () => {
-      index += 1;
-      flipped = false;
+      if (!flipped) {
+        flipped = true;
+      } else {
+        index += 1;
+        flipped = false;
+      }
       update();
     });
   }
@@ -481,9 +480,12 @@ function renderMiniQuiz() {
     `;
 
     let selection = null;
-    container.querySelectorAll(".option").forEach((button) => {
+    const optionButtons = container.querySelectorAll(".option");
+    optionButtons.forEach((button) => {
       button.addEventListener("click", () => {
         selection = button.dataset.option;
+        optionButtons.forEach((option) => option.classList.remove("active"));
+        button.classList.add("active");
       });
     });
 
@@ -516,6 +518,9 @@ function initTabs() {
         tabGroup.parentElement
           .querySelectorAll(".tab-content")
           .forEach((panel) => panel.classList.toggle("active", panel.id === target));
+        if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
+          renderMiniQuiz();
+        }
       });
     });
   });

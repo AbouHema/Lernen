@@ -68,65 +68,13 @@ export function ExercisePanel() {
       : [];
   }, [quizItems, quizStep]);
 
-  const { state: speechState, startListening, stopListening } = useSpeechTrainer({
-    strictMode,
-    ignoreArticles: !strictMode,
-    enableSimilarity: false
-  });
-
-  const speakText = React.useCallback((text: string) => {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "de-DE";
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
-  }, []);
-
-  const startPronunciation = React.useCallback(
-    (index: number) => {
-      const card = vocabulary[index % vocabulary.length];
-      startListening(`${card.article} ${card.german}`, () => undefined, () => undefined);
-    },
-    [startListening]
-  );
-
-  React.useEffect(() => {
-    if (!speechState.transcript || speechState.transcript === lastHandledTranscriptRef.current) return;
-    lastHandledTranscriptRef.current = speechState.transcript;
-    if (speechState.lastResult === "correct") {
-      setSpeechFeedback({ tone: "success", message: t.speechCorrect });
-      if (ttsEnabled) {
-        speakText(t.speechCorrect);
-      }
-      setCardIndex((prev) => (prev + 1) % vocabulary.length);
+  const handleFlashcardAdvance = () => {
+    if (!showBack) {
+      setShowBack(true);
       return;
     }
-    if (speechState.lastResult === "almost" || speechState.lastResult === "incorrect") {
-      const expected = `${currentCard.article} ${currentCard.german}`;
-      const isAlmost = speechState.lastResult === "almost";
-      setSpeechFeedback({
-        tone: isAlmost ? "warning" : "error",
-        message: isAlmost ? t.speechAlmost : t.speechIncorrect,
-        solution: expected
-      });
-      if (ttsEnabled) {
-        speakText(expected);
-      }
-    }
-  }, [currentCard.article, currentCard.german, speechState.lastResult, speechState.transcript, t.speechAlmost, t.speechCorrect, t.speechIncorrect, ttsEnabled, speakText]);
-
-  React.useEffect(() => {
-    if (!autoListening || !speechFeedback) return;
-    startPronunciation(cardIndex);
-  }, [autoListening, cardIndex, speechFeedback, startPronunciation]);
-
-  React.useEffect(() => stopListening, [stopListening]);
-
-  const handleFlashcardAdvance = () => {
     setCardIndex((prev) => prev + 1);
-    setSpeechFeedback(null);
-    setAutoListening(false);
-    stopListening();
+    setShowBack(false);
   };
 
   const checkGap = () => {
@@ -171,36 +119,8 @@ export function ExercisePanel() {
                 <p dir="rtl">{currentCard.example_ar}</p>
               </div>
             </motion.div>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex gap-3">
               <Button onClick={handleFlashcardAdvance}>{t.next}</Button>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setAutoListening(true);
-                  setSpeechFeedback(null);
-                  startPronunciation(cardIndex);
-                }}
-                disabled={speechState.lastResult === "unsupported"}
-              >
-                {speechState.isListening ? t.listening : t.startListening}
-              </Button>
-              <Button
-                variant="ghost"
-                onClick={() => {
-                  setAutoListening(false);
-                  stopListening();
-                }}
-              >
-                {t.stopListening}
-              </Button>
-              <div className="flex items-center gap-2 text-xs text-slate-500">
-                <span>{t.strictMode}</span>
-                <Switch checked={strictMode} onCheckedChange={setStrictMode} />
-              </div>
-              <div className="flex items-center gap-2 text-xs text-slate-500">
-                <span>{t.tts}</span>
-                <Switch checked={ttsEnabled} onCheckedChange={setTtsEnabled} />
-              </div>
             </div>
             {speechState.lastResult === "unsupported" && (
               <p className="text-sm text-slate-500">{t.pronunciationUnsupported}</p>

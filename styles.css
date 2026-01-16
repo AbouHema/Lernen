@@ -411,6 +411,13 @@ body.dark .switch::after {
   margin: 1rem 0;
 }
 
+.option.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--shadow);
+}
+
 .flashcard {
   text-align: center;
   padding: 2rem;
