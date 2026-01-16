@@ -94,10 +94,10 @@ const translations = {
 };
 
 const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
-const LOCAL_IMAGE_MAP = [];
-const LEVEL_FALLBACK_IMAGES = {};
-const CATEGORY_FALLBACK_IMAGES = {};
-const CATEGORY_IMAGE_KEYWORDS = {};
+const LOCAL_IMAGE_MAP = window.LOCAL_IMAGE_MAP || [];
+const LEVEL_FALLBACK_IMAGES = window.LEVEL_FALLBACK_IMAGES || {};
+const CATEGORY_FALLBACK_IMAGES = window.CATEGORY_FALLBACK_IMAGES || {};
+const CATEGORY_IMAGE_KEYWORDS = window.CATEGORY_IMAGE_KEYWORDS || {};
 
 function pickLocalImage() {
   return null;
