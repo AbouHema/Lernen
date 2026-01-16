@@ -1,18 +1,17 @@
 const translations = {
   de: {
-    heroTitle: "Deutsch lernen auf B1–C1-Niveau",
+    heroTitle: "Deutsch lernen auf B1-Niveau",
     heroSubtitle:
-      "Trainiere Deutsch mit B1–C1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
+      "Trainiere Deutsch mit B1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
     cta: "Jetzt lernen",
     trust: "Über 12.000 Lernende nutzen Lernen täglich",
     featuresTitle: "Alles, was du brauchst",
-    featuresSubtitle: "B1–C1 Vokabeln, Sätze und Übungen – jetzt mit 160+ Wörtern und 90+ Sätzen.",
+    featuresSubtitle: "B1-Vokabeln, Sätze und Übungen – alles in einem ruhigen, modernen Workflow.",
     dashboardTitle: "Dein Lern-Dashboard",
     dailyWord: "Wort des Tages",
     searchPlaceholder: "Suche nach Arabisch oder Deutsch",
     favorites: "Favoriten",
     learned: "Gelernt",
-    markLearned: "Als gelernt markieren",
     addFavorite: "Zu Favoriten",
     removeFavorite: "Aus Favoriten",
     correct: "Richtig",
@@ -22,31 +21,21 @@ const translations = {
     back: "Zurück",
     reset: "Neu starten",
     darkMode: "Dark Mode",
-    language: "Sprache",
-    levelLabel: "Level",
-    categoryLabel: "Kategorie",
-    exerciseLevelLabel: "Übungs-Level",
-    allLevels: "Alle Level",
-    allCategories: "Alle Kategorien",
-    levelHint: "Starte mit B1 und arbeite dich bis C1 vor – du kannst jederzeit umschalten.",
-    audioHint: "🔊 Tippe auf das Audio-Icon, um die deutsche Aussprache zu hören.",
-    speak: "Aussprache anhören",
-    audioUnavailable: "Audio ist in diesem Browser nicht verfügbar."
+    language: "Sprache"
   },
   ar: {
-    heroTitle: "تعلّم الألمانية بمستوى B1–C1",
+    heroTitle: "تعلّم الألمانية بمستوى B1",
     heroSubtitle:
-      "تدرّب على محتوى مستويات B1–C1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
+      "تدرّب على محتوى مستوى B1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
     cta: "ابدأ التعلّم",
     trust: "أكثر من ١٢٬٠٠٠ متعلم يستخدمون Lernen يوميًا",
     featuresTitle: "كل ما تحتاجه",
-    featuresSubtitle: "مفردات وجُمل وتمارين بمستويات B1–C1 مع أكثر من ١٦٠ كلمة و٩٠ جملة.",
+    featuresSubtitle: "مفردات وجُمل وتمارين بمستوى B1 في تجربة هادئة وعصرية.",
     dashboardTitle: "لوحة التعلّم الخاصة بك",
     dailyWord: "كلمة اليوم",
     searchPlaceholder: "ابحث بالعربية أو الألمانية",
     favorites: "المفضلة",
     learned: "تم التعلم",
-    markLearned: "علّم كمتعلم",
     addFavorite: "أضف للمفضلة",
     removeFavorite: "إزالة من المفضلة",
     correct: "إجابة صحيحة",
@@ -56,20 +45,9 @@ const translations = {
     back: "عودة",
     reset: "ابدأ من جديد",
     darkMode: "الوضع الداكن",
-    language: "اللغة",
-    levelLabel: "المستوى",
-    categoryLabel: "الفئة",
-    exerciseLevelLabel: "مستوى التمارين",
-    allLevels: "كل المستويات",
-    allCategories: "كل الفئات",
-    levelHint: "ابدأ بـ B1 ثم انتقل إلى B2 و C1، ويمكنك التبديل في أي وقت.",
-    audioHint: "🔊 اضغط على أيقونة الصوت لسماع النطق بالألمانية.",
-    speak: "استمع للنطق",
-    audioUnavailable: "الصوت غير متاح في هذا المتصفح."
+    language: "اللغة"
   }
 };
-
-const LEVEL_ORDER = ["B1", "B2", "C1"];
 
 const state = {
   locale: localStorage.getItem("lernen_locale") || "de",
@@ -95,24 +73,12 @@ const elements = {
   vocabSearch: document.getElementById("vocabSearch"),
   vocabGrid: document.getElementById("vocabGrid"),
   favoriteCount: document.getElementById("favoriteCount"),
-  vocabLevel: document.getElementById("vocabLevel"),
-  vocabCategory: document.getElementById("vocabCategory"),
-  vocabLevelLabel: document.getElementById("vocabLevelLabel"),
-  vocabCategoryLabel: document.getElementById("vocabCategoryLabel"),
   sentenceSearch: document.getElementById("sentenceSearch"),
   sentenceGrid: document.getElementById("sentenceGrid"),
-  sentenceLevel: document.getElementById("sentenceLevel"),
-  sentenceCategory: document.getElementById("sentenceCategory"),
-  sentenceLevelLabel: document.getElementById("sentenceLevelLabel"),
-  sentenceCategoryLabel: document.getElementById("sentenceCategoryLabel"),
   dailyWordCard: document.getElementById("dailyWordCard"),
   progressSummary: document.getElementById("progressSummary"),
   progressSummaryCard: document.getElementById("progressSummaryCard"),
-  quizChart: document.getElementById("quizChart"),
-  audioHint: document.getElementById("audioHint"),
-  levelHint: document.getElementById("levelHint"),
-  exerciseLevel: document.getElementById("exerciseLevel"),
-  exerciseLevelLabel: document.getElementById("exerciseLevelLabel")
+  quizChart: document.getElementById("quizChart")
 };
 
 function applyLocale() {
@@ -133,14 +99,6 @@ function applyLocale() {
   elements.darkModeLabel.textContent = t.darkMode;
   elements.languageToggle.textContent = t.language;
   elements.favoriteCount.textContent = `${state.favorites.length} ${t.favorites}`;
-  elements.vocabLevelLabel.textContent = t.levelLabel;
-  elements.vocabCategoryLabel.textContent = t.categoryLabel;
-  elements.sentenceLevelLabel.textContent = t.levelLabel;
-  elements.sentenceCategoryLabel.textContent = t.categoryLabel;
-  elements.exerciseLevelLabel.textContent = t.exerciseLevelLabel;
-  elements.audioHint.textContent = t.audioHint;
-  elements.levelHint.textContent = t.levelHint;
-  populateFilters();
 }
 
 function applyTheme() {
@@ -163,67 +121,18 @@ function toggleLocale(locale) {
   renderProgress();
 }
 
-function populateFilters() {
-  const t = translations[state.locale];
-  const currentVocabLevel = elements.vocabLevel.value || "B1";
-  const currentVocabCategory = elements.vocabCategory.value || "all";
-  const currentSentenceLevel = elements.sentenceLevel.value || "B1";
-  const currentSentenceCategory = elements.sentenceCategory.value || "all";
-  const currentExerciseLevel = elements.exerciseLevel.value || "B1";
-
-  const vocabLevels = getOrderedLevels(vocabulary);
-  const vocabCategories = Array.from(new Set(vocabulary.map((item) => item.category)));
-  const sentenceLevels = getOrderedLevels(sentences);
-  const sentenceCategories = Array.from(new Set(sentences.map((item) => item.category)));
-
-  elements.vocabLevel.innerHTML = [
-    `<option value="all">${t.allLevels}</option>`,
-    ...vocabLevels.map((level) => `<option value="${level}">${level}</option>`)
-  ].join("");
-  elements.vocabCategory.innerHTML = [
-    `<option value="all">${t.allCategories}</option>`,
-    ...vocabCategories.map((category) => `<option value="${category}">${category}</option>`)
-  ].join("");
-  elements.sentenceLevel.innerHTML = [
-    `<option value="all">${t.allLevels}</option>`,
-    ...sentenceLevels.map((level) => `<option value="${level}">${level}</option>`)
-  ].join("");
-  elements.sentenceCategory.innerHTML = [
-    `<option value="all">${t.allCategories}</option>`,
-    ...sentenceCategories.map((category) => `<option value="${category}">${category}</option>`)
-  ].join("");
-  elements.exerciseLevel.innerHTML = [
-    `<option value="all">${t.allLevels}</option>`,
-    ...vocabLevels.map((level) => `<option value="${level}">${level}</option>`)
-  ].join("");
-
-  elements.vocabLevel.value = setDefaultLevel(currentVocabLevel, vocabLevels);
-  elements.vocabCategory.value = currentVocabCategory;
-  elements.sentenceLevel.value = setDefaultLevel(currentSentenceLevel, sentenceLevels);
-  elements.sentenceCategory.value = currentSentenceCategory;
-  elements.exerciseLevel.value = setDefaultLevel(currentExerciseLevel, vocabLevels);
-}
-
 function dailyWord() {
   const dayIndex = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
-  const orderedVocabulary = getOrderedVocabulary();
-  return orderedVocabulary[dayIndex % orderedVocabulary.length];
+  return vocabulary[dayIndex % vocabulary.length];
 }
 
 function renderDailyWord() {
   const word = dailyWord();
-  const t = translations[state.locale];
   elements.dailyWordCard.innerHTML = `
-    <div class="card-header">
-      <div>
-        <strong>${word.arabic}</strong>
-        <p>${word.article} ${word.german} · ${word.category}</p>
-      </div>
-      <button class="icon-button" data-speak="${word.german}" aria-label="${t.speak}" title="${t.speak}">🔊</button>
-    </div>
+    <strong>${word.arabic}</strong>
+    <p>${word.article} ${word.german} · ${word.category}</p>
     <p class="muted">${word.example_de}</p>
   `;
-  bindSpeakButtons(elements.dailyWordCard);
 }
 
 function saveProgress() {
@@ -256,17 +165,9 @@ function toggleLearned(id) {
 function renderVocabulary() {
   const query = elements.vocabSearch.value.toLowerCase();
   const t = translations[state.locale];
-  const level = elements.vocabLevel.value;
-  const category = elements.vocabCategory.value;
-  const filtered = getOrderedVocabulary().filter((item) => {
-    const matchesQuery = [item.arabic, item.german, item.example_de, item.example_ar]
-      .join(" ")
-      .toLowerCase()
-      .includes(query);
-    const matchesLevel = level === "all" || item.level === level;
-    const matchesCategory = category === "all" || item.category === category;
-    return matchesQuery && matchesLevel && matchesCategory;
-  });
+  const filtered = vocabulary.filter((item) =>
+    [item.arabic, item.german, item.example_de, item.example_ar].join(" ").toLowerCase().includes(query)
+  );
 
   elements.vocabGrid.innerHTML = filtered
     .map((item) => {
@@ -279,10 +180,7 @@ function renderVocabulary() {
             <h3>${item.arabic}</h3>
             <p>${item.article} ${item.german}</p>
           </div>
-          <div class="card-actions compact">
-            <span class="tag">${item.level}</span>
-            <button class="icon-button" data-speak="${item.german}" aria-label="${t.speak}" title="${t.speak}">🔊</button>
-          </div>
+          <span class="tag">${item.level}</span>
         </div>
         <div class="card-content">
           <p>${item.example_de}</p>
@@ -293,7 +191,7 @@ function renderVocabulary() {
             ${isFavorite ? t.removeFavorite : t.addFavorite}
           </button>
           <button class="ghost-button" data-learned="${item.id}">
-            ${isLearned ? t.learned : t.markLearned}
+            ${isLearned ? t.learned : "Als gelernt markieren"}
           </button>
         </div>
       </article>
@@ -309,30 +207,21 @@ function renderVocabulary() {
   document.querySelectorAll("[data-learned]").forEach((button) =>
     button.addEventListener("click", () => toggleLearned(button.dataset.learned))
   );
-  bindSpeakButtons(elements.vocabGrid);
 }
 
 function renderSentences() {
   const query = elements.sentenceSearch.value.toLowerCase();
-  const level = elements.sentenceLevel.value;
-  const category = elements.sentenceCategory.value;
-  const filtered = getOrderedSentences().filter((item) => {
-    const matchesQuery = [item.arabic, item.german].join(" ").toLowerCase().includes(query);
-    const matchesLevel = level === "all" || item.level === level;
-    const matchesCategory = category === "all" || item.category === category;
-    return matchesQuery && matchesLevel && matchesCategory;
-  });
+  const filtered = sentences.filter((item) =>
+    [item.arabic, item.german].join(" ").toLowerCase().includes(query)
+  );
 
   elements.sentenceGrid.innerHTML = filtered
     .map(
       (item) => `
       <article class="sentence-card">
         <div class="card-header">
-          <div class="sentence-meta">
-            <span class="tag">${item.category}</span>
-            <span class="badge">${item.level}</span>
-          </div>
-          <button class="icon-button" data-speak="${item.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
+          <span class="tag">${item.category}</span>
+          <span class="badge">${item.level}</span>
         </div>
         <div class="card-content">
           <strong>${item.german}</strong>
@@ -342,7 +231,6 @@ function renderSentences() {
     `
     )
     .join("");
-  bindSpeakButtons(elements.sentenceGrid);
 }
 
 function renderProgress() {
@@ -405,16 +293,11 @@ function renderExercises() {
 
 function renderFlashcards() {
   const container = document.getElementById("flashcards");
-  const items = getExerciseVocabulary();
-  if (items.length === 0) {
-    container.innerHTML = `<div class="card"><div class="card-content"><p class="muted">Keine Vokabeln für dieses Level gefunden.</p></div></div>`;
-    return;
-  }
   let index = 0;
   let flipped = false;
 
   function update() {
-    const item = items[index % items.length];
+    const item = vocabulary[index % vocabulary.length];
     container.innerHTML = `
       <div class="card">
         <div class="card-content">
@@ -424,7 +307,6 @@ function renderFlashcards() {
           </div>
           <div class="card-actions">
             <button class="primary-button" id="nextCard">${translations[state.locale].next}</button>
-            <button class="icon-button" data-speak="${item.german}" aria-label="${translations[state.locale].speak}" title="${translations[state.locale].speak}">🔊</button>
           </div>
         </div>
       </div>
@@ -439,7 +321,6 @@ function renderFlashcards() {
       }
       update();
     });
-    bindSpeakButtons(container);
   }
 
   update();
@@ -447,18 +328,13 @@ function renderFlashcards() {
 
 function renderMultipleChoice() {
   const container = document.getElementById("multiple");
-  const items = getExerciseVocabulary();
-  if (items.length === 0) {
-    container.innerHTML = `<div class="card"><div class="card-content"><p class="muted">Keine Vokabeln für dieses Level gefunden.</p></div></div>`;
-    return;
-  }
   let index = 0;
 
   function update() {
-    const item = items[index % items.length];
+    const item = vocabulary[index % vocabulary.length];
     const options = shuffle([
       `${item.article} ${item.german}`,
-      ...shuffle(items.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
+      ...shuffle(vocabulary.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
     ]);
 
     container.innerHTML = `
@@ -500,15 +376,10 @@ function renderMultipleChoice() {
 
 function renderGap() {
   const container = document.getElementById("gap");
-  const items = getExerciseSentences();
-  if (items.length === 0) {
-    container.innerHTML = `<div class="card"><div class="card-content"><p class="muted">Keine Sätze für dieses Level gefunden.</p></div></div>`;
-    return;
-  }
   let index = 0;
 
   function update() {
-    const sentence = items[index % items.length];
+    const sentence = sentences[index % sentences.length];
     const words = sentence.german.split(" ");
     const gapWord = words[words.length - 1];
     const masked = sentence.german.replace(gapWord, "_____");
@@ -545,11 +416,7 @@ function renderGap() {
 
 function renderMiniQuiz() {
   const container = document.getElementById("quiz");
-  const quizItems = getExerciseVocabulary().slice(0, 10);
-  if (quizItems.length === 0) {
-    container.innerHTML = `<div class="card"><div class="card-content"><p class="muted">Keine Vokabeln für dieses Level gefunden.</p></div></div>`;
-    return;
-  }
+  const quizItems = vocabulary.slice(0, 10);
   let step = 0;
   let answers = [];
 
@@ -592,7 +459,7 @@ function renderMiniQuiz() {
     const item = quizItems[step];
     const options = shuffle([
       `${item.article} ${item.german}`,
-      ...shuffle(quizItems.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
+      ...shuffle(vocabulary.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
     ]);
 
     container.innerHTML = `
@@ -639,46 +506,6 @@ function shuffle(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
-function getOrderedLevels(items) {
-  const unique = Array.from(new Set(items.map((item) => item.level)));
-  return unique.sort((a, b) => LEVEL_ORDER.indexOf(a) - LEVEL_ORDER.indexOf(b));
-}
-
-function setDefaultLevel(value, availableLevels) {
-  if (value === "all") {
-    return value;
-  }
-  return availableLevels.includes(value) ? value : "B1";
-}
-
-function sortByLevelThenName(a, b) {
-  const levelCompare = LEVEL_ORDER.indexOf(a.level) - LEVEL_ORDER.indexOf(b.level);
-  if (levelCompare !== 0) {
-    return levelCompare;
-  }
-  return (a.german || "").localeCompare(b.german || "");
-}
-
-function getOrderedVocabulary() {
-  return [...vocabulary].sort(sortByLevelThenName);
-}
-
-function getOrderedSentences() {
-  return [...sentences].sort(sortByLevelThenName);
-}
-
-function getExerciseVocabulary() {
-  const level = elements.exerciseLevel.value;
-  const ordered = getOrderedVocabulary();
-  return level === "all" ? ordered : ordered.filter((item) => item.level === level);
-}
-
-function getExerciseSentences() {
-  const level = elements.exerciseLevel.value;
-  const ordered = getOrderedSentences();
-  return level === "all" ? ordered : ordered.filter((item) => item.level === level);
-}
-
 function initTabs() {
   document.querySelectorAll(".tabs").forEach((tabGroup) => {
     const tabs = tabGroup.querySelectorAll(".tab");
@@ -715,11 +542,6 @@ function initControls() {
   elements.themeToggle.addEventListener("click", toggleTheme);
   elements.vocabSearch.addEventListener("input", renderVocabulary);
   elements.sentenceSearch.addEventListener("input", renderSentences);
-  elements.vocabLevel.addEventListener("change", renderVocabulary);
-  elements.vocabCategory.addEventListener("change", renderVocabulary);
-  elements.sentenceLevel.addEventListener("change", renderSentences);
-  elements.sentenceCategory.addEventListener("change", renderSentences);
-  elements.exerciseLevel.addEventListener("change", renderExercises);
 }
 
 function init() {
@@ -735,25 +557,3 @@ function init() {
 }
 
 init();
-
-function bindSpeakButtons(scope) {
-  scope.querySelectorAll("[data-speak]").forEach((button) => {
-    button.addEventListener("click", () => speakGerman(button.dataset.speak));
-  });
-}
-
-function speakGerman(text) {
-  if (!("speechSynthesis" in window)) {
-    alert(translations[state.locale].audioUnavailable);
-    return;
-  }
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "de-DE";
-  const voices = window.speechSynthesis.getVoices();
-  const germanVoice = voices.find((voice) => voice.lang.toLowerCase().startsWith("de"));
-  if (germanVoice) {
-    utterance.voice = germanVoice;
-  }
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(utterance);
-}

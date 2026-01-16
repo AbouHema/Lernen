@@ -10,9 +10,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Flashcard } from "@/components/flashcard";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
 import { getQuizHistory, setQuizHistory, getStreak, setStreak } from "@/lib/storage";
+import { useSpeechTrainer } from "@/lib/use-speech-trainer";
 
 function getRandomOptions(correct: string, pool: string[], count = 4) {
   const options = new Set([correct]);
@@ -27,7 +30,15 @@ export function ExercisePanel() {
   const isRtl = locale === "ar";
 
   const [cardIndex, setCardIndex] = React.useState(0);
-  const [showBack, setShowBack] = React.useState(false);
+  const [speechFeedback, setSpeechFeedback] = React.useState<{
+    tone: "success" | "warning" | "error";
+    message: string;
+    solution?: string;
+  } | null>(null);
+  const [strictMode, setStrictMode] = React.useState(true);
+  const [ttsEnabled, setTtsEnabled] = React.useState(false);
+  const [autoListening, setAutoListening] = React.useState(false);
+  const lastHandledTranscriptRef = React.useRef<string>("");
 
   const [mcIndex, setMcIndex] = React.useState(0);
   const [mcAnswer, setMcAnswer] = React.useState<string | null>(null);
@@ -96,18 +107,41 @@ export function ExercisePanel() {
         <Card className="card-surface">
           <CardContent className="space-y-6 p-6">
             <motion.div
-              key={currentCard.id + showBack}
+              key={currentCard.id}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
-              className="rounded-2xl border border-slate-100 bg-white p-8 text-center"
+              className="rounded-2xl"
             >
-              <p className="text-3xl font-semibold">{showBack ? `${currentCard.article} ${currentCard.german}` : currentCard.arabic}</p>
-              <p className="mt-3 text-sm text-slate-500">{showBack ? currentCard.example_de : currentCard.example_ar}</p>
+              <Flashcard german={`${currentCard.article} ${currentCard.german}`} arabic={currentCard.arabic} />
+              <div className="mt-3 space-y-1 text-sm text-slate-500">
+                <p>{currentCard.example_de}</p>
+                <p dir="rtl">{currentCard.example_ar}</p>
+              </div>
             </motion.div>
             <div className="flex gap-3">
               <Button onClick={handleFlashcardAdvance}>{t.next}</Button>
             </div>
+            {speechState.lastResult === "unsupported" && (
+              <p className="text-sm text-slate-500">{t.pronunciationUnsupported}</p>
+            )}
+            {speechFeedback && (
+              <p
+                className={cn(
+                  "text-sm",
+                  speechFeedback.tone === "success" && "text-emerald-600",
+                  speechFeedback.tone === "warning" && "text-amber-600",
+                  speechFeedback.tone === "error" && "text-rose-600"
+                )}
+              >
+                {speechFeedback.message}
+                {speechFeedback.solution && (
+                  <span className="ml-2 text-slate-500">
+                    {t.correctSolution} {speechFeedback.solution}
+                  </span>
+                )}
+              </p>
+            )}
           </CardContent>
         </Card>
       </TabsContent>

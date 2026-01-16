@@ -3,6 +3,7 @@
 import { vocabulary } from "@/data/vocabulary";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Flashcard } from "@/components/flashcard";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
 
@@ -19,10 +20,8 @@ export function DailyWordCard() {
           <p className="text-sm font-semibold text-slate-500">{t.dailyWord}</p>
           <Badge variant="primary">{word.level}</Badge>
         </div>
-        <p className="text-3xl font-semibold">{word.arabic}</p>
-        <p className="text-sm text-slate-500">
-          {word.article} {word.german} · {word.category}
-        </p>
+        <Flashcard german={`${word.article} ${word.german}`} arabic={word.arabic} className="p-4" />
+        <p className="text-sm text-slate-500">{word.category}</p>
         <p className="text-sm text-slate-500">{word.example_de}</p>
       </CardContent>
     </Card>

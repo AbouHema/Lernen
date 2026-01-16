@@ -33,7 +33,21 @@ export const translations = {
     submit: "Antwort prüfen",
     correct: "Richtig",
     incorrect: "Nicht ganz",
-    reset: "Neu starten"
+    reset: "Neu starten",
+    pronounce: "Aussprache prüfen",
+    listening: "Ich höre zu…",
+    pronunciationCorrect: "Aussprache stimmt.",
+    pronunciationIncorrect: "Aussprache nicht erkannt.",
+    pronunciationUnsupported: "Spracherkennung wird nicht unterstützt.",
+    startListening: "Mikrofon starten",
+    stopListening: "Mikrofon stoppen",
+    strictMode: "Striktmodus",
+    tts: "TTS",
+    speechCorrect: "Richtig",
+    speechIncorrect: "Falsch",
+    speechAlmost: "Fast richtig",
+    correctSolution: "Richtig wäre:",
+    question: "Aufgabe"
   },
   ar: {
     language: "اللغة",
@@ -67,6 +81,20 @@ export const translations = {
     submit: "تحقق من الإجابة",
     correct: "إجابة صحيحة",
     incorrect: "إجابة غير صحيحة",
-    reset: "ابدأ من جديد"
+    reset: "ابدأ من جديد",
+    pronounce: "تحقق من النطق",
+    listening: "أنا أستمع…",
+    pronunciationCorrect: "النطق صحيح.",
+    pronunciationIncorrect: "لم يتم التعرف على النطق.",
+    pronunciationUnsupported: "التعرّف على الصوت غير مدعوم.",
+    startListening: "ابدأ الميكروفون",
+    stopListening: "أوقف الميكروفون",
+    strictMode: "الوضع الصارم",
+    tts: "تحويل النص إلى كلام",
+    speechCorrect: "صحيح",
+    speechIncorrect: "خطأ",
+    speechAlmost: "قريب جدًا",
+    correctSolution: "الصحيح هو:",
+    question: "السؤال"
   }
 };

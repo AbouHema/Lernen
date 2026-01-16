@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Flashcard } from "@/components/flashcard";
+import { SpeechTrainerPanel } from "@/components/speech-trainer-panel";
 import { useApp } from "@/components/providers";
 import { cn } from "@/lib/utils";
 import { getFavorites, setFavorites, getLearned, setLearned } from "@/lib/storage";
@@ -81,49 +83,61 @@ export function VocabularyList() {
       )}
 
       {!loading && (
-        <div className="grid gap-4 md:grid-cols-2">
-        {filtered.map((item) => {
-          const isFavorite = favorites.includes(item.id);
-          const isLearned = learned.includes(item.id);
-          return (
-            <Card key={item.id} className="card-surface">
-              <CardContent className="space-y-4 p-6">
-                <div className={cn("flex items-start justify-between", isRtl && "flex-row-reverse")}> 
-                  <div className={cn("space-y-1", isRtl && "text-right")}> 
-                    <p className="text-xl font-semibold">{item.arabic}</p>
-                    <p className="text-sm text-slate-500">
-                      {item.article} {item.german}
-                    </p>
-                  </div>
-                  <Badge variant="outline">{item.level}</Badge>
-                </div>
-                <div className={cn("space-y-1 text-sm", isRtl && "text-right")}> 
-                  <p className="text-slate-700">{item.example_de}</p>
-                  <p className="text-slate-400">{item.example_ar}</p>
-                </div>
-                <div className={cn("flex flex-wrap gap-2", isRtl && "flex-row-reverse")}> 
-                  <Button
-                    variant={isFavorite ? "default" : "outline"}
-                    size="sm"
-                    className="gap-2"
-                    onClick={() => toggleFavorite(item.id)}
-                  >
-                    <Heart className="h-4 w-4" />
-                    {isFavorite ? t.removeFavorite : t.addFavorite}
-                  </Button>
-                  <Button
-                    variant={isLearned ? "secondary" : "outline"}
-                    size="sm"
-                    onClick={() => toggleLearned(item.id)}
-                  >
-                    {isLearned ? t.learned : "Als gelernt markieren"}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-        </div>
+        <>
+          <Card className="card-surface">
+            <CardContent className="space-y-4 p-6">
+              <SpeechTrainerPanel
+                title={t.pronounce}
+                items={vocabulary}
+                getExpectedText={(item) => `${item.article} ${item.german}`}
+                getGermanText={(item) => `${item.article} ${item.german}`}
+                getArabicText={(item) => item.arabic}
+                getMetaText={(item) => `${item.category} · ${item.level}`}
+              />
+            </CardContent>
+          </Card>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {filtered.map((item) => {
+              const isFavorite = favorites.includes(item.id);
+              const isLearned = learned.includes(item.id);
+              return (
+                <Card key={item.id} className="card-surface">
+                  <CardContent className="space-y-4 p-6">
+                    <div className={cn("flex items-start justify-between", isRtl && "flex-row-reverse")}> 
+                      <div className={cn("space-y-2", isRtl && "text-right")}> 
+                        <Flashcard german={`${item.article} ${item.german}`} arabic={item.arabic} className="p-4" />
+                        <div className={cn("space-y-1 text-sm", isRtl && "text-right")}> 
+                          <p className="text-slate-700">{item.example_de}</p>
+                          <p className="text-slate-400" dir="rtl">{item.example_ar}</p>
+                        </div>
+                      </div>
+                      <Badge variant="outline">{item.level}</Badge>
+                    </div>
+                    <div className={cn("flex flex-wrap gap-2", isRtl && "flex-row-reverse")}> 
+                      <Button
+                        variant={isFavorite ? "default" : "outline"}
+                        size="sm"
+                        className="gap-2"
+                        onClick={() => toggleFavorite(item.id)}
+                      >
+                        <Heart className="h-4 w-4" />
+                        {isFavorite ? t.removeFavorite : t.addFavorite}
+                      </Button>
+                      <Button
+                        variant={isLearned ? "secondary" : "outline"}
+                        size="sm"
+                        onClick={() => toggleLearned(item.id)}
+                      >
+                        {isLearned ? t.learned : "Als gelernt markieren"}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );
