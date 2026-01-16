@@ -94,43 +94,21 @@ const translations = {
 };
 
 const LEVEL_ORDER = ["A1", "A2", "B1", "B2", "C1"];
-const GERMAN_STOP_WORDS = new Set([
-  "der",
-  "die",
-  "das",
-  "ein",
-  "eine",
-  "einen",
-  "einem",
-  "einer",
-  "und",
-  "oder",
-  "aber",
-  "weil",
-  "dass",
-  "mit",
-  "für",
-  "auf",
-  "im",
-  "in",
-  "am",
-  "zu",
-  "ich",
-  "du",
-  "er",
-  "sie",
-  "wir",
-  "ihr",
-  "sie",
-  "nicht",
-  "kein",
-  "keine",
-  "mehr",
-  "wie",
-  "diese",
-  "dieser",
-  "dieses"
-]);
+const LOCAL_IMAGE_MAP = [];
+const LEVEL_FALLBACK_IMAGES = {};
+const CATEGORY_FALLBACK_IMAGES = {};
+const CATEGORY_IMAGE_KEYWORDS = {};
+
+function pickLocalImage() {
+  return null;
+}
+
+function renderExerciseMedia({ displayText = "" } = {}) {
+  if (!displayText) {
+    return "";
+  }
+  return `<p>${displayText}</p>`;
+}
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
