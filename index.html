@@ -3,11 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Lernen – moderne Lernplattform für Deutsch auf B1-Niveau für arabischsprachige Lernende." />
-    <title>Lernen · Modernes Deutschlernen</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta name="description" content="Lernen – moderne Lernplattform für Deutsch von A1 bis C1 für arabischsprachige Lernende." />
+    <title>Lernen · Deutschlernen A1–C1</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -24,11 +21,12 @@
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu">☰</button>
 
         <nav class="nav" id="navMenu">
-          <a href="#features">Features</a>
           <a href="#vocabulary">Vokabeln</a>
           <a href="#sentences">Sätze</a>
+          <a href="#exercises">Übungen</a>
           <a href="#progress">Fortschritt</a>
-          <a href="#vocabulary" class="button button-primary">Jetzt starten</a>
+          <button id="themeToggle" class="chip-button" type="button">🌙 Dark</button>
+          <button id="rtlToggle" class="chip-button" type="button">RTL</button>
         </nav>
       </div>
     </header>
@@ -37,29 +35,16 @@
       <section id="home" class="hero reveal">
         <div class="container hero-grid">
           <div>
-            <p class="eyebrow">Lernen · B1 Fokus</p>
+            <p class="eyebrow">Lernen · A1 bis C1</p>
             <h1>Deutschlernen in einem modernen, klaren Workflow.</h1>
-            <p class="hero-subtitle">
-              Eine elegante Lernoberfläche mit kuratierten Vokabeln, echten Beispielsätzen und motivierendem Fortschritt – optimiert für arabischsprachige Lernende.
-            </p>
-            <div class="hero-actions">
-              <a href="#vocabulary" class="button button-primary">Mit Vokabeln starten</a>
-              <a href="#features" class="button button-secondary">Features ansehen</a>
-            </div>
+            <p class="hero-subtitle">Alle Inhalte sind jetzt levelbasiert filterbar: Vokabeln, Sätze, Übungen und Daily Word.</p>
+
+            <div class="level-toolbar" data-level-scope="dashboard"></div>
 
             <div class="hero-kpis">
-              <article class="kpi-card">
-                <span id="kpiWords">0+</span>
-                <p>Vokabeln</p>
-              </article>
-              <article class="kpi-card">
-                <span id="kpiSentences">0+</span>
-                <p>Beispielsätze</p>
-              </article>
-              <article class="kpi-card">
-                <span>24/7</span>
-                <p>Lernzugang</p>
-              </article>
+              <article class="kpi-card"><span id="kpiWords">0+</span><p>Vokabeln</p></article>
+              <article class="kpi-card"><span id="kpiSentences">0+</span><p>Beispielsätze</p></article>
+              <article class="kpi-card"><span id="kpiExercises">0+</span><p>Übungen</p></article>
             </div>
           </div>
 
@@ -67,42 +52,10 @@
             <h2>Heute lernen</h2>
             <div id="dailyWord" class="daily-word"></div>
             <div class="progress-demo">
-              <div class="progress-head">
-                <span>Wochenfortschritt</span>
-                <strong id="weekProgressLabel">72%</strong>
-              </div>
-              <div class="progress-track">
-                <span id="weekProgressBar"></span>
-              </div>
+              <div class="progress-head"><span>Fokus-Fortschritt</span><strong id="weekProgressLabel">0%</strong></div>
+              <div class="progress-track"><span id="weekProgressBar"></span></div>
             </div>
           </aside>
-        </div>
-      </section>
-
-      <section id="features" class="section reveal">
-        <div class="container">
-          <div class="section-title">
-            <p class="eyebrow">Modernes UI</p>
-            <h2>Wie Apple/Stripe: clean, schnell, fokussiert</h2>
-          </div>
-          <div class="feature-grid">
-            <article class="surface-card hover-lift">
-              <h3>Gradient Look</h3>
-              <p>Weicher Farbverlauf, Glass-Effekt und starke visuelle Hierarchie für ein modernes Premium-Gefühl.</p>
-            </article>
-            <article class="surface-card hover-lift">
-              <h3>Smoothe UX</h3>
-              <p>Sticky Navigation, sanftes Scrolling und klare CTA-Pfade für weniger Reibung beim Lernen.</p>
-            </article>
-            <article class="surface-card hover-lift">
-              <h3>Animierte Inhalte</h3>
-              <p>Fade-in on scroll, Hero-Motion und lebendige Hover-Effekte ohne Performance zu verlieren.</p>
-            </article>
-            <article class="surface-card hover-lift">
-              <h3>Saubere Struktur</h3>
-              <p>Semantisches HTML, modulare CSS-Sektionen und leicht wartbares JavaScript.</p>
-            </article>
-          </div>
         </div>
       </section>
 
@@ -111,10 +64,11 @@
           <div class="section-title row-title">
             <div>
               <p class="eyebrow">Vokabelkarten</p>
-              <h2>Kuratiert für Alltag & Kommunikation</h2>
+              <h2>Kuratiert nach CEFR-Level</h2>
             </div>
             <input id="vocabSearch" type="search" placeholder="Suche Arabisch oder Deutsch ..." />
           </div>
+          <div class="level-toolbar" data-level-scope="vocabulary"></div>
           <div id="vocabGrid" class="cards-grid"></div>
         </div>
       </section>
@@ -124,11 +78,29 @@
           <div class="section-title row-title">
             <div>
               <p class="eyebrow">Satztraining</p>
-              <h2>Praxisnahe Beispiele für B1</h2>
+              <h2>Praxisnahe Beispiele pro Level</h2>
             </div>
             <input id="sentenceSearch" type="search" placeholder="Suche Sätze ..." />
           </div>
+          <div class="level-toolbar" data-level-scope="sentences"></div>
           <div id="sentenceGrid" class="cards-grid"></div>
+        </div>
+      </section>
+
+      <section id="exercises" class="section reveal">
+        <div class="container">
+          <div class="section-title">
+            <p class="eyebrow">Übungen</p>
+            <h2>Flashcards, Multiple Choice, Lückentext, Mini-Quiz</h2>
+          </div>
+          <div class="level-toolbar" data-level-scope="exercises"></div>
+          <div class="exercise-tabs" id="exerciseTabs">
+            <button class="tab active" data-tab="flashcards">Flashcards</button>
+            <button class="tab" data-tab="multiple">Multiple Choice</button>
+            <button class="tab" data-tab="gap">Gap Text</button>
+            <button class="tab" data-tab="quiz">Mini-Quiz</button>
+          </div>
+          <article id="exercisePanel" class="surface-card exercise-panel"></article>
         </div>
       </section>
 
@@ -136,34 +108,21 @@
         <div class="container">
           <div class="section-title">
             <p class="eyebrow">Fortschritt</p>
-            <h2>Dein Momentum im Blick</h2>
+            <h2>Dein Momentum pro Level</h2>
           </div>
           <div class="progress-layout">
-            <article class="surface-card hover-lift">
-              <p class="muted">Gelernte Wörter</p>
-              <h3 id="learnedCount">0</h3>
-              <p class="muted">Lokal gespeichert im Browser.</p>
-            </article>
-            <article class="surface-card hover-lift">
-              <p class="muted">Favoriten</p>
-              <h3 id="favoriteCount">0</h3>
-              <p class="muted">Markiere wichtige Wörter mit einem Klick.</p>
-            </article>
-            <article class="surface-card hover-lift">
-              <p class="muted">Fokus-Fortschritt</p>
-              <div class="progress-track large">
-                <span id="focusProgressBar"></span>
-              </div>
-              <strong id="focusProgressLabel">0%</strong>
-            </article>
+            <article class="surface-card hover-lift"><p class="muted">Gelernte Wörter (Filter)</p><h3 id="learnedCount">0</h3></article>
+            <article class="surface-card hover-lift"><p class="muted">Favoriten (Filter)</p><h3 id="favoriteCount">0</h3></article>
+            <article class="surface-card hover-lift"><p class="muted">Quiz-Versuche (Filter)</p><h3 id="quizCount">0</h3></article>
           </div>
+          <article class="surface-card level-summary" id="levelSummary"></article>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="container footer-row">
-        <p>© <span id="year"></span> Lernen · Modernes Deutschlernen.</p>
+        <p>© <span id="year"></span> Lernen · Deutschlernen A1–C1.</p>
         <a href="#top">Nach oben ↑</a>
       </div>
     </footer>
