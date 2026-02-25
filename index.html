@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Lernen – moderne Lernplattform für Deutsch von A1 bis C1 für arabischsprachige Lernende." />
+    <meta
+      name="description"
+      content="Lernen – moderne Lernplattform für Deutsch von A1 bis C1 für arabischsprachige Lernende."
+    />
     <title>Lernen · Deutschlernen A1–C1</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -21,9 +24,8 @@
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu">☰</button>
 
         <nav class="nav" id="navMenu">
-          <a href="#vocabulary">Vokabeln</a>
-          <a href="#sentences">Sätze</a>
-          <a href="#exercises">Übungen</a>
+          <a href="#allLevels">Alle Level</a>
+          <a href="#exerciseRunner">Übungsmodus</a>
           <a href="#progress">Fortschritt</a>
           <button id="themeToggle" class="chip-button" type="button">🌙 Dark</button>
           <button id="rtlToggle" class="chip-button" type="button">RTL</button>
@@ -36,14 +38,20 @@
         <div class="container hero-grid">
           <div>
             <p class="eyebrow">Lernen · A1 bis C1</p>
-            <h1>Deutschlernen in einem modernen, klaren Workflow.</h1>
-            <p class="hero-subtitle">Alle Inhalte sind jetzt levelbasiert filterbar: Vokabeln, Sätze, Übungen und Daily Word.</p>
+            <h1>Alle Level in einer verschachtelten Lernansicht.</h1>
+            <p class="hero-subtitle">Vokabeln, Sätze und Übungen bleiben nach Level gruppiert und gleichzeitig durchsuchbar.</p>
 
-            <div class="level-toolbar" data-level-scope="dashboard"></div>
+            <div id="levelJumpChips" class="level-toolbar" aria-label="Direkt zu Level springen">
+              <a href="#level-A1" class="level-chip">A1</a>
+              <a href="#level-A2" class="level-chip">A2</a>
+              <a href="#level-B1" class="level-chip">B1</a>
+              <a href="#level-B2" class="level-chip">B2</a>
+              <a href="#level-C1" class="level-chip">C1</a>
+            </div>
 
             <div class="hero-kpis">
               <article class="kpi-card"><span id="kpiWords">0+</span><p>Vokabeln</p></article>
-              <article class="kpi-card"><span id="kpiSentences">0+</span><p>Beispielsätze</p></article>
+              <article class="kpi-card"><span id="kpiSentences">0+</span><p>Sätze</p></article>
               <article class="kpi-card"><span id="kpiExercises">0+</span><p>Übungen</p></article>
             </div>
           </div>
@@ -59,31 +67,64 @@
         </div>
       </section>
 
-      <section id="vocabulary" class="section reveal">
+      <section id="allLevels" class="section reveal">
         <div class="container">
           <div class="section-title row-title">
             <div>
-              <p class="eyebrow">Vokabelkarten</p>
-              <h2>Kuratiert nach CEFR-Level</h2>
+              <p class="eyebrow">Alle Level</p>
+              <h2>Verschachtelte Übersicht A1–C1</h2>
             </div>
-            <input id="vocabSearch" type="search" placeholder="Suche Arabisch oder Deutsch ..." />
+            <input id="globalSearch" type="search" placeholder="Global suchen (Arabisch/Deutsch) ..." />
           </div>
-          <div class="level-toolbar" data-level-scope="vocabulary"></div>
-          <div id="vocabGrid" class="cards-grid"></div>
+
+          <div id="allLevelsContainer">
+            <details id="level-A1" class="level-block" open>
+              <summary>Level A1</summary>
+              <details open><summary>Vokabeln</summary><p>Wird geladen …</p></details>
+              <details><summary>Sätze</summary><p>Wird geladen …</p></details>
+              <details><summary>Übungen</summary><p>Wird geladen …</p></details>
+            </details>
+            <details id="level-A2" class="level-block">
+              <summary>Level A2</summary>
+              <details><summary>Vokabeln</summary><p>Wird geladen …</p></details>
+              <details><summary>Sätze</summary><p>Wird geladen …</p></details>
+              <details><summary>Übungen</summary><p>Wird geladen …</p></details>
+            </details>
+            <details id="level-B1" class="level-block">
+              <summary>Level B1</summary>
+              <details><summary>Vokabeln</summary><p>Wird geladen …</p></details>
+              <details><summary>Sätze</summary><p>Wird geladen …</p></details>
+              <details><summary>Übungen</summary><p>Wird geladen …</p></details>
+            </details>
+            <details id="level-B2" class="level-block">
+              <summary>Level B2</summary>
+              <details><summary>Vokabeln</summary><p>Wird geladen …</p></details>
+              <details><summary>Sätze</summary><p>Wird geladen …</p></details>
+              <details><summary>Übungen</summary><p>Wird geladen …</p></details>
+            </details>
+            <details id="level-C1" class="level-block">
+              <summary>Level C1</summary>
+              <details><summary>Vokabeln</summary><p>Wird geladen …</p></details>
+              <details><summary>Sätze</summary><p>Wird geladen …</p></details>
+              <details><summary>Übungen</summary><p>Wird geladen …</p></details>
+            </details>
+          </div>
         </div>
       </section>
 
-      <section id="sentences" class="section reveal">
+      <section id="exerciseRunner" class="section reveal">
         <div class="container">
-          <div class="section-title row-title">
-            <div>
-              <p class="eyebrow">Satztraining</p>
-              <h2>Praxisnahe Beispiele pro Level</h2>
-            </div>
-            <input id="sentenceSearch" type="search" placeholder="Suche Sätze ..." />
+          <div class="section-title">
+            <p class="eyebrow">Übungsmodus</p>
+            <h2>Tabs bleiben aktiv (Flashcards/Multiple/Gap/Quiz)</h2>
           </div>
-          <div class="level-toolbar" data-level-scope="sentences"></div>
-          <div id="sentenceGrid" class="cards-grid"></div>
+          <div class="exercise-tabs" id="exerciseTabs">
+            <button class="tab active" data-tab="flashcards">Flashcards</button>
+            <button class="tab" data-tab="multiple">Multiple Choice</button>
+            <button class="tab" data-tab="gap">Gap Text</button>
+            <button class="tab" data-tab="quiz">Mini-Quiz</button>
+          </div>
+          <article id="exercisePanel" class="surface-card exercise-panel"></article>
         </div>
       </section>
 
@@ -108,12 +149,12 @@
         <div class="container">
           <div class="section-title">
             <p class="eyebrow">Fortschritt</p>
-            <h2>Dein Momentum pro Level</h2>
+            <h2>Favoriten & gelernt pro Level</h2>
           </div>
           <div class="progress-layout">
-            <article class="surface-card hover-lift"><p class="muted">Gelernte Wörter (Filter)</p><h3 id="learnedCount">0</h3></article>
-            <article class="surface-card hover-lift"><p class="muted">Favoriten (Filter)</p><h3 id="favoriteCount">0</h3></article>
-            <article class="surface-card hover-lift"><p class="muted">Quiz-Versuche (Filter)</p><h3 id="quizCount">0</h3></article>
+            <article class="surface-card hover-lift"><p class="muted">Gelernte Wörter</p><h3 id="learnedCount">0</h3></article>
+            <article class="surface-card hover-lift"><p class="muted">Favoriten</p><h3 id="favoriteCount">0</h3></article>
+            <article class="surface-card hover-lift"><p class="muted">Quiz-Versuche</p><h3 id="quizCount">0</h3></article>
           </div>
           <article class="surface-card level-summary" id="levelSummary"></article>
         </div>

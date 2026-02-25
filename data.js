@@ -192,3 +192,9 @@ const exercises = LEVELS.flatMap((level) => {
     { id: `${level.toLowerCase()}-quiz-1`, type: "quiz", level, questionWordIds: levelVocab.slice(0, 5) }
   ];
 });
+
+
+const normalizeLevel = (entry) => ({ ...entry, level: entry.level || "B1" });
+for (let i = 0; i < vocabulary.length; i += 1) vocabulary[i] = normalizeLevel(vocabulary[i]);
+for (let i = 0; i < sentences.length; i += 1) sentences[i] = normalizeLevel(sentences[i]);
+for (let i = 0; i < exercises.length; i += 1) exercises[i] = normalizeLevel(exercises[i]);

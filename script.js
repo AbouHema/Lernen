@@ -1,25 +1,28 @@
 const LEVEL_OPTIONS = ["Alle", ...LEVELS];
 
 const STORAGE_KEYS = {
-  selectedLevel: "lernen_selectedLevel",
   favorites: "lernen_favorites_by_level",
   learned: "lernen_learned_by_level",
-  known: "lernen_known_by_level",
   quizHistory: "lernen_quiz_history",
   darkMode: "lernen_dark_mode",
-  rtl: "lernen_rtl_mode"
+  rtl: "lernen_rtl_mode",
+  vocabLimit: "lernen_vocab_limit",
+  sentenceLimit: "lernen_sentence_limit"
 };
 
-const createLevelState = () => Object.fromEntries(LEVELS.map((level) => [level, []]));
+const createLevelState = (initialValue = []) =>
+  Object.fromEntries(LEVELS.map((level) => [level, Array.isArray(initialValue) ? [...initialValue] : initialValue]));
 
 const state = {
-  selectedLevel: localStorage.getItem(STORAGE_KEYS.selectedLevel) || "Alle",
   favoritesByLevel: { ...createLevelState(), ...JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites) || "{}") },
   learnedByLevel: { ...createLevelState(), ...JSON.parse(localStorage.getItem(STORAGE_KEYS.learned) || "{}") },
-  knownByLevel: { ...createLevelState(), ...JSON.parse(localStorage.getItem(STORAGE_KEYS.known) || "{}") },
   quizHistory: JSON.parse(localStorage.getItem(STORAGE_KEYS.quizHistory) || "[]"),
+  vocabLimitByLevel: { ...createLevelState(12), ...JSON.parse(localStorage.getItem(STORAGE_KEYS.vocabLimit) || "{}") },
+  sentenceLimitByLevel: { ...createLevelState(8), ...JSON.parse(localStorage.getItem(STORAGE_KEYS.sentenceLimit) || "{}") },
+  searchQuery: "",
   exerciseType: "flashcards",
-  flashcardIndex: 0,
+  exerciseLevel: "B1",
+  flashIndex: 0,
   darkMode: localStorage.getItem(STORAGE_KEYS.darkMode) === "1",
   rtl: localStorage.getItem(STORAGE_KEYS.rtl) === "1"
 };
@@ -27,11 +30,10 @@ const state = {
 const els = {
   menuToggle: document.getElementById("menuToggle"),
   navMenu: document.getElementById("navMenu"),
-  vocabGrid: document.getElementById("vocabGrid"),
-  sentenceGrid: document.getElementById("sentenceGrid"),
-  vocabSearch: document.getElementById("vocabSearch"),
-  sentenceSearch: document.getElementById("sentenceSearch"),
   dailyWord: document.getElementById("dailyWord"),
+  globalSearch: document.getElementById("globalSearch"),
+  allLevelsContainer: document.getElementById("allLevelsContainer"),
+  levelJumpChips: document.getElementById("levelJumpChips"),
   year: document.getElementById("year"),
   kpiWords: document.getElementById("kpiWords"),
   kpiSentences: document.getElementById("kpiSentences"),
@@ -42,11 +44,27 @@ const els = {
   weekProgressBar: document.getElementById("weekProgressBar"),
   weekProgressLabel: document.getElementById("weekProgressLabel"),
   levelSummary: document.getElementById("levelSummary"),
-  exercisePanel: document.getElementById("exercisePanel"),
   exerciseTabs: document.getElementById("exerciseTabs"),
+  exercisePanel: document.getElementById("exercisePanel"),
   themeToggle: document.getElementById("themeToggle"),
   rtlToggle: document.getElementById("rtlToggle")
 };
+
+function ensureLevel(item) {
+  return { ...item, level: item.level || "B1" };
+}
+
+const vocabSafe = vocabulary.map(ensureLevel);
+const sentenceSafe = sentences.map(ensureLevel);
+const exerciseSafe = exercises.map(ensureLevel);
+
+const escapeHtml = (value = "") =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 
 const normalizeArabic = (value) =>
   value
@@ -65,244 +83,238 @@ const normalizeText = (value = "") =>
   );
 
 const saveState = () => {
-  localStorage.setItem(STORAGE_KEYS.selectedLevel, state.selectedLevel);
   localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(state.favoritesByLevel));
   localStorage.setItem(STORAGE_KEYS.learned, JSON.stringify(state.learnedByLevel));
-  localStorage.setItem(STORAGE_KEYS.known, JSON.stringify(state.knownByLevel));
   localStorage.setItem(STORAGE_KEYS.quizHistory, JSON.stringify(state.quizHistory));
+  localStorage.setItem(STORAGE_KEYS.vocabLimit, JSON.stringify(state.vocabLimitByLevel));
+  localStorage.setItem(STORAGE_KEYS.sentenceLimit, JSON.stringify(state.sentenceLimitByLevel));
 };
 
-const getLevelFiltered = (items) => (state.selectedLevel === "Alle" ? items : items.filter((item) => item.level === state.selectedLevel));
-const byId = (items, id) => items.find((item) => item.id === id);
+const findById = (list, id) => list.find((item) => item.id === id);
 
-const getSearchFiltered = (items, query, mapper) => {
-  const normalized = normalizeText(query);
-  if (!normalized) return items;
-  return items.filter((item) => normalizeText(mapper(item)).includes(normalized));
-};
+function highlightText(rawText, query) {
+  const safe = escapeHtml(rawText);
+  if (!query) return safe;
 
-const getFilteredVocabulary = () =>
-  getSearchFiltered(getLevelFiltered(vocabulary), els.vocabSearch.value, (item) => [item.arabic, item.german, item.example_de, item.example_ar, item.tags.join(" ")].join(" "));
+  const lowerSafe = safe.toLowerCase();
+  const lowerQuery = escapeHtml(query).toLowerCase();
+  if (!lowerQuery || !lowerSafe.includes(lowerQuery)) return safe;
 
-const getFilteredSentences = () => getSearchFiltered(getLevelFiltered(sentences), els.sentenceSearch.value, (item) => [item.arabic, item.german, item.tag].join(" "));
+  let output = "";
+  let index = 0;
+  while (true) {
+    const found = lowerSafe.indexOf(lowerQuery, index);
+    if (found === -1) {
+      output += safe.slice(index);
+      break;
+    }
+    output += `${safe.slice(index, found)}<mark>${safe.slice(found, found + lowerQuery.length)}</mark>`;
+    index = found + lowerQuery.length;
+  }
+  return output;
+}
 
-const getIdsForSelectedLevel = (store) =>
-  state.selectedLevel === "Alle" ? LEVELS.flatMap((level) => store[level] || []) : store[state.selectedLevel] || [];
+function getLevelItems(level) {
+  return {
+    words: vocabSafe.filter((item) => item.level === level),
+    sentences: sentenceSafe.filter((item) => item.level === level),
+    exercises: exerciseSafe.filter((item) => item.level === level)
+  };
+}
 
-const toggleInLevelStore = (storeKey, id, level) => {
-  const list = state[storeKey][level] || [];
-  state[storeKey][level] = list.includes(id) ? list.filter((item) => item !== id) : [...list, id];
+function matchesQuery(item, query) {
+  if (!query) return true;
+  const haystack = normalizeText([item.arabic, item.german, item.example_de, item.example_ar, item.tag, ...(item.tags || [])].join(" "));
+  return haystack.includes(query);
+}
+
+function toggleStoreItem(storeName, level, id) {
+  const list = state[storeName][level] || [];
+  state[storeName][level] = list.includes(id) ? list.filter((item) => item !== id) : [...list, id];
   saveState();
-  renderAll();
-};
-
-function renderLevelToolbars() {
-  document.querySelectorAll(".level-toolbar").forEach((toolbar) => {
-    toolbar.innerHTML = LEVEL_OPTIONS.map(
-      (level) => `<button class="level-chip ${state.selectedLevel === level ? "active" : ""}" data-level="${level}">${level}</button>`
-    ).join("");
-  });
-
-  document.querySelectorAll(".level-chip").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.selectedLevel = button.dataset.level;
-      state.flashcardIndex = 0;
-      saveState();
-      renderAll();
-    });
-  });
+  renderAllLevels();
+  updateProgress();
 }
 
 function renderDailyWord() {
-  const filtered = getLevelFiltered(vocabulary);
-  if (!filtered.length) {
-    els.dailyWord.innerHTML = '<p class="muted">Für dieses Level sind aktuell keine Wörter verfügbar.</p>';
-    return;
-  }
-
   const dayIndex = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
-  const word = filtered[dayIndex % filtered.length];
+  const word = vocabSafe[dayIndex % vocabSafe.length];
   els.dailyWord.innerHTML = `
-    <span class="tag">Daily Word · ${word.level}</span>
-    <h3>${word.arabic}</h3>
-    <p><strong>${word.article ? `${word.article} ` : ""}${word.german}</strong></p>
-    <p class="muted">${word.example_de}</p>
+    <span class="tag">Daily Word · ${escapeHtml(word.level)}</span>
+    <h3>${escapeHtml(word.arabic)}</h3>
+    <p><strong>${escapeHtml(word.article ? `${word.article} ` : "")}${escapeHtml(word.german)}</strong></p>
+    <p class="muted">${escapeHtml(word.example_de)}</p>
   `;
 }
 
-function renderVocabulary() {
-  const subset = getFilteredVocabulary();
-  if (!subset.length) {
-    els.vocabGrid.innerHTML = '<article class="surface-card"><p>Keine Vokabeln für diesen Filter gefunden.</p></article>';
-    return;
-  }
+function renderAllLevels() {
+  const query = normalizeText(state.searchQuery);
 
-  els.vocabGrid.innerHTML = subset
-    .map((item) => {
-      const isFav = (state.favoritesByLevel[item.level] || []).includes(item.id);
-      const isLearned = (state.learnedByLevel[item.level] || []).includes(item.id);
-      const isKnown = (state.knownByLevel[item.level] || []).includes(item.id);
+  const levelBlocks = LEVELS.map((level) => {
+    const levelId = `level-${level}`;
+    const items = getLevelItems(level);
+
+    const wordsFound = items.words.filter((item) => matchesQuery(item, query));
+    const sentencesFound = items.sentences.filter((item) => matchesQuery(item, query));
+    const exercisesFound = items.exercises;
+
+    const hasAny = wordsFound.length || sentencesFound.length || (!query && exercisesFound.length);
+    if (!hasAny) return "";
+
+    const vocabLimit = state.vocabLimitByLevel[level] || 12;
+    const sentenceLimit = state.sentenceLimitByLevel[level] || 8;
+
+    const favoriteCount = (state.favoritesByLevel[level] || []).length;
+    const learnedCount = (state.learnedByLevel[level] || []).length;
+
+    const vocabCards = wordsFound.slice(0, vocabLimit).map((item) => {
+      const isFavorite = (state.favoritesByLevel[level] || []).includes(item.id);
+      const isLearned = (state.learnedByLevel[level] || []).includes(item.id);
       return `
-        <article class="surface-card hover-lift reveal">
-          <div class="word-card-head"><strong>${item.arabic}</strong><span class="tag">${item.level}</span></div>
-          <p><strong>${item.article ? `${item.article} ` : ""}${item.german}</strong></p>
-          <p class="muted">${item.example_de}</p>
-          <p class="muted">${item.tags.join(" · ")}</p>
+        <article class="surface-card">
+          <div class="word-card-head"><strong>${highlightText(item.arabic, state.searchQuery)}</strong><span class="tag">${escapeHtml(level)}</span></div>
+          <p><strong>${highlightText(`${item.article ? `${item.article} ` : ""}${item.german}`, state.searchQuery)}</strong></p>
+          <p class="muted">${highlightText(item.example_de, state.searchQuery)}</p>
           <div class="card-actions">
-            <button data-favorite="${item.id}" data-level="${item.level}" class="${isFav ? "active" : ""}">${isFav ? "Favorit ✓" : "Favorit"}</button>
-            <button data-learned="${item.id}" data-level="${item.level}" class="${isLearned ? "active" : ""}">${isLearned ? "Gelernt ✓" : "Gelernt"}</button>
-            <button data-known="${item.id}" data-level="${item.level}" class="${isKnown ? "active" : ""}">${isKnown ? "Bekannt" : "Unbekannt"}</button>
+            <button data-action="favorite" data-level="${level}" data-id="${item.id}" class="${isFavorite ? "active" : ""}">${isFavorite ? "Favorit ✓" : "Favorit"}</button>
+            <button data-action="learned" data-level="${level}" data-id="${item.id}" class="${isLearned ? "active" : ""}">${isLearned ? "Gelernt ✓" : "Gelernt"}</button>
           </div>
         </article>
       `;
-    })
-    .join("");
+    });
 
-  document.querySelectorAll("[data-favorite]").forEach((button) =>
-    button.addEventListener("click", () => toggleInLevelStore("favoritesByLevel", button.dataset.favorite, button.dataset.level))
-  );
-  document.querySelectorAll("[data-learned]").forEach((button) =>
-    button.addEventListener("click", () => toggleInLevelStore("learnedByLevel", button.dataset.learned, button.dataset.level))
-  );
-  document.querySelectorAll("[data-known]").forEach((button) =>
-    button.addEventListener("click", () => toggleInLevelStore("knownByLevel", button.dataset.known, button.dataset.level))
-  );
-}
-
-function renderSentences() {
-  const subset = getFilteredSentences();
-  if (!subset.length) {
-    els.sentenceGrid.innerHTML = '<article class="surface-card"><p>Keine Sätze für diesen Filter gefunden.</p></article>';
-    return;
-  }
-
-  els.sentenceGrid.innerHTML = subset
-    .map(
+    const sentenceCards = sentencesFound.slice(0, sentenceLimit).map(
       (item) => `
-        <article class="surface-card hover-lift reveal">
-          <div class="word-card-head"><span class="tag">${item.tag}</span><span class="tag">${item.level}</span></div>
-          <h3>${item.german}</h3>
-          <p class="muted">${item.arabic}</p>
+        <article class="surface-card">
+          <div class="word-card-head"><span class="tag">${escapeHtml(item.tag || "Satz")}</span><span class="tag">${escapeHtml(level)}</span></div>
+          <h3>${highlightText(item.german, state.searchQuery)}</h3>
+          <p class="muted">${highlightText(item.arabic, state.searchQuery)}</p>
         </article>
       `
-    )
-    .join("");
+    );
+
+    const exerciseRows = ["flashcards", "multiple", "gap", "quiz"].map((type) => {
+      const count = exercisesFound.filter((entry) => entry.type === type).length;
+      return `<div class="exercise-row"><span>${type}</span><button data-action="run-exercise" data-level="${level}" data-type="${type}" class="chip-button">Start</button><span class="muted">${count}</span></div>`;
+    });
+
+    return `
+      <details id="${levelId}" class="level-block" ${level === "A1" ? "open" : ""}>
+        <summary>Level ${level} · ${favoriteCount} Favoriten · ${learnedCount} gelernt</summary>
+        <details open>
+          <summary>Vokabeln (${wordsFound.length})</summary>
+          <div class="cards-grid">${vocabCards.join("") || '<p class="muted">Keine Treffer.</p>'}</div>
+          ${wordsFound.length > vocabLimit ? `<button data-action="more-vocab" data-level="${level}" class="chip-button">Mehr anzeigen</button>` : ""}
+        </details>
+        <details>
+          <summary>Sätze (${sentencesFound.length})</summary>
+          <div class="cards-grid">${sentenceCards.join("") || '<p class="muted">Keine Treffer.</p>'}</div>
+          ${sentencesFound.length > sentenceLimit ? `<button data-action="more-sentences" data-level="${level}" class="chip-button">Mehr anzeigen</button>` : ""}
+        </details>
+        <details>
+          <summary>Übungen (${exercisesFound.length})</summary>
+          <div class="exercise-list">${exerciseRows.join("")}</div>
+        </details>
+      </details>
+    `;
+  }).join("");
+
+  els.allLevelsContainer.innerHTML = levelBlocks || '<article class="surface-card"><p>Keine Treffer für die aktuelle Suche.</p></article>';
+
+  els.allLevelsContainer.querySelectorAll("button[data-action]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const { action, level, id, type } = button.dataset;
+      if (action === "favorite") return toggleStoreItem("favoritesByLevel", level, id);
+      if (action === "learned") return toggleStoreItem("learnedByLevel", level, id);
+      if (action === "more-vocab") {
+        state.vocabLimitByLevel[level] = (state.vocabLimitByLevel[level] || 12) + 12;
+        saveState();
+        return renderAllLevels();
+      }
+      if (action === "more-sentences") {
+        state.sentenceLimitByLevel[level] = (state.sentenceLimitByLevel[level] || 8) + 8;
+        saveState();
+        return renderAllLevels();
+      }
+      if (action === "run-exercise") {
+        state.exerciseLevel = level;
+        state.exerciseType = type;
+        state.flashIndex = 0;
+        els.exerciseTabs.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.tab === type));
+        renderExerciseRunner();
+        document.getElementById("exerciseRunner")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
 }
 
 const pickRandom = (items, count) => {
   const copy = [...items];
   const out = [];
-  while (copy.length && out.length < count) {
-    out.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0]);
-  }
+  while (copy.length && out.length < count) out.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0]);
   return out;
 };
 
-function renderFlashcards(levelWords) {
-  if (!levelWords.length) {
-    els.exercisePanel.innerHTML = '<p>Keine Flashcards verfügbar.</p>';
-    return;
-  }
-  state.flashcardIndex %= levelWords.length;
-  const word = levelWords[state.flashcardIndex];
-  els.exercisePanel.innerHTML = `
-    <h3>Flashcard ${state.flashcardIndex + 1}/${levelWords.length}</h3>
-    <p class="big">${word.arabic}</p>
-    <p><strong>${word.article ? `${word.article} ` : ""}${word.german}</strong></p>
-    <p class="muted">${word.example_de}</p>
-    <button class="chip-button" id="nextFlashcard">Nächste Karte</button>
-  `;
-  document.getElementById("nextFlashcard")?.addEventListener("click", () => {
-    state.flashcardIndex += 1;
-    renderExercises();
-  });
-}
+function renderExerciseRunner() {
+  const words = vocabSafe.filter((item) => item.level === state.exerciseLevel);
+  const levelSentences = sentenceSafe.filter((item) => item.level === state.exerciseLevel);
 
-function renderMultiple(levelWords) {
-  if (levelWords.length < 4) {
-    els.exercisePanel.innerHTML = "<p>Nicht genug Wörter für Multiple Choice.</p>";
-    return;
-  }
-
-  const [correct, ...wrong] = pickRandom(levelWords, 4);
-  const options = pickRandom([correct, ...wrong], 4);
-  els.exercisePanel.innerHTML = `
-    <h3>Multiple Choice</h3>
-    <p>Was bedeutet: <strong>${correct.arabic}</strong> ?</p>
-    <div class="options">${options.map((item) => `<button data-answer="${item.id}">${item.german}</button>`).join("")}</div>
-    <p id="multipleResult" class="muted"></p>
-  `;
-
-  els.exercisePanel.querySelectorAll("[data-answer]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const ok = button.dataset.answer === correct.id;
-      document.getElementById("multipleResult").textContent = ok ? "Richtig ✅" : `Falsch. Richtig ist: ${correct.german}`;
+  if (state.exerciseType === "flashcards") {
+    if (!words.length) return (els.exercisePanel.innerHTML = "<p>Keine Flashcards verfügbar.</p>");
+    state.flashIndex %= words.length;
+    const word = words[state.flashIndex];
+    els.exercisePanel.innerHTML = `<h3>${state.exerciseLevel} · Flashcard ${state.flashIndex + 1}/${words.length}</h3><p class="big">${escapeHtml(word.arabic)}</p><p><strong>${escapeHtml(word.german)}</strong></p><button id="nextFlash" class="chip-button">Nächste Karte</button>`;
+    document.getElementById("nextFlash")?.addEventListener("click", () => {
+      state.flashIndex += 1;
+      renderExerciseRunner();
     });
-  });
-}
-
-function renderGap(levelSentences) {
-  if (!levelSentences.length) {
-    els.exercisePanel.innerHTML = "<p>Keine Gap-Übungen verfügbar.</p>";
     return;
   }
 
-  const selected = levelSentences[Math.floor(Math.random() * levelSentences.length)];
-  const words = selected.german.split(" ");
-  const removable = words.filter((word) => word.length > 3);
-  const removed = removable[Math.floor(Math.random() * removable.length)] || words[0];
-  const masked = selected.german.replace(removed, "____");
-
-  els.exercisePanel.innerHTML = `
-    <h3>Lückentext</h3>
-    <p>${masked}</p>
-    <input id="gapInput" placeholder="Fehlendes Wort" />
-    <button id="checkGap" class="chip-button">Prüfen</button>
-    <p id="gapResult" class="muted"></p>
-  `;
-
-  document.getElementById("checkGap")?.addEventListener("click", () => {
-    const answer = normalizeText(document.getElementById("gapInput").value);
-    const result = document.getElementById("gapResult");
-    result.textContent = answer === normalizeText(removed) ? "Richtig ✅" : `Nicht ganz. Lösung: ${removed}`;
-  });
-}
-
-function renderQuiz(levelWords) {
-  if (levelWords.length < 5) {
-    els.exercisePanel.innerHTML = "<p>Mindestens 5 Wörter für Quiz benötigt.</p>";
+  if (state.exerciseType === "multiple") {
+    if (words.length < 4) return (els.exercisePanel.innerHTML = "<p>Nicht genug Wörter für Multiple Choice.</p>");
+    const [correct, ...wrong] = pickRandom(words, 4);
+    const options = pickRandom([correct, ...wrong], 4);
+    els.exercisePanel.innerHTML = `<h3>${state.exerciseLevel} · Multiple Choice</h3><p>${escapeHtml(correct.arabic)}</p><div class="options">${options.map((item) => `<button data-answer="${item.id}">${escapeHtml(item.german)}</button>`).join("")}</div><p id="multiResult" class="muted"></p>`;
+    els.exercisePanel.querySelectorAll("[data-answer]").forEach((button) =>
+      button.addEventListener("click", () => {
+        document.getElementById("multiResult").textContent = button.dataset.answer === correct.id ? "Richtig ✅" : `Falsch. ${correct.german}`;
+      })
+    );
     return;
   }
 
-  const questions = pickRandom(levelWords, 5);
+  if (state.exerciseType === "gap") {
+    if (!levelSentences.length) return (els.exercisePanel.innerHTML = "<p>Keine Gap-Sätze verfügbar.</p>");
+    const item = levelSentences[Math.floor(Math.random() * levelSentences.length)];
+    const wordsInSentence = item.german.split(" ");
+    const missing = wordsInSentence.find((word) => word.length > 3) || wordsInSentence[0];
+    const masked = item.german.replace(missing, "____");
+    els.exercisePanel.innerHTML = `<h3>${state.exerciseLevel} · Gap Text</h3><p>${escapeHtml(masked)}</p><input id="gapInput" /><button id="gapCheck" class="chip-button">Prüfen</button><p id="gapResult" class="muted"></p>`;
+    document.getElementById("gapCheck")?.addEventListener("click", () => {
+      const answer = normalizeText(document.getElementById("gapInput").value);
+      document.getElementById("gapResult").textContent = answer === normalizeText(missing) ? "Richtig ✅" : `Lösung: ${missing}`;
+    });
+    return;
+  }
+
+  if (words.length < 5) return (els.exercisePanel.innerHTML = "<p>Mindestens 5 Wörter für Quiz nötig.</p>");
+  const selected = pickRandom(words, 5);
   let score = 0;
-  let current = 0;
+  let index = 0;
 
   const ask = () => {
-    const item = questions[current];
-    const wrong = pickRandom(levelWords.filter((word) => word.id !== item.id), 3);
-    const options = pickRandom([item, ...wrong], 4);
-
-    els.exercisePanel.innerHTML = `
-      <h3>Mini-Quiz (${current + 1}/5)</h3>
-      <p>Wähle die deutsche Bedeutung für <strong>${item.arabic}</strong>.</p>
-      <div class="options">${options.map((option) => `<button data-id="${option.id}">${option.german}</button>`).join("")}</div>
-      <p class="muted">Punkte: ${score}</p>
-    `;
-
-    els.exercisePanel.querySelectorAll("[data-id]").forEach((button) => {
+    const current = selected[index];
+    const options = pickRandom([current, ...pickRandom(words.filter((entry) => entry.id !== current.id), 3)], 4);
+    els.exercisePanel.innerHTML = `<h3>${state.exerciseLevel} · Quiz ${index + 1}/5</h3><p>${escapeHtml(current.arabic)}</p><div class="options">${options.map((item) => `<button data-q="${item.id}">${escapeHtml(item.german)}</button>`).join("")}</div>`;
+    els.exercisePanel.querySelectorAll("[data-q]").forEach((button) => {
       button.addEventListener("click", () => {
-        if (button.dataset.id === item.id) score += 1;
-        current += 1;
-        if (current < questions.length) {
-          ask();
-          return;
-        }
-
-        const historyLevel = state.selectedLevel === "Alle" ? "Alle" : state.selectedLevel;
-        state.quizHistory.push({ timestamp: new Date().toISOString(), level: historyLevel, score, total: questions.length });
+        if (button.dataset.q === current.id) score += 1;
+        index += 1;
+        if (index < selected.length) return ask();
+        state.quizHistory.push({ level: state.exerciseLevel, score, total: selected.length, timestamp: new Date().toISOString() });
         saveState();
-        els.exercisePanel.innerHTML = `<h3>Quiz beendet</h3><p>Ergebnis: ${score}/${questions.length}</p><p class="muted">Gespeichert mit Timestamp und Level.</p>`;
+        els.exercisePanel.innerHTML = `<h3>Quiz beendet</h3><p>${score}/${selected.length}</p>`;
         updateProgress();
       });
     });
@@ -311,47 +323,35 @@ function renderQuiz(levelWords) {
   ask();
 }
 
-function renderExercises() {
-  const levelWords = getLevelFiltered(vocabulary);
-  const levelSentences = getLevelFiltered(sentences);
-
-  if (state.exerciseType === "flashcards") return renderFlashcards(pickRandom(levelWords, Math.min(8, levelWords.length)));
-  if (state.exerciseType === "multiple") return renderMultiple(levelWords);
-  if (state.exerciseType === "gap") return renderGap(levelSentences);
-  return renderQuiz(levelWords);
-}
-
 function updateProgress() {
-  const favoritesCurrent = getIdsForSelectedLevel(state.favoritesByLevel).length;
-  const learnedCurrent = getIdsForSelectedLevel(state.learnedByLevel).length;
-  const knownCurrent = getIdsForSelectedLevel(state.knownByLevel).length;
-  const wordsCurrent = getLevelFiltered(vocabulary).length || vocabulary.length;
-  const progress = Math.round((knownCurrent / wordsCurrent) * 100) || 0;
+  const favoriteCount = LEVELS.reduce((sum, level) => sum + (state.favoritesByLevel[level] || []).length, 0);
+  const learnedCount = LEVELS.reduce((sum, level) => sum + (state.learnedByLevel[level] || []).length, 0);
+  const quizCount = state.quizHistory.length;
+  const progress = Math.round((learnedCount / vocabSafe.length) * 100) || 0;
 
-  const quizCurrent = state.quizHistory.filter((entry) => state.selectedLevel === "Alle" || entry.level === state.selectedLevel).length;
-
-  els.favoriteCount.textContent = String(favoritesCurrent);
-  els.learnedCount.textContent = String(learnedCurrent);
-  els.quizCount.textContent = String(quizCurrent);
+  els.favoriteCount.textContent = String(favoriteCount);
+  els.learnedCount.textContent = String(learnedCount);
+  els.quizCount.textContent = String(quizCount);
   els.weekProgressLabel.textContent = `${progress}%`;
   els.weekProgressBar.style.width = `${progress}%`;
 
-  const rows = LEVELS.map((level) => {
-    const learned = new Set([...(state.learnedByLevel[level] || []), ...(state.knownByLevel[level] || [])]);
-    return `<p><strong>${level}</strong>: ${learned.size} gelernt</p>`;
-  }).join("");
-
-  els.levelSummary.innerHTML = `<h3>Übersicht pro Level</h3>${rows}`;
+  els.levelSummary.innerHTML = `<h3>Level-Übersicht</h3>${LEVELS.map((level) => `<p><strong>${level}</strong>: ${(state.learnedByLevel[level] || []).length} gelernt · ${(state.favoritesByLevel[level] || []).length} Favoriten</p>`).join("")}`;
 }
 
 function initNavigation() {
-  els.menuToggle.addEventListener("click", () => {
-    const isOpen = els.navMenu.classList.toggle("open");
-    els.menuToggle.setAttribute("aria-expanded", String(isOpen));
+  els.menuToggle?.addEventListener("click", () => {
+    const open = els.navMenu.classList.toggle("open");
+    els.menuToggle.setAttribute("aria-expanded", String(open));
   });
 
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", () => {
+      const id = anchor.getAttribute("href").slice(1);
+      const level = id.replace("level-", "");
+      if (LEVELS.includes(level)) {
+        const details = document.getElementById(id);
+        if (details) details.open = true;
+      }
       els.navMenu.classList.remove("open");
       els.menuToggle.setAttribute("aria-expanded", "false");
     });
@@ -359,8 +359,10 @@ function initNavigation() {
 }
 
 function initSearch() {
-  els.vocabSearch.addEventListener("input", renderVocabulary);
-  els.sentenceSearch.addEventListener("input", renderSentences);
+  els.globalSearch?.addEventListener("input", () => {
+    state.searchQuery = els.globalSearch.value;
+    renderAllLevels();
+  });
 }
 
 function initExerciseTabs() {
@@ -368,7 +370,7 @@ function initExerciseTabs() {
     button.addEventListener("click", () => {
       state.exerciseType = button.dataset.tab;
       els.exerciseTabs.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("active", tab === button));
-      renderExercises();
+      renderExerciseRunner();
     });
   });
 }
@@ -391,29 +393,19 @@ function initThemeAndDirection() {
 }
 
 function initTopStart() {
-  if (window.location.hash && window.location.hash !== "#home") {
-    history.replaceState(null, "", `${location.pathname}${location.search}#home`);
-  }
   window.history.scrollRestoration = "manual";
-  window.scrollTo(0, 0);
-  window.addEventListener("load", () => window.scrollTo(0, 0));
-  window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+  if (!window.location.hash) {
+    window.scrollTo(0, 0);
+    window.addEventListener("load", () => window.scrollTo(0, 0));
+    window.addEventListener("pageshow", () => window.scrollTo(0, 0));
+  }
 }
 
 function initStaticMetrics() {
   els.year.textContent = new Date().getFullYear();
-  els.kpiWords.textContent = `${vocabulary.length}+`;
-  els.kpiSentences.textContent = `${sentences.length}+`;
-  els.kpiExercises.textContent = `${exercises.length}+`;
-}
-
-function renderAll() {
-  renderLevelToolbars();
-  renderDailyWord();
-  renderVocabulary();
-  renderSentences();
-  renderExercises();
-  updateProgress();
+  els.kpiWords.textContent = `${vocabSafe.length}+`;
+  els.kpiSentences.textContent = `${sentenceSafe.length}+`;
+  els.kpiExercises.textContent = `${exerciseSafe.length}+`;
 }
 
 function init() {
@@ -423,7 +415,10 @@ function init() {
   initExerciseTabs();
   initThemeAndDirection();
   initStaticMetrics();
-  renderAll();
+  renderDailyWord();
+  renderAllLevels();
+  renderExerciseRunner();
+  updateProgress();
 }
 
 init();

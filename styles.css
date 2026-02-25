@@ -554,3 +554,48 @@ input[type="search"] {
     grid-template-columns: 1fr;
   }
 }
+
+#allLevelsContainer {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.level-block {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.8rem;
+}
+
+.level-block > summary,
+.level-block details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+}
+
+.level-block details {
+  margin: 0.6rem 0;
+  padding: 0.4rem;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+}
+
+.exercise-list {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.exercise-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+mark {
+  background: #ffe36a;
+  color: #1a1f31;
+  border-radius: 4px;
+  padding: 0 0.12rem;
+}
