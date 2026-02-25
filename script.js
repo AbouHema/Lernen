@@ -1,3 +1,5 @@
+const LEVEL_OPTIONS = ["Alle", ...LEVELS];
+
 const STORAGE_KEYS = {
   favorites: "lernen_favorites_by_level",
   learned: "lernen_learned_by_level",
