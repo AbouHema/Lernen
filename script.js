@@ -1,124 +1,57 @@
-const translations = {
-  de: {
-    heroTitle: "Deutsch lernen auf B1-Niveau",
-    heroSubtitle:
-      "Trainiere Deutsch mit B1-Inhalten, klarer Typografie und schneller Bedienung – optimiert für arabischsprachige Lernende.",
-    cta: "Jetzt lernen",
-    trust: "Über 12.000 Lernende nutzen Lernen täglich",
-    featuresTitle: "Alles, was du brauchst",
-    featuresSubtitle: "B1-Vokabeln, Sätze und Übungen – alles in einem ruhigen, modernen Workflow.",
-    dashboardTitle: "Dein Lern-Dashboard",
-    dailyWord: "Wort des Tages",
-    searchPlaceholder: "Suche nach Arabisch oder Deutsch",
-    favorites: "Favoriten",
-    learned: "Gelernt",
-    addFavorite: "Zu Favoriten",
-    removeFavorite: "Aus Favoriten",
-    correct: "Richtig",
-    incorrect: "Nicht ganz",
-    submit: "Antwort prüfen",
-    next: "Weiter",
-    back: "Zurück",
-    reset: "Neu starten",
-    darkMode: "Dark Mode",
-    language: "Sprache"
-  },
-  ar: {
-    heroTitle: "تعلّم الألمانية بمستوى B1",
-    heroSubtitle:
-      "تدرّب على محتوى مستوى B1 بتصميم أنيق وسرعة في الاستخدام – مخصص للمتعلمين الناطقين بالعربية.",
-    cta: "ابدأ التعلّم",
-    trust: "أكثر من ١٢٬٠٠٠ متعلم يستخدمون Lernen يوميًا",
-    featuresTitle: "كل ما تحتاجه",
-    featuresSubtitle: "مفردات وجُمل وتمارين بمستوى B1 في تجربة هادئة وعصرية.",
-    dashboardTitle: "لوحة التعلّم الخاصة بك",
-    dailyWord: "كلمة اليوم",
-    searchPlaceholder: "ابحث بالعربية أو الألمانية",
-    favorites: "المفضلة",
-    learned: "تم التعلم",
-    addFavorite: "أضف للمفضلة",
-    removeFavorite: "إزالة من المفضلة",
-    correct: "إجابة صحيحة",
-    incorrect: "إجابة غير صحيحة",
-    submit: "تحقق من الإجابة",
-    next: "التالي",
-    back: "عودة",
-    reset: "ابدأ من جديد",
-    darkMode: "الوضع الداكن",
-    language: "اللغة"
-  }
+const STORAGE_KEYS = {
+  favorites: "lernen_favorites",
+  learned: "lernen_learned"
 };
 
 const state = {
-  locale: localStorage.getItem("lernen_locale") || "de",
-  theme: localStorage.getItem("lernen_theme") || "light",
-  favorites: JSON.parse(localStorage.getItem("lernen_favorites") || "[]"),
-  learned: JSON.parse(localStorage.getItem("lernen_learned") || "[]"),
-  quizHistory: JSON.parse(localStorage.getItem("lernen_quiz") || "[]")
+  favorites: JSON.parse(localStorage.getItem(STORAGE_KEYS.favorites) || "[]"),
+  learned: JSON.parse(localStorage.getItem(STORAGE_KEYS.learned) || "[]")
 };
 
-const elements = {
-  languageToggle: document.getElementById("languageToggle"),
-  languageMenu: document.getElementById("languageMenu"),
-  themeToggle: document.getElementById("themeToggle"),
-  darkModeLabel: document.getElementById("darkModeLabel"),
-  heroTitle: document.getElementById("heroTitle"),
-  heroSubtitle: document.getElementById("heroSubtitle"),
-  ctaButton: document.getElementById("ctaButton"),
-  trustText: document.getElementById("trustText"),
-  featuresTitle: document.getElementById("featuresTitle"),
-  featuresSubtitle: document.getElementById("featuresSubtitle"),
-  dashboardTitle: document.getElementById("dashboardTitle"),
-  dailyWordLabel: document.getElementById("dailyWordLabel"),
-  vocabSearch: document.getElementById("vocabSearch"),
+const els = {
+  menuToggle: document.getElementById("menuToggle"),
+  navMenu: document.getElementById("navMenu"),
   vocabGrid: document.getElementById("vocabGrid"),
-  favoriteCount: document.getElementById("favoriteCount"),
-  sentenceSearch: document.getElementById("sentenceSearch"),
   sentenceGrid: document.getElementById("sentenceGrid"),
-  dailyWordCard: document.getElementById("dailyWordCard"),
-  progressSummary: document.getElementById("progressSummary"),
-  progressSummaryCard: document.getElementById("progressSummaryCard"),
-  quizChart: document.getElementById("quizChart")
+  vocabSearch: document.getElementById("vocabSearch"),
+  sentenceSearch: document.getElementById("sentenceSearch"),
+  dailyWord: document.getElementById("dailyWord"),
+  year: document.getElementById("year"),
+  kpiWords: document.getElementById("kpiWords"),
+  kpiSentences: document.getElementById("kpiSentences"),
+  favoriteCount: document.getElementById("favoriteCount"),
+  learnedCount: document.getElementById("learnedCount"),
+  focusProgressBar: document.getElementById("focusProgressBar"),
+  focusProgressLabel: document.getElementById("focusProgressLabel"),
+  weekProgressBar: document.getElementById("weekProgressBar")
 };
 
-function applyLocale() {
-  const t = translations[state.locale];
-  document.documentElement.lang = state.locale === "ar" ? "ar" : "de";
-  document.documentElement.dir = state.locale === "ar" ? "rtl" : "ltr";
-
-  elements.heroTitle.textContent = t.heroTitle;
-  elements.heroSubtitle.textContent = t.heroSubtitle;
-  elements.ctaButton.textContent = t.cta;
-  elements.trustText.textContent = t.trust;
-  elements.featuresTitle.textContent = t.featuresTitle;
-  elements.featuresSubtitle.textContent = t.featuresSubtitle;
-  elements.dashboardTitle.textContent = t.dashboardTitle;
-  elements.dailyWordLabel.textContent = t.dailyWord;
-  elements.vocabSearch.placeholder = t.searchPlaceholder;
-  elements.sentenceSearch.placeholder = t.searchPlaceholder;
-  elements.darkModeLabel.textContent = t.darkMode;
-  elements.languageToggle.textContent = t.language;
-  elements.favoriteCount.textContent = `${state.favorites.length} ${t.favorites}`;
+function scrollToTopImmediately() {
+  window.history.scrollRestoration = "manual";
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 }
 
-function applyTheme() {
-  document.body.classList.toggle("dark", state.theme === "dark");
+function initTopStart() {
+  scrollToTopImmediately();
+  window.addEventListener("pageshow", scrollToTopImmediately);
+  window.addEventListener("beforeunload", () => window.scrollTo(0, 0));
 }
 
-function toggleTheme() {
-  state.theme = state.theme === "dark" ? "light" : "dark";
-  localStorage.setItem("lernen_theme", state.theme);
-  applyTheme();
+function saveState() {
+  localStorage.setItem(STORAGE_KEYS.favorites, JSON.stringify(state.favorites));
+  localStorage.setItem(STORAGE_KEYS.learned, JSON.stringify(state.learned));
 }
 
-function toggleLocale(locale) {
-  state.locale = locale;
-  localStorage.setItem("lernen_locale", locale);
-  applyLocale();
+function toggleInList(listName, id) {
+  const list = state[listName];
+  if (list.includes(id)) {
+    state[listName] = list.filter((item) => item !== id);
+  } else {
+    state[listName] = [...list, id];
+  }
+  saveState();
   renderVocabulary();
-  renderSentences();
-  renderExercises();
-  renderProgress();
+  updateProgress();
 }
 
 function dailyWord() {
@@ -128,432 +61,155 @@ function dailyWord() {
 
 function renderDailyWord() {
   const word = dailyWord();
-  elements.dailyWordCard.innerHTML = `
-    <strong>${word.arabic}</strong>
-    <p>${word.article} ${word.german} · ${word.category}</p>
+  els.dailyWord.innerHTML = `
+    <span class="tag">Daily Word</span>
+    <h3>${word.arabic}</h3>
+    <p><strong>${word.article} ${word.german}</strong></p>
     <p class="muted">${word.example_de}</p>
   `;
 }
 
-function saveProgress() {
-  localStorage.setItem("lernen_favorites", JSON.stringify(state.favorites));
-  localStorage.setItem("lernen_learned", JSON.stringify(state.learned));
-  localStorage.setItem("lernen_quiz", JSON.stringify(state.quizHistory));
-}
-
-function toggleFavorite(id) {
-  if (state.favorites.includes(id)) {
-    state.favorites = state.favorites.filter((item) => item !== id);
-  } else {
-    state.favorites.push(id);
-  }
-  saveProgress();
-  renderVocabulary();
-}
-
-function toggleLearned(id) {
-  if (state.learned.includes(id)) {
-    state.learned = state.learned.filter((item) => item !== id);
-  } else {
-    state.learned.push(id);
-  }
-  saveProgress();
-  renderVocabulary();
-  renderProgress();
-}
-
 function renderVocabulary() {
-  const query = elements.vocabSearch.value.toLowerCase();
-  const t = translations[state.locale];
-  const filtered = vocabulary.filter((item) =>
-    [item.arabic, item.german, item.example_de, item.example_ar].join(" ").toLowerCase().includes(query)
-  );
+  const query = els.vocabSearch.value.trim().toLowerCase();
+  const subset = vocabulary
+    .filter((item) => [item.arabic, item.german, item.example_de, item.example_ar].join(" ").toLowerCase().includes(query))
+    .slice(0, 9);
 
-  elements.vocabGrid.innerHTML = filtered
+  els.vocabGrid.innerHTML = subset
     .map((item) => {
-      const isFavorite = state.favorites.includes(item.id);
+      const isFav = state.favorites.includes(item.id);
       const isLearned = state.learned.includes(item.id);
       return `
-      <article class="vocab-card">
-        <div class="card-header">
-          <div>
-            <h3>${item.arabic}</h3>
-            <p>${item.article} ${item.german}</p>
+        <article class="surface-card hover-lift reveal">
+          <div class="word-card-head">
+            <strong>${item.arabic}</strong>
+            <span class="tag">${item.level}</span>
           </div>
-          <span class="tag">${item.level}</span>
-        </div>
-        <div class="card-content">
-          <p>${item.example_de}</p>
-          <p class="muted">${item.example_ar}</p>
-        </div>
-        <div class="card-actions">
-          <button class="secondary-button" data-favorite="${item.id}">
-            ${isFavorite ? t.removeFavorite : t.addFavorite}
-          </button>
-          <button class="ghost-button" data-learned="${item.id}">
-            ${isLearned ? t.learned : "Als gelernt markieren"}
-          </button>
-        </div>
-      </article>
-    `;
+          <p><strong>${item.article} ${item.german}</strong></p>
+          <p class="muted">${item.example_de}</p>
+          <div class="card-actions">
+            <button data-favorite="${item.id}" class="${isFav ? "active" : ""}">${isFav ? "Favorit ✓" : "Favorit"}</button>
+            <button data-learned="${item.id}" class="${isLearned ? "active" : ""}">${isLearned ? "Gelernt ✓" : "Gelernt"}</button>
+          </div>
+        </article>
+      `;
     })
     .join("");
 
-  elements.favoriteCount.textContent = `${state.favorites.length} ${t.favorites}`;
+  document.querySelectorAll("[data-favorite]").forEach((btn) => {
+    btn.addEventListener("click", () => toggleInList("favorites", btn.dataset.favorite));
+  });
 
-  document.querySelectorAll("[data-favorite]").forEach((button) =>
-    button.addEventListener("click", () => toggleFavorite(button.dataset.favorite))
-  );
-  document.querySelectorAll("[data-learned]").forEach((button) =>
-    button.addEventListener("click", () => toggleLearned(button.dataset.learned))
-  );
+  document.querySelectorAll("[data-learned]").forEach((btn) => {
+    btn.addEventListener("click", () => toggleInList("learned", btn.dataset.learned));
+  });
+
+  initReveal();
 }
 
 function renderSentences() {
-  const query = elements.sentenceSearch.value.toLowerCase();
-  const filtered = sentences.filter((item) =>
-    [item.arabic, item.german].join(" ").toLowerCase().includes(query)
-  );
+  const query = els.sentenceSearch.value.trim().toLowerCase();
+  const subset = sentences
+    .filter((item) => [item.arabic, item.german, item.category].join(" ").toLowerCase().includes(query))
+    .slice(0, 6);
 
-  elements.sentenceGrid.innerHTML = filtered
+  els.sentenceGrid.innerHTML = subset
     .map(
       (item) => `
-      <article class="sentence-card">
-        <div class="card-header">
-          <span class="tag">${item.category}</span>
-          <span class="badge">${item.level}</span>
-        </div>
-        <div class="card-content">
-          <strong>${item.german}</strong>
+        <article class="surface-card hover-lift reveal">
+          <div class="word-card-head">
+            <span class="tag">${item.category}</span>
+            <span class="tag">${item.level}</span>
+          </div>
+          <h3>${item.german}</h3>
           <p class="muted">${item.arabic}</p>
-        </div>
-      </article>
-    `
+        </article>
+      `
     )
     .join("");
+
+  initReveal();
 }
 
-function renderProgress() {
-  const percentage = Math.min(100, Math.round((state.learned.length / vocabulary.length) * 100));
-  const streak = state.quizHistory.length;
-
-  const content = `
-    <div class="progress-stats">
-      <div>
-        <p class="muted">Gelernte Wörter</p>
-        <strong>${state.learned.length}</strong>
-      </div>
-      <div>
-        <p class="muted">Streak</p>
-        <strong>${streak}</strong>
-      </div>
-    </div>
-    <div class="progress-bar">
-      <span style="width: ${percentage}%"></span>
-    </div>
-    <p class="muted">${percentage}% der Vokabeln gelernt</p>
-  `;
-
-  elements.progressSummary.innerHTML = content;
-  elements.progressSummaryCard.innerHTML = `<div class="card-content">${content}</div>`;
-
-  renderQuizChart();
+function updateProgress() {
+  const percent = Math.round((state.learned.length / vocabulary.length) * 100) || 0;
+  els.favoriteCount.textContent = String(state.favorites.length);
+  els.learnedCount.textContent = String(state.learned.length);
+  els.focusProgressBar.style.width = `${Math.min(percent, 100)}%`;
+  els.focusProgressLabel.textContent = `${Math.min(percent, 100)}%`;
 }
 
-function renderQuizChart() {
-  if (state.quizHistory.length === 0) {
-    elements.quizChart.innerHTML = `<p class="muted">Noch keine Quiz-Daten vorhanden.</p>`;
-    return;
-  }
+function initNavigation() {
+  els.menuToggle.addEventListener("click", () => {
+    const isOpen = els.navMenu.classList.toggle("open");
+    els.menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
 
-  const maxScore = 10;
-  const width = 260;
-  const height = 120;
-  const points = state.quizHistory
-    .map((entry, index) => {
-      const x = (index / Math.max(state.quizHistory.length - 1, 1)) * width;
-      const y = height - (entry.score / maxScore) * height;
-      return `${x},${y}`;
-    })
-    .join(" ");
-
-  elements.quizChart.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" width="100%" height="120" aria-label="Quiz Verlauf">
-      <polyline fill="none" stroke="#3b5bff" stroke-width="3" points="${points}" />
-    </svg>
-  `;
-}
-
-function renderExercises() {
-  renderFlashcards();
-  renderMultipleChoice();
-  renderGap();
-  renderMiniQuiz();
-}
-
-function renderFlashcards() {
-  const container = document.getElementById("flashcards");
-  let index = 0;
-  let flipped = false;
-
-  function update() {
-    const item = vocabulary[index % vocabulary.length];
-    container.innerHTML = `
-      <div class="card">
-        <div class="card-content">
-          <div class="flashcard">
-            <strong>${flipped ? `${item.article} ${item.german}` : item.arabic}</strong>
-            <p class="muted">${flipped ? item.example_de : item.example_ar}</p>
-          </div>
-          <div class="card-actions">
-            <button class="primary-button" id="nextCard">${translations[state.locale].next}</button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    container.querySelector("#nextCard").addEventListener("click", () => {
-      if (!flipped) {
-        flipped = true;
-      } else {
-        index += 1;
-        flipped = false;
-      }
-      update();
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", () => {
+      els.navMenu.classList.remove("open");
+      els.menuToggle.setAttribute("aria-expanded", "false");
     });
-  }
-
-  update();
+  });
 }
 
-function renderMultipleChoice() {
-  const container = document.getElementById("multiple");
-  let index = 0;
+let observer;
+function initReveal() {
+  if (observer) observer.disconnect();
 
-  function update() {
-    const item = vocabulary[index % vocabulary.length];
-    const options = shuffle([
-      `${item.article} ${item.german}`,
-      ...shuffle(vocabulary.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
-    ]);
-
-    container.innerHTML = `
-      <div class="card">
-        <div class="card-content">
-          <h3>${item.arabic}</h3>
-          <p class="muted">${item.example_ar}</p>
-          <div class="option-grid">
-            ${options
-              .map(
-                (option) => `<button class="secondary-button option" data-option="${option}">${option}</button>`
-              )
-              .join("")}
-          </div>
-          <p class="muted" id="mcResult"></p>
-          <button class="primary-button" id="mcNext">${translations[state.locale].next}</button>
-        </div>
-      </div>
-    `;
-
-    const result = container.querySelector("#mcResult");
-    container.querySelectorAll(".option").forEach((button) => {
-      button.addEventListener("click", () => {
-        result.textContent =
-          button.dataset.option === `${item.article} ${item.german}`
-            ? translations[state.locale].correct
-            : translations[state.locale].incorrect;
-      });
-    });
-
-    container.querySelector("#mcNext").addEventListener("click", () => {
-      index += 1;
-      update();
-    });
-  }
-
-  update();
-}
-
-function renderGap() {
-  const container = document.getElementById("gap");
-  let index = 0;
-
-  function update() {
-    const sentence = sentences[index % sentences.length];
-    const words = sentence.german.split(" ");
-    const gapWord = words[words.length - 1];
-    const masked = sentence.german.replace(gapWord, "_____");
-
-    container.innerHTML = `
-      <div class="card">
-        <div class="card-content">
-          <h3>${masked}</h3>
-          <p class="muted">${sentence.arabic}</p>
-          <div class="card-actions">
-            <input type="text" id="gapInput" placeholder="${translations[state.locale].submit}" />
-            <button class="primary-button" id="gapCheck">${translations[state.locale].submit}</button>
-          </div>
-          <p class="muted" id="gapResult"></p>
-          <button class="secondary-button" id="gapNext">${translations[state.locale].next}</button>
-        </div>
-      </div>
-    `;
-
-    container.querySelector("#gapCheck").addEventListener("click", () => {
-      const value = container.querySelector("#gapInput").value.trim().toLowerCase();
-      container.querySelector("#gapResult").textContent =
-        value === gapWord.toLowerCase() ? translations[state.locale].correct : `${translations[state.locale].incorrect} – ${gapWord}`;
-    });
-
-    container.querySelector("#gapNext").addEventListener("click", () => {
-      index += 1;
-      update();
-    });
-  }
-
-  update();
-}
-
-function renderMiniQuiz() {
-  const container = document.getElementById("quiz");
-  const quizItems = vocabulary.slice(0, 10);
-  let step = 0;
-  let answers = [];
-
-  function finishQuiz() {
-    const score = answers.reduce((acc, item, idx) => acc + (item === `${quizItems[idx].article} ${quizItems[idx].german}` ? 1 : 0), 0);
-    state.quizHistory.push({ date: new Date().toISOString().slice(0, 10), score });
-    saveProgress();
-    renderProgress();
-  }
-
-  function update() {
-    if (step >= quizItems.length) {
-      container.innerHTML = `
-        <div class="card">
-          <div class="card-content">
-            <h3>Review</h3>
-            ${quizItems
-              .map(
-                (item, idx) => `
-                <div class="mini-card">
-                  <strong>${item.arabic}</strong>
-                  <p>${item.article} ${item.german}</p>
-                  <p class="muted">Antwort: ${answers[idx] || "-"}</p>
-                </div>
-              `
-              )
-              .join("")}
-            <button class="secondary-button" id="quizReset">${translations[state.locale].reset}</button>
-          </div>
-        </div>
-      `;
-      container.querySelector("#quizReset").addEventListener("click", () => {
-        step = 0;
-        answers = [];
-        update();
-      });
-      return;
-    }
-
-    const item = quizItems[step];
-    const options = shuffle([
-      `${item.article} ${item.german}`,
-      ...shuffle(vocabulary.map((entry) => `${entry.article} ${entry.german}`)).slice(0, 3)
-    ]);
-
-    container.innerHTML = `
-      <div class="card">
-        <div class="card-content">
-          <span class="tag">Frage ${step + 1}/10</span>
-          <h3>${item.arabic}</h3>
-          <div class="option-grid">
-            ${options
-              .map(
-                (option) => `<button class="secondary-button option" data-option="${option}">${option}</button>`
-              )
-              .join("")}
-          </div>
-          <button class="primary-button" id="quizNext">${step + 1 === quizItems.length ? "Review" : translations[state.locale].next}</button>
-        </div>
-      </div>
-    `;
-
-    let selection = null;
-    const optionButtons = container.querySelectorAll(".option");
-    optionButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        selection = button.dataset.option;
-        optionButtons.forEach((option) => option.classList.remove("active"));
-        button.classList.add("active");
-      });
-    });
-
-    container.querySelector("#quizNext").addEventListener("click", () => {
-      answers[step] = selection;
-      step += 1;
-      if (step === quizItems.length) {
-        finishQuiz();
-      }
-      update();
-    });
-  }
-
-  update();
-}
-
-function shuffle(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
-}
-
-function initTabs() {
-  document.querySelectorAll(".tabs").forEach((tabGroup) => {
-    const tabs = tabGroup.querySelectorAll(".tab");
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((btn) => btn.classList.remove("active"));
-        tab.classList.add("active");
-        const target = tab.dataset.tab;
-        document.querySelectorAll(`#${target}`).forEach((panel) => panel.classList.add("active"));
-        tabGroup.parentElement
-          .querySelectorAll(".tab-content")
-          .forEach((panel) => panel.classList.toggle("active", panel.id === target));
-        if (tabGroup.classList.contains("exercise-tabs") && target === "quiz") {
-          renderMiniQuiz();
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
         }
       });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+}
+
+function initBackgroundMotion() {
+  const blobs = document.querySelectorAll(".bg-blur");
+  window.addEventListener("mousemove", (event) => {
+    const x = event.clientX / window.innerWidth - 0.5;
+    const y = event.clientY / window.innerHeight - 0.5;
+    blobs.forEach((blob, index) => {
+      const depth = (index + 1) * 18;
+      blob.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
     });
   });
 }
 
-function initControls() {
-  elements.languageToggle.addEventListener("click", () => {
-    elements.languageMenu.style.display =
-      elements.languageMenu.style.display === "flex" ? "none" : "flex";
-  });
+function initStaticMetrics() {
+  els.year.textContent = new Date().getFullYear();
+  els.kpiWords.textContent = `${vocabulary.length}+`;
+  els.kpiSentences.textContent = `${sentences.length}+`;
 
-  elements.languageMenu.querySelectorAll("button").forEach((button) => {
-    button.addEventListener("click", () => {
-      toggleLocale(button.dataset.lang);
-      elements.languageMenu.style.display = "none";
-    });
+  const weekProgress = 72;
+  requestAnimationFrame(() => {
+    els.weekProgressBar.style.width = `${weekProgress}%`;
   });
+}
 
-  elements.themeToggle.addEventListener("click", toggleTheme);
-  elements.vocabSearch.addEventListener("input", renderVocabulary);
-  elements.sentenceSearch.addEventListener("input", renderSentences);
+function initSearch() {
+  els.vocabSearch.addEventListener("input", renderVocabulary);
+  els.sentenceSearch.addEventListener("input", renderSentences);
 }
 
 function init() {
-  applyLocale();
-  applyTheme();
-  initControls();
-  initTabs();
+  initTopStart();
+  initNavigation();
+  initBackgroundMotion();
+  initSearch();
+  initStaticMetrics();
   renderDailyWord();
   renderVocabulary();
   renderSentences();
-  renderExercises();
-  renderProgress();
+  updateProgress();
+  initReveal();
 }
 
 init();
