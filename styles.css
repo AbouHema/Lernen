@@ -17,7 +17,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -476,5 +476,81 @@ input[type="search"] {
 
   .row-title {
     align-items: start;
+  }
+}
+
+
+.light {
+  --bg: #f3f6ff;
+  --bg-soft: #e8eefc;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: rgba(255, 255, 255, 0.95);
+  --text: #13203c;
+  --muted: #48587d;
+  --line: rgba(18, 33, 66, 0.16);
+}
+
+.level-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.level-chip,
+.chip-button,
+.exercise-tabs .tab,
+.options button,
+#gapInput,
+#checkGap {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.45rem 0.75rem;
+}
+
+.level-chip.active,
+.exercise-tabs .tab.active,
+.options button:hover {
+  background: rgba(124, 140, 255, 0.35);
+}
+
+.exercise-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.exercise-panel .big {
+  font-size: 1.8rem;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+#gapInput {
+  width: min(320px, 100%);
+  margin-right: 0.6rem;
+}
+
+.level-summary {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.chip-button {
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .options {
+    grid-template-columns: 1fr;
   }
 }

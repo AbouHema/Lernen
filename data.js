@@ -1,95 +1,194 @@
-const vocabulary = [
-  { id: "v1", arabic: "تجربة", german: "Erfahrung", article: "die", plural: "Erfahrungen", example_de: "Die Erfahrung hilft mir im Alltag.", example_ar: "التجربة تساعدني في الحياة اليومية.", level: "B1", category: "Alltag" },
-  { id: "v2", arabic: "تحدي", german: "Herausforderung", article: "die", plural: "Herausforderungen", example_de: "Die Herausforderung motiviert mich.", example_ar: "التحدي يحفزني.", level: "B1", category: "Alltag" },
-  { id: "v3", arabic: "قرار", german: "Entscheidung", article: "die", plural: "Entscheidungen", example_de: "Ich treffe eine wichtige Entscheidung.", example_ar: "أتخذ قرارًا مهمًا.", level: "B1", category: "Alltag" },
-  { id: "v4", arabic: "تغيير", german: "Veränderung", article: "die", plural: "Veränderungen", example_de: "Die Veränderung war positiv.", example_ar: "كان التغيير إيجابيًا.", level: "B1", category: "Alltag" },
-  { id: "v5", arabic: "موعد", german: "Verabredung", article: "die", plural: "Verabredungen", example_de: "Wir haben eine Verabredung am Abend.", example_ar: "لدينا موعد مساءً.", level: "B1", category: "Alltag" },
-  { id: "v6", arabic: "نصيحة", german: "Ratschlag", article: "der", plural: "Ratschläge", example_de: "Danke für deinen Ratschlag.", example_ar: "شكرًا على نصيحتك.", level: "B1", category: "Alltag" },
-  { id: "v7", arabic: "ثقة", german: "Vertrauen", article: "das", plural: "-", example_de: "Vertrauen ist wichtig.", example_ar: "الثقة مهمة.", level: "B1", category: "Alltag" },
-  { id: "v8", arabic: "طموح", german: "Ziel", article: "das", plural: "Ziele", example_de: "Mein Ziel ist fließend zu sprechen.", example_ar: "هدفي أن أتحدث بطلاقة.", level: "B1", category: "Alltag" },
-  { id: "v9", arabic: "عادة", german: "Gewohnheit", article: "die", plural: "Gewohnheiten", example_de: "Eine gute Gewohnheit spart Zeit.", example_ar: "العادة الجيدة توفر الوقت.", level: "B1", category: "Alltag" },
-  { id: "v10", arabic: "أمان", german: "Sicherheit", article: "die", plural: "Sicherheiten", example_de: "Ich brauche Sicherheit im Leben.", example_ar: "أحتاج إلى الأمان في الحياة.", level: "B1", category: "Alltag" },
-  { id: "v11", arabic: "توقع", german: "Erwartung", article: "die", plural: "Erwartungen", example_de: "Die Erwartungen sind hoch.", example_ar: "التوقعات عالية.", level: "B1", category: "Alltag" },
-  { id: "v12", arabic: "تحضير", german: "Vorbereitung", article: "die", plural: "Vorbereitungen", example_de: "Die Vorbereitung dauert eine Stunde.", example_ar: "التحضير يستغرق ساعة.", level: "B1", category: "Alltag" },
-  { id: "v13", arabic: "مكونات", german: "Zutaten", article: "die", plural: "Zutaten", example_de: "Die Zutaten sind frisch.", example_ar: "المكونات طازجة.", level: "B1", category: "Essen" },
-  { id: "v14", arabic: "وجبة خفيفة", german: "Snack", article: "der", plural: "Snacks", example_de: "Am Nachmittag esse ich einen Snack.", example_ar: "بعد الظهر آكل وجبة خفيفة.", level: "B1", category: "Essen" },
-  { id: "v15", arabic: "شهية", german: "Appetit", article: "der", plural: "-", example_de: "Ich habe keinen Appetit.", example_ar: "لا شهية لدي.", level: "B1", category: "Essen" },
-  { id: "v16", arabic: "نظام غذائي", german: "Ernährung", article: "die", plural: "Ernährungen", example_de: "Eine gesunde Ernährung ist wichtig.", example_ar: "التغذية الصحية مهمة.", level: "B1", category: "Essen" },
-  { id: "v17", arabic: "توصية", german: "Empfehlung", article: "die", plural: "Empfehlungen", example_de: "Die Empfehlung des Kochs ist gut.", example_ar: "توصية الطاهي جيدة.", level: "B1", category: "Essen" },
-  { id: "v18", arabic: "تقليل", german: "Reduktion", article: "die", plural: "Reduktionen", example_de: "Ich mache eine Reduktion von Zucker.", example_ar: "أقوم بتقليل السكر.", level: "B1", category: "Essen" },
-  { id: "v19", arabic: "حساسية", german: "Allergie", article: "die", plural: "Allergien", example_de: "Ich habe eine Allergie gegen Nüsse.", example_ar: "لدي حساسية من المكسرات.", level: "B1", category: "Essen" },
-  { id: "v20", arabic: "مشاركة", german: "Portion", article: "die", plural: "Portionen", example_de: "Eine Portion reicht für zwei.", example_ar: "الحصة تكفي لشخصين.", level: "B1", category: "Essen" },
-  { id: "v21", arabic: "مذاق", german: "Geschmack", article: "der", plural: "Geschmäcker", example_de: "Der Geschmack ist intensiv.", example_ar: "الطعم قوي.", level: "B1", category: "Essen" },
-  { id: "v22", arabic: "وجبة خاصة", german: "Spezialität", article: "die", plural: "Spezialitäten", example_de: "Die Spezialität des Hauses ist beliebt.", example_ar: "تخصص المطعم محبوب.", level: "B1", category: "Essen" },
-  { id: "v23", arabic: "حجز", german: "Reservierung", article: "die", plural: "Reservierungen", example_de: "Ich habe eine Reservierung um acht.", example_ar: "لدي حجز الساعة الثامنة.", level: "B1", category: "Essen" },
-  { id: "v24", arabic: "مطبخ نباتي", german: "Vegetarische Küche", article: "die", plural: "-", example_de: "Vegetarische Küche wird hier angeboten.", example_ar: "يتم تقديم المطبخ النباتي هنا.", level: "B1", category: "Essen" },
-  { id: "v25", arabic: "ترقية", german: "Beförderung", article: "die", plural: "Beförderungen", example_de: "Sie wartet auf eine Beförderung.", example_ar: "هي تنتظر ترقية.", level: "B1", category: "Arbeit" },
-  { id: "v26", arabic: "مسؤولية", german: "Verantwortung", article: "die", plural: "Verantwortungen", example_de: "Ich trage viel Verantwortung.", example_ar: "أتحمل مسؤولية كبيرة.", level: "B1", category: "Arbeit" },
-  { id: "v27", arabic: "مفاوضة", german: "Verhandlung", article: "die", plural: "Verhandlungen", example_de: "Die Verhandlung dauert lange.", example_ar: "المفاوضة تستغرق وقتًا طويلًا.", level: "B1", category: "Arbeit" },
-  { id: "v28", arabic: "اتفاق", german: "Vereinbarung", article: "die", plural: "Vereinbarungen", example_de: "Wir haben eine Vereinbarung getroffen.", example_ar: "توصلنا إلى اتفاق.", level: "B1", category: "Arbeit" },
-  { id: "v29", arabic: "أولوية", german: "Priorität", article: "die", plural: "Prioritäten", example_de: "Das hat heute Priorität.", example_ar: "هذا له أولوية اليوم.", level: "B1", category: "Arbeit" },
-  { id: "v30", arabic: "تنسيق", german: "Abstimmung", article: "die", plural: "Abstimmungen", example_de: "Wir brauchen eine Abstimmung im Team.", example_ar: "نحتاج إلى تنسيق في الفريق.", level: "B1", category: "Arbeit" },
-  { id: "v31", arabic: "إنتاجية", german: "Produktivität", article: "die", plural: "-", example_de: "Die Produktivität ist gestiegen.", example_ar: "زادت الإنتاجية.", level: "B1", category: "Arbeit" },
-  { id: "v32", arabic: "تقرير", german: "Bericht", article: "der", plural: "Berichte", example_de: "Der Bericht ist fertig.", example_ar: "التقرير جاهز.", level: "B1", category: "Arbeit" },
-  { id: "v33", arabic: "موعد نهائي", german: "Frist", article: "die", plural: "Fristen", example_de: "Die Frist endet am Freitag.", example_ar: "الموعد النهائي ينتهي يوم الجمعة.", level: "B1", category: "Arbeit" },
-  { id: "v34", arabic: "مبادرة", german: "Initiative", article: "die", plural: "Initiativen", example_de: "Sie zeigt viel Initiative.", example_ar: "هي تبدي الكثير من المبادرة.", level: "B1", category: "Arbeit" },
-  { id: "v35", arabic: "مقابلة عمل", german: "Bewerbungsgespräch", article: "das", plural: "Bewerbungsgespräche", example_de: "Das Bewerbungsgespräch war erfolgreich.", example_ar: "مقابلة العمل كانت ناجحة.", level: "B1", category: "Arbeit" },
-  { id: "v36", arabic: "تدريب", german: "Fortbildung", article: "die", plural: "Fortbildungen", example_de: "Ich mache eine Fortbildung.", example_ar: "أقوم بتدريب متقدم.", level: "B1", category: "Arbeit" },
-  { id: "v37", arabic: "تشخيص", german: "Diagnose", article: "die", plural: "Diagnosen", example_de: "Die Diagnose kommt morgen.", example_ar: "سيأتي التشخيص غدًا.", level: "B1", category: "Arzt" },
-  { id: "v38", arabic: "موعد عاجل", german: "Notfall", article: "der", plural: "Notfälle", example_de: "Das ist ein Notfall.", example_ar: "هذه حالة طارئة.", level: "B1", category: "Arzt" },
-  { id: "v39", arabic: "تأمين صحي", german: "Krankenversicherung", article: "die", plural: "Krankenversicherungen", example_de: "Die Krankenversicherung ist notwendig.", example_ar: "التأمين الصحي ضروري.", level: "B1", category: "Arzt" },
-  { id: "v40", arabic: "وصفة طبية", german: "Verschreibung", article: "die", plural: "Verschreibungen", example_de: "Ich brauche eine Verschreibung.", example_ar: "أحتاج إلى وصفة طبية.", level: "B1", category: "Arzt" },
-  { id: "v41", arabic: "أعراض", german: "Symptome", article: "die", plural: "Symptome", example_de: "Die Symptome sind stärker geworden.", example_ar: "ازدادت الأعراض.", level: "B1", category: "Arzt" },
-  { id: "v42", arabic: "ضغط الدم", german: "Blutdruck", article: "der", plural: "Blutdrücke", example_de: "Der Blutdruck ist zu hoch.", example_ar: "ضغط الدم مرتفع جدًا.", level: "B1", category: "Arzt" },
-  { id: "v43", arabic: "إجازة مرضية", german: "Krankschreibung", article: "die", plural: "Krankschreibungen", example_de: "Ich brauche eine Krankschreibung.", example_ar: "أحتاج إلى إجازة مرضية.", level: "B1", category: "Arzt" },
-  { id: "v44", arabic: "فحص طبي", german: "Check-up", article: "der", plural: "Check-ups", example_de: "Der Check-up war unauffällig.", example_ar: "الفحص الطبي كان طبيعيًا.", level: "B1", category: "Arzt" },
-  { id: "v45", arabic: "علاج طبيعي", german: "Physiotherapie", article: "die", plural: "Physiotherapien", example_de: "Die Physiotherapie hilft dem Rücken.", example_ar: "العلاج الطبيعي يساعد الظهر.", level: "B1", category: "Arzt" },
-  { id: "v46", arabic: "نموذج", german: "Formular", article: "das", plural: "Formulare", example_de: "Bitte füllen Sie das Formular aus.", example_ar: "يرجى ملء النموذج.", level: "B1", category: "Arzt" },
-  { id: "v47", arabic: "تطعيم", german: "Impfung", article: "die", plural: "Impfungen", example_de: "Die Impfung ist kostenlos.", example_ar: "التطعيم مجاني.", level: "B1", category: "Arzt" },
-  { id: "v48", arabic: "شفاء", german: "Genesung", article: "die", plural: "-", example_de: "Die Genesung dauert ein paar Wochen.", example_ar: "الشفاء يستغرق بضعة أسابيع.", level: "B1", category: "Arzt" },
-  { id: "v49", arabic: "صيانة", german: "Instandhaltung", article: "die", plural: "Instandhaltungen", example_de: "Die Instandhaltung kostet Geld.", example_ar: "الصيانة تكلف المال.", level: "B1", category: "Wohnung" },
-  { id: "v50", arabic: "عقد إيجار", german: "Mietvertrag", article: "der", plural: "Mietverträge", example_de: "Ich unterschreibe den Mietvertrag.", example_ar: "أوقع عقد الإيجار.", level: "B1", category: "Wohnung" },
-  { id: "v51", arabic: "وديعة", german: "Kaution", article: "die", plural: "Kautionen", example_de: "Die Kaution ist hoch.", example_ar: "الوديعة مرتفعة.", level: "B1", category: "Wohnung" },
-  { id: "v52", arabic: "أجهزة", german: "Haushaltsgeräte", article: "die", plural: "Haushaltsgeräte", example_de: "Die Haushaltsgeräte sind neu.", example_ar: "الأجهزة المنزلية جديدة.", level: "B1", category: "Wohnung" },
-  { id: "v53", arabic: "إضاءة", german: "Beleuchtung", article: "die", plural: "Beleuchtungen", example_de: "Die Beleuchtung ist angenehm.", example_ar: "الإضاءة مريحة.", level: "B1", category: "Wohnung" },
-  { id: "v54", arabic: "جيران", german: "Nachbarschaft", article: "die", plural: "Nachbarschaften", example_de: "Die Nachbarschaft ist ruhig.", example_ar: "الحي هادئ.", level: "B1", category: "Wohnung" },
-  { id: "v55", arabic: "مساحة", german: "Wohnfläche", article: "die", plural: "Wohnflächen", example_de: "Die Wohnfläche beträgt 80 Quadratmeter.", example_ar: "مساحة السكن 80 مترًا مربعًا.", level: "B1", category: "Wohnung" },
-  { id: "v56", arabic: "تأثيث", german: "Möblierung", article: "die", plural: "Möblierungen", example_de: "Die Möblierung ist modern.", example_ar: "التأثيث حديث.", level: "B1", category: "Wohnung" },
-  { id: "v57", arabic: "سلم", german: "Treppenhaus", article: "das", plural: "Treppenhäuser", example_de: "Das Treppenhaus wird gereinigt.", example_ar: "يتم تنظيف الدرج.", level: "B1", category: "Wohnung" },
-  { id: "v58", arabic: "عداد", german: "Zähler", article: "der", plural: "Zähler", example_de: "Der Zählerstand wird abgelesen.", example_ar: "يتم قراءة العداد.", level: "B1", category: "Wohnung" },
-  { id: "v59", arabic: "خدمات إضافية", german: "Nebenkosten", article: "die", plural: "Nebenkosten", example_de: "Die Nebenkosten sind gestiegen.", example_ar: "زادت التكاليف الإضافية.", level: "B1", category: "Wohnung" },
-  { id: "v60", arabic: "إصلاح", german: "Reparatur", article: "die", plural: "Reparaturen", example_de: "Die Reparatur dauert zwei Tage.", example_ar: "الإصلاح يستغرق يومين.", level: "B1", category: "Wohnung" }
-];
+const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
 
-const sentences = [
-  { id: "s1", arabic: "على الرغم من ضغط العمل، أجد وقتًا للدراسة.", german: "Trotz des Arbeitsdrucks finde ich Zeit zum Lernen.", level: "B1", category: "Alltag" },
-  { id: "s2", arabic: "أحاول تحسين لغتي من خلال قراءة المقالات.", german: "Ich versuche, meine Sprache durch das Lesen von Artikeln zu verbessern.", level: "B1", category: "Alltag" },
-  { id: "s3", arabic: "إذا كان لدي وقت، أذهب للمشي في الحديقة.", german: "Wenn ich Zeit habe, gehe ich im Park spazieren.", level: "B1", category: "Alltag" },
-  { id: "s4", arabic: "أحتاج إلى نصيحتك حول هذا القرار.", german: "Ich brauche deinen Rat zu dieser Entscheidung.", level: "B1", category: "Alltag" },
-  { id: "s5", arabic: "في رأيي، التواصل الواضح يوفر الوقت.", german: "Meiner Meinung nach spart klare Kommunikation Zeit.", level: "B1", category: "Alltag" },
-  { id: "s6", arabic: "أفضل تناول الطعام في المنزل لتجنب التكاليف.", german: "Ich esse lieber zu Hause, um Kosten zu sparen.", level: "B1", category: "Essen" },
-  { id: "s7", arabic: "هل لديك أي حساسية يجب أن أخبر بها المطبخ؟", german: "Hast du Allergien, die ich der Küche mitteilen soll?", level: "B1", category: "Essen" },
-  { id: "s8", arabic: "سأحجز طاولة لأن المطعم مزدحم مساءً.", german: "Ich reserviere einen Tisch, weil das Restaurant abends voll ist.", level: "B1", category: "Essen" },
-  { id: "s9", arabic: "أحاول تقليل السكر في نظامي الغذائي.", german: "Ich versuche, Zucker in meiner Ernährung zu reduzieren.", level: "B1", category: "Essen" },
-  { id: "s10", arabic: "الطاهي أوصى بوجبة اليوم الخاصة.", german: "Der Koch hat die Tagesspezialität empfohlen.", level: "B1", category: "Essen" },
-  { id: "s11", arabic: "تمت ترقية زميلي لأنه أظهر مبادرة.", german: "Mein Kollege wurde befördert, weil er Initiative gezeigt hat.", level: "B1", category: "Arbeit" },
-  { id: "s12", arabic: "نحتاج إلى تنسيق قبل إرسال التقرير.", german: "Wir brauchen eine Abstimmung, bevor wir den Bericht senden.", level: "B1", category: "Arbeit" },
-  { id: "s13", arabic: "المدير طلب تحديد الأولويات لهذا الأسبوع.", german: "Der Chef hat verlangt, dass wir die Prioritäten für diese Woche festlegen.", level: "B1", category: "Arbeit" },
-  { id: "s14", arabic: "سأشارك في دورة تدريبية لتطوير مهاراتي.", german: "Ich nehme an einer Fortbildung teil, um meine Fähigkeiten zu verbessern.", level: "B1", category: "Arbeit" },
-  { id: "s15", arabic: "المفاوضات استغرقت وقتًا أطول من المتوقع.", german: "Die Verhandlungen haben länger gedauert als erwartet.", level: "B1", category: "Arbeit" },
-  { id: "s16", arabic: "أشعر بتحسن لكن الأعراض لم تختف تمامًا.", german: "Ich fühle mich besser, aber die Symptome sind nicht ganz verschwunden.", level: "B1", category: "Arzt" },
-  { id: "s17", arabic: "الطبيب طلب فحصًا إضافيًا للتأكد.", german: "Der Arzt hat eine zusätzliche Untersuchung verlangt, um sicherzugehen.", level: "B1", category: "Arzt" },
-  { id: "s18", arabic: "أحتاج إلى وصفة طبية لشراء الدواء.", german: "Ich brauche eine Verschreibung, um das Medikament zu kaufen.", level: "B1", category: "Arzt" },
-  { id: "s19", arabic: "سأقدم طلبًا للحصول على إجازة مرضية.", german: "Ich werde eine Krankschreibung beantragen.", level: "B1", category: "Arzt" },
-  { id: "s20", arabic: "الفحص الطبي الدوري يساعد على الوقاية.", german: "Regelmäßige Check-ups helfen bei der Vorsorge.", level: "B1", category: "Arzt" },
-  { id: "s21", arabic: "المساحة كافية لكنني أبحث عن حي أكثر هدوءًا.", german: "Die Wohnfläche reicht, aber ich suche eine ruhigere Nachbarschaft.", level: "B1", category: "Wohnung" },
-  { id: "s22", arabic: "أود مناقشة بنود عقد الإيجار بالتفصيل.", german: "Ich möchte die Punkte des Mietvertrags im Detail besprechen.", level: "B1", category: "Wohnung" },
-  { id: "s23", arabic: "إذا ظهرت مشكلة، سأبلغ صاحب الشقة فورًا.", german: "Wenn ein Problem auftaucht, informiere ich den Vermieter sofort.", level: "B1", category: "Wohnung" },
-  { id: "s24", arabic: "خدمات إضافية هذا الشهر كانت مرتفعة.", german: "Die Nebenkosten waren diesen Monat hoch.", level: "B1", category: "Wohnung" },
-  { id: "s25", arabic: "الإصلاحات ستتم خلال يومين حسب الاتفاق.", german: "Die Reparaturen werden laut Vereinbarung in zwei Tagen erledigt.", level: "B1", category: "Wohnung" },
-  { id: "s26", arabic: "أحاول شرح وجهة نظري بهدوء لتجنب سوء الفهم.", german: "Ich versuche, meinen Standpunkt ruhig zu erklären, um Missverständnisse zu vermeiden.", level: "B1", category: "Alltag" },
-  { id: "s27", arabic: "عندما أكون متعبًا، أفضل البقاء في المنزل.", german: "Wenn ich müde bin, bleibe ich lieber zu Hause.", level: "B1", category: "Alltag" },
-  { id: "s28", arabic: "التخطيط الجيد يجعل العمل أسهل.", german: "Gute Planung macht die Arbeit leichter.", level: "B1", category: "Arbeit" },
-  { id: "s29", arabic: "قرأت التقييمات قبل اختيار المطعم.", german: "Ich habe die Bewertungen gelesen, bevor ich das Restaurant gewählt habe.", level: "B1", category: "Essen" },
-  { id: "s30", arabic: "أريد تحسين لغتي لأتواصل بثقة.", german: "Ich möchte meine Sprache verbessern, um selbstbewusst zu kommunizieren.", level: "B1", category: "Alltag" }
-];
+const vocabularyByLevel = {
+  A1: [
+    ["a1-v1", "مرحبا", "Hallo", "", "Hallo! Wie geht es dir?", "مرحبا! كيف حالك؟", ["Begrüßung", "Alltag"]],
+    ["a1-v2", "بيت", "Haus", "das", "Das Haus ist klein.", "البيت صغير.", ["Wohnen"]],
+    ["a1-v3", "مدرسة", "Schule", "die", "Die Schule beginnt um acht.", "تبدأ المدرسة في الثامنة.", ["Lernen"]],
+    ["a1-v4", "كتاب", "Buch", "das", "Ich lese ein Buch.", "أنا أقرأ كتابًا.", ["Lernen"]],
+    ["a1-v5", "ماء", "Wasser", "das", "Ich trinke Wasser.", "أنا أشرب ماء.", ["Essen"]],
+    ["a1-v6", "خبز", "Brot", "das", "Das Brot ist frisch.", "الخبز طازج.", ["Essen"]],
+    ["a1-v7", "صديق", "Freund", "der", "Mein Freund ist nett.", "صديقي لطيف.", ["Personen"]],
+    ["a1-v8", "عائلة", "Familie", "die", "Meine Familie wohnt hier.", "عائلتي تعيش هنا.", ["Personen"]],
+    ["a1-v9", "مدينة", "Stadt", "die", "Berlin ist eine große Stadt.", "برلين مدينة كبيرة.", ["Orte"]],
+    ["a1-v10", "عمل", "Arbeit", "die", "Ich habe heute Arbeit.", "لدي عمل اليوم.", ["Alltag"]],
+    ["a1-v11", "سيارة", "Auto", "das", "Das Auto ist neu.", "السيارة جديدة.", ["Transport"]],
+    ["a1-v12", "وقت", "Zeit", "die", "Ich habe keine Zeit.", "ليس لدي وقت.", ["Alltag"]],
+    ["a1-v13", "يوم", "Tag", "der", "Heute ist ein schöner Tag.", "اليوم يوم جميل.", ["Zeit"]],
+    ["a1-v14", "ليل", "Nacht", "die", "In der Nacht ist es ruhig.", "في الليل يكون الجو هادئًا.", ["Zeit"]],
+    ["a1-v15", "لغة", "Sprache", "die", "Deutsch ist eine schöne Sprache.", "الألمانية لغة جميلة.", ["Lernen"]]
+  ],
+  A2: [
+    ["a2-v1", "موعد", "Termin", "der", "Ich habe morgen einen Termin.", "لدي موعد غدًا.", ["Alltag"]],
+    ["a2-v2", "رحلة", "Reise", "die", "Die Reise war sehr schön.", "كانت الرحلة جميلة جدًا.", ["Freizeit"]],
+    ["a2-v3", "طبيب", "Arzt", "der", "Der Arzt ist freundlich.", "الطبيب ودود.", ["Gesundheit"]],
+    ["a2-v4", "دواء", "Medikament", "das", "Ich nehme das Medikament am Abend.", "آخذ الدواء مساءً.", ["Gesundheit"]],
+    ["a2-v5", "سوق", "Markt", "der", "Wir kaufen Obst auf dem Markt.", "نشتري الفواكه من السوق.", ["Einkauf"]],
+    ["a2-v6", "سؤال", "Frage", "die", "Das ist eine gute Frage.", "هذا سؤال جيد.", ["Kommunikation"]],
+    ["a2-v7", "إجابة", "Antwort", "die", "Ich kenne die Antwort.", "أنا أعرف الإجابة.", ["Kommunikation"]],
+    ["a2-v8", "قطار", "Zug", "der", "Der Zug kommt pünktlich.", "القطار يصل في الوقت.", ["Transport"]],
+    ["a2-v9", "محطة", "Bahnhof", "der", "Der Bahnhof ist nah.", "المحطة قريبة.", ["Transport"]],
+    ["a2-v10", "طقس", "Wetter", "das", "Das Wetter ist heute kalt.", "الطقس بارد اليوم.", ["Alltag"]],
+    ["a2-v11", "عطلة", "Urlaub", "der", "Im Urlaub lese ich viel.", "في العطلة أقرأ كثيرًا.", ["Freizeit"]],
+    ["a2-v12", "مشكلة", "Problem", "das", "Wir lösen das Problem zusammen.", "نحل المشكلة معًا.", ["Alltag"]],
+    ["a2-v13", "مساعدة", "Hilfe", "die", "Danke für deine Hilfe.", "شكرًا على مساعدتك.", ["Alltag"]],
+    ["a2-v14", "مكتب", "Büro", "das", "Ich arbeite im Büro.", "أعمل في المكتب.", ["Arbeit"]],
+    ["a2-v15", "رسالة", "Nachricht", "die", "Ich sende dir eine Nachricht.", "أرسل لك رسالة.", ["Kommunikation"]]
+  ],
+  B1: [
+    ["b1-v1", "تجربة", "Erfahrung", "die", "Die Erfahrung hilft mir im Alltag.", "التجربة تساعدني في الحياة اليومية.", ["Alltag"]],
+    ["b1-v2", "تحدي", "Herausforderung", "die", "Die Herausforderung motiviert mich.", "التحدي يحفزني.", ["Alltag"]],
+    ["b1-v3", "قرار", "Entscheidung", "die", "Ich treffe eine wichtige Entscheidung.", "أتخذ قرارًا مهمًا.", ["Alltag"]],
+    ["b1-v4", "تغيير", "Veränderung", "die", "Die Veränderung war positiv.", "كان التغيير إيجابيًا.", ["Alltag"]],
+    ["b1-v5", "نصيحة", "Ratschlag", "der", "Danke für deinen Ratschlag.", "شكرًا على نصيحتك.", ["Alltag"]],
+    ["b1-v6", "ثقة", "Vertrauen", "das", "Vertrauen ist wichtig.", "الثقة مهمة.", ["Alltag"]],
+    ["b1-v7", "شهية", "Appetit", "der", "Ich habe keinen Appetit.", "لا شهية لدي.", ["Essen"]],
+    ["b1-v8", "حساسية", "Allergie", "die", "Ich habe eine Allergie gegen Nüsse.", "لدي حساسية من المكسرات.", ["Gesundheit", "Essen"]],
+    ["b1-v9", "حجز", "Reservierung", "die", "Ich habe eine Reservierung um acht.", "لدي حجز الساعة الثامنة.", ["Essen"]],
+    ["b1-v10", "ترقية", "Beförderung", "die", "Sie wartet auf eine Beförderung.", "هي تنتظر ترقية.", ["Arbeit"]],
+    ["b1-v11", "مسؤولية", "Verantwortung", "die", "Verantwortung gehört zu meinem Job.", "المسؤولية جزء من عملي.", ["Arbeit"]],
+    ["b1-v12", "تقرير", "Bericht", "der", "Der Bericht ist fast fertig.", "التقرير شبه جاهز.", ["Arbeit"]],
+    ["b1-v13", "مريض", "Symptom", "das", "Das Symptom ist neu.", "العَرَض جديد.", ["Gesundheit"]],
+    ["b1-v14", "إيجار", "Miete", "die", "Die Miete ist gestiegen.", "ارتفع الإيجار.", ["Wohnen"]],
+    ["b1-v15", "حي", "Nachbarschaft", "die", "Die Nachbarschaft ist ruhig.", "الحي هادئ.", ["Wohnen"]]
+  ],
+  B2: [
+    ["b2-v1", "افتراض", "Annahme", "die", "Diese Annahme ist nicht korrekt.", "هذا الافتراض غير صحيح.", ["Akademisch"]],
+    ["b2-v2", "جدل", "Debatte", "die", "Die Debatte war sehr spannend.", "كان الجدل ممتعًا جدًا.", ["Gesellschaft"]],
+    ["b2-v3", "تحليل", "Analyse", "die", "Die Analyse zeigt klare Trends.", "يُظهر التحليل اتجاهات واضحة.", ["Akademisch"]],
+    ["b2-v4", "إقناع", "überzeugen", "", "Gute Argumente überzeugen das Publikum.", "الحجج الجيدة تقنع الجمهور.", ["Kommunikation"]],
+    ["b2-v5", "استدامة", "Nachhaltigkeit", "die", "Nachhaltigkeit spielt eine große Rolle.", "الاستدامة تلعب دورًا كبيرًا.", ["Umwelt"]],
+    ["b2-v6", "تأثير", "Auswirkung", "die", "Die Auswirkung ist langfristig.", "التأثير طويل الأمد.", ["Gesellschaft"]],
+    ["b2-v7", "تقييم", "Bewertung", "die", "Wir brauchen eine faire Bewertung.", "نحتاج تقييمًا عادلًا.", ["Arbeit"]],
+    ["b2-v8", "تعاون", "Zusammenarbeit", "die", "Die Zusammenarbeit funktioniert gut.", "التعاون يعمل بشكل جيد.", ["Arbeit"]],
+    ["b2-v9", "منهج", "Konzept", "das", "Das Konzept ist innovativ.", "المفهوم مبتكر.", ["Akademisch"]],
+    ["b2-v10", "احتمال", "Wahrscheinlichkeit", "die", "Die Wahrscheinlichkeit ist gering.", "الاحتمال منخفض.", ["Akademisch"]],
+    ["b2-v11", "تنفيذ", "Umsetzung", "die", "Die Umsetzung dauert zwei Monate.", "التنفيذ يستغرق شهرين.", ["Projekt"]],
+    ["b2-v12", "اعتراض", "Einwand", "der", "Sein Einwand war berechtigt.", "كان اعتراضه مبررًا.", ["Kommunikation"]],
+    ["b2-v13", "مبدأ", "Prinzip", "das", "Dieses Prinzip gilt überall.", "هذا المبدأ ينطبق في كل مكان.", ["Gesellschaft"]],
+    ["b2-v14", "تحسين", "Optimierung", "die", "Die Optimierung spart Zeit.", "التحسين يوفر الوقت.", ["Arbeit"]],
+    ["b2-v15", "مصدر", "Quelle", "die", "Bitte nenne deine Quelle.", "من فضلك اذكر مصدرك.", ["Akademisch"]]
+  ],
+  C1: [
+    ["c1-v1", "منظور", "Perspektive", "die", "Eine neue Perspektive erweitert das Denken.", "منظور جديد يوسّع التفكير.", ["Diskurs"]],
+    ["c1-v2", "طرح", "These", "die", "Die These wurde präzise begründet.", "تم تبرير الطرح بدقة.", ["Akademisch"]],
+    ["c1-v3", "مفارقة", "Paradoxon", "das", "Das Paradoxon wirkt zunächst widersprüchlich.", "تبدو المفارقة متناقضة في البداية.", ["Diskurs"]],
+    ["c1-v4", "تعقيد", "Komplexität", "die", "Die Komplexität des Problems ist hoch.", "تعقيد المشكلة مرتفع.", ["Akademisch"]],
+    ["c1-v5", "سياق", "Kontext", "der", "Im historischen Kontext ist das verständlich.", "في السياق التاريخي يصبح ذلك مفهومًا.", ["Akademisch"]],
+    ["c1-v6", "تحليل نقدي", "kritische Analyse", "die", "Die kritische Analyse ist differenziert.", "التحليل النقدي متوازن.", ["Akademisch"]],
+    ["c1-v7", "استدلال", "Schlussfolgerung", "die", "Diese Schlussfolgerung ist nachvollziehbar.", "هذا الاستدلال منطقي.", ["Diskurs"]],
+    ["c1-v8", "إطار", "Rahmenbedingung", "die", "Die Rahmenbedingungen ändern sich ständig.", "تتغير الشروط الإطارية باستمرار.", ["Gesellschaft"]],
+    ["c1-v9", "رواية", "Narrativ", "das", "Das Narrativ prägt die öffentliche Meinung.", "تؤثر السردية في الرأي العام.", ["Medien"]],
+    ["c1-v10", "تناقض", "Widerspruch", "der", "Wir müssen den Widerspruch auflösen.", "يجب أن نحل التناقض.", ["Diskurs"]],
+    ["c1-v11", "حياد", "Neutralität", "die", "Journalistische Neutralität ist zentral.", "الحياد الصحفي أساسي.", ["Medien"]],
+    ["c1-v12", "دلالة", "Implikation", "die", "Die Implikationen sind weitreichend.", "الدلالات بعيدة المدى.", ["Akademisch"]],
+    ["c1-v13", "تحول", "Transformation", "die", "Die digitale Transformation beschleunigt Prozesse.", "يسرّع التحول الرقمي العمليات.", ["Gesellschaft"]],
+    ["c1-v14", "ترابط", "Interdependenz", "die", "Globale Interdependenz ist sichtbar.", "الترابط العالمي واضح.", ["Gesellschaft"]],
+    ["c1-v15", "تأمل", "Reflexion", "die", "Reflexion verbessert die Argumentation.", "التأمل يحسن بناء الحجة.", ["Diskurs"]]
+  ]
+};
+
+const sentencesByLevel = {
+  A1: [
+    ["a1-s1", "أنا أتعلم الألمانية كل يوم.", "Ich lerne jeden Tag Deutsch.", "Lernen"],
+    ["a1-s2", "أسكن في مدينة صغيرة.", "Ich wohne in einer kleinen Stadt.", "Wohnen"],
+    ["a1-s3", "هذا صديقي من المدرسة.", "Das ist mein Freund aus der Schule.", "Personen"],
+    ["a1-s4", "نأكل الخبز في الصباح.", "Wir essen morgens Brot.", "Essen"],
+    ["a1-s5", "القطار يصل في الساعة التاسعة.", "Der Zug kommt um neun Uhr.", "Transport"],
+    ["a1-s6", "هل تتكلم العربية؟", "Sprichst du Arabisch?", "Kommunikation"],
+    ["a1-s7", "أذهب إلى العمل بالحافلة.", "Ich fahre mit dem Bus zur Arbeit.", "Alltag"],
+    ["a1-s8", "الجو جميل اليوم.", "Das Wetter ist heute schön.", "Alltag"],
+    ["a1-s9", "أحتاج إلى بعض الماء.", "Ich brauche etwas Wasser.", "Essen"],
+    ["a1-s10", "في المساء أقرأ كتابًا.", "Am Abend lese ich ein Buch.", "Lernen"]
+  ],
+  A2: [
+    ["a2-s1", "بعد العمل أذهب إلى السوق.", "Nach der Arbeit gehe ich zum Markt.", "Alltag"],
+    ["a2-s2", "لدي موعد عند الطبيب غدًا.", "Ich habe morgen einen Termin beim Arzt.", "Gesundheit"],
+    ["a2-s3", "سأرسل لك رسالة مساءً.", "Ich schicke dir heute Abend eine Nachricht.", "Kommunikation"],
+    ["a2-s4", "الرحلة إلى ميونخ كانت مريحة.", "Die Reise nach München war angenehm.", "Freizeit"],
+    ["a2-s5", "إذا احتجت مساعدة، اتصل بي.", "Wenn du Hilfe brauchst, ruf mich an.", "Alltag"],
+    ["a2-s6", "القطار متأخر عشر دقائق.", "Der Zug hat zehn Minuten Verspätung.", "Transport"],
+    ["a2-s7", "هذا السؤال صعب قليلًا.", "Diese Frage ist ein bisschen schwierig.", "Lernen"],
+    ["a2-s8", "أخذ الدواء بعد الأكل.", "Nimm das Medikament nach dem Essen.", "Gesundheit"],
+    ["a2-s9", "الطقس متغير هذا الأسبوع.", "Das Wetter ist diese Woche wechselhaft.", "Alltag"],
+    ["a2-s10", "في العطلة سنزور عائلتي.", "Im Urlaub besuchen wir meine Familie.", "Freizeit"]
+  ],
+  B1: [
+    ["b1-s1", "على الرغم من ضغط العمل، أجد وقتًا للدراسة.", "Trotz des Arbeitsdrucks finde ich Zeit zum Lernen.", "Alltag"],
+    ["b1-s2", "أحاول تحسين لغتي من خلال قراءة المقالات.", "Ich versuche, meine Sprache durch Lesen zu verbessern.", "Lernen"],
+    ["b1-s3", "إذا كان لدي وقت، أذهب للمشي في الحديقة.", "Wenn ich Zeit habe, gehe ich im Park spazieren.", "Alltag"],
+    ["b1-s4", "أحتاج إلى نصيحتك حول هذا القرار.", "Ich brauche deinen Rat zu dieser Entscheidung.", "Kommunikation"],
+    ["b1-s5", "أفضل تناول الطعام في المنزل لتجنب التكاليف.", "Ich esse lieber zu Hause, um Kosten zu sparen.", "Essen"],
+    ["b1-s6", "هل لديك أي حساسية يجب أن أخبر بها المطبخ؟", "Hast du Allergien, die ich der Küche mitteilen soll?", "Essen"],
+    ["b1-s7", "تمت ترقية زميلي لأنه أظهر مبادرة.", "Mein Kollege wurde befördert, weil er Initiative gezeigt hat.", "Arbeit"],
+    ["b1-s8", "نحتاج إلى تنسيق قبل إرسال التقرير.", "Wir brauchen eine Abstimmung, bevor wir den Bericht senden.", "Arbeit"],
+    ["b1-s9", "أشعر بتحسن لكن الأعراض لم تختف تمامًا.", "Ich fühle mich besser, aber die Symptome sind nicht ganz verschwunden.", "Gesundheit"],
+    ["b1-s10", "أود مناقشة بنود عقد الإيجار بالتفصيل.", "Ich möchte die Punkte des Mietvertrags im Detail besprechen.", "Wohnen"]
+  ],
+  B2: [
+    ["b2-s1", "هذا التحليل يوضح التأثيرات بعيدة المدى.", "Diese Analyse verdeutlicht langfristige Auswirkungen.", "Akademisch"],
+    ["b2-s2", "خلال النقاش قدمتُ حججًا مقنعة.", "In der Debatte habe ich überzeugende Argumente geliefert.", "Kommunikation"],
+    ["b2-s3", "من الضروري تقييم النتائج بموضوعية.", "Es ist wichtig, die Ergebnisse objektiv zu bewerten.", "Arbeit"],
+    ["b2-s4", "نعمل على تنفيذ المفهوم الجديد تدريجيًا.", "Wir arbeiten an der schrittweisen Umsetzung des neuen Konzepts.", "Projekt"],
+    ["b2-s5", "احتمال النجاح يرتفع مع التخطيط الجيد.", "Die Wahrscheinlichkeit des Erfolgs steigt mit guter Planung.", "Akademisch"],
+    ["b2-s6", "الاستدامة أصبحت معيارًا أساسيًا في الشركة.", "Nachhaltigkeit ist in der Firma zu einem zentralen Kriterium geworden.", "Umwelt"],
+    ["b2-s7", "قدم الزميل اعتراضًا منطقيًا أثناء الاجتماع.", "Der Kollege brachte während des Meetings einen logischen Einwand vor.", "Arbeit"],
+    ["b2-s8", "نحتاج إلى تحسين التعاون بين الأقسام.", "Wir müssen die Zusammenarbeit zwischen den Abteilungen verbessern.", "Arbeit"],
+    ["b2-s9", "هذا المبدأ يساعدنا على اتخاذ قرارات عادلة.", "Dieses Prinzip hilft uns, faire Entscheidungen zu treffen.", "Gesellschaft"],
+    ["b2-s10", "تم توثيق المصدر بدقة في التقرير.", "Die Quelle wurde im Bericht präzise dokumentiert.", "Akademisch"]
+  ],
+  C1: [
+    ["c1-s1", "لا يمكن فهم هذه القضية دون النظر إلى السياق التاريخي.", "Diese Frage lässt sich ohne den historischen Kontext nicht verstehen.", "Diskurs"],
+    ["c1-s2", "تبدو الفرضية متماسكة، لكنها تتجاهل عدة مفارقات.", "Die These wirkt schlüssig, ignoriert jedoch mehrere Paradoxien.", "Akademisch"],
+    ["c1-s3", "يتطلب النقاش مستوى عاليًا من الدقة المفاهيمية.", "Die Debatte erfordert ein hohes Maß an begrifflicher Präzision.", "Diskurs"],
+    ["c1-s4", "الاستدلال الذي قدمته الباحثة قابل للدفاع علميًا.", "Die Schlussfolgerung der Forscherin ist wissenschaftlich gut begründbar.", "Akademisch"],
+    ["c1-s5", "التداخل بين العوامل الاجتماعية والاقتصادية يزيد التعقيد.", "Die Interdependenz sozialer und ökonomischer Faktoren erhöht die Komplexität.", "Gesellschaft"],
+    ["c1-s6", "علينا تفكيك هذا السرد الإعلامي بشكل نقدي.", "Wir sollten dieses mediale Narrativ kritisch dekonstruieren.", "Medien"],
+    ["c1-s7", "الحياد الكامل في هذا الموضوع يبدو غير واقعي.", "Vollständige Neutralität erscheint in diesem Themenfeld unrealistisch.", "Diskurs"],
+    ["c1-s8", "التحول الرقمي يغيّر الشروط الإطارية للعمل الأكاديمي.", "Die digitale Transformation verändert die Rahmenbedingungen wissenschaftlicher Arbeit.", "Gesellschaft"],
+    ["c1-s9", "النتائج تحمل دلالات سياسية لا يمكن تجاهلها.", "Die Ergebnisse haben politische Implikationen, die nicht ignoriert werden können.", "Diskurs"],
+    ["c1-s10", "يساعد التأمل المنتظم على صقل بنية الحجة.", "Regelmäßige Reflexion schärft die Struktur der Argumentation.", "Akademisch"]
+  ]
+};
+
+const vocabulary = LEVELS.flatMap((level) =>
+  vocabularyByLevel[level].map(([id, arabic, german, article, example_de, example_ar, tags]) => ({
+    id,
+    arabic,
+    german,
+    article,
+    example_de,
+    example_ar,
+    tags,
+    level
+  }))
+);
+
+const sentences = LEVELS.flatMap((level) =>
+  sentencesByLevel[level].map(([id, arabic, german, tag]) => ({
+    id,
+    arabic,
+    german,
+    tag,
+    level
+  }))
+);
+
+const exercises = LEVELS.flatMap((level) => {
+  const levelVocab = vocabulary.filter((item) => item.level === level).map((item) => item.id);
+  const levelSentences = sentences.filter((item) => item.level === level).map((item) => item.id);
+
+  return [
+    { id: `${level.toLowerCase()}-flash-1`, type: "flashcards", level, vocabularyIds: levelVocab.slice(0, 8) },
+    {
+      id: `${level.toLowerCase()}-multiple-1`,
+      type: "multiple",
+      level,
+      promptWordId: levelVocab[0],
+      optionWordIds: [levelVocab[0], levelVocab[1], levelVocab[2], levelVocab[3]],
+      correctWordId: levelVocab[0]
+    },
+    { id: `${level.toLowerCase()}-gap-1`, type: "gap", level, sentenceId: levelSentences[0] },
+    { id: `${level.toLowerCase()}-quiz-1`, type: "quiz", level, questionWordIds: levelVocab.slice(0, 5) }
+  ];
+});
