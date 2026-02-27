@@ -1,60 +1,124 @@
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#111;
-  color:white;
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+* { box-sizing: border-box; }
+
+body { margin: 0; background: #0b0f14; color: #e8eef7; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; gap: 16px; align-items: center; justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(10,14,20,.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.brand { font-weight: 800; letter-spacing: .3px; }
+
+.nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.navBtn {
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: inherit;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.navBtn:hover { background: rgba(255,255,255,.10); }
+
+.layout { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - 56px); }
+
+.sidebar { border-right: 1px solid rgba(255,255,255,.08); padding: 14px; }
+.sidebarHead { display: grid; gap: 10px; margin-bottom: 10px; }
+.sidebarTitle { font-weight: 800; opacity: .95; }
+
+#search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: inherit;
+  outline: none;
 }
 
-.topbar{
-padding:15px;
-background:#222;
-display:flex;
-justify-content:space-between;
-align-items:center;
+.content { padding: 18px; }
+#contentHead { margin-bottom: 12px; }
+#contentTitle { margin: 0 0 6px 0; font-size: 32px; }
+#contentMeta { opacity: .75; font-size: 14px; }
+
+.treeLevel { margin-bottom: 12px; }
+.treeLevelBtn {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: inherit;
+  font-weight: 800;
+}
+.treeUnits { margin-top: 10px; padding-left: 8px; display: grid; gap: 10px; }
+.treeUnitTitle { font-weight: 800; opacity: .9; margin-bottom: 6px; }
+
+.treeLessons { display: grid; gap: 6px; }
+.treeLessonBtn {
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: inherit;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.treeLessonBtn:hover { background: rgba(255,255,255,.08); }
+
+.cardGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.card {
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 12px;
+}
+.cardTop { display: flex; justify-content: space-between; align-items: center; }
+.word { font-size: 20px; font-weight: 900; }
+.ar { font-size: 16px; opacity: .95; margin-top: 6px; direction: rtl; }
+.ex { margin-top: 8px; opacity: .85; }
+.tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-size: 12px; opacity: .9; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); }
+
+.iconBtn { border: none; background: transparent; color: inherit; font-size: 18px; cursor: pointer; }
+.doneBtn, .primary, .danger {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.08);
+  color: inherit;
+  cursor: pointer;
+}
+.doneBtn:hover, .primary:hover { background: rgba(255,255,255,.12); }
+.danger { border-color: rgba(255,80,80,.4); }
+
+.sentenceList { display: grid; gap: 10px; }
+.sentenceRow {
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 12px;
+}
+.sentenceRow .de { font-weight: 900; }
+.sentenceRow .note { opacity: .75; margin-top: 6px; font-size: 14px; }
+
+.progressBox {
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 14px;
+  max-width: 520px;
 }
 
-.nav button{
-margin-right:10px;
-padding:8px 14px;
-cursor:pointer;
-}
-
-.layout{
-display:grid;
-grid-template-columns:300px 1fr;
-height:90vh;
-}
-
-.sidebar{
-padding:15px;
-background:#1a1a1a;
-}
-
-.content{
-padding:20px;
-}
-
-.treeLessonBtn{
-display:block;
-width:100%;
-margin:5px 0;
-padding:8px;
-cursor:pointer;
-}
-
-.card{
-background:#222;
-padding:15px;
-margin:10px;
-border-radius:10px;
-}
-
-.word{
-font-size:22px;
-font-weight:bold;
-}
-
-.ar{
-direction:rtl;
-font-size:18px;
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  #contentTitle { font-size: 26px; }
 }
