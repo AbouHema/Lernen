@@ -1,0 +1,89 @@
+{
+  "A1_U1_L1": [
+    { "de": "Hallo", "ar": "مرحبًا", "example": "Hallo! Wie geht’s?", "tags": ["greeting"] },
+    { "de": "Tschüss", "ar": "مع السلامة", "example": "Tschüss, bis morgen!", "tags": ["farewell"] },
+    { "de": "Bitte", "ar": "من فضلك", "example": "Bitte, helfen Sie mir.", "tags": ["polite"] },
+    { "de": "Danke", "ar": "شكرًا", "example": "Danke für die Hilfe.", "tags": ["polite"] }
+  ],
+
+  "A1_U2_L1": [
+    { "de": "das Brot", "ar": "الخبز", "example": "Ich kaufe ein Brot.", "tags": ["food"] },
+    { "de": "die Milch", "ar": "الحليب", "example": "Haben Sie Milch?", "tags": ["food"] },
+    { "de": "das Wasser", "ar": "الماء", "example": "Eine Flasche Wasser, bitte.", "tags": ["drink"] },
+    { "de": "der Reis", "ar": "الأرز", "example": "Ich brauche Reis.", "tags": ["food"] },
+    { "de": "das Gemüse", "ar": "الخضار", "example": "Ich esse gern Gemüse.", "tags": ["food"] },
+    { "de": "das Obst", "ar": "الفاكهة", "example": "Obst ist gesund.", "tags": ["food"] },
+    { "de": "teuer", "ar": "غالي", "example": "Das ist zu teuer.", "tags": ["shopping"] },
+    { "de": "billig", "ar": "رخيص", "example": "Das ist billig.", "tags": ["shopping"] }
+  ],
+
+  "A1_U3_L1": [
+    { "de": "der Kopf", "ar": "الرأس", "example": "Mein Kopf tut weh.", "tags": ["body"] },
+    { "de": "der Bauch", "ar": "البطن", "example": "Ich habe Bauchschmerzen.", "tags": ["body"] },
+    { "de": "der Rücken", "ar": "الظهر", "example": "Mein Rücken tut weh.", "tags": ["body"] },
+    { "de": "Fieber", "ar": "حمّى", "example": "Ich habe Fieber.", "tags": ["symptom"] },
+    { "de": "Husten", "ar": "سعال", "example": "Ich habe Husten.", "tags": ["symptom"] },
+    { "de": "die Apotheke", "ar": "الصيدلية", "example": "Ich gehe zur Apotheke.", "tags": ["health"] },
+    { "de": "das Rezept", "ar": "وصفة طبية", "example": "Ich habe ein Rezept.", "tags": ["health"] }
+  ],
+
+  "A1_U4_L1": [
+    { "de": "die Wohnung", "ar": "الشقة", "example": "Die Wohnung ist groß.", "tags": ["home"] },
+    { "de": "das Zimmer", "ar": "الغرفة", "example": "Das Zimmer ist hell.", "tags": ["home"] },
+    { "de": "die Küche", "ar": "المطبخ", "example": "Die Küche ist klein.", "tags": ["home"] },
+    { "de": "das Bad", "ar": "الحمّام", "example": "Das Bad ist sauber.", "tags": ["home"] },
+    { "de": "das Bett", "ar": "السرير", "example": "Das Bett ist bequem.", "tags": ["furniture"] },
+    { "de": "der Tisch", "ar": "الطاولة", "example": "Der Tisch ist neu.", "tags": ["furniture"] },
+    { "de": "der Stuhl", "ar": "الكرسي", "example": "Der Stuhl ist kaputt.", "tags": ["furniture"] }
+  ],
+
+  "A1_U5_L1": [
+    { "de": "heute", "ar": "اليوم", "example": "Heute habe ich Zeit.", "tags": ["time"] },
+    { "de": "morgen", "ar": "غدًا", "example": "Morgen arbeite ich.", "tags": ["time"] },
+    { "de": "gestern", "ar": "أمس", "example": "Gestern war ich zu Hause.", "tags": ["time"] },
+    { "de": "die Uhr", "ar": "الساعة", "example": "Wie spät ist es?", "tags": ["time"] },
+    { "de": "um 8 Uhr", "ar": "الساعة الثامنة", "example": "Um 8 Uhr beginnt der Kurs.", "tags": ["time"] },
+    { "de": "der Termin", "ar": "موعد", "example": "Ich habe einen Termin.", "tags": ["appointment"] }
+  ],
+
+  "A2_U1_L1": [
+    { "de": "die Größe", "ar": "المقاس", "example": "Welche Größe haben Sie?", "tags": ["clothes"] },
+    { "de": "zu groß", "ar": "كبير جدًا", "example": "Das ist mir zu groß.", "tags": ["clothes"] },
+    { "de": "zu klein", "ar": "صغير جدًا", "example": "Die Hose ist zu klein.", "tags": ["clothes"] },
+    { "de": "die Farbe", "ar": "اللون", "example": "Welche Farbe möchten Sie?", "tags": ["clothes"] },
+    { "de": "umtauschen", "ar": "يستبدل", "example": "Ich möchte das umtauschen.", "tags": ["shopping"] },
+    { "de": "die Quittung", "ar": "الإيصال", "example": "Haben Sie die Quittung?", "tags": ["shopping"] }
+  ],
+
+  "A2_U2_L1": [
+    { "de": "die Praxis", "ar": "العيادة", "example": "Die Praxis ist hier.", "tags": ["health"] },
+    { "de": "die Krankenversicherung", "ar": "التأمين الصحي", "example": "Ich habe eine Krankenversicherung.", "tags": ["health"] },
+    { "de": "die Krankmeldung", "ar": "إجازة مرضية", "example": "Ich brauche eine Krankmeldung.", "tags": ["health"] },
+    { "de": "die Überweisung", "ar": "تحويل طبي", "example": "Ich habe eine Überweisung.", "tags": ["health"] }
+  ],
+
+  "A2_U3_L1": [
+    { "de": "die Pause", "ar": "استراحة", "example": "Wir machen Pause.", "tags": ["work"] },
+    { "de": "die Aufgabe", "ar": "مهمة", "example": "Das ist meine Aufgabe.", "tags": ["work"] },
+    { "de": "der Chef", "ar": "المدير", "example": "Mein Chef ist nett.", "tags": ["work"] },
+    { "de": "die Kollegin", "ar": "زميلة", "example": "Meine Kollegin hilft mir.", "tags": ["work"] },
+    { "de": "dringend", "ar": "عاجل", "example": "Das ist dringend.", "tags": ["work"] }
+  ],
+
+  "A2_U4_L1": [
+    { "de": "die Speisekarte", "ar": "قائمة الطعام", "example": "Die Speisekarte, bitte.", "tags": ["restaurant"] },
+    { "de": "bestellen", "ar": "يطلب", "example": "Ich möchte bestellen.", "tags": ["restaurant"] },
+    { "de": "bezahlen", "ar": "يدفع", "example": "Wir möchten bezahlen.", "tags": ["restaurant"] },
+    { "de": "die Rechnung", "ar": "الفاتورة", "example": "Die Rechnung, bitte.", "tags": ["restaurant"] },
+    { "de": "vegetarisch", "ar": "نباتي", "example": "Gibt es etwas Vegetarisches?", "tags": ["restaurant"] }
+  ],
+
+  "A2_U5_L1": [
+    { "de": "die U-Bahn", "ar": "المترو", "example": "Ich fahre mit der U-Bahn.", "tags": ["transport"] },
+    { "de": "die Haltestelle", "ar": "محطة", "example": "Wo ist die Haltestelle?", "tags": ["transport"] },
+    { "de": "geradeaus", "ar": "مستقيم", "example": "Gehen Sie geradeaus.", "tags": ["direction"] },
+    { "de": "links", "ar": "يسار", "example": "Dann links.", "tags": ["direction"] },
+    { "de": "rechts", "ar": "يمين", "example": "Dann rechts.", "tags": ["direction"] },
+    { "de": "das Ticket", "ar": "تذكرة", "example": "Ich brauche ein Ticket.", "tags": ["transport"] }
+  ]
+}
