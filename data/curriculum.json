@@ -1,0 +1,55 @@
+{
+  "levels": [
+    {
+      "id": "A1",
+      "title": "A1 – Einstieg",
+      "units": [
+        {
+          "id": "A1-U1",
+          "title": "Begrüßung & Vorstellen",
+          "lessons": [
+            { "id": "A1-U1-L1", "title": "Hallo & Tschüss", "type": "vocab", "ref": "A1_U1_L1" },
+            { "id": "A1-U1-L2", "title": "Ich heiße…", "type": "sentences", "ref": "A1_U1_L2" },
+            { "id": "A1-U1-L3", "title": "Mini-Quiz: Vorstellen", "type": "quiz", "ref": "A1_U1_L3" }
+          ]
+        },
+        {
+          "id": "A1-U2",
+          "title": "Einkaufen (Supermarkt & Bäckerei)",
+          "lessons": [
+            { "id": "A1-U2-L1", "title": "Vokabeln: Lebensmittel", "type": "vocab", "ref": "A1_U2_L1" },
+            { "id": "A1-U2-L2", "title": "Sätze: Ich hätte gern…", "type": "sentences", "ref": "A1_U2_L2" },
+            { "id": "A1-U2-L3", "title": "Mini-Quiz: Preise & Menge", "type": "quiz", "ref": "A1_U2_L3" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "A2",
+      "title": "A2 – Alltag",
+      "units": [
+        {
+          "id": "A2-U1",
+          "title": "Einkaufen (Kleidung & Reklamation)",
+          "lessons": [
+            { "id": "A2-U1-L1", "title": "Vokabeln: Kleidung & Größen", "type": "vocab", "ref": "A2_U1_L1" },
+            { "id": "A2-U1-L2", "title": "Sätze: Umtausch & Reklamation", "type": "sentences", "ref": "A2_U1_L2" },
+            { "id": "A2-U1-L3", "title": "Mini-Quiz: Größen & Farben", "type": "quiz", "ref": "A2_U1_L3" }
+          ]
+        },
+        {
+          "id": "A2-U2",
+          "title": "Arzt (Termin, Rezept, Krankmeldung)",
+          "lessons": [
+            { "id": "A2-U2-L1", "title": "Vokabeln: Praxis & Dokumente", "type": "vocab", "ref": "A2_U2_L1" },
+            { "id": "A2-U2-L2", "title": "Sätze: Termin vereinbaren", "type": "sentences", "ref": "A2_U2_L2" },
+            { "id": "A2-U2-L3", "title": "Mini-Quiz: Arztbesuch", "type": "quiz", "ref": "A2_U2_L3" }
+          ]
+        }
+      ]
+    },
+    { "id": "B1", "title": "B1 – Kommunikation", "units": [] },
+    { "id": "B2", "title": "B2 – Beruf & Argumentation", "units": [] },
+    { "id": "C1", "title": "C1 – Fortgeschritten", "units": [] }
+  ]
+}
