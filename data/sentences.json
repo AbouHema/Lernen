@@ -1,0 +1,71 @@
+{
+  "A1_U1_L2": [
+    { "de": "Ich heiße Nassim.", "ar": "اسمي نسيم.", "note": "heißen = اسم" },
+    { "de": "Wie heißt du?", "ar": "ما اسمك؟" },
+    { "de": "Ich komme aus Marokko.", "ar": "أنا من المغرب.", "note": "aus + Land" },
+    { "de": "Ich wohne in Berlin.", "ar": "أنا أسكن في برلين." }
+  ],
+
+  "A1_U2_L2": [
+    { "de": "Ich hätte gern ein Brot, bitte.", "ar": "أريد خبزًا من فضلك.", "note": "hätte gern = höflich" },
+    { "de": "Wie viel kostet das?", "ar": "كم سعر هذا؟" },
+    { "de": "Haben Sie auch Wasser?", "ar": "هل لديكم أيضًا ماء؟" },
+    { "de": "Das ist zu teuer. Haben Sie etwas Billigeres?", "ar": "هذا غالٍ جدًا. هل لديكم أرخص؟" }
+  ],
+
+  "A1_U3_L2": [
+    { "de": "Ich habe Kopfschmerzen.", "ar": "عندي صداع." },
+    { "de": "Seit zwei Tagen habe ich Husten.", "ar": "منذ يومين لدي سعال.", "note": "seit + Zeit" },
+    { "de": "Ich brauche einen Termin beim Arzt.", "ar": "أحتاج موعدًا عند الطبيب." },
+    { "de": "Können Sie mir bitte ein Medikament geben?", "ar": "هل يمكن أن تعطيني دواء من فضلك؟" }
+  ],
+
+  "A1_U4_L2": [
+    { "de": "Das ist meine Wohnung.", "ar": "هذه شقتي." },
+    { "de": "Die Küche ist klein, aber schön.", "ar": "المطبخ صغير لكنه جميل." },
+    { "de": "Ich brauche einen Tisch und zwei Stühle.", "ar": "أحتاج طاولة وكرسيين." },
+    { "de": "Wo ist das Bad?", "ar": "أين الحمّام؟" }
+  ],
+
+  "A1_U5_L2": [
+    { "de": "Wann hast du Zeit?", "ar": "متى لديك وقت؟" },
+    { "de": "Ich habe morgen um 10 Uhr einen Termin.", "ar": "عندي غدًا موعد الساعة العاشرة." },
+    { "de": "Treffen wir uns heute Abend?", "ar": "هل نلتقي الليلة؟" },
+    { "de": "Ich kann um 8 Uhr, aber nicht um 7 Uhr.", "ar": "أستطيع الساعة الثامنة، لكن ليس السابعة." }
+  ],
+
+  "A2_U1_L2": [
+    { "de": "Ich möchte das umtauschen.", "ar": "أريد استبدال هذا." },
+    { "de": "Haben Sie die Hose in Größe M?", "ar": "هل لديكم هذا البنطال بمقاس M؟" },
+    { "de": "Das ist mir zu klein. Haben Sie eine Nummer größer?", "ar": "هذا صغير جدًا عليّ. هل لديكم مقاس أكبر؟" },
+    { "de": "Hier ist die Quittung.", "ar": "هذا هو الإيصال." }
+  ],
+
+  "A2_U2_L2": [
+    { "de": "Ich möchte einen Termin vereinbaren.", "ar": "أريد حجز موعد." },
+    { "de": "Geht es auch am Donnerstag?", "ar": "هل ممكن يوم الخميس أيضًا؟" },
+    { "de": "Ich brauche ein Rezept und eine Krankmeldung.", "ar": "أحتاج وصفة طبية وإجازة مرضية." },
+    { "de": "Ich habe meine Krankenversicherungskarte dabei.", "ar": "معي بطاقة التأمين الصحي." }
+  ],
+
+  "A2_U3_L2": [
+    { "de": "Können Sie das bitte wiederholen?", "ar": "هل يمكنك إعادة ذلك من فضلك؟" },
+    { "de": "Ich habe eine Frage zu der Aufgabe.", "ar": "لدي سؤال عن المهمة." },
+    { "de": "Können Sie mir kurz helfen?", "ar": "هل يمكنك مساعدتي بسرعة؟" },
+    { "de": "Das ist dringend. Ich mache das sofort.", "ar": "هذا عاجل. سأفعل ذلك فورًا." }
+  ],
+
+  "A2_U4_L2": [
+    { "de": "Ich möchte bestellen.", "ar": "أريد أن أطلب." },
+    { "de": "Ich nehme eine Suppe und ein Wasser.", "ar": "سآخذ شوربة وماء." },
+    { "de": "Die Rechnung, bitte.", "ar": "الحساب من فضلك." },
+    { "de": "Kann ich mit Karte bezahlen?", "ar": "هل يمكنني الدفع بالبطاقة؟" }
+  ],
+
+  "A2_U5_L2": [
+    { "de": "Entschuldigung, wo ist die U-Bahn?", "ar": "عذرًا، أين المترو؟" },
+    { "de": "Gehen Sie geradeaus und dann links.", "ar": "اذهب مستقيمًا ثم يسارًا." },
+    { "de": "Welche Haltestelle ist das?", "ar": "ما اسم هذه المحطة؟" },
+    { "de": "Ich brauche ein Ticket nach Alexanderplatz.", "ar": "أحتاج تذكرة إلى ألكسندر بلاتس." }
+  ]
+}
