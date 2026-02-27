@@ -136,3 +136,90 @@ body { margin: 0; background: black; color: #e8eef7; }
 .overviewItem:hover { background: rgba(255,255,255,.08); }
 .overviewTitle { font-weight: 900; font-size: 16px; }
 .overviewMeta { opacity: .75; font-size: 13px; margin-top: 4px; }
+
+/* --- Quiz UI --- */
+.quizBox {
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  border-radius: 18px;
+  padding: 14px;
+  max-width: 720px;
+}
+
+.quizTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  opacity: .85;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.quizQuestion {
+  font-weight: 900;
+  font-size: 18px;
+  margin: 10px 0 12px 0;
+}
+
+.quizChoices {
+  display: grid;
+  gap: 10px;
+}
+
+.quizChoice {
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  color: inherit;
+  padding: 12px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.quizChoice:hover { background: rgba(255,255,255,.10); }
+
+.quizChoice:disabled {
+  cursor: not-allowed;
+  opacity: .85;
+}
+
+.quizChoice.correct {
+  border-color: rgba(60, 220, 120, .55);
+  background: rgba(60, 220, 120, .12);
+}
+
+.quizChoice.wrong {
+  border-color: rgba(255, 80, 80, .55);
+  background: rgba(255, 80, 80, .10);
+}
+
+.quizFeedback {
+  margin-top: 12px;
+  font-weight: 900;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+
+.quizFeedback.ok {
+  border-color: rgba(60, 220, 120, .55);
+  background: rgba(60, 220, 120, .10);
+}
+
+.quizFeedback.bad {
+  border-color: rgba(255, 80, 80, .55);
+  background: rgba(255, 80, 80, .08);
+}
+
+.quizBottom {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.quizBottom .primary,
+.quizBottom .doneBtn {
+  width: auto;
+  flex: 1;
+}

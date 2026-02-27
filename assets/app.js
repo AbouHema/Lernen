@@ -2,6 +2,7 @@ const state = {
   curriculum: null,
   vocab: null,
   sentences: null,
+  quizzes: null,
   activeLesson: null,
   view: "learn",
   progress: loadProgress()
@@ -10,15 +11,17 @@ const state = {
 init();
 
 async function init() {
-  const [curriculum, vocab, sentences] = await Promise.all([
-    fetchJson("data/curriculum.json"),
-    fetchJson("data/vocab.json"),
-    fetchJson("data/sentences.json")
-  ]);
+ const [curriculum, vocab, sentences, quizzes] = await Promise.all([
+   fetchJson("data/curriculum.json"),
+   fetchJson("data/vocab.json"),
+   fetchJson("data/sentences.json"),
+   fetchJson("data/quizzes.json")
+]);
 
   state.curriculum = curriculum;
   state.vocab = vocab;
   state.sentences = sentences;
+  state.quizzes = quizzes;
 
   wireNav();
   renderTree();
@@ -344,18 +347,109 @@ function renderQuizLesson(lesson) {
   const body = document.getElementById("contentBody");
   if (!body) return;
 
+  const questions = state.quizzes?.[lesson.ref] || [];
+
+  if (!questions.length) {
+    body.innerHTML = `<p>Keine Quizfragen vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
+    return;
+  }
+
+  let current = 0;
+  let score = 0;
+
   body.innerHTML = `
-    <p>Quiz kommt später. (Skeleton)</p>
-    <button class="primary" id="quizDone">Quiz als erledigt markieren</button>
+    <div class="quizBox">
+      <div class="quizTop">
+        <div id="quizProgress"></div>
+        <div id="quizScore"></div>
+      </div>
+
+      <div id="quizQuestion" class="quizQuestion"></div>
+      <div id="quizChoices" class="quizChoices"></div>
+
+      <div id="quizFeedback" class="quizFeedback"></div>
+
+      <div class="quizBottom">
+        <button class="primary" id="quizNext">Weiter</button>
+        <button class="doneBtn" id="quizFinish" style="display:none;">Quiz als erledigt markieren</button>
+      </div>
+    </div>
   `;
 
-  document.getElementById("quizDone")?.addEventListener("click", () => {
+  const elProgress = document.getElementById("quizProgress");
+  const elScore = document.getElementById("quizScore");
+  const elQ = document.getElementById("quizQuestion");
+  const elChoices = document.getElementById("quizChoices");
+  const elFeedback = document.getElementById("quizFeedback");
+  const btnNext = document.getElementById("quizNext");
+  const btnFinish = document.getElementById("quizFinish");
+
+  function renderStep() {
+    const q = questions[current];
+
+    elProgress.textContent = `Frage ${current + 1} / ${questions.length}`;
+    elScore.textContent = `Punkte: ${score}`;
+
+    elQ.textContent = q.q;
+
+    elFeedback.textContent = "";
+    elFeedback.className = "quizFeedback";
+
+    elChoices.innerHTML = "";
+    q.choices.forEach((choice, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "quizChoice";
+      btn.textContent = choice;
+
+      btn.addEventListener("click", () => {
+        // disable all choices after pick
+        [...elChoices.querySelectorAll("button")].forEach(b => (b.disabled = true));
+
+        const correct = idx === q.answerIndex;
+        if (correct) {
+          score += 1;
+          btn.classList.add("correct");
+          elFeedback.textContent = "✅ Richtig!";
+          elFeedback.classList.add("ok");
+        } else {
+          btn.classList.add("wrong");
+          // highlight correct one
+          const correctBtn = elChoices.querySelectorAll("button")[q.answerIndex];
+          if (correctBtn) correctBtn.classList.add("correct");
+          elFeedback.textContent = "❌ Falsch.";
+          elFeedback.classList.add("bad");
+        }
+
+        elScore.textContent = `Punkte: ${score}`;
+      });
+
+      elChoices.appendChild(btn);
+    });
+
+    // last step UI
+    if (current === questions.length - 1) {
+      btnNext.style.display = "none";
+      btnFinish.style.display = "inline-block";
+    } else {
+      btnNext.style.display = "inline-block";
+      btnFinish.style.display = "none";
+    }
+  }
+
+  btnNext.addEventListener("click", () => {
+    // go next even if user didn't answer
+    current = Math.min(current + 1, questions.length - 1);
+    renderStep();
+  });
+
+  btnFinish.addEventListener("click", () => {
     state.progress.done[lesson.id] = true;
     saveProgress();
     rerender();
   });
-}
 
+  renderStep();
+}
 /* ----------------------------
    Progress
 -----------------------------*/

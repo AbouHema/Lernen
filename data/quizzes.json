@@ -1,0 +1,62 @@
+{
+  "A1_U1_L3": [
+    {
+      "q": "Was bedeutet „Hallo“?",
+      "choices": ["مع السلامة", "مرحبًا", "شكرًا", "من فضلك"],
+      "answerIndex": 1
+    },
+    {
+      "q": "Wie sagt man „Danke“ auf Arabisch?",
+      "choices": ["شكرًا", "الخبز", "الماء", "حمّى"],
+      "answerIndex": 0
+    }
+  ],
+  "A1_U2_L3": [
+    {
+      "q": "Wie fragt man nach dem Preis?",
+      "choices": ["Wie viel kostet das?", "Wo ist das Bad?", "Ich heiße Nassim.", "Guten Appetit!"],
+      "answerIndex": 0
+    },
+    {
+      "q": "Was passt zu „billig“?",
+      "choices": ["رخيص", "غالي", "موعد", "المترو"],
+      "answerIndex": 0
+    }
+  ],
+  "A1_U3_L3": [
+    {
+      "q": "Was bedeutet „Fieber“?",
+      "choices": ["سعال", "حمّى", "الرأس", "الظهر"],
+      "answerIndex": 1
+    },
+    {
+      "q": "Was sagst du beim Arzt, wenn du Kopfschmerzen hast?",
+      "choices": ["Ich habe Kopfschmerzen.", "Ich hätte gern ein Brot.", "Wo ist die U-Bahn?", "Ich möchte umtauschen."],
+      "answerIndex": 0
+    }
+  ],
+  "A2_U1_L3": [
+    {
+      "q": "Was bedeutet „umtauschen“?",
+      "choices": ["يدفع", "يستبدل", "يطلب", "يسار"],
+      "answerIndex": 1
+    },
+    {
+      "q": "Welche Frage passt im Kleidungsladen?",
+      "choices": ["Haben Sie die Hose in Größe M?", "Wo ist die Apotheke?", "Wann hast du Zeit?", "Wie spät ist es?"],
+      "answerIndex": 0
+    }
+  ],
+  "A2_U2_L3": [
+    {
+      "q": "Was brauchst du oft beim Arzt, wenn du arbeiten musst?",
+      "choices": ["eine Krankmeldung", "ein Ticket", "die Speisekarte", "die Quittung"],
+      "answerIndex": 0
+    },
+    {
+      "q": "Was bedeutet „Überweisung“?",
+      "choices": ["تحويل طبي", "إيصال", "إجازة مرضية", "مقاس"],
+      "answerIndex": 0
+    }
+  ]
+}
