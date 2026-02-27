@@ -35,17 +35,55 @@ function wireNav() {
 
   const search = document.getElementById("search");
   if (search) {
-    search.addEventListener("input", () => renderTree(search.value.trim().toLowerCase()));
+    search.addEventListener("input", () => {
+      renderTree(search.value.trim().toLowerCase());
+    });
   }
 }
 
+/**
+ * Renders UI depending on current selected tab (state.view)
+ * and the currently selected lesson (state.activeLesson).
+ */
 function rerender() {
   const q = (document.getElementById("search")?.value || "").trim().toLowerCase();
   renderTree(q);
 
-  if (state.view === "progress") renderProgress();
-  else if (state.activeLesson) openLesson(state.activeLesson.lesson, state.activeLesson.levelId, state.activeLesson.unitId);
-  else setContent("Wähle eine Lektion", "");
+  if (state.view === "progress") {
+    renderProgress();
+    return;
+  }
+
+  // No lesson selected yet -> show an overview for the tab
+  if (!state.activeLesson) {
+    if (state.view === "vocab") {
+      renderLessonOverview("vocab", "Vokabeln");
+      return;
+    }
+
+    if (state.view === "sentences") {
+      renderLessonOverview("sentences", "Sätze");
+      return;
+    }
+
+    setContent("Wähle eine Lektion", "<p>Wähle links A1 oder A2.</p>");
+    return;
+  }
+
+  // Lesson selected
+  const lesson = state.activeLesson.lesson;
+
+  // If user is on a specific tab but selected lesson type doesn't match, show hint.
+  if (state.view === "vocab" && lesson.type !== "vocab") {
+    renderLessonOverview("vocab", "Vokabeln");
+    return;
+  }
+  if (state.view === "sentences" && lesson.type !== "sentences") {
+    renderLessonOverview("sentences", "Sätze");
+    return;
+  }
+
+  openLesson(lesson, state.activeLesson.levelId, state.activeLesson.unitId);
 }
 
 function renderTree(filter = "") {
@@ -65,6 +103,12 @@ function renderTree(filter = "") {
 
     const unitsEl = document.createElement("div");
     unitsEl.className = "treeUnits";
+    unitsEl.style.display = "block";
+
+    // Level collapse/expand
+    levelBtn.addEventListener("click", () => {
+      unitsEl.style.display = unitsEl.style.display === "none" ? "block" : "none";
+    });
 
     (level.units || []).forEach(unit => {
       const unitWrap = document.createElement("div");
@@ -108,16 +152,19 @@ function getLessonSearchText(lesson) {
     const arr = state.vocab?.[lesson.ref] || [];
     text += " " + arr.map(x => `${x.de} ${x.ar}`).join(" ");
   }
+
   if (lesson.type === "sentences") {
     const arr = state.sentences?.[lesson.ref] || [];
     text += " " + arr.map(x => `${x.de} ${x.ar}`).join(" ");
   }
+
   return text;
 }
 
 function openLesson(lesson, levelId, unitId) {
   state.activeLesson = { lesson, levelId, unitId };
 
+  // If progress tab is open, keep progress view
   if (state.view === "progress") {
     renderProgress();
     return;
@@ -125,6 +172,7 @@ function openLesson(lesson, levelId, unitId) {
 
   const title = document.getElementById("contentTitle");
   const meta = document.getElementById("contentMeta");
+
   if (title) title.textContent = `${levelId} · ${lesson.title}`;
   if (meta) meta.textContent = `Typ: ${lesson.type.toUpperCase()} · ID: ${lesson.id}`;
 
@@ -133,6 +181,71 @@ function openLesson(lesson, levelId, unitId) {
   else if (lesson.type === "quiz") renderQuizLesson(lesson);
   else setContent("Unbekannter Lesson-Type", "Bitte prüfe curriculum.json");
 }
+
+/* ----------------------------
+   Lesson Overviews (Tabs)
+-----------------------------*/
+
+function getAllLessonsByType(type) {
+  const result = [];
+  state.curriculum.levels.forEach(level => {
+    (level.units || []).forEach(unit => {
+      (unit.lessons || []).forEach(lesson => {
+        if (lesson.type === type) {
+          result.push({
+            levelId: level.id,
+            unitId: unit.id,
+            unitTitle: unit.title,
+            lesson
+          });
+        }
+      });
+    });
+  });
+  return result;
+}
+
+function renderLessonOverview(type, titleText) {
+  const items = getAllLessonsByType(type);
+
+  if (!items.length) {
+    setContent(titleText, `<p>Keine Lektionen vom Typ <b>${escapeHtml(type)}</b> gefunden.</p>`);
+    return;
+  }
+
+  const html = `
+    <p>Klicke eine Lektion an:</p>
+    <div class="overviewList">
+      ${items
+        .map(
+          x => `
+        <button class="overviewItem" data-lesson="${escapeHtml(x.lesson.id)}">
+          <div class="overviewTitle">${escapeHtml(x.lesson.title)}</div>
+          <div class="overviewMeta">${escapeHtml(x.levelId)} · ${escapeHtml(x.unitTitle)}</div>
+        </button>
+      `
+        )
+        .join("")}
+    </div>
+  `;
+
+  setContent(titleText, html);
+
+  document.querySelectorAll(".overviewItem").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const lessonId = btn.dataset.lesson;
+      const found = items.find(x => x.lesson.id === lessonId);
+      if (!found) return;
+
+      state.activeLesson = { lesson: found.lesson, levelId: found.levelId, unitId: found.unitId };
+      openLesson(found.lesson, found.levelId, found.unitId);
+    });
+  });
+}
+
+/* ----------------------------
+   Lesson Renderers
+-----------------------------*/
 
 function renderVocabLesson(lesson) {
   const items = state.vocab?.[lesson.ref] || [];
@@ -163,11 +276,13 @@ function renderVocabLesson(lesson) {
       </div>
       <div class="ar">${escapeHtml(it.ar || "")}</div>
       <div class="ex">${escapeHtml(it.example || "")}</div>
-      <div class="tags">${(it.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>
+      <div class="tags">${(it.tags || [])
+        .map(t => `<span class="tag">${escapeHtml(t)}</span>`)
+        .join("")}</div>
       <button class="doneBtn">Als gelernt markieren</button>
     `;
 
-    card.querySelector(".iconBtn").addEventListener("click", (e) => {
+    card.querySelector(".iconBtn").addEventListener("click", e => {
       const key = e.currentTarget.dataset.fav;
       state.progress.favs[key] = !state.progress.favs[key];
       saveProgress();
@@ -177,8 +292,7 @@ function renderVocabLesson(lesson) {
     card.querySelector(".doneBtn").addEventListener("click", () => {
       state.progress.done[lesson.id] = true;
       saveProgress();
-      renderTree((document.getElementById("search")?.value || "").trim().toLowerCase());
-      renderVocabLesson(lesson);
+      rerender();
     });
 
     grid.appendChild(card);
@@ -219,7 +333,7 @@ function renderSentenceLesson(lesson) {
   doneBtn.addEventListener("click", () => {
     state.progress.done[lesson.id] = true;
     saveProgress();
-    renderTree((document.getElementById("search")?.value || "").trim().toLowerCase());
+    rerender();
   });
 
   body.appendChild(list);
@@ -235,12 +349,16 @@ function renderQuizLesson(lesson) {
     <button class="primary" id="quizDone">Quiz als erledigt markieren</button>
   `;
 
-  document.getElementById("quizDone").addEventListener("click", () => {
+  document.getElementById("quizDone")?.addEventListener("click", () => {
     state.progress.done[lesson.id] = true;
     saveProgress();
-    renderTree((document.getElementById("search")?.value || "").trim().toLowerCase());
+    rerender();
   });
 }
+
+/* ----------------------------
+   Progress
+-----------------------------*/
 
 function renderProgress() {
   const total = countLessons();
@@ -266,14 +384,21 @@ function renderProgress() {
 
 function countLessons() {
   let n = 0;
-  state.curriculum.levels.forEach(l => (l.units || []).forEach(u => n += (u.lessons || []).length));
+  state.curriculum.levels.forEach(l =>
+    (l.units || []).forEach(u => (n += (u.lessons || []).length))
+  );
   return n;
 }
+
+/* ----------------------------
+   Utils
+-----------------------------*/
 
 function setContent(title, html) {
   const t = document.getElementById("contentTitle");
   const m = document.getElementById("contentMeta");
   const b = document.getElementById("contentBody");
+
   if (t) t.textContent = title;
   if (m) m.textContent = "";
   if (b) b.innerHTML = html;

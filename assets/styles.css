@@ -1,7 +1,7 @@
 :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 * { box-sizing: border-box; }
 
-body { margin: 0; background: #0b0f14; color: #e8eef7; }
+body { margin: 0; background: black; color: #e8eef7; }
 
 .topbar {
   position: sticky; top: 0; z-index: 10;
@@ -122,3 +122,17 @@ body { margin: 0; background: #0b0f14; color: #e8eef7; }
   .sidebar { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
   #contentTitle { font-size: 26px; }
 }
+
+.overviewList { display: grid; gap: 10px; max-width: 720px; }
+.overviewItem {
+  text-align: left;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: inherit;
+  padding: 12px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.overviewItem:hover { background: rgba(255,255,255,.08); }
+.overviewTitle { font-weight: 900; font-size: 16px; }
+.overviewMeta { opacity: .75; font-size: 13px; margin-top: 4px; }
