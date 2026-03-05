@@ -348,6 +348,7 @@ function renderQuizLesson(lesson) {
   if (!body) return;
 
   const questions = state.quizzes?.[lesson.ref] || [];
+  const shuffled = [...questions];
 
   if (!questions.length) {
     body.innerHTML = `<p>Keine Quizfragen vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
@@ -371,7 +372,7 @@ function renderQuizLesson(lesson) {
 
       <div class="quizBottom">
         <button class="primary" id="quizNext">Weiter</button>
-        <button class="doneBtn" id="quizFinish" style="display:none;">Quiz als erledigt markieren</button>
+        <button class="doneBtn" id="quizFinish" style="display:none;">Quiz beenden</button>
       </div>
     </div>
   `;
@@ -427,7 +428,7 @@ function renderQuizLesson(lesson) {
     });
 
     // last step UI
-    if (current === questions.length - 1) {
+    if (current === shuffled.length - 1) {
       btnNext.style.display = "none";
       btnFinish.style.display = "inline-block";
     } else {
@@ -438,16 +439,44 @@ function renderQuizLesson(lesson) {
 
   btnNext.addEventListener("click", () => {
     // go next even if user didn't answer
-    current = Math.min(current + 1, questions.length - 1);
+    current = Math.min(current + 1, shuffled.length - 1);
     renderStep();
   });
 
-  btnFinish.addEventListener("click", () => {
-    state.progress.done[lesson.id] = true;
-    saveProgress();
+btnFinish.addEventListener("click", () => {
+
+  state.progress.done[lesson.id] = true;
+  saveProgress();
+
+  setContent(
+    "Quiz beendet",
+    `
+      <div class="quizBox">
+        <div class="quizQuestion">
+          Ergebnis: <b>${score}</b> / <b>${shuffled.length}</b>
+        </div>
+
+        <div class="quizBottom" style="margin-top:12px;">
+          <button class="primary" id="retryQuiz">Wiederholen</button>
+          <button class="doneBtn" id="backToLearn">Zurück</button>
+        </div>
+      </div>
+    `
+  );
+
+  document.getElementById("retryQuiz")?.addEventListener("click", () => {
+    openLesson(
+      lesson,
+      state.activeLesson.levelId,
+      state.activeLesson.unitId
+    );
+  });
+
+  document.getElementById("backToLearn")?.addEventListener("click", () => {
     rerender();
   });
 
+});
   renderStep();
 }
 /* ----------------------------
