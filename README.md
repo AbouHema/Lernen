@@ -1,6 +1,10 @@
 # Lernen (HTML-Version)
 
-Statische, responsive Lern-Webseite für Deutsch (Arabisch → Deutsch) auf B1-Niveau mit reinem HTML, CSS und JavaScript.
+![GitHub repo size](https://img.shields.io/github/repo-size/Abouhema/Lernen)
+![GitHub last commit](https://img.shields.io/github/last-commit/Abouhema/Lernen)
+![GitHub stars](https://img.shields.io/github/stars/Abouhema/Lernen?style=social)
+
+Statische, responsive Lern-Webseite für Deutsch (Arabisch → Deutsch).
 
 ## Nutzung
 
@@ -59,3 +63,7 @@ Dieses Projekt verwendet:
 ## Ziel
 
 Diese Web-App soll Menschen helfen, Deutsch zu lernen – besonders arabischen Muttersprachlern.
+
+## Screenshot
+
+![App Screenshot](screenshot.png)
