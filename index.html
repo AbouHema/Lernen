@@ -6,38 +6,54 @@
     <title>Lernen – Deutsch A1 bis C1</title>
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
-
-  <body>
-    <header class="topbar">
-      <div class="brand">✦ Lernen</div>
-
-      <nav class="nav">
-        <button class="navBtn" data-view="learn">Lernen</button>
-        <button class="navBtn" data-view="vocab">Vokabeln</button>
-        <button class="navBtn" data-view="sentences">Sätze</button>
-        <button class="navBtn" data-view="progress">Fortschritt</button>
-      </nav>
-    </header>
-
-    <main class="layout">
-      <aside class="sidebar">
-        <div class="sidebarHead">
-          <div class="sidebarTitle">A1–C1</div>
-          <input id="search" placeholder="Suche (de/ar)..." />
+<body>
+  <div class="app">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <a class="brand" href="./">
+        <div class="brand-title">
+        <div class="brand-logo" aria-hidden="true">DE</div>
+          <strong>Lernen</strong>
+          <span>Deutsch A1–C1</span>
         </div>
-        <div id="tree"></div>
-      </aside>
+      </a>
 
-      <section class="content">
-        <div id="contentHead">
-          <h1 id="contentTitle">Wähle eine Lektion</h1>
-          <div id="contentMeta"></div>
-        </div>
+      <div class="search">
+        <input id="search" type="search" placeholder="Suche (de/ar)..." autocomplete="off" />
+      </div>
 
-        <div id="contentBody"></div>
-      </section>
+      <!-- Sidebar Navigation / Tree -->
+      <div id="tree"></div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <div class="container">
+        <!-- TOPBAR -->
+        <header class="topbar">
+          <div class="topbar-inner">
+            <div>
+              <h1 class="h1" id="contentTitle">Wähle eine Lektion</h1>
+              <p class="sub" id="contentMeta"></p>
+            </div>
+
+            <nav class="nav" aria-label="Navigation">
+              <a class="navBtn active" href="#" data-view="learn">Lernen <span class="badge">A1–C1</span></a>
+              <a class="navBtn" href="#" data-view="vocab">Vokabeln</a>
+              <a class="navBtn" href="#" data-view="sentences">Sätze</a>
+              <a class="navBtn" href="#" data-view="progress">Fortschritt</a>
+            </nav>
+          </div>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="card">
+          <div class="card-body" id="contentBody"></div>
+        </section>
+      </div>
     </main>
+  </div>
 
-    <script src="assets/app.js"></script>
-  </body>
+  <script src="assets/app.js"></script>
+</body>
 </html>

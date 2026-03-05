@@ -18,3 +18,5 @@ Thumbs.db
 
 # backup files
 *_backup*
+
+whisper-env/

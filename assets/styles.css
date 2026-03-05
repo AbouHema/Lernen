@@ -1,225 +1,626 @@
-:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+/* ============ Design Tokens ============ */
+:root {
+  --bg: #0b1220;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-2: rgba(255, 255, 255, 0.10);
+  --border: rgba(255, 255, 255, 0.10);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.70);
+  --primary: #4f8cff;
+  --primary-2: #7c5cff;
+  --good: #31d0aa;
+  --warn: #ffcc66;
+  --bad: #ff5c7a;
+  --shadow: 0 16px 40px rgba(0,0,0,.35);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --max: 1120px;
+  --sidebar: 280px;
+}
+
+/* ============ Base ============ */
 * { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 20% 10%, rgba(79,140,255,.25), transparent 60%),
+    radial-gradient(900px 600px at 90% 20%, rgba(124,92,255,.20), transparent 60%),
+    radial-gradient(800px 500px at 50% 95%, rgba(49,208,170,.12), transparent 60%),
+    var(--bg);
+  line-height: 1.45;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid rgba(79,140,255,.7); outline-offset: 2px; }
 
-body { margin: 0; background: black; color: #e8eef7; }
-
-.topbar {
-  position: sticky; top: 0; z-index: 10;
-  display: flex; gap: 16px; align-items: center; justify-content: space-between;
-  padding: 12px 16px;
-  background: rgba(10,14,20,.85);
+/* ============ Layout ============ */
+.app {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar) 1fr;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 18px;
+  border-right: 1px solid var(--border);
+  background: rgba(10, 16, 30, 0.60);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,.08);
 }
-.brand { font-weight: 800; letter-spacing: .3px; }
+.main { padding: 22px; }
+.container { max-width: var(--max); margin: 0 auto; }
 
-.nav { display: flex; gap: 8px; flex-wrap: wrap; }
-.navBtn {
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: inherit;
-  padding: 8px 10px;
-  border-radius: 12px;
-  cursor: pointer;
+/* ============ Sidebar ============ */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(79,140,255,0.20), rgba(124,92,255,0.18));
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.06);
 }
-.navBtn:hover { background: rgba(255,255,255,.10); }
-
-.layout { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - 56px); }
-
-.sidebar { border-right: 1px solid rgba(255,255,255,.08); padding: 14px; }
-.sidebarHead { display: grid; gap: 10px; margin-bottom: 10px; }
-.sidebarTitle { font-weight: 800; opacity: .95; }
-
-#search {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: inherit;
-  outline: none;
-}
-
-.content { padding: 18px; }
-#contentHead { margin-bottom: 12px; }
-#contentTitle { margin: 0 0 6px 0; font-size: 32px; }
-#contentMeta { opacity: .75; font-size: 14px; }
-
-.treeLevel { margin-bottom: 12px; }
-.treeLevelBtn {
-  width: 100%;
-  text-align: left;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  padding: 10px 12px;
+.brand-logo {
+  width: 46px;
+  height: 46px;
   border-radius: 14px;
-  color: inherit;
+
+  background: linear-gradient(135deg, #4f8cff, #7c5cff);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   font-weight: 800;
-}
-.treeUnits { margin-top: 10px; padding-left: 8px; display: grid; gap: 10px; }
-.treeUnitTitle { font-weight: 800; opacity: .9; margin-bottom: 6px; }
+  font-size: 16px;
+  color: white;
 
-.treeLessons { display: grid; gap: 6px; }
-.treeLessonBtn {
-  text-align: left;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  color: inherit;
-  padding: 8px 10px;
-  border-radius: 12px;
-  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(79,140,255,.35);
 }
-.treeLessonBtn:hover { background: rgba(255,255,255,.08); }
+.brand-title { display: flex; flex-direction: column; }
+.brand-title strong { font-size: 15px; letter-spacing: .2px; }
+.brand-title span { font-size: 12px; color: var(--muted); }
 
-.cardGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
-.card {
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  border-radius: 18px;
-  padding: 12px;
+.sidebar .search {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 14px;
+  margin: 10px 6px 14px;
 }
-.cardTop { display: flex; justify-content: space-between; align-items: center; }
-.word { font-size: 20px; font-weight: 900; }
-.ar { font-size: 16px; opacity: .95; margin-top: 6px; direction: rtl; }
-.ex { margin-top: 8px; opacity: .85; }
-.tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-size: 12px; opacity: .9; padding: 4px 8px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); }
-
-.iconBtn { border: none; background: transparent; color: inherit; font-size: 18px; cursor: pointer; }
-.doneBtn, .primary, .danger {
-  margin-top: 12px;
+.sidebar input[type="search"]{
   width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px;
+}
+.nav a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   padding: 10px 12px;
   border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.08);
-  color: inherit;
+  color: var(--muted);
+  border: 1px solid transparent;
+}
+.nav a:hover {
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+.nav a.active {
+  background: linear-gradient(135deg, rgba(79,140,255,.18), rgba(124,92,255,.14));
+  border-color: rgba(79,140,255,.28);
+  color: var(--text);
+}
+.badge {
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+}
+
+/* ============ Top Header ============ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 14px 0 16px;
+  backdrop-filter: blur(10px);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.h1 {
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: .2px;
+}
+.sub {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ============ Components ============ */
+.card {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  /* ✅ FIX: NICHT clippen -> sonst wirken Buchstaben/Icons abgeschnitten */
+  overflow: visible;
+}
+.card-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ✅ kleiner Padding-Fix, damit Text nicht am Rand klebt */
+.card-body { padding: 18px; }
+
+.grid { display: grid; gap: 14px; }
+.grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.btn {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  padding: 10px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform .05s ease;
+}
+.btn:hover { background: rgba(255,255,255,.10); }
+.btn:active { transform: translateY(1px); }
+
+.btn.primary {
+  border-color: rgba(79,140,255,.35);
+  background: linear-gradient(135deg, rgba(79,140,255,.20), rgba(124,92,255,.18));
+}
+
+.pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ============ Quiz UI ============ */
+.quiz { display: grid; gap: 12px; }
+.quiz-question { font-size: 18px; margin: 0; }
+.quiz-answers { display: grid; gap: 10px; }
+
+.answer {
+  text-align: left;
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
   cursor: pointer;
 }
-.doneBtn:hover, .primary:hover { background: rgba(255,255,255,.12); }
-.danger { border-color: rgba(255,80,80,.4); }
+.answer:hover { background: rgba(255,255,255,.10); }
+.answer.correct { border-color: rgba(49,208,170,.45); background: rgba(49,208,170,.12); }
+.answer.wrong { border-color: rgba(255,92,122,.45); background: rgba(255,92,122,.12); }
 
-.sentenceList { display: grid; gap: 10px; }
-.sentenceRow {
-  border: 1px solid rgba(255,255,255,.10);
+.quiz-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.progress {
+  height: 10px;
+  width: 220px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  overflow: hidden;
+}
+.progress > div {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(79,140,255,1), rgba(124,92,255,1));
+}
+
+/* ✅ Kontrast-Fix nur für deine Quiz-Endseite (dein JS nutzt quizBox/quizQuestion) */
+.quizBox{
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 18px;
+}
+.quizBox .quizQuestion{
+  color: rgba(255,255,255,.95);
+}
+
+/* ============ Responsive ============ */
+@media (max-width: 920px) {
+  :root { --sidebar: 90px; }
+  .brand-title, .sidebar .search { display: none; }
+  .nav a { justify-content: center; }
+  .badge { display: none; }
+}
+@media (max-width: 680px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+/* ===== Fix: Top-Navigation darf nicht die Sidebar-.nav Styles erben ===== */
+.topbar .nav {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Buttons/Links im Top-Menü (du nutzt <a class="navBtn"> oder <button class="navBtn">) */
+.topbar .navBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+}
+.topbar .navBtn:hover {
+  background: rgba(255,255,255,.10);
+  color: var(--text);
+}
+.topbar .navBtn.active {
+  background: linear-gradient(135deg, rgba(79,140,255,.20), rgba(124,92,255,.18));
+  border-color: rgba(79,140,255,.35);
+  color: var(--text);
+}
+
+/* Badge im Top-Menü */
+.topbar .badge { margin-left: 2px; }
+
+/* ===== Sidebar Tree Styling (egal ob Buttons, Links oder Divs) ===== */
+#tree { display: grid; gap: 8px; padding: 6px; }
+
+/* Level-Überschriften (z.B. A1, A2, B1...) – falls dein JS solche Elemente baut */
+#tree .level, #tree .group, #tree h3 {
+  margin: 10px 6px 4px;
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+/* Items im Tree */
+#tree button, #tree a, #tree .item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,.06);
+
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#tree button:hover, #tree a:hover, #tree .item:hover {
+  background: rgba(255,255,255,.10);
+  border-color: rgba(255,255,255,.10);
+}
+
+/* Aktives Tree-Item (wenn dein JS eine Klasse setzt) */
+#tree .active, #tree button.active, #tree a.active, #tree .selected {
+  background: linear-gradient(135deg, rgba(79,140,255,.18), rgba(124,92,255,.14));
+  border-color: rgba(79,140,255,.28);
+}
+
+/* Kleine Unterpunkte */
+#tree .sub, #tree .child {
+  opacity: .85;
+  padding-left: 18px;
+  background: rgba(255,255,255,.04);
+}
+
+/* Inputs in der Sidebar */
+.sidebar input#search {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  padding: 10px 12px;
+  color: var(--text);
+}
+
+/* Content-Card im Main */
+#contentBody { color: var(--text); }
+#contentBody p, #contentBody li { color: rgba(255,255,255,.86); }
+
+/* ===== Premium polish ===== */
+.container {
+  max-width: 980px;
+}
+.topbar { margin-bottom: 14px; }
+.topbar-inner {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
   background: rgba(255,255,255,.04);
   border-radius: 18px;
-  padding: 12px;
 }
-.sentenceRow .de { font-weight: 900; }
-.sentenceRow .note { opacity: .75; margin-top: 6px; font-size: 14px; }
+.h1 { font-size: 20px; letter-spacing: .1px; }
+.sub { margin-top: 6px; opacity: .9; }
 
-.progressBox {
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
+.card { border-radius: 20px; }
+.card-body { padding: 18px; min-height: 160px; }
+
+.sidebar {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+}
+#tree { overflow: auto; padding-right: 6px; }
+
+/* Sidebar Tree: besserer “Button Look” */
+#tree button, #tree a, #tree .item {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+#tree button:hover, #tree a:hover, #tree .item:hover {
+  transform: translateY(-1px);
+  transition: transform .08s ease, background .12s ease;
+}
+#tree .active, #tree button.active, #tree a.active, #tree .selected {
+  box-shadow: 0 14px 28px rgba(79,140,255,.10);
+}
+#tree .sub, #tree .child {
+  margin-left: 8px;
+  border-left: 1px solid rgba(255,255,255,.08);
+}
+
+.topbar .navBtn {
+  border-radius: 999px;
+  padding: 10px 14px;
+}
+.topbar .navBtn.active {
+  box-shadow: 0 14px 28px rgba(79,140,255,.12);
+}
+
+/* Progress/Buttons */
+#contentBody button {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.06);
+  padding: 10px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+#contentBody button:hover {
+  background: rgba(255,255,255,.10);
+}
+
+/* Scrollbar */
+#tree::-webkit-scrollbar { width: 10px; }
+#tree::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.10);
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,.15);
+}
+#tree::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.16); }
+
+/* ===== Sidebar Tree: App-like Look ===== */
+#tree { display: grid; gap: 10px; padding: 6px; }
+
+#tree .level, #tree .group, #tree h3, #tree .sectionTitle {
+  margin: 12px 6px 6px;
+  font-size: 12px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.70);
+}
+
+#tree button, #tree a, #tree .item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 11px 12px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.045);
+
+  color: rgba(255,255,255,.92);
+  cursor: pointer;
+  text-decoration: none;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+
+#tree button:hover, #tree a:hover, #tree .item:hover {
+  background: rgba(255,255,255,.075);
+}
+
+#tree .active, #tree button.active, #tree a.active, #tree .selected {
+  background: linear-gradient(135deg, rgba(79,140,255,.18), rgba(124,92,255,.14));
+  border-color: rgba(79,140,255,.28);
+  box-shadow: 0 14px 28px rgba(79,140,255,.12);
+}
+
+#tree .sub, #tree .child {
+  width: calc(100% - 14px);
+  margin-left: 14px;
+
+  padding: 9px 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.06);
+
+  color: rgba(255,255,255,.78);
+  font-size: 13px;
+}
+
+#tree .sub::before, #tree .child::before {
+  content: "•";
+  margin-right: 8px;
+  color: rgba(255,255,255,.55);
+}
+
+#tree .disabled, #tree button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  filter: grayscale(0.2);
+}
+
+.sidebar .search {
+  margin: 10px 6px 12px;
+  border-radius: 16px;
+}
+.sidebar input#search { border-radius: 16px; }
+
+/* ===== Empty / Welcome State ===== */
+#welcome { display: grid; gap: 12px; padding: 8px 0; }
+
+.welcomeTitle { font-size: 22px; margin: 0; }
+
+.welcomeText {
+  margin: 0;
+  color: rgba(255,255,255,.80);
+  max-width: 66ch;
+}
+
+.welcomeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.welcomeTile {
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
   border-radius: 18px;
   padding: 14px;
-  max-width: 520px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.20);
+}
+
+.welcomeTile h3 { margin: 0 0 6px; font-size: 14px; }
+
+.welcomeTile p {
+  margin: 0;
+  color: rgba(255,255,255,.78);
+  font-size: 13px;
 }
 
 @media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
-  #contentTitle { font-size: 26px; }
+  .welcomeGrid { grid-template-columns: 1fr; }
 }
 
-.overviewList { display: grid; gap: 10px; max-width: 720px; }
-.overviewItem {
+/* ===== FIX: deine echten Tree-Klassen (renderTree()) ===== */
+.treeLevel { display: grid; gap: 8px; margin-bottom: 10px; }
+
+.treeLevelBtn{
+  width: 100%;
   text-align: left;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  color: inherit;
-  padding: 12px;
+  padding: 11px 12px;
   border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.92);
   cursor: pointer;
 }
-.overviewItem:hover { background: rgba(255,255,255,.08); }
-.overviewTitle { font-weight: 900; font-size: 16px; }
-.overviewMeta { opacity: .75; font-size: 13px; margin-top: 4px; }
+.treeLevelBtn:hover { background: rgba(255,255,255,.08); }
 
-/* --- Quiz UI --- */
-.quizBox {
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  border-radius: 18px;
-  padding: 14px;
-  max-width: 720px;
+.treeUnits { display: grid; gap: 8px; padding-left: 2px; }
+
+.treeUnit { display: grid; gap: 8px; }
+
+.treeUnitTitle{
+  margin: 8px 6px 2px;
+  font-size: 12px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.70);
 }
 
-.quizTop {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  opacity: .85;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
+.treeLessons { display: grid; gap: 8px; }
 
-.quizQuestion {
-  font-weight: 900;
-  font-size: 18px;
-  margin: 10px 0 12px 0;
-}
-
-.quizChoices {
-  display: grid;
-  gap: 10px;
-}
-
-.quizChoice {
+.treeLessonBtn{
+  width: 100%;
   text-align: left;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  color: inherit;
-  padding: 12px;
-  border-radius: 14px;
-  cursor: pointer;
-}
-
-.quizChoice:hover { background: rgba(255,255,255,.10); }
-
-.quizChoice:disabled {
-  cursor: not-allowed;
-  opacity: .85;
-}
-
-.quizChoice.correct {
-  border-color: rgba(60, 220, 120, .55);
-  background: rgba(60, 220, 120, .12);
-}
-
-.quizChoice.wrong {
-  border-color: rgba(255, 80, 80, .55);
-  background: rgba(255, 80, 80, .10);
-}
-
-.quizFeedback {
-  margin-top: 12px;
-  font-weight: 900;
   padding: 10px 12px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.06);
   background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.90);
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0,0,0,.18);
+}
+.treeLessonBtn:hover { background: rgba(255,255,255,.07); }
+
+.treeLessonBtn.active{
+  background: linear-gradient(135deg, rgba(79,140,255,.18), rgba(124,92,255,.14));
+  border-color: rgba(79,140,255,.28);
+  box-shadow: 0 14px 28px rgba(79,140,255,.12);
 }
 
-.quizFeedback.ok {
-  border-color: rgba(60, 220, 120, .55);
-  background: rgba(60, 220, 120, .10);
+.sayRow{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-top:10px;
+  flex-wrap: wrap;
 }
 
-.quizFeedback.bad {
-  border-color: rgba(255, 80, 80, .55);
-  background: rgba(255, 80, 80, .08);
-}
-
-.quizBottom {
-  display: flex;
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.quizBottom .primary,
-.quizBottom .doneBtn {
-  width: auto;
-  flex: 1;
+.sayStatus{
+  color: rgba(255,255,255,.85);
+  font-size: 13px;
+  opacity: .95;
 }
