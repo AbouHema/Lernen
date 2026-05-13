@@ -21,6 +21,31 @@
             { "id": "A1-U2-L2", "title": "Sätze: Ich hätte gern…", "type": "sentences", "ref": "A1_U2_L2" },
             { "id": "A1-U2-L3", "title": "Mini-Quiz: Preise & Menge", "type": "quiz", "ref": "A1_U2_L3" }
           ]
+        },
+        {
+          "id": "A1-U3",
+          "title": "Arzt & Körper",
+          "lessons": [
+            { "id": "A1-U3-L1", "title": "Vokabeln: Körper & Symptome", "type": "vocab", "ref": "A1_U3_L1" },
+            { "id": "A1-U3-L2", "title": "Sätze: Beim Arzt", "type": "sentences", "ref": "A1_U3_L2" },
+            { "id": "A1-U3-L3", "title": "Mini-Quiz: Beschwerden", "type": "quiz", "ref": "A1_U3_L3" }
+          ]
+        },
+        {
+          "id": "A1-U4",
+          "title": "Wohnung & Möbel",
+          "lessons": [
+            { "id": "A1-U4-L1", "title": "Vokabeln: Wohnung", "type": "vocab", "ref": "A1_U4_L1" },
+            { "id": "A1-U4-L2", "title": "Sätze: Zu Hause", "type": "sentences", "ref": "A1_U4_L2" }
+          ]
+        },
+        {
+          "id": "A1-U5",
+          "title": "Zeit & Termine",
+          "lessons": [
+            { "id": "A1-U5-L1", "title": "Vokabeln: Zeit", "type": "vocab", "ref": "A1_U5_L1" },
+            { "id": "A1-U5-L2", "title": "Sätze: Verabredungen", "type": "sentences", "ref": "A1_U5_L2" }
+          ]
         }
       ]
     },
@@ -45,11 +70,178 @@
             { "id": "A2-U2-L2", "title": "Sätze: Termin vereinbaren", "type": "sentences", "ref": "A2_U2_L2" },
             { "id": "A2-U2-L3", "title": "Mini-Quiz: Arztbesuch", "type": "quiz", "ref": "A2_U2_L3" }
           ]
+        },
+        {
+          "id": "A2-U3",
+          "title": "Arbeit & Büro",
+          "lessons": [
+            { "id": "A2-U3-L1", "title": "Vokabeln: Arbeit", "type": "vocab", "ref": "A2_U3_L1" },
+            { "id": "A2-U3-L2", "title": "Sätze: Im Büro", "type": "sentences", "ref": "A2_U3_L2" }
+          ]
+        },
+        {
+          "id": "A2-U4",
+          "title": "Restaurant & Bestellung",
+          "lessons": [
+            { "id": "A2-U4-L1", "title": "Vokabeln: Restaurant", "type": "vocab", "ref": "A2_U4_L1" },
+            { "id": "A2-U4-L2", "title": "Sätze: Bestellen und bezahlen", "type": "sentences", "ref": "A2_U4_L2" }
+          ]
+        },
+        {
+          "id": "A2-U5",
+          "title": "Reisen & Verkehr",
+          "lessons": [
+            { "id": "A2-U5-L1", "title": "Vokabeln: Verkehr", "type": "vocab", "ref": "A2_U5_L1" },
+            { "id": "A2-U5-L2", "title": "Sätze: Nach dem Weg fragen", "type": "sentences", "ref": "A2_U5_L2" }
+          ]
+        },
+        {
+          "id": "A2-U6",
+          "title": "Behörden & Schule",
+          "lessons": [
+            { "id": "A2-U6-L1", "title": "Vokabeln: Formulare & Kurs", "type": "vocab", "ref": "A2_U6_L1" },
+            { "id": "A2-U6-L2", "title": "Sätze: Anmeldung und Kurs", "type": "sentences", "ref": "A2_U6_L2" }
+          ]
         }
       ]
     },
-    { "id": "B1", "title": "B1 – Kommunikation", "units": [] },
-    { "id": "B2", "title": "B2 – Beruf & Argumentation", "units": [] },
-    { "id": "C1", "title": "C1 – Fortgeschritten", "units": [] }
+    {
+      "id": "B1",
+      "title": "B1 – Kommunikation",
+      "units": [
+        {
+          "id": "B1-U1",
+          "title": "Alltag & Meinungen",
+          "lessons": [
+            { "id": "B1-U1-L1", "title": "Vokabeln: Alltag", "type": "vocab", "ref": "B1_U1_L1" },
+            { "id": "B1-U1-L2", "title": "Sätze: Meinung sagen", "type": "sentences", "ref": "B1_U1_L2" }
+          ]
+        },
+        {
+          "id": "B1-U2",
+          "title": "Arbeit & Bewerbung",
+          "lessons": [
+            { "id": "B1-U2-L1", "title": "Vokabeln: Beruf", "type": "vocab", "ref": "B1_U2_L1" },
+            { "id": "B1-U2-L2", "title": "Sätze: Im Job", "type": "sentences", "ref": "B1_U2_L2" }
+          ]
+        },
+        {
+          "id": "B1-U3",
+          "title": "Gesundheit & Termine",
+          "lessons": [
+            { "id": "B1-U3-L1", "title": "Vokabeln: Gesundheit", "type": "vocab", "ref": "B1_U3_L1" },
+            { "id": "B1-U3-L2", "title": "Sätze: Beim Arzt", "type": "sentences", "ref": "B1_U3_L2" }
+          ]
+        },
+        {
+          "id": "B1-U4",
+          "title": "Wohnung & Vertrag",
+          "lessons": [
+            { "id": "B1-U4-L1", "title": "Vokabeln: Wohnen", "type": "vocab", "ref": "B1_U4_L1" },
+            { "id": "B1-U4-L2", "title": "Sätze: Miete und Reparatur", "type": "sentences", "ref": "B1_U4_L2" }
+          ]
+        },
+        {
+          "id": "B1-U5",
+          "title": "Reisen & Behörden",
+          "lessons": [
+            { "id": "B1-U5-L1", "title": "Vokabeln: Reisen und Amt", "type": "vocab", "ref": "B1_U5_L1" },
+            { "id": "B1-U5-L2", "title": "Sätze: Auskunft geben", "type": "sentences", "ref": "B1_U5_L2" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B2",
+      "title": "B2 – Beruf & Argumentation",
+      "units": [
+        {
+          "id": "B2-U1",
+          "title": "Diskussion & Argumente",
+          "lessons": [
+            { "id": "B2-U1-L1", "title": "Vokabeln: Argumentieren", "type": "vocab", "ref": "B2_U1_L1" },
+            { "id": "B2-U1-L2", "title": "Sätze: Stellung nehmen", "type": "sentences", "ref": "B2_U1_L2" }
+          ]
+        },
+        {
+          "id": "B2-U2",
+          "title": "Beruf & Projektarbeit",
+          "lessons": [
+            { "id": "B2-U2-L1", "title": "Vokabeln: Projekt", "type": "vocab", "ref": "B2_U2_L1" },
+            { "id": "B2-U2-L2", "title": "Sätze: Abstimmung im Team", "type": "sentences", "ref": "B2_U2_L2" }
+          ]
+        },
+        {
+          "id": "B2-U3",
+          "title": "Behörden & Verträge",
+          "lessons": [
+            { "id": "B2-U3-L1", "title": "Vokabeln: Verwaltung", "type": "vocab", "ref": "B2_U3_L1" },
+            { "id": "B2-U3-L2", "title": "Sätze: Antrag und Nachweis", "type": "sentences", "ref": "B2_U3_L2" }
+          ]
+        },
+        {
+          "id": "B2-U4",
+          "title": "Bildung & Weiterbildung",
+          "lessons": [
+            { "id": "B2-U4-L1", "title": "Vokabeln: Lernen", "type": "vocab", "ref": "B2_U4_L1" },
+            { "id": "B2-U4-L2", "title": "Sätze: Kurs und Prüfung", "type": "sentences", "ref": "B2_U4_L2" }
+          ]
+        },
+        {
+          "id": "B2-U5",
+          "title": "Gesellschaft & Medien",
+          "lessons": [
+            { "id": "B2-U5-L1", "title": "Vokabeln: Medien", "type": "vocab", "ref": "B2_U5_L1" },
+            { "id": "B2-U5-L2", "title": "Sätze: Informationen bewerten", "type": "sentences", "ref": "B2_U5_L2" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C1",
+      "title": "C1 – Fortgeschritten",
+      "units": [
+        {
+          "id": "C1-U1",
+          "title": "Präzise Kommunikation",
+          "lessons": [
+            { "id": "C1-U1-L1", "title": "Vokabeln: Nuancen", "type": "vocab", "ref": "C1_U1_L1" },
+            { "id": "C1-U1-L2", "title": "Sätze: Differenziert formulieren", "type": "sentences", "ref": "C1_U1_L2" }
+          ]
+        },
+        {
+          "id": "C1-U2",
+          "title": "Akademisch & Beruflich",
+          "lessons": [
+            { "id": "C1-U2-L1", "title": "Vokabeln: Analyse", "type": "vocab", "ref": "C1_U2_L1" },
+            { "id": "C1-U2-L2", "title": "Sätze: Präsentieren", "type": "sentences", "ref": "C1_U2_L2" }
+          ]
+        },
+        {
+          "id": "C1-U3",
+          "title": "Recht & Behörden",
+          "lessons": [
+            { "id": "C1-U3-L1", "title": "Vokabeln: Verfahren", "type": "vocab", "ref": "C1_U3_L1" },
+            { "id": "C1-U3-L2", "title": "Sätze: Formell schreiben", "type": "sentences", "ref": "C1_U3_L2" }
+          ]
+        },
+        {
+          "id": "C1-U4",
+          "title": "Gesundheit & Gesellschaft",
+          "lessons": [
+            { "id": "C1-U4-L1", "title": "Vokabeln: Versorgung", "type": "vocab", "ref": "C1_U4_L1" },
+            { "id": "C1-U4-L2", "title": "Sätze: Komplexe Themen", "type": "sentences", "ref": "C1_U4_L2" }
+          ]
+        },
+        {
+          "id": "C1-U5",
+          "title": "Kultur & Debatte",
+          "lessons": [
+            { "id": "C1-U5-L1", "title": "Vokabeln: Debatte", "type": "vocab", "ref": "C1_U5_L1" },
+            { "id": "C1-U5-L2", "title": "Sätze: Abwägen und bewerten", "type": "sentences", "ref": "C1_U5_L2" }
+          ]
+        }
+      ]
+    }
   ]
 }

@@ -67,5 +67,102 @@
     { "de": "Gehen Sie geradeaus und dann links.", "ar": "اذهب مستقيمًا ثم يسارًا." },
     { "de": "Welche Haltestelle ist das?", "ar": "ما اسم هذه المحطة؟" },
     { "de": "Ich brauche ein Ticket nach Alexanderplatz.", "ar": "أحتاج تذكرة إلى ألكسندر بلاتس." }
+  ],
+
+  "A2_U6_L2": [
+    { "de": "Ich möchte mich für den Deutschkurs anmelden.", "ar": "أريد التسجيل في دورة اللغة الألمانية." },
+    { "de": "Welche Unterlagen brauche ich?", "ar": "ما المستندات التي أحتاجها؟" },
+    { "de": "Bitte bringen Sie Ihren Ausweis mit.", "ar": "يرجى إحضار هويتك." },
+    { "de": "Kann ich eine Bescheinigung bekommen?", "ar": "هل يمكنني الحصول على شهادة؟" }
+  ],
+
+  "B1_U1_L2": [
+    { "de": "Meiner Meinung nach ist regelmäßiges Lernen sehr wichtig.", "ar": "برأيي، التعلم المنتظم مهم جدًا." },
+    { "de": "Ich habe gute Erfahrungen mit kurzen Lernzeiten gemacht.", "ar": "لدي تجارب جيدة مع أوقات تعلم قصيرة." },
+    { "de": "Wenn ich unsicher bin, frage ich nach einem Ratschlag.", "ar": "عندما أكون غير متأكد، أطلب نصيحة." }
+  ],
+
+  "B1_U2_L2": [
+    { "de": "Ich bereite mich auf das Bewerbungsgespräch vor.", "ar": "أستعد لمقابلة العمل." },
+    { "de": "Der Bericht muss vor der Frist fertig sein.", "ar": "يجب أن يكون التقرير جاهزًا قبل الموعد النهائي." },
+    { "de": "Bei der Arbeit übernehme ich gern Verantwortung.", "ar": "في العمل أحب تحمل المسؤولية." }
+  ],
+
+  "B1_U3_L2": [
+    { "de": "Die Ärztin erklärt mir die Diagnose in einfachen Worten.", "ar": "تشرح لي الطبيبة التشخيص بكلمات بسيطة." },
+    { "de": "Ich brauche eine Verschreibung für das Medikament.", "ar": "أحتاج إلى وصفة طبية للدواء." },
+    { "de": "Nach der Untersuchung soll ich mich zwei Tage ausruhen.", "ar": "بعد الفحص يجب أن أرتاح يومين." }
+  ],
+
+  "B1_U4_L2": [
+    { "de": "Vor dem Einzug lese ich den Mietvertrag genau.", "ar": "قبل الانتقال أقرأ عقد الإيجار بدقة." },
+    { "de": "Die Nebenkosten sind höher als im letzten Jahr.", "ar": "التكاليف الإضافية أعلى من السنة الماضية." },
+    { "de": "Ich informiere den Vermieter über die Reparatur.", "ar": "أخبر صاحب الشقة عن الإصلاح." }
+  ],
+
+  "B1_U5_L2": [
+    { "de": "Wegen der Verspätung frage ich nach einer neuen Verbindung.", "ar": "بسبب التأخير أسأل عن اتصال جديد." },
+    { "de": "Für den Antrag brauche ich eine schriftliche Bestätigung.", "ar": "للطلب الرسمي أحتاج إلى تأكيد كتابي." },
+    { "de": "Die Unterkunft ist einfach, aber sehr sauber.", "ar": "السكن بسيط لكنه نظيف جدًا." }
+  ],
+
+  "B2_U1_L2": [
+    { "de": "Aus meiner Sicht spricht vieles für diese Lösung.", "ar": "من وجهة نظري هناك الكثير مما يؤيد هذا الحل." },
+    { "de": "Ich kann Ihrem Standpunkt teilweise zustimmen.", "ar": "أستطيع أن أوافق جزئيًا على وجهة نظرك." },
+    { "de": "Die Schlussfolgerung ist überzeugend, wenn die Zahlen stimmen.", "ar": "الاستنتاج مقنع إذا كانت الأرقام صحيحة." }
+  ],
+
+  "B2_U2_L2": [
+    { "de": "Wir müssen die Zuständigkeiten vor der Umsetzung klären.", "ar": "يجب أن نوضح المسؤوليات قبل التنفيذ." },
+    { "de": "Die Auswertung zeigt, welche Maßnahmen erfolgreich waren.", "ar": "يُظهر التقييم أي الإجراءات كانت ناجحة." },
+    { "de": "Dieses Thema hat heute Priorität im Team.", "ar": "هذا الموضوع له أولوية اليوم في الفريق." }
+  ],
+
+  "B2_U3_L2": [
+    { "de": "Die Behörde benötigt einen aktuellen Nachweis.", "ar": "تحتاج الدائرة الحكومية إلى إثبات حديث." },
+    { "de": "Ich beantrage eine Fristverlängerung, weil Unterlagen fehlen.", "ar": "أطلب تمديد المهلة لأن المستندات ناقصة." },
+    { "de": "Die Genehmigung wird erst nach der Prüfung erteilt.", "ar": "تُمنح الموافقة الرسمية فقط بعد الفحص." }
+  ],
+
+  "B2_U4_L2": [
+    { "de": "Die Weiterbildung ist eine wichtige Voraussetzung für die Stelle.", "ar": "التدريب المستمر شرط مهم للوظيفة." },
+    { "de": "Nach der Prüfung bekomme ich ein anerkanntes Zertifikat.", "ar": "بعد الامتحان أحصل على شهادة معترف بها." },
+    { "de": "Meine Leistung hat sich durch regelmäßige Teilnahme verbessert.", "ar": "تحسن أدائي من خلال المشاركة المنتظمة." }
+  ],
+
+  "B2_U5_L2": [
+    { "de": "Bevor ich eine Nachricht teile, prüfe ich die Quelle.", "ar": "قبل أن أشارك خبرًا، أتحقق من المصدر." },
+    { "de": "Die Berichterstattung sollte sachlich und ausgewogen sein.", "ar": "ينبغي أن تكون التغطية الإعلامية موضوعية ومتوازنة." },
+    { "de": "Die Auswirkungen dieser Entscheidung betreffen viele Menschen.", "ar": "آثار هذا القرار تمس كثيرًا من الناس." }
+  ],
+
+  "C1_U1_L2": [
+    { "de": "Eine kleine Nuance kann die Aussage deutlich verändern.", "ar": "قد يغير فارق دقيق صغير معنى العبارة بوضوح." },
+    { "de": "In formellen Schreiben achte ich auf präzise Ausdrucksweise.", "ar": "في الرسائل الرسمية أهتم بطريقة تعبير دقيقة." },
+    { "de": "Mehrdeutigkeit lässt sich durch klare Beispiele vermeiden.", "ar": "يمكن تجنب تعدد المعاني من خلال أمثلة واضحة." }
+  ],
+
+  "C1_U2_L2": [
+    { "de": "Die Analyse stützt die These mit mehreren Beispielen.", "ar": "يدعم التحليل الأطروحة بعدة أمثلة." },
+    { "de": "Am Ende der Präsentation fasse ich die Schlussfolgerung zusammen.", "ar": "في نهاية العرض ألخص الخلاصة." },
+    { "de": "Die Fragestellung muss vor der Untersuchung präzisiert werden.", "ar": "يجب تحديد السؤال البحثي بدقة قبل الدراسة." }
+  ],
+
+  "C1_U3_L2": [
+    { "de": "Die Stellungnahme bezieht sich auf die aktuelle Rechtsgrundlage.", "ar": "تستند الإفادة الرسمية إلى الأساس القانوني الحالي." },
+    { "de": "Nach der Einreichung prüft die zuständige Stelle das Verfahren.", "ar": "بعد التقديم تفحص الجهة المختصة الإجراء." },
+    { "de": "Die Fristsetzung muss schriftlich bestätigt werden.", "ar": "يجب تأكيد تحديد المهلة كتابيًا." }
+  ],
+
+  "C1_U4_L2": [
+    { "de": "Eine gute Versorgung hängt nicht nur von finanziellen Mitteln ab.", "ar": "الرعاية الجيدة لا تعتمد فقط على الموارد المالية." },
+    { "de": "Prävention kann die Belastung für Familien deutlich verringern.", "ar": "يمكن للوقاية أن تخفف العبء على العائلات بشكل واضح." },
+    { "de": "Gesellschaftliche Teilhabe ist ein zentraler Bestandteil von Integration.", "ar": "المشاركة المجتمعية جزء أساسي من الاندماج." }
+  ],
+
+  "C1_U5_L2": [
+    { "de": "In der Debatte werden verschiedene Perspektiven gegeneinander abgewogen.", "ar": "في النقاش تتم موازنة منظورات مختلفة مع بعضها." },
+    { "de": "Die Kontroverse zeigt, wie komplex die Verantwortung verteilt ist.", "ar": "يظهر الجدل مدى تعقيد توزيع المسؤولية." },
+    { "de": "Eine klare Haltung schließt differenziertes Denken nicht aus.", "ar": "الموقف الواضح لا يستبعد التفكير المتمايز." }
   ]
 }

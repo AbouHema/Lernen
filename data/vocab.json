@@ -85,5 +85,149 @@
     { "de": "links", "ar": "يسار", "example": "Dann links.", "tags": ["direction"] },
     { "de": "rechts", "ar": "يمين", "example": "Dann rechts.", "tags": ["direction"] },
     { "de": "das Ticket", "ar": "تذكرة", "example": "Ich brauche ein Ticket.", "tags": ["transport"] }
+  ],
+
+  "A2_U6_L1": [
+    { "de": "das Formular", "ar": "الاستمارة", "example": "Bitte füllen Sie das Formular aus.", "tags": ["office"] },
+    { "de": "die Anmeldung", "ar": "التسجيل", "example": "Die Anmeldung ist heute möglich.", "tags": ["office"] },
+    { "de": "der Ausweis", "ar": "الهوية", "example": "Bringen Sie bitte Ihren Ausweis mit.", "tags": ["office"] },
+    { "de": "der Kurs", "ar": "الدورة", "example": "Der Kurs beginnt am Montag.", "tags": ["school"] },
+    { "de": "die Bescheinigung", "ar": "الشهادة", "example": "Ich brauche eine Bescheinigung.", "tags": ["office"] },
+    { "de": "der Raum", "ar": "الغرفة", "example": "Der Kurs ist in Raum 3.", "tags": ["school"] }
+  ],
+
+  "B1_U1_L1": [
+    { "de": "die Erfahrung", "ar": "التجربة", "example": "Diese Erfahrung hilft mir im Alltag.", "tags": ["alltag"] },
+    { "de": "die Entscheidung", "ar": "القرار", "example": "Ich treffe heute eine wichtige Entscheidung.", "tags": ["alltag"] },
+    { "de": "die Gewohnheit", "ar": "العادة", "example": "Eine gute Gewohnheit spart Zeit.", "tags": ["alltag"] },
+    { "de": "die Meinung", "ar": "الرأي", "example": "Ich sage meine Meinung ruhig.", "tags": ["kommunikation"] },
+    { "de": "das Ziel", "ar": "الهدف", "example": "Mein Ziel ist klar.", "tags": ["alltag"] },
+    { "de": "der Ratschlag", "ar": "النصيحة", "example": "Danke für den Ratschlag.", "tags": ["kommunikation"] }
+  ],
+
+  "B1_U2_L1": [
+    { "de": "die Bewerbung", "ar": "طلب التقديم", "example": "Ich schreibe eine Bewerbung.", "tags": ["arbeit"] },
+    { "de": "das Bewerbungsgespräch", "ar": "مقابلة العمل", "example": "Das Bewerbungsgespräch war gut.", "tags": ["arbeit"] },
+    { "de": "die Verantwortung", "ar": "المسؤولية", "example": "Ich trage viel Verantwortung.", "tags": ["arbeit"] },
+    { "de": "die Aufgabe", "ar": "المهمة", "example": "Die Aufgabe ist dringend.", "tags": ["arbeit"] },
+    { "de": "die Frist", "ar": "الموعد النهائي", "example": "Die Frist endet am Freitag.", "tags": ["arbeit"] },
+    { "de": "der Bericht", "ar": "التقرير", "example": "Der Bericht ist fertig.", "tags": ["arbeit"] }
+  ],
+
+  "B1_U3_L1": [
+    { "de": "die Diagnose", "ar": "التشخيص", "example": "Die Diagnose kommt morgen.", "tags": ["arzt"] },
+    { "de": "das Symptom", "ar": "العرض المرضي", "example": "Das Symptom ist neu.", "tags": ["arzt"] },
+    { "de": "die Untersuchung", "ar": "الفحص", "example": "Die Untersuchung dauert zehn Minuten.", "tags": ["arzt"] },
+    { "de": "die Verschreibung", "ar": "الوصفة الطبية", "example": "Ich brauche eine Verschreibung.", "tags": ["arzt"] },
+    { "de": "die Krankenversicherung", "ar": "التأمين الصحي", "example": "Die Krankenversicherung bezahlt den Termin.", "tags": ["arzt"] },
+    { "de": "die Genesung", "ar": "الشفاء", "example": "Die Genesung braucht Zeit.", "tags": ["arzt"] }
+  ],
+
+  "B1_U4_L1": [
+    { "de": "der Mietvertrag", "ar": "عقد الإيجار", "example": "Ich unterschreibe den Mietvertrag.", "tags": ["wohnung"] },
+    { "de": "die Kaution", "ar": "التأمين", "example": "Die Kaution ist hoch.", "tags": ["wohnung"] },
+    { "de": "die Nebenkosten", "ar": "التكاليف الإضافية", "example": "Die Nebenkosten sind gestiegen.", "tags": ["wohnung"] },
+    { "de": "die Reparatur", "ar": "الإصلاح", "example": "Die Reparatur dauert zwei Tage.", "tags": ["wohnung"] },
+    { "de": "die Nachbarschaft", "ar": "الحي", "example": "Die Nachbarschaft ist ruhig.", "tags": ["wohnung"] },
+    { "de": "die Wohnfläche", "ar": "مساحة السكن", "example": "Die Wohnfläche beträgt 70 Quadratmeter.", "tags": ["wohnung"] }
+  ],
+
+  "B1_U5_L1": [
+    { "de": "die Reise", "ar": "الرحلة", "example": "Die Reise war gut geplant.", "tags": ["reisen"] },
+    { "de": "die Unterkunft", "ar": "السكن المؤقت", "example": "Die Unterkunft liegt zentral.", "tags": ["reisen"] },
+    { "de": "die Auskunft", "ar": "المعلومة", "example": "Ich brauche eine Auskunft.", "tags": ["office"] },
+    { "de": "der Antrag", "ar": "الطلب الرسمي", "example": "Der Antrag ist vollständig.", "tags": ["office"] },
+    { "de": "die Bestätigung", "ar": "التأكيد", "example": "Ich habe eine Bestätigung bekommen.", "tags": ["office"] },
+    { "de": "die Verspätung", "ar": "التأخير", "example": "Der Zug hat Verspätung.", "tags": ["reisen"] }
+  ],
+
+  "B2_U1_L1": [
+    { "de": "das Argument", "ar": "الحجة", "example": "Das Argument überzeugt mich.", "tags": ["diskussion"] },
+    { "de": "die Begründung", "ar": "التبرير", "example": "Die Begründung ist nachvollziehbar.", "tags": ["diskussion"] },
+    { "de": "der Standpunkt", "ar": "وجهة النظر", "example": "Ich erkläre meinen Standpunkt.", "tags": ["diskussion"] },
+    { "de": "der Widerspruch", "ar": "الاعتراض", "example": "Der Widerspruch ist berechtigt.", "tags": ["diskussion"] },
+    { "de": "die Zustimmung", "ar": "الموافقة", "example": "Die Zustimmung war eindeutig.", "tags": ["diskussion"] },
+    { "de": "die Schlussfolgerung", "ar": "الاستنتاج", "example": "Die Schlussfolgerung passt zu den Fakten.", "tags": ["diskussion"] }
+  ],
+
+  "B2_U2_L1": [
+    { "de": "das Projekt", "ar": "المشروع", "example": "Das Projekt startet nächste Woche.", "tags": ["arbeit"] },
+    { "de": "die Abstimmung", "ar": "التنسيق", "example": "Wir brauchen eine Abstimmung im Team.", "tags": ["arbeit"] },
+    { "de": "die Priorität", "ar": "الأولوية", "example": "Diese Aufgabe hat Priorität.", "tags": ["arbeit"] },
+    { "de": "die Zuständigkeit", "ar": "المسؤولية المحددة", "example": "Die Zuständigkeit ist klar verteilt.", "tags": ["arbeit"] },
+    { "de": "die Auswertung", "ar": "التقييم", "example": "Die Auswertung dauert noch.", "tags": ["arbeit"] },
+    { "de": "die Umsetzung", "ar": "التنفيذ", "example": "Die Umsetzung beginnt morgen.", "tags": ["arbeit"] }
+  ],
+
+  "B2_U3_L1": [
+    { "de": "die Behörde", "ar": "الدائرة الحكومية", "example": "Die Behörde prüft den Antrag.", "tags": ["office"] },
+    { "de": "der Nachweis", "ar": "الإثبات", "example": "Bitte senden Sie den Nachweis.", "tags": ["office"] },
+    { "de": "die Fristverlängerung", "ar": "تمديد المهلة", "example": "Ich beantrage eine Fristverlängerung.", "tags": ["office"] },
+    { "de": "die Voraussetzung", "ar": "الشرط", "example": "Die Voraussetzung ist erfüllt.", "tags": ["office"] },
+    { "de": "die Genehmigung", "ar": "الموافقة الرسمية", "example": "Die Genehmigung liegt vor.", "tags": ["office"] },
+    { "de": "die Unterlage", "ar": "المستند", "example": "Alle Unterlagen sind vollständig.", "tags": ["office"] }
+  ],
+
+  "B2_U4_L1": [
+    { "de": "die Weiterbildung", "ar": "التدريب المستمر", "example": "Die Weiterbildung verbessert meine Chancen.", "tags": ["schule"] },
+    { "de": "die Voraussetzung", "ar": "الشرط المسبق", "example": "Deutsch B1 ist eine Voraussetzung.", "tags": ["schule"] },
+    { "de": "die Prüfung", "ar": "الامتحان", "example": "Die Prüfung findet im Juni statt.", "tags": ["schule"] },
+    { "de": "die Leistung", "ar": "الأداء", "example": "Die Leistung hat sich verbessert.", "tags": ["schule"] },
+    { "de": "die Teilnahme", "ar": "المشاركة", "example": "Die Teilnahme ist verpflichtend.", "tags": ["schule"] },
+    { "de": "das Zertifikat", "ar": "الشهادة", "example": "Das Zertifikat ist anerkannt.", "tags": ["schule"] }
+  ],
+
+  "B2_U5_L1": [
+    { "de": "die Quelle", "ar": "المصدر", "example": "Die Quelle ist zuverlässig.", "tags": ["medien"] },
+    { "de": "die Nachricht", "ar": "الخبر", "example": "Die Nachricht wurde bestätigt.", "tags": ["medien"] },
+    { "de": "die Berichterstattung", "ar": "التغطية الإعلامية", "example": "Die Berichterstattung ist ausgewogen.", "tags": ["medien"] },
+    { "de": "die Öffentlichkeit", "ar": "الرأي العام", "example": "Die Öffentlichkeit reagiert aufmerksam.", "tags": ["medien"] },
+    { "de": "die Einschätzung", "ar": "التقدير", "example": "Meine Einschätzung ist vorsichtig.", "tags": ["medien"] },
+    { "de": "die Auswirkung", "ar": "الأثر", "example": "Die Auswirkung ist deutlich.", "tags": ["gesellschaft"] }
+  ],
+
+  "C1_U1_L1": [
+    { "de": "die Nuance", "ar": "الفارق الدقيق", "example": "Die Nuance verändert die Bedeutung.", "tags": ["sprache"] },
+    { "de": "die Ausdrucksweise", "ar": "طريقة التعبير", "example": "Seine Ausdrucksweise ist präzise.", "tags": ["sprache"] },
+    { "de": "die Mehrdeutigkeit", "ar": "تعدد المعاني", "example": "Die Mehrdeutigkeit führt zu Missverständnissen.", "tags": ["sprache"] },
+    { "de": "die Redewendung", "ar": "التعبير الاصطلاحي", "example": "Diese Redewendung klingt natürlich.", "tags": ["sprache"] },
+    { "de": "die Differenzierung", "ar": "التمييز الدقيق", "example": "Die Differenzierung ist wichtig.", "tags": ["sprache"] },
+    { "de": "die Präzision", "ar": "الدقة", "example": "Präzision ist in formellen Texten wichtig.", "tags": ["sprache"] }
+  ],
+
+  "C1_U2_L1": [
+    { "de": "die Analyse", "ar": "التحليل", "example": "Die Analyse zeigt klare Muster.", "tags": ["bildung"] },
+    { "de": "die These", "ar": "الأطروحة", "example": "Die These muss belegt werden.", "tags": ["bildung"] },
+    { "de": "die Herleitung", "ar": "الاستنتاج المنهجي", "example": "Die Herleitung ist logisch.", "tags": ["bildung"] },
+    { "de": "die Schlussfolgerung", "ar": "الخلاصة", "example": "Die Schlussfolgerung folgt aus den Daten.", "tags": ["bildung"] },
+    { "de": "die Präsentation", "ar": "العرض التقديمي", "example": "Die Präsentation war überzeugend.", "tags": ["arbeit"] },
+    { "de": "die Fragestellung", "ar": "السؤال البحثي", "example": "Die Fragestellung ist präzise formuliert.", "tags": ["bildung"] }
+  ],
+
+  "C1_U3_L1": [
+    { "de": "das Verfahren", "ar": "الإجراء", "example": "Das Verfahren dauert mehrere Wochen.", "tags": ["office"] },
+    { "de": "die Zuständigkeit", "ar": "الاختصاص", "example": "Die Zuständigkeit liegt beim Amt.", "tags": ["office"] },
+    { "de": "die Rechtsgrundlage", "ar": "الأساس القانوني", "example": "Die Rechtsgrundlage ist eindeutig.", "tags": ["office"] },
+    { "de": "die Stellungnahme", "ar": "إفادة رسمية", "example": "Wir senden eine Stellungnahme.", "tags": ["office"] },
+    { "de": "die Fristsetzung", "ar": "تحديد المهلة", "example": "Die Fristsetzung erfolgte schriftlich.", "tags": ["office"] },
+    { "de": "die Einreichung", "ar": "التقديم", "example": "Die Einreichung ist online möglich.", "tags": ["office"] }
+  ],
+
+  "C1_U4_L1": [
+    { "de": "die Versorgung", "ar": "الرعاية/التزويد", "example": "Die medizinische Versorgung ist gut.", "tags": ["gesundheit"] },
+    { "de": "die Prävention", "ar": "الوقاية", "example": "Prävention spart langfristig Kosten.", "tags": ["gesundheit"] },
+    { "de": "die Belastung", "ar": "العبء", "example": "Die Belastung im Alltag ist hoch.", "tags": ["gesundheit"] },
+    { "de": "die Maßnahme", "ar": "الإجراء", "example": "Die Maßnahme wurde beschlossen.", "tags": ["gesellschaft"] },
+    { "de": "die Ausgrenzung", "ar": "الإقصاء", "example": "Ausgrenzung muss verhindert werden.", "tags": ["gesellschaft"] },
+    { "de": "die Teilhabe", "ar": "المشاركة المجتمعية", "example": "Teilhabe ist ein wichtiges Ziel.", "tags": ["gesellschaft"] }
+  ],
+
+  "C1_U5_L1": [
+    { "de": "die Debatte", "ar": "النقاش العام", "example": "Die Debatte ist sehr lebhaft.", "tags": ["gesellschaft"] },
+    { "de": "die Kontroverse", "ar": "الجدل", "example": "Die Kontroverse dauert an.", "tags": ["gesellschaft"] },
+    { "de": "die Abwägung", "ar": "الموازنة", "example": "Die Abwägung verschiedener Interessen ist schwierig.", "tags": ["gesellschaft"] },
+    { "de": "die Perspektive", "ar": "المنظور", "example": "Diese Perspektive wird oft übersehen.", "tags": ["gesellschaft"] },
+    { "de": "die Verantwortung", "ar": "المسؤولية", "example": "Die Verantwortung liegt bei allen Beteiligten.", "tags": ["gesellschaft"] },
+    { "de": "die Haltung", "ar": "الموقف", "example": "Ihre Haltung ist klar erkennbar.", "tags": ["gesellschaft"] }
   ]
 }
