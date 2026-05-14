@@ -386,11 +386,7 @@ card.querySelector('[data-fav]')?.addEventListener("click", e => {
 });
 
 card.querySelector('[data-speak]')?.addEventListener("click", e => {
-  const text = e.currentTarget.dataset.speak || "";
-  speakDe(text);
-});
-
-card.querySelector('[data-speak]')?.addEventListener("click", e => {
+  console.log("[TTS] Button geklickt");
   const text = e.currentTarget.dataset.speak || "";
   speakDe(text);
 });
@@ -789,11 +785,9 @@ function escapeHtml(str) {
 function speakDe(text) {
   if (!("speechSynthesis" in window)) return;
 
-  const u = new SpeechSynthesisUtterance(text);
+  const u = new SpeechSynthesisUtterance(text || "Hallo");
   u.lang = "de-DE";
-  u.rate = 0.95;
 
-  window.speechSynthesis.cancel();
   window.speechSynthesis.speak(u);
 }
 

@@ -58,7 +58,9 @@ const vocabulary = [
   { id: "v57", arabic: "سلم", german: "Treppenhaus", article: "das", plural: "Treppenhäuser", example_de: "Das Treppenhaus wird gereinigt.", example_ar: "يتم تنظيف الدرج.", level: "B1", category: "Wohnung" },
   { id: "v58", arabic: "عداد", german: "Zähler", article: "der", plural: "Zähler", example_de: "Der Zählerstand wird abgelesen.", example_ar: "يتم قراءة العداد.", level: "B1", category: "Wohnung" },
   { id: "v59", arabic: "خدمات إضافية", german: "Nebenkosten", article: "die", plural: "Nebenkosten", example_de: "Die Nebenkosten sind gestiegen.", example_ar: "زادت التكاليف الإضافية.", level: "B1", category: "Wohnung" },
-  { id: "v60", arabic: "إصلاح", german: "Reparatur", article: "die", plural: "Reparaturen", example_de: "Die Reparatur dauert zwei Tage.", example_ar: "الإصلاح يستغرق يومين.", level: "B1", category: "Wohnung" }
+  { id: "v60", arabic: "إصلاح", german: "Reparatur", article: "die", plural: "Reparaturen", example_de: "Die Reparatur dauert zwei Tage.", example_ar: "الإصلاح يستغرق يومين.", level: "B1", category: "Wohnung" },
+  { id: "a2v1", arabic: "رحلة", german: "Reise", article: "die", plural: "Reisen", example_de: "Ich mache eine Reise nach Berlin.", example_ar: "أقوم برحلة إلى برلين.", level: "A2", category: "Reisen"},
+  { id: "a2v2", arabic: "مطار", german: "Flughafen", article: "der", plural: "Flughäfen", example_de: "Der Flughafen ist groß.", example_ar: "المطار كبير.", level: "A2", category: "Reisen"}
 ];
 
 const sentences = [

@@ -474,4 +474,52 @@ input[type="search"] {
   .row-title {
     align-items: start;
   }
+
+  /* Verbesserungen */
+.surface-card,
+.kpi-card,
+.hero-panel {
+  backdrop-filter: blur(18px);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.nav a {
+  position: relative;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, var(--primary), var(--primary-2));
+  transition: width 0.25s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.surface-card {
+  min-height: 170px;
+}
+
+input[type="search"]:focus {
+  border-color: var(--primary-2);
+  box-shadow: 0 0 0 4px rgba(56, 212, 255, 0.14);
+}
+
+.card-actions button:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
 }
