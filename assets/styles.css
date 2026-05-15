@@ -484,6 +484,15 @@ button, input, select { font: inherit; color: inherit; }
 .h1 { font-size: 20px; letter-spacing: .1px; }
 .sub { margin-top: 6px; opacity: .9; }
 
+.contentTitleAr {
+  display: block;
+  margin-top: 3px;
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
 .card { border-radius: 20px; }
 .card-body { padding: 18px; min-height: 160px; }
 
@@ -755,4 +764,211 @@ button, input, select { font: inherit; color: inherit; }
   color: rgba(255,255,255,.85);
   font-size: 13px;
   opacity: .95;
+}
+
+/* ===== Bilingual lesson titles ===== */
+.titleDe,
+.titleAr {
+  display: block;
+}
+
+.titleDe {
+  min-width: 0;
+}
+
+.titleAr {
+  margin-top: 3px;
+  color: rgba(255,255,255,.68);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.overviewList {
+  display: grid;
+  gap: 9px;
+  margin-top: 10px;
+}
+
+#contentBody .overviewItem {
+  width: 100%;
+  display: block;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 14px;
+}
+
+.overviewTitleText .titleDe {
+  font-weight: 750;
+  color: rgba(255,255,255,.95);
+}
+
+.overviewTitleText .titleAr {
+  font-size: 13px;
+  color: rgba(255,255,255,.72);
+}
+
+.overviewMeta {
+  display: grid;
+  gap: 2px;
+  margin-top: 6px;
+  color: rgba(255,255,255,.62);
+  font-size: 12px;
+}
+
+.overviewMetaAr {
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+/* ===== Compact collapsible sidebar ===== */
+#tree {
+  gap: 6px;
+  padding: 4px;
+}
+
+.treeLevel {
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+#tree .treeLevelBtn {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 13px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.treeLevelChevron {
+  width: 16px;
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+  text-align: center;
+}
+
+.treeLevelTitle .titleDe {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.treeLevelTitle .titleAr {
+  font-size: 11px;
+  color: rgba(255,255,255,.60);
+}
+
+.treeLevelCount,
+.treeLessonCount {
+  min-width: 24px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.66);
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.treeUnits {
+  gap: 5px;
+  padding-left: 10px;
+}
+
+.treeUnit {
+  gap: 4px;
+}
+
+.treeUnitTitle {
+  margin: 6px 4px 1px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.treeUnitTitleText .titleDe {
+  color: rgba(255,255,255,.70);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .05em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.treeUnitTitleText .titleAr {
+  color: rgba(255,255,255,.50);
+  font-size: 10px;
+}
+
+.treeLessons {
+  gap: 5px;
+}
+
+#tree .treeLessonBtn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 7px;
+  min-height: 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  box-shadow: 0 6px 14px rgba(0,0,0,.14);
+}
+
+.treeLessonTitle {
+  min-width: 0;
+  flex: 1;
+}
+
+.treeLessonTitle .titleDe {
+  color: rgba(255,255,255,.88);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.treeLessonTitle .titleAr {
+  color: rgba(255,255,255,.56);
+  font-size: 11px;
+}
+
+.doneMark {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: rgba(49,208,170,.16);
+  color: rgba(49,208,170,.95);
+  font-size: 11px;
+}
+
+@media (max-width: 680px) {
+  .brand-title {
+    display: flex;
+  }
+
+  .sidebar .search {
+    display: flex;
+  }
+
+  #tree {
+    max-height: 52vh;
+  }
+
+  #tree .treeLevelBtn,
+  #tree .treeLessonBtn {
+    padding: 9px 10px;
+  }
 }

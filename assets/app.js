@@ -37,6 +37,98 @@ const CONTENT_LEVEL_STORAGE_KEYS = {
   vocab: "vocabLevel",
   sentences: "sentenceLevel"
 };
+const TITLE_AR = {
+  "A1 – Einstieg": "A1 – البداية",
+  "A2 – Alltag": "A2 – الحياة اليومية",
+  "B1 – Kommunikation": "B1 – التواصل",
+  "B2 – Beruf & Argumentation": "B2 – العمل والحجاج",
+  "C1 – Fortgeschritten": "C1 – متقدم",
+  "Begrüßung & Vorstellen": "التحية والتعارف",
+  "Einkaufen": "التسوق",
+  "Einkaufen (Supermarkt & Bäckerei)": "التسوق (السوبرماركت والمخبز)",
+  "Arzt & Körper": "الطبيب والجسم",
+  "Wohnung & Möbel": "السكن والأثاث",
+  "Zeit & Termine": "الوقت والمواعيد",
+  "Einkaufen (Kleidung & Reklamation)": "التسوق (الملابس والشكوى)",
+  "Arzt (Termin, Rezept, Krankmeldung)": "الطبيب (موعد، وصفة، إجازة مرضية)",
+  "Arbeit & Büro": "العمل والمكتب",
+  "Restaurant & Bestellung": "المطعم والطلب",
+  "Reisen & Verkehr": "السفر والمواصلات",
+  "Behörden & Schule": "الدوائر الرسمية والمدرسة",
+  "Alltag & Meinungen": "الحياة اليومية والآراء",
+  "Arbeit & Bewerbung": "العمل والتقديم",
+  "Gesundheit & Termine": "الصحة والمواعيد",
+  "Wohnung & Vertrag": "السكن والعقد",
+  "Reisen & Behörden": "السفر والدوائر الرسمية",
+  "Diskussion & Argumente": "النقاش والحجج",
+  "Beruf & Projektarbeit": "العمل وإدارة المشاريع",
+  "Behörden & Verträge": "الدوائر الرسمية والعقود",
+  "Bildung & Weiterbildung": "التعليم والتدريب المستمر",
+  "Gesellschaft & Medien": "المجتمع والإعلام",
+  "Präzise Kommunikation": "التواصل الدقيق",
+  "Akademisch & Beruflich": "أكاديمي ومهني",
+  "Recht & Behörden": "القانون والدوائر الرسمية",
+  "Gesundheit & Gesellschaft": "الصحة والمجتمع",
+  "Kultur & Debatte": "الثقافة والمناظرة",
+  "Hallo & Tschüss": "مرحبًا ووداعًا",
+  "Ich heiße…": "اسمي…",
+  "Mini-Quiz: Vorstellen": "اختبار قصير: التعارف",
+  "Vokabeln: Lebensmittel": "مفردات: الطعام",
+  "Sätze: Ich hätte gern…": "جمل: أريد من فضلك…",
+  "Mini-Quiz: Preise & Menge": "اختبار قصير: الأسعار والكمية",
+  "Vokabeln: Körper & Symptome": "مفردات: الجسم والأعراض",
+  "Sätze: Beim Arzt": "جمل: عند الطبيب",
+  "Mini-Quiz: Beschwerden": "اختبار قصير: الشكاوى الصحية",
+  "Vokabeln: Wohnung": "مفردات: السكن",
+  "Sätze: Zu Hause": "جمل: في البيت",
+  "Vokabeln: Zeit": "مفردات: الوقت",
+  "Sätze: Verabredungen": "جمل: المواعيد",
+  "Vokabeln: Kleidung & Größen": "مفردات: الملابس والمقاسات",
+  "Sätze: Umtausch & Reklamation": "جمل: الاستبدال والشكوى",
+  "Mini-Quiz: Größen & Farben": "اختبار قصير: المقاسات والألوان",
+  "Vokabeln: Praxis & Dokumente": "مفردات: العيادة والوثائق",
+  "Sätze: Termin vereinbaren": "جمل: تحديد موعد",
+  "Mini-Quiz: Arztbesuch": "اختبار قصير: زيارة الطبيب",
+  "Vokabeln: Arbeit": "مفردات: العمل",
+  "Sätze: Im Büro": "جمل: في المكتب",
+  "Vokabeln: Restaurant": "مفردات: المطعم",
+  "Sätze: Bestellen und bezahlen": "جمل: الطلب والدفع",
+  "Vokabeln: Verkehr": "مفردات: المواصلات",
+  "Sätze: Nach dem Weg fragen": "جمل: السؤال عن الطريق",
+  "Vokabeln: Formulare & Kurs": "مفردات: الاستمارات والدورة",
+  "Sätze: Anmeldung und Kurs": "جمل: التسجيل والدورة",
+  "Vokabeln: Alltag": "مفردات: الحياة اليومية",
+  "Sätze: Meinung sagen": "جمل: التعبير عن الرأي",
+  "Vokabeln: Beruf": "مفردات: المهنة",
+  "Sätze: Im Job": "جمل: في العمل",
+  "Vokabeln: Gesundheit": "مفردات: الصحة",
+  "Vokabeln: Wohnen": "مفردات: السكن",
+  "Sätze: Miete und Reparatur": "جمل: الإيجار والتصليح",
+  "Vokabeln: Reisen und Amt": "مفردات: السفر والدائرة الرسمية",
+  "Sätze: Auskunft geben": "جمل: تقديم المعلومات",
+  "Vokabeln: Argumentieren": "مفردات: تقديم الحجج",
+  "Sätze: Stellung nehmen": "جمل: إبداء موقف",
+  "Vokabeln: Projekt": "مفردات: المشروع",
+  "Sätze: Abstimmung im Team": "جمل: التنسيق في الفريق",
+  "Vokabeln: Verwaltung": "مفردات: الإدارة",
+  "Sätze: Antrag und Nachweis": "جمل: الطلب والإثبات",
+  "Vokabeln: Lernen": "مفردات: التعلم",
+  "Sätze: Kurs und Prüfung": "جمل: الدورة والامتحان",
+  "Vokabeln: Medien": "مفردات: الإعلام",
+  "Sätze: Informationen bewerten": "جمل: تقييم المعلومات",
+  "Vokabeln: Nuancen": "مفردات: الفروق الدقيقة",
+  "Sätze: Differenziert formulieren": "جمل: الصياغة الدقيقة",
+  "Vokabeln: Analyse": "مفردات: التحليل",
+  "Sätze: Präsentieren": "جمل: العرض",
+  "Vokabeln: Verfahren": "مفردات: الإجراءات",
+  "Sätze: Formell schreiben": "جمل: الكتابة الرسمية",
+  "Vokabeln: Versorgung": "مفردات: الرعاية",
+  "Sätze: Komplexe Themen": "جمل: مواضيع معقدة",
+  "Vokabeln: Debatte": "مفردات: المناظرة",
+  "Sätze: Abwägen und bewerten": "جمل: الموازنة والتقييم",
+  "Level-Quiz": "اختبار المستوى",
+  "Quiz": "اختبار"
+};
 
 /* =========================
    State
@@ -52,6 +144,7 @@ const state = {
   vocabLevel: loadContentLevel("vocab"),
   sentenceLevel: loadContentLevel("sentences"),
   quizLevel: loadQuizLevel(),
+  treeOpen: {},
   progress: loadProgress()
 };
 
@@ -105,6 +198,7 @@ function wireNav() {
     btn.addEventListener("click", event => {
       event.preventDefault();
       state.view = btn.dataset.view;
+      state.treeOpen = {};
 
       // Only when user clicks "Lernen" -> go back to start page
       if (state.view === "learn") {
@@ -194,6 +288,8 @@ function renderTree(filter = "") {
 
   root.innerHTML = "";
   const levelFilter = getTreeLevelFilter();
+  const hasSearch = !!filter;
+  const activeLevelId = getActiveTreeLevelId();
 
   state.curriculum.levels.forEach(level => {
     if (!levelMatches(levelFilter, level.id)) return;
@@ -201,19 +297,9 @@ function renderTree(filter = "") {
     const levelEl = document.createElement("div");
     levelEl.className = "treeLevel";
 
-    const levelBtn = document.createElement("button");
-    levelBtn.className = "treeLevelBtn";
-    levelBtn.textContent = level.title;
-    levelEl.appendChild(levelBtn);
-
     const unitsEl = document.createElement("div");
     unitsEl.className = "treeUnits";
-    unitsEl.style.display = "block";
-
-    // Level collapse/expand
-    levelBtn.addEventListener("click", () => {
-      unitsEl.style.display = unitsEl.style.display === "none" ? "block" : "none";
-    });
+    let visibleCount = 0;
 
     (level.units || []).forEach(unit => {
       const unitWrap = document.createElement("div");
@@ -221,14 +307,14 @@ function renderTree(filter = "") {
 
       const unitTitle = document.createElement("div");
       unitTitle.className = "treeUnitTitle";
-      unitTitle.textContent = unit.title;
+      unitTitle.innerHTML = renderTitleStack(unit.title, "treeUnitTitleText");
       unitWrap.appendChild(unitTitle);
 
       const lessonsEl = document.createElement("div");
       lessonsEl.className = "treeLessons";
 
       (unit.lessons || []).forEach(lesson => {
-        const searchable = getLessonSearchText(lesson).toLowerCase();
+        const searchable = getLessonSearchText(lesson, unit.title).toLowerCase();
         if (!lessonMatchesCurrentView(lesson)) return;
         if (filter && !searchable.includes(filter)) return;
 
@@ -236,13 +322,17 @@ function renderTree(filter = "") {
         btn.className = "treeLessonBtn";
 
         const done = !!state.progress.done[lesson.id];
-        btn.textContent = `${done ? "✅ " : ""}${lesson.title}`;
+        btn.innerHTML = `
+          ${done ? `<span class="doneMark" aria-hidden="true">✓</span>` : ""}
+          ${renderTitleStack(lesson.title, "treeLessonTitle")}
+        `;
 
         // Mark active
         if (state.activeLesson?.lesson?.id === lesson.id) btn.classList.add("active");
 
         btn.addEventListener("click", () => openLesson(lesson, level.id, unit.id));
         lessonsEl.appendChild(btn);
+        visibleCount += 1;
       });
 
       if (lessonsEl.children.length) {
@@ -260,7 +350,7 @@ function renderTree(filter = "") {
 
       const quizTitle = document.createElement("div");
       quizTitle.className = "treeUnitTitle";
-      quizTitle.textContent = "Quiz";
+      quizTitle.innerHTML = renderTitleStack("Quiz", "treeUnitTitleText");
       quizWrap.appendChild(quizTitle);
 
       const quizLessons = document.createElement("div");
@@ -268,24 +358,48 @@ function renderTree(filter = "") {
 
       const quizBtn = document.createElement("button");
       quizBtn.className = "treeLessonBtn";
-      quizBtn.textContent = `Level-Quiz (${levelQuizQuestions.length})`;
+      quizBtn.innerHTML = `
+        ${renderTitleStack("Level-Quiz", "treeLessonTitle")}
+        <span class="treeLessonCount">${levelQuizQuestions.length}</span>
+      `;
       if (state.activeLesson?.lesson?.id === quizLesson.id) quizBtn.classList.add("active");
       quizBtn.addEventListener("click", () => openLevelQuiz(level.id));
 
       quizLessons.appendChild(quizBtn);
       quizWrap.appendChild(quizLessons);
       unitsEl.appendChild(quizWrap);
+      visibleCount += 1;
     }
 
     if (!unitsEl.children.length) return;
 
+    const open = isTreeLevelOpen(level.id, hasSearch, activeLevelId);
+    unitsEl.style.display = open ? "grid" : "none";
+
+    const levelBtn = document.createElement("button");
+    levelBtn.className = "treeLevelBtn";
+    levelBtn.type = "button";
+    levelBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    levelBtn.innerHTML = `
+      <span class="treeLevelChevron" aria-hidden="true">${open ? "▾" : "▸"}</span>
+      ${renderTitleStack(level.title, "treeLevelTitle")}
+      <span class="treeLevelCount">${visibleCount}</span>
+    `;
+    levelBtn.addEventListener("click", () => {
+      const nextOpen = unitsEl.style.display === "none";
+      state.treeOpen = {};
+      state.treeOpen[level.id] = nextOpen;
+      renderTree(getSearchFilter());
+    });
+
+    levelEl.appendChild(levelBtn);
     levelEl.appendChild(unitsEl);
     root.appendChild(levelEl);
   });
 }
 
-function getLessonSearchText(lesson) {
-  let text = lesson.title;
+function getLessonSearchText(lesson, unitTitle = "") {
+  let text = `${lesson.title} ${getArabicTitle(lesson.title)} ${unitTitle} ${getArabicTitle(unitTitle)}`;
 
   if (lesson.type === "vocab") {
     const arr = state.vocab?.[lesson.ref] || [];
@@ -318,7 +432,13 @@ function openLesson(lesson, levelId, unitId) {
   const meta = document.getElementById("contentMeta");
 
   if (title) title.textContent = `${levelId} · ${lesson.title}`;
-  if (meta) meta.textContent = `Typ: ${lesson.type.toUpperCase()} · ID: ${lesson.id}`;
+  if (meta) {
+    const titleAr = getArabicTitle(lesson.title);
+    meta.innerHTML = `
+      <span>Typ: ${escapeHtml(lesson.type.toUpperCase())} · ID: ${escapeHtml(lesson.id)}</span>
+      ${titleAr ? `<span class="contentTitleAr" dir="rtl">${escapeHtml(titleAr)}</span>` : ""}
+    `;
+  }
 
   if (lesson.type === "vocab") renderVocabLesson(lesson);
   else if (lesson.type === "sentences") renderSentenceLesson(lesson);
@@ -372,7 +492,7 @@ function getFilteredLessons(type, level, filter = getSearchFilter()) {
   return items.filter(item => {
     if (!levelMatches(level, item.levelId)) return false;
     if (!normalizedFilter) return true;
-    return getLessonSearchText(item.lesson).toLowerCase().includes(normalizedFilter);
+    return getLessonSearchText(item.lesson, item.unitTitle).toLowerCase().includes(normalizedFilter);
   });
 }
 
@@ -468,6 +588,7 @@ function wireLevelTabs() {
       const kind = btn.dataset.levelKind;
       setContentLevel(kind, btn.dataset.levelValue);
       state.activeLesson = null;
+      state.treeOpen = {};
       saveUI();
       rerender();
     });
@@ -481,6 +602,39 @@ function renderEmptyState(title, text) {
       <p>${escapeHtml(text)}</p>
     </div>
   `;
+}
+
+function getArabicTitle(title) {
+  return TITLE_AR[title] || "";
+}
+
+function renderTitleStack(title, className = "titleStack") {
+  const titleAr = getArabicTitle(title);
+  return `
+    <span class="${escapeHtml(className)}">
+      <span class="titleDe">${escapeHtml(title)}</span>
+      ${titleAr ? `<span class="titleAr" dir="rtl">${escapeHtml(titleAr)}</span>` : ""}
+    </span>
+  `;
+}
+
+function getActiveTreeLevelId() {
+  if (state.activeLesson?.levelId && APP_LEVELS.includes(state.activeLesson.levelId)) {
+    return state.activeLesson.levelId;
+  }
+
+  const selectedLevel = getTreeLevelFilter();
+  if (!isAllLevel(selectedLevel)) return selectedLevel;
+
+  return APP_LEVELS[0];
+}
+
+function isTreeLevelOpen(levelId, hasSearch, activeLevelId) {
+  if (hasSearch) return true;
+  if (Object.prototype.hasOwnProperty.call(state.treeOpen, levelId)) {
+    return state.treeOpen[levelId];
+  }
+  return levelId === activeLevelId;
 }
 
 function getFirstLesson(match) {
@@ -746,8 +900,11 @@ function renderLessonCards(items, emptyTitle = "Keine Inhalte gefunden", emptyTe
         .map(
           x => `
         <button class="overviewItem" data-lesson="${escapeHtml(x.lesson.id)}">
-          <div class="overviewTitle">${escapeHtml(x.lesson.title)}</div>
-          <div class="overviewMeta">${escapeHtml(x.levelId)} · ${escapeHtml(x.unitTitle)}</div>
+          <div class="overviewTitle">${renderTitleStack(x.lesson.title, "overviewTitleText")}</div>
+          <div class="overviewMeta">
+            <span>${escapeHtml(x.levelId)} · ${escapeHtml(x.unitTitle)}</span>
+            ${getArabicTitle(x.unitTitle) ? `<span class="overviewMetaAr" dir="rtl">${escapeHtml(getArabicTitle(x.unitTitle))}</span>` : ""}
+          </div>
         </button>
       `
         )
