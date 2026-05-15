@@ -129,6 +129,20 @@ const TITLE_AR = {
   "Level-Quiz": "اختبار المستوى",
   "Quiz": "اختبار"
 };
+const CATEGORY_AR = {
+  Alltag: "الحياة اليومية",
+  Arbeit: "العمل",
+  Arzt: "الطبيب",
+  Behörden: "الدوائر الرسمية",
+  Einkaufen: "التسوق",
+  Essen: "الطعام",
+  Familie: "العائلة",
+  Freizeit: "وقت الفراغ",
+  Reisen: "السفر",
+  Schule: "المدرسة",
+  Verkehr: "المواصلات",
+  Wohnung: "السكن"
+};
 
 /* =========================
    State
@@ -199,11 +213,7 @@ function wireNav() {
       event.preventDefault();
       state.view = btn.dataset.view;
       state.treeOpen = {};
-
-      // Only when user clicks "Lernen" -> go back to start page
-      if (state.view === "learn") {
-        state.activeLesson = null;
-      }
+      state.activeLesson = null;
 
       saveUI();
       rerender();
@@ -229,6 +239,11 @@ function rerender() {
 
   if (state.view === "progress") {
     renderProgress();
+    return;
+  }
+
+  if (state.view === "quiz") {
+    renderQuizView();
     return;
   }
 
@@ -618,6 +633,49 @@ function renderTitleStack(title, className = "titleStack") {
   `;
 }
 
+function getCategoryArabic(category) {
+  return CATEGORY_AR[category] || "";
+}
+
+function getExampleDe(item) {
+  return item.example_de || item.example || "";
+}
+
+function getExampleAr(item) {
+  return item.example_ar || "";
+}
+
+function renderLearningMeta(item, fallbackLevel = "") {
+  const level = item.level || fallbackLevel;
+  const category = item.category || "";
+  const categoryAr = getCategoryArabic(category);
+
+  return `
+    <div class="learningMeta">
+      ${level ? `<span>${escapeHtml(level)}</span>` : ""}
+      ${category ? `
+        <span>
+          ${escapeHtml(category)}
+          ${categoryAr ? `<small dir="rtl">${escapeHtml(categoryAr)}</small>` : ""}
+        </span>
+      ` : ""}
+    </div>
+  `;
+}
+
+function renderExampleBlock(item) {
+  const exampleDe = getExampleDe(item);
+  const exampleAr = getExampleAr(item);
+  if (!exampleDe && !exampleAr) return "";
+
+  return `
+    <div class="exampleBlock">
+      ${exampleDe ? `<div class="exampleDe">${escapeHtml(exampleDe)}</div>` : ""}
+      ${exampleAr ? `<div class="exampleAr" dir="rtl">${escapeHtml(exampleAr)}</div>` : ""}
+    </div>
+  `;
+}
+
 function getActiveTreeLevelId() {
   if (state.activeLesson?.levelId && APP_LEVELS.includes(state.activeLesson.levelId)) {
     return state.activeLesson.levelId;
@@ -682,7 +740,7 @@ function openQuizView(level = state.quizLevel) {
   const quizLevel = normalizeQuizLevel(level);
   state.quizLevel = quizLevel;
   saveQuizLevel();
-  state.view = "learn";
+  state.view = "quiz";
   syncNav();
   openLesson(createQuizLesson(quizLevel), getQuizDisplayLevel(quizLevel), `${quizLevel}-quiz`);
 }
@@ -803,7 +861,7 @@ window.openFirstLesson = function () {
 };
 
 window.openFirstQuiz = function () {
-  openLevelQuiz(getActiveContentLevel("learn"));
+  openLevelQuiz(normalizeQuizLevel(getActiveContentLevel("learn")));
 };
 
 window.openProgressView = function () {
@@ -826,38 +884,24 @@ function renderLearnOverview() {
   ${renderLevelTabs("learn", level)}
   <h2 class="welcomeTitle">Willkommen 👋</h2>
   <p class="welcomeText">
-    Wähle links eine Lektion (A1–C1) oder nutze oben die Navigation.
+    Wähle oben ein Level und starte direkt mit einer Lektion.
   </p>
-
-  <div class="welcomeGrid">
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="learn">
-      <h3>📚 Lernen</h3>
-      <p>Starte mit einer Lektion und arbeite dich Schritt für Schritt hoch.</p>
-    </button>
-
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="quiz">
-      <h3>🧠 Quiz</h3>
-      <p>Teste dein Wissen mit Mini-Quiz in jeder Lektion.</p>
-    </button>
-
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="progress">
-      <h3>⭐ Fortschritt</h3>
-      <p>Sieh deinen Lernfortschritt und markiere erledigte Lektionen.</p>
-    </button>
-  </div>
 
   ${renderLessonCards(
     items,
     "Keine Lektionen gefunden",
-    `Für ${label} gibt es mit der aktuellen Suche keine passenden Inhalte.`
+    `Für ${label} gibt es mit der aktuellen Auswahl keine passenden Inhalte.`
   )}
 </div>
     `
   );
 
   wireLevelTabs();
-  wireWelcomeCards();
   wireLessonCards(items);
+}
+
+function renderQuizView() {
+  openQuizView(state.quizLevel);
 }
 
 function renderLessonOverview(type, titleText) {
@@ -873,7 +917,7 @@ function renderLessonOverview(type, titleText) {
         ${renderLevelTabs(kind, level)}
         ${renderEmptyState(
           "Keine Inhalte gefunden",
-          `Für ${label} gibt es mit der aktuellen Suche keine passenden ${type === "vocab" ? "Vokabeln" : "Sätze"}.`
+          `Für ${label} gibt es mit der aktuellen Auswahl keine passenden ${type === "vocab" ? "Vokabeln" : "Sätze"}.`
         )}
       `
     );
@@ -948,80 +992,20 @@ function renderVocabLesson(lesson) {
   const grid = document.createElement("div");
   grid.className = "cardGrid";
 
-  items.forEach((it, idx) => {
+  items.forEach(it => {
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = "card learningCard";
+    const level = it.level || state.activeLesson?.levelId || getLessonLevel(lesson);
 
-    const favKey = `${lesson.id}#${idx}`;
-    const isFav = !!state.progress.favs[favKey];
+    card.innerHTML = `
+      <div class="learnCardText">
+        <div class="word">${escapeHtml(it.de || it.german || "")}</div>
+        <div class="ar" dir="rtl">${escapeHtml(it.ar || it.arabic || "")}</div>
+      </div>
+      ${renderExampleBlock(it)}
+      ${renderLearningMeta(it, level)}
+    `;
 
-card.innerHTML = `
-  <div class="cardTop">
-    <div class="word">${escapeHtml(it.de)}</div>
-
-    <div class="cardActions">
-      <button class="iconBtn" type="button" data-speak="${escapeHtml(it.de)}">🔊</button>
-      <button class="iconBtn" type="button" data-fav="${favKey}">${isFav ? "★" : "☆"}</button>
-    </div>
-  </div>
-
-  <div class="ar">${escapeHtml(it.ar || "")}</div>
-  <div class="ex">${escapeHtml(it.example || "")}</div>
-  <div class="sayRow">
-  <button class="secondary sayBtn" type="button" data-say="${escapeHtml(it.de)}">🎤 Sprechen</button>
-  <div class="sayStatus" aria-live="polite"></div>
-</div>
-  <div class="tags">${(it.tags || [])
-    .map(t => `<span class="tag">${escapeHtml(t)}</span>`)
-    .join("")}</div>
-
-  <button class="doneBtn" type="button">Als gelernt markieren</button>
-`;
-
-card.querySelector('[data-fav]')?.addEventListener("click", e => {
-  const key = e.currentTarget.dataset.fav;
-  state.progress.favs[key] = !state.progress.favs[key];
-  saveProgress();
-  renderVocabLesson(lesson);
-});
-
-card.querySelector('[data-speak]')?.addEventListener("click", e => {
-  console.log("[TTS] Button geklickt");
-  const text = e.currentTarget.dataset.speak || "";
-  speakDe(text);
-});
-// 🎤 Pronunciation check (auto-stop)
-const sayBtn = card.querySelector(".sayBtn");
-const sayStatus = card.querySelector(".sayStatus");
-
-sayBtn?.addEventListener("click", async (e) => {
-  const target = e.currentTarget.dataset.say || "";
-  if (!target) return;
-
-  sayBtn.disabled = true;
-  if (sayStatus) sayStatus.textContent = "🎧 Ich höre zu… Sprich jetzt.";
-
-  try {
-    const result = await pronounceCheckDe(target);
-    // result: { ok, heard, score }
-
-    if (result.ok) {
-      if (sayStatus) sayStatus.textContent = `✅ Richtig! (${result.heard || "verstanden"})`;
-    } else {
-      if (sayStatus) sayStatus.textContent = `❌ Nicht ganz. Bitte wiederholen. (${result.heard || "nichts verstanden"})`;
-    }
-  } catch (err) {
-    if (sayStatus) sayStatus.textContent = "⚠️ Spracherkennung nicht verfügbar / blockiert.";
-  } finally {
-    sayBtn.disabled = false;
-  }
-});
-
-card.querySelector(".doneBtn")?.addEventListener("click", () => {
-  state.progress.done[lesson.id] = true;
-  saveProgress();
-  rerender();
-});
     grid.appendChild(card);
   });
 
@@ -1050,26 +1034,21 @@ function renderSentenceLesson(lesson) {
 
   items.forEach(s => {
     const row = document.createElement("div");
-    row.className = "sentenceRow";
+    row.className = "sentenceRow learningCard";
+    const level = s.level || state.activeLesson?.levelId || getLessonLevel(lesson);
+
     row.innerHTML = `
-      <div class="de">${escapeHtml(s.de)}</div>
-      <div class="ar">${escapeHtml(s.ar || "")}</div>
-      <div class="note">${escapeHtml(s.note || "")}</div>
+      <div class="learnCardText">
+        <div class="de">${escapeHtml(s.de || s.german || "")}</div>
+        <div class="ar" dir="rtl">${escapeHtml(s.ar || s.arabic || "")}</div>
+      </div>
+      ${renderExampleBlock(s)}
+      ${renderLearningMeta(s, level)}
     `;
     list.appendChild(row);
   });
 
-  const doneBtn = document.createElement("button");
-  doneBtn.className = "primary";
-  doneBtn.textContent = "Lektion als erledigt markieren";
-  doneBtn.addEventListener("click", () => {
-    state.progress.done[lesson.id] = true;
-    saveProgress();
-    rerender();
-  });
-
   body.appendChild(list);
-  body.appendChild(doneBtn);
 }
 
 function renderQuizLevelTabs(activeLevel) {

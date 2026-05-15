@@ -8,24 +8,6 @@
   </head>
 <body>
   <div class="app">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <a class="brand" href="./">
-        <div class="brand-title">
-        <div class="brand-logo" aria-hidden="true">DE</div>
-          <strong>Lernen</strong>
-          <span>Deutsch A1–C1</span>
-        </div>
-      </a>
-
-      <div class="search">
-        <input id="search" type="search" placeholder="Suche (de/ar)..." autocomplete="off" />
-      </div>
-
-      <!-- Sidebar Navigation / Tree -->
-      <div id="tree"></div>
-    </aside>
-
     <!-- MAIN -->
     <main class="main">
       <div class="container">
@@ -41,13 +23,14 @@
               <a class="navBtn active" href="#" data-view="learn">Lernen <span class="badge">A1–C1</span></a>
               <a class="navBtn" href="#" data-view="vocab">Vokabeln</a>
               <a class="navBtn" href="#" data-view="sentences">Sätze</a>
+              <a class="navBtn" href="#" data-view="quiz">Quiz</a>
               <a class="navBtn" href="#" data-view="progress">Fortschritt</a>
             </nav>
           </div>
         </header>
 
         <!-- CONTENT -->
-        <section class="card">
+        <section class="contentSurface">
           <div class="card-body" id="contentBody"></div>
         </section>
       </div>
