@@ -27,6 +27,17 @@ function clearUI() {
   localStorage.removeItem("lernen_ui");
 }
 
+const APP_LEVELS = ["A1", "A2", "B1", "B2", "C1"];
+const LEVEL_ALL = "all";
+const QUIZ_LEVELS = APP_LEVELS;
+const QUIZ_LEVEL_ALL = LEVEL_ALL;
+const QUIZ_LEVEL_STORAGE_KEY = "lernen_quiz_level";
+const CONTENT_LEVEL_STORAGE_KEYS = {
+  learn: "learnLevel",
+  vocab: "vocabLevel",
+  sentences: "sentenceLevel"
+};
+
 /* =========================
    State
 ========================= */
@@ -37,6 +48,10 @@ const state = {
   quizzes: null,
   activeLesson: null,
   view: "learn",
+  learnLevel: loadContentLevel("learn"),
+  vocabLevel: loadContentLevel("vocab"),
+  sentenceLevel: loadContentLevel("sentences"),
+  quizLevel: loadQuizLevel(),
   progress: loadProgress()
 };
 
@@ -68,6 +83,14 @@ async function init() {
     const unit = level?.units?.find(u => u.id === unitId);
     const lesson = unit?.lessons?.find(le => le.id === lessonId);
     if (lesson) state.activeLesson = { lesson, levelId, unitId };
+    else if (isSyntheticQuizLessonId(lessonId)) {
+      const quizLevel = normalizeQuizLevel(state.quizLevel);
+      state.activeLesson = {
+        lesson: createQuizLesson(quizLevel),
+        levelId: getQuizDisplayLevel(quizLevel),
+        unitId: `${quizLevel}-quiz`
+      };
+    }
   }
 
   wireNav();
@@ -96,7 +119,8 @@ function wireNav() {
   const search = document.getElementById("search");
   if (search) {
     search.addEventListener("input", () => {
-      renderTree(search.value.trim().toLowerCase());
+      if (state.activeLesson) renderTree(search.value.trim().toLowerCase());
+      else rerender();
     });
   }
 }
@@ -126,35 +150,7 @@ function rerender() {
       return;
     }
 
-    setContent(
-      "Wähle eine Lektion",
-      `
-<div id="welcome">
-  <h2 class="welcomeTitle">Willkommen 👋</h2>
-  <p class="welcomeText">
-    Wähle links eine Lektion (A1–C1) oder nutze oben die Navigation.
-  </p>
-
-  <div class="welcomeGrid">
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="learn">
-      <h3>📚 Lernen</h3>
-      <p>Starte mit einer Lektion und arbeite dich Schritt für Schritt hoch.</p>
-    </button>
-
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="quiz">
-      <h3>🧠 Quiz</h3>
-      <p>Teste dein Wissen mit Mini-Quiz in jeder Lektion.</p>
-    </button>
-
-    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="progress">
-      <h3>⭐ Fortschritt</h3>
-      <p>Sieh deinen Lernfortschritt und markiere erledigte Lektionen.</p>
-    </button>
-  </div>
-</div>
-      `
-    );
-    wireWelcomeCards();
+    renderLearnOverview();
     return;
   }
 
@@ -166,8 +162,23 @@ function rerender() {
     renderLessonOverview("vocab", "Vokabeln");
     return;
   }
+  if (state.view === "vocab" && !levelMatches(getActiveContentLevel("vocab"), state.activeLesson.levelId)) {
+    state.activeLesson = null;
+    renderLessonOverview("vocab", "Vokabeln");
+    return;
+  }
   if (state.view === "sentences" && lesson.type !== "sentences") {
     renderLessonOverview("sentences", "Sätze");
+    return;
+  }
+  if (state.view === "sentences" && !levelMatches(getActiveContentLevel("sentences"), state.activeLesson.levelId)) {
+    state.activeLesson = null;
+    renderLessonOverview("sentences", "Sätze");
+    return;
+  }
+  if (state.view === "learn" && lesson.type !== "quiz" && !levelMatches(getActiveContentLevel("learn"), state.activeLesson.levelId)) {
+    state.activeLesson = null;
+    renderLearnOverview();
     return;
   }
 
@@ -182,8 +193,11 @@ function renderTree(filter = "") {
   if (!root) return;
 
   root.innerHTML = "";
+  const levelFilter = getTreeLevelFilter();
 
   state.curriculum.levels.forEach(level => {
+    if (!levelMatches(levelFilter, level.id)) return;
+
     const levelEl = document.createElement("div");
     levelEl.className = "treeLevel";
 
@@ -215,6 +229,7 @@ function renderTree(filter = "") {
 
       (unit.lessons || []).forEach(lesson => {
         const searchable = getLessonSearchText(lesson).toLowerCase();
+        if (!lessonMatchesCurrentView(lesson)) return;
         if (filter && !searchable.includes(filter)) return;
 
         const btn = document.createElement("button");
@@ -230,13 +245,15 @@ function renderTree(filter = "") {
         lessonsEl.appendChild(btn);
       });
 
-      unitWrap.appendChild(lessonsEl);
-      unitsEl.appendChild(unitWrap);
+      if (lessonsEl.children.length) {
+        unitWrap.appendChild(lessonsEl);
+        unitsEl.appendChild(unitWrap);
+      }
     });
 
     const levelQuizQuestions = getLevelQuizQuestions(level.id);
     const quizSearchText = `${level.id} ${level.title} quiz level-quiz`.toLowerCase();
-    if (levelQuizQuestions.length && (!filter || quizSearchText.includes(filter))) {
+    if (shouldShowLevelQuizInTree() && levelQuizQuestions.length && (!filter || quizSearchText.includes(filter))) {
       const quizLesson = createLevelQuizLesson(level.id);
       const quizWrap = document.createElement("div");
       quizWrap.className = "treeUnit";
@@ -259,6 +276,8 @@ function renderTree(filter = "") {
       quizWrap.appendChild(quizLessons);
       unitsEl.appendChild(quizWrap);
     }
+
+    if (!unitsEl.children.length) return;
 
     levelEl.appendChild(unitsEl);
     root.appendChild(levelEl);
@@ -286,6 +305,13 @@ function getLessonSearchText(lesson) {
 ========================= */
 function openLesson(lesson, levelId, unitId) {
   state.activeLesson = { lesson, levelId, unitId };
+  if (state.view === "vocab" && lesson.type === "vocab") setContentLevel("vocab", levelId);
+  if (state.view === "sentences" && lesson.type === "sentences") setContentLevel("sentences", levelId);
+  if (state.view === "learn" && lesson.type !== "quiz") setContentLevel("learn", levelId);
+  if (lesson.type === "quiz") {
+    state.quizLevel = normalizeQuizLevel(QUIZ_LEVELS.includes(levelId) ? levelId : lesson.ref);
+    saveQuizLevel();
+  }
   saveUI();
 
   const title = document.getElementById("contentTitle");
@@ -322,11 +348,146 @@ function getAllLessonsByType(type) {
   return result;
 }
 
+function getAllLessons() {
+  const result = [];
+  state.curriculum.levels.forEach(level => {
+    (level.units || []).forEach(unit => {
+      (unit.lessons || []).forEach(lesson => {
+        result.push({
+          levelId: level.id,
+          unitId: unit.id,
+          unitTitle: unit.title,
+          lesson
+        });
+      });
+    });
+  });
+  return result;
+}
+
+function getFilteredLessons(type, level, filter = getSearchFilter()) {
+  const items = type === "learn" ? getAllLessons() : getAllLessonsByType(type);
+  const normalizedFilter = filter.trim().toLowerCase();
+
+  return items.filter(item => {
+    if (!levelMatches(level, item.levelId)) return false;
+    if (!normalizedFilter) return true;
+    return getLessonSearchText(item.lesson).toLowerCase().includes(normalizedFilter);
+  });
+}
+
+function levelMatches(selectedLevel, itemLevel) {
+  return isAllLevel(selectedLevel) || selectedLevel === itemLevel;
+}
+
+function normalizeContentLevel(level) {
+  return APP_LEVELS.includes(level) ? level : LEVEL_ALL;
+}
+
+function isAllLevel(level) {
+  return level === LEVEL_ALL;
+}
+
+function getActiveContentLevel(kind) {
+  if (kind === "vocab") return normalizeContentLevel(state.vocabLevel);
+  if (kind === "sentences") return normalizeContentLevel(state.sentenceLevel);
+  return normalizeContentLevel(state.learnLevel);
+}
+
+function setContentLevel(kind, level) {
+  const normalized = normalizeContentLevel(level);
+  if (kind === "vocab") state.vocabLevel = normalized;
+  else if (kind === "sentences") state.sentenceLevel = normalized;
+  else state.learnLevel = normalized;
+  saveContentLevel(kind);
+}
+
+function getTreeLevelFilter() {
+  if (state.view === "vocab") return getActiveContentLevel("vocab");
+  if (state.view === "sentences") return getActiveContentLevel("sentences");
+  if (state.view === "learn") return getActiveContentLevel("learn");
+  return LEVEL_ALL;
+}
+
+function lessonMatchesCurrentView(lesson) {
+  if (state.view === "vocab") return lesson.type === "vocab";
+  if (state.view === "sentences") return lesson.type === "sentences";
+  return true;
+}
+
+function shouldShowLevelQuizInTree() {
+  return state.view === "learn";
+}
+
+function getSearchFilter() {
+  return (document.getElementById("search")?.value || "").trim().toLowerCase();
+}
+
+function getContentLevelCount(kind, level) {
+  return getFilteredLessons(kind, level, "").length;
+}
+
+function renderLevelTabs(kind, activeLevel) {
+  const labels = {
+    learn: "Lern-Level auswählen",
+    vocab: "Vokabel-Level auswählen",
+    sentences: "Sätze-Level auswählen"
+  };
+  const options = [
+    { value: LEVEL_ALL, label: "Alle" },
+    ...APP_LEVELS.map(level => ({ value: level, label: level }))
+  ];
+
+  return `
+    <div class="levelFilterBar" role="tablist" aria-label="${escapeHtml(labels[kind] || "Level auswählen")}">
+      ${options
+        .map(option => {
+          const active = option.value === activeLevel;
+          const count = getContentLevelCount(kind, option.value);
+          return `
+        <button
+          type="button"
+          class="levelFilterBtn${active ? " active" : ""}"
+          data-level-kind="${escapeHtml(kind)}"
+          data-level-value="${escapeHtml(option.value)}"
+          aria-pressed="${active ? "true" : "false"}"
+        >
+          <span>${escapeHtml(option.label)}</span>
+          <small>${count}</small>
+        </button>
+      `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function wireLevelTabs() {
+  document.querySelectorAll("[data-level-kind][data-level-value]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const kind = btn.dataset.levelKind;
+      setContentLevel(kind, btn.dataset.levelValue);
+      state.activeLesson = null;
+      saveUI();
+      rerender();
+    });
+  });
+}
+
+function renderEmptyState(title, text) {
+  return `
+    <div class="emptyState">
+      <h3>${escapeHtml(title)}</h3>
+      <p>${escapeHtml(text)}</p>
+    </div>
+  `;
+}
+
 function getFirstLesson(match) {
   for (const level of state.curriculum.levels || []) {
     for (const unit of level.units || []) {
       for (const lesson of unit.lessons || []) {
-        if (!match || match(lesson)) {
+        if (!match || match(lesson, level.id, unit.id)) {
           return {
             levelId: level.id,
             unitId: unit.id,
@@ -342,18 +503,34 @@ function getFirstLesson(match) {
 }
 
 function createLevelQuizLesson(levelId) {
+  return createQuizLesson(levelId);
+}
+
+function createQuizLesson(level) {
+  const quizLevel = normalizeQuizLevel(level);
   return {
-    id: `${levelId}_LEVEL_QUIZ`,
-    title: `${levelId} Level-Quiz`,
+    id: isAllQuizLevel(quizLevel) ? "ALL_LEVEL_QUIZ" : `${quizLevel}_LEVEL_QUIZ`,
+    title: "Level-Quiz",
     type: "quiz",
-    ref: levelId
+    ref: quizLevel
   };
 }
 
+function isSyntheticQuizLessonId(id) {
+  return id === "ALL_LEVEL_QUIZ" || QUIZ_LEVELS.some(level => id === `${level}_LEVEL_QUIZ`);
+}
+
 function openLevelQuiz(levelId) {
+  openQuizView(levelId);
+}
+
+function openQuizView(level = state.quizLevel) {
+  const quizLevel = normalizeQuizLevel(level);
+  state.quizLevel = quizLevel;
+  saveQuizLevel();
   state.view = "learn";
   syncNav();
-  openLesson(createLevelQuizLesson(levelId), levelId, `${levelId}-quiz`);
+  openLesson(createQuizLesson(quizLevel), getQuizDisplayLevel(quizLevel), `${quizLevel}-quiz`);
 }
 
 function getLessonLevel(lesson) {
@@ -366,9 +543,37 @@ function getLevelQuizQuestions(levelId) {
 }
 
 function getQuizQuestions(lesson) {
-  const direct = normalizeQuizQuestions(state.quizzes?.[lesson.ref] || []);
+  const selectedLevel = normalizeQuizLevel(state.quizLevel);
+  if (isAllQuizLevel(selectedLevel)) return getAllQuizQuestions();
+
+  const direct = normalizeQuizQuestions(state.quizzes?.[selectedLevel] || []);
   if (direct.length) return direct;
+
+  const lessonDirect = normalizeQuizQuestions(state.quizzes?.[lesson.ref] || []);
+  if (lessonDirect.length) return lessonDirect;
+
   return getLevelQuizQuestions(getLessonLevel(lesson));
+}
+
+function getAllQuizQuestions() {
+  return normalizeQuizQuestions(Object.values(state.quizzes || {}).flat());
+}
+
+function getQuizLevelCount(level) {
+  if (isAllQuizLevel(level)) return getAllQuizQuestions().length;
+  return getLevelQuizQuestions(level).length;
+}
+
+function normalizeQuizLevel(level) {
+  return QUIZ_LEVELS.includes(level) ? level : QUIZ_LEVEL_ALL;
+}
+
+function isAllQuizLevel(level) {
+  return level === QUIZ_LEVEL_ALL;
+}
+
+function getQuizDisplayLevel(level) {
+  return isAllQuizLevel(level) ? "Alle" : level;
 }
 
 function normalizeQuizQuestions(rawQuestions) {
@@ -434,7 +639,8 @@ function wireWelcomeCards() {
 }
 
 window.openFirstLesson = function () {
-  const found = getFirstLesson();
+  const selectedLevel = getActiveContentLevel("learn");
+  const found = getFirstLesson((lesson, levelId) => levelMatches(selectedLevel, levelId));
   if (!found) return;
 
   state.view = "learn";
@@ -443,7 +649,7 @@ window.openFirstLesson = function () {
 };
 
 window.openFirstQuiz = function () {
-  openLevelQuiz("A1");
+  openLevelQuiz(getActiveContentLevel("learn"));
 };
 
 window.openProgressView = function () {
@@ -454,16 +660,87 @@ window.openProgressView = function () {
   renderProgress();
 };
 
+function renderLearnOverview() {
+  const level = getActiveContentLevel("learn");
+  const items = getFilteredLessons("learn", level);
+  const label = isAllLevel(level) ? "alle Level" : level;
+
+  setContent(
+    "Wähle eine Lektion",
+    `
+<div id="welcome">
+  ${renderLevelTabs("learn", level)}
+  <h2 class="welcomeTitle">Willkommen 👋</h2>
+  <p class="welcomeText">
+    Wähle links eine Lektion (A1–C1) oder nutze oben die Navigation.
+  </p>
+
+  <div class="welcomeGrid">
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="learn">
+      <h3>📚 Lernen</h3>
+      <p>Starte mit einer Lektion und arbeite dich Schritt für Schritt hoch.</p>
+    </button>
+
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="quiz">
+      <h3>🧠 Quiz</h3>
+      <p>Teste dein Wissen mit Mini-Quiz in jeder Lektion.</p>
+    </button>
+
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="progress">
+      <h3>⭐ Fortschritt</h3>
+      <p>Sieh deinen Lernfortschritt und markiere erledigte Lektionen.</p>
+    </button>
+  </div>
+
+  ${renderLessonCards(
+    items,
+    "Keine Lektionen gefunden",
+    `Für ${label} gibt es mit der aktuellen Suche keine passenden Inhalte.`
+  )}
+</div>
+    `
+  );
+
+  wireLevelTabs();
+  wireWelcomeCards();
+  wireLessonCards(items);
+}
+
 function renderLessonOverview(type, titleText) {
-  const items = getAllLessonsByType(type);
+  const kind = type === "sentences" ? "sentences" : "vocab";
+  const level = getActiveContentLevel(kind);
+  const items = getFilteredLessons(type, level);
+  const label = isAllLevel(level) ? "alle Level" : level;
 
   if (!items.length) {
-    setContent(titleText, `<p>Keine Lektionen vom Typ <b>${escapeHtml(type)}</b> gefunden.</p>`);
+    setContent(
+      titleText,
+      `
+        ${renderLevelTabs(kind, level)}
+        ${renderEmptyState(
+          "Keine Inhalte gefunden",
+          `Für ${label} gibt es mit der aktuellen Suche keine passenden ${type === "vocab" ? "Vokabeln" : "Sätze"}.`
+        )}
+      `
+    );
+    wireLevelTabs();
     return;
   }
 
   const html = `
+    ${renderLevelTabs(kind, level)}
     <p>Klicke eine Lektion an:</p>
+    ${renderLessonCards(items)}
+  `;
+
+  setContent(titleText, html);
+  wireLevelTabs();
+  wireLessonCards(items);
+}
+
+function renderLessonCards(items, emptyTitle = "Keine Inhalte gefunden", emptyText = "Mit der aktuellen Auswahl gibt es keine passenden Inhalte.") {
+  if (!items.length) return renderEmptyState(emptyTitle, emptyText);
+  return `
     <div class="overviewList">
       ${items
         .map(
@@ -477,9 +754,9 @@ function renderLessonOverview(type, titleText) {
         .join("")}
     </div>
   `;
+}
 
-  setContent(titleText, html);
-
+function wireLessonCards(items) {
   document.querySelectorAll(".overviewItem").forEach(btn => {
     btn.addEventListener("click", () => {
       const lessonId = btn.dataset.lesson;
@@ -499,10 +776,15 @@ function renderVocabLesson(lesson) {
   const body = document.getElementById("contentBody");
   if (!body) return;
 
-  body.innerHTML = "";
+  const tabKind = state.view === "learn" ? "learn" : "vocab";
+  body.innerHTML = renderLevelTabs(tabKind, getActiveContentLevel(tabKind));
+  wireLevelTabs();
 
   if (!items.length) {
-    body.innerHTML = `<p>Keine Vokabeln vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
+    body.insertAdjacentHTML(
+      "beforeend",
+      renderEmptyState("Keine Vokabeln gefunden", `Für ${lesson.ref} sind momentan keine Vokabeln vorhanden.`)
+    );
     return;
   }
 
@@ -594,10 +876,15 @@ function renderSentenceLesson(lesson) {
   const body = document.getElementById("contentBody");
   if (!body) return;
 
-  body.innerHTML = "";
+  const tabKind = state.view === "learn" ? "learn" : "sentences";
+  body.innerHTML = renderLevelTabs(tabKind, getActiveContentLevel(tabKind));
+  wireLevelTabs();
 
   if (!items.length) {
-    body.innerHTML = `<p>Keine Sätze vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
+    body.insertAdjacentHTML(
+      "beforeend",
+      renderEmptyState("Keine Sätze gefunden", `Für ${lesson.ref} sind momentan keine Sätze vorhanden.`)
+    );
     return;
   }
 
@@ -628,13 +915,61 @@ function renderSentenceLesson(lesson) {
   body.appendChild(doneBtn);
 }
 
+function renderQuizLevelTabs(activeLevel) {
+  const options = [
+    { value: QUIZ_LEVEL_ALL, label: "Alle" },
+    ...QUIZ_LEVELS.map(level => ({ value: level, label: level }))
+  ];
+
+  return `
+    <div class="quizLevelBar" role="tablist" aria-label="Quiz-Level auswählen">
+      ${options
+        .map(option => {
+          const active = option.value === activeLevel;
+          const count = getQuizLevelCount(option.value);
+          return `
+        <button
+          type="button"
+          class="quizLevelBtn${active ? " active" : ""}"
+          data-quiz-level="${escapeHtml(option.value)}"
+          aria-pressed="${active ? "true" : "false"}"
+        >
+          <span>${escapeHtml(option.label)}</span>
+          <small>${count}</small>
+        </button>
+      `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
+function wireQuizLevelTabs() {
+  document.querySelectorAll("[data-quiz-level]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      openQuizView(btn.dataset.quizLevel);
+    });
+  });
+}
+
 function renderQuizLesson(lesson) {
   const body = document.getElementById("contentBody");
   if (!body) return;
 
+  const selectedLevel = normalizeQuizLevel(state.quizLevel);
   const questions = getQuizQuestions(lesson);
   if (!questions.length) {
-    body.innerHTML = `<p>Keine Quizfragen vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
+    const label = isAllQuizLevel(selectedLevel) ? "alle Level" : selectedLevel;
+    body.innerHTML = `
+      <div class="quizBox">
+        ${renderQuizLevelTabs(selectedLevel)}
+        <div class="quizEmpty">
+          <h3>Keine Quizfragen gefunden</h3>
+          <p>Für ${escapeHtml(label)} sind momentan keine Fragen verfügbar.</p>
+        </div>
+      </div>
+    `;
+    wireQuizLevelTabs();
     return;
   }
 
@@ -647,6 +982,7 @@ function renderQuizLesson(lesson) {
 
   body.innerHTML = `
     <div class="quizBox">
+      ${renderQuizLevelTabs(selectedLevel)}
       <div class="quizTop">
         <div id="quizProgress"></div>
         <div id="quizScore"></div>
@@ -671,6 +1007,7 @@ function renderQuizLesson(lesson) {
   const elFeedback = document.getElementById("quizFeedback");
   const btnNext = document.getElementById("quizNext");
   const btnFinish = document.getElementById("quizFinish");
+  wireQuizLevelTabs();
 
   function renderStep() {
     const q = shuffled[current];
@@ -883,6 +1220,32 @@ function loadProgress() {
 
 function saveProgress() {
   localStorage.setItem("lernen_progress", JSON.stringify(state.progress));
+}
+
+function loadQuizLevel() {
+  try {
+    return normalizeQuizLevel(localStorage.getItem(QUIZ_LEVEL_STORAGE_KEY));
+  } catch {
+    return QUIZ_LEVEL_ALL;
+  }
+}
+
+function saveQuizLevel() {
+  localStorage.setItem(QUIZ_LEVEL_STORAGE_KEY, state.quizLevel);
+}
+
+function loadContentLevel(kind) {
+  try {
+    return normalizeContentLevel(localStorage.getItem(CONTENT_LEVEL_STORAGE_KEYS[kind]));
+  } catch {
+    return LEVEL_ALL;
+  }
+}
+
+function saveContentLevel(kind) {
+  const key = CONTENT_LEVEL_STORAGE_KEYS[kind];
+  if (!key) return;
+  localStorage.setItem(key, getActiveContentLevel(kind));
 }
 
 /* =========================

@@ -262,12 +262,87 @@ button, input, select { font: inherit; color: inherit; }
 
 /* ✅ Kontrast-Fix nur für deine Quiz-Endseite (dein JS nutzt quizBox/quizQuestion) */
 .quizBox{
+  display: grid;
+  gap: 14px;
+  padding: 16px;
   background: rgba(255,255,255,.07);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 18px;
 }
 .quizBox .quizQuestion{
   color: rgba(255,255,255,.95);
+}
+
+.quizLevelBar,
+.levelFilterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.12);
+  border-radius: 16px;
+}
+
+#contentBody .quizLevelBtn,
+#contentBody .levelFilterBtn {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.82);
+  cursor: pointer;
+}
+
+#contentBody .quizLevelBtn:hover,
+#contentBody .levelFilterBtn:hover {
+  background: rgba(255,255,255,.10);
+  color: var(--text);
+}
+
+#contentBody .quizLevelBtn.active,
+#contentBody .levelFilterBtn.active {
+  border-color: rgba(79,140,255,.48);
+  background: linear-gradient(135deg, rgba(79,140,255,.24), rgba(124,92,255,.18));
+  color: var(--text);
+  box-shadow: 0 12px 24px rgba(79,140,255,.14);
+}
+
+#contentBody .quizLevelBtn small,
+#contentBody .levelFilterBtn small {
+  min-width: 22px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.74);
+  font-size: 11px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.quizEmpty,
+.emptyState {
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  border-radius: 16px;
+}
+
+.quizEmpty h3,
+.emptyState h3 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.quizEmpty p,
+.emptyState p {
+  margin: 0;
+  color: rgba(255,255,255,.78);
 }
 
 /* ============ Responsive ============ */
@@ -280,6 +355,20 @@ button, input, select { font: inherit; color: inherit; }
 @media (max-width: 680px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { position: relative; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
+}
+
+@media (max-width: 560px) {
+  .quizLevelBar,
+  .levelFilterBar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+  }
+
+  #contentBody .quizLevelBtn,
+  #contentBody .levelFilterBtn {
+    width: 100%;
+    padding: 8px 8px;
+  }
 }
 
 /* ===== Fix: Top-Navigation darf nicht die Sidebar-.nav Styles erben ===== */
