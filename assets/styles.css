@@ -544,11 +544,37 @@ button, input, select { font: inherit; color: inherit; }
 }
 
 .welcomeTile {
+  width: 100%;
   border: 1px solid rgba(255,255,255,.08);
   background: rgba(255,255,255,.05);
   border-radius: 18px;
   padding: 14px;
   box-shadow: 0 10px 22px rgba(0,0,0,.20);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition:
+    transform .16s ease,
+    border-color .16s ease,
+    background .16s ease,
+    box-shadow .16s ease;
+}
+
+.welcomeTile:hover {
+  background: rgba(255,255,255,.09);
+  border-color: rgba(109,152,255,.42);
+  box-shadow: 0 14px 28px rgba(0,0,0,.26);
+  transform: translateY(-2px);
+}
+
+.welcomeTile:focus-visible {
+  outline: 2px solid rgba(109,152,255,.82);
+  outline-offset: 3px;
+}
+
+.welcomeTile:active {
+  transform: translateY(0);
 }
 
 .welcomeTile h3 { margin: 0 0 6px; font-size: 14px; }
@@ -557,6 +583,23 @@ button, input, select { font: inherit; color: inherit; }
   margin: 0;
   color: rgba(255,255,255,.78);
   font-size: 13px;
+}
+
+.noticeBox {
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.05);
+  border-radius: 18px;
+  padding: 16px;
+}
+
+.noticeBox h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.noticeBox p {
+  margin: 0;
+  color: rgba(255,255,255,.78);
 }
 
 @media (max-width: 900px) {

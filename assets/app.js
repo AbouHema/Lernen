@@ -79,7 +79,8 @@ async function init() {
 ========================= */
 function wireNav() {
   document.querySelectorAll(".navBtn").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", event => {
+      event.preventDefault();
       state.view = btn.dataset.view;
 
       // Only when user clicks "Lernen" -> go back to start page
@@ -105,6 +106,7 @@ function wireNav() {
 ========================= */
 function rerender() {
   const q = (document.getElementById("search")?.value || "").trim().toLowerCase();
+  syncNav();
   renderTree(q);
 
   if (state.view === "progress") {
@@ -134,24 +136,25 @@ function rerender() {
   </p>
 
   <div class="welcomeGrid">
-    <div class="welcomeTile">
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="learn">
       <h3>📚 Lernen</h3>
       <p>Starte mit einer Lektion und arbeite dich Schritt für Schritt hoch.</p>
-    </div>
+    </button>
 
-    <div class="welcomeTile">
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="quiz">
       <h3>🧠 Quiz</h3>
       <p>Teste dein Wissen mit Mini-Quiz in jeder Lektion.</p>
-    </div>
+    </button>
 
-    <div class="welcomeTile">
+    <button type="button" class="welcomeTile welcome-card-btn" data-welcome-action="progress">
       <h3>⭐ Fortschritt</h3>
       <p>Sieh deinen Lernfortschritt und markiere erledigte Lektionen.</p>
-    </div>
+    </button>
   </div>
 </div>
       `
     );
+    wireWelcomeCards();
     return;
   }
 
@@ -292,6 +295,70 @@ function getAllLessonsByType(type) {
   });
   return result;
 }
+
+function getFirstLesson(match) {
+  for (const level of state.curriculum.levels || []) {
+    for (const unit of level.units || []) {
+      for (const lesson of unit.lessons || []) {
+        if (!match || match(lesson)) {
+          return {
+            levelId: level.id,
+            unitId: unit.id,
+            unitTitle: unit.title,
+            lesson
+          };
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+function syncNav() {
+  document.querySelectorAll(".navBtn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.view === state.view);
+  });
+}
+
+function wireWelcomeCards() {
+  document.querySelectorAll("[data-welcome-action]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const action = btn.dataset.welcomeAction;
+      console.log("Welcome card click:", action);
+
+      if (action === "learn") openFirstLesson();
+      if (action === "quiz") openFirstQuiz();
+      if (action === "progress") openProgressView();
+    });
+  });
+}
+
+window.openFirstLesson = function () {
+  const found = getFirstLesson();
+  if (!found) return;
+
+  state.view = "learn";
+  syncNav();
+  openLesson(found.lesson, found.levelId, found.unitId);
+};
+
+window.openFirstQuiz = function () {
+  const found = getFirstLesson(lesson => lesson.type === "quiz");
+  if (!found) return;
+
+  state.view = "learn";
+  syncNav();
+  openLesson(found.lesson, found.levelId, found.unitId);
+};
+
+window.openProgressView = function () {
+  state.view = "progress";
+  state.activeLesson = null;
+  saveUI();
+  syncNav();
+  renderProgress();
+};
 
 function renderLessonOverview(type, titleText) {
   const items = getAllLessonsByType(type);
