@@ -1,62 +1,3912 @@
 {
-  "A1_U1_L3": [
+  "A1": [
     {
-      "q": "Was bedeutet „Hallo“?",
-      "choices": ["مع السلامة", "مرحبًا", "شكرًا", "من فضلك"],
-      "answerIndex": 1
+      "id": "a1-vocab-001-vocab-de-ar-a1v001",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „Hallo“ auf Arabisch?",
+      "antworten": [
+        "سنة",
+        "دجاج",
+        "مرحبًا",
+        "طماطم"
+      ],
+      "richtigeAntwort": "مرحبًا"
     },
     {
-      "q": "Wie sagt man „Danke“ auf Arabisch?",
-      "choices": ["شكرًا", "الخبز", "الماء", "حمّى"],
-      "answerIndex": 0
+      "id": "a1-vocab-002-vocab-ar-de-a1v002",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مع السلامة“ auf Deutsch?",
+      "antworten": [
+        "Tschüss",
+        "die Tomate",
+        "der Preis",
+        "das Bett"
+      ],
+      "richtigeAntwort": "Tschüss"
+    },
+    {
+      "id": "a1-vocab-003-vocab-meaning-a1v003",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „Bitte“?",
+      "antworten": [
+        "الطاولة",
+        "حمّى",
+        "الصيدلية",
+        "من فضلك"
+      ],
+      "richtigeAntwort": "من فضلك"
+    },
+    {
+      "id": "a1-vocab-004-vocab-gap-a1v004",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „شكرًا“.",
+      "antworten": [
+        "die Minute",
+        "die E-Mail-Adresse",
+        "Danke",
+        "der Schlüssel"
+      ],
+      "richtigeAntwort": "Danke"
+    },
+    {
+      "id": "a1-vocab-005-vocab-de-ar-a1v005",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Mann“ auf Arabisch?",
+      "antworten": [
+        "موعد",
+        "رجل",
+        "ليلة",
+        "موز"
+      ],
+      "richtigeAntwort": "رجل"
+    },
+    {
+      "id": "a1-vocab-006-vocab-ar-de-a1v006",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „امرأة“ auf Deutsch?",
+      "antworten": [
+        "Bitte",
+        "die Kartoffel",
+        "die Frau",
+        "der Vater"
+      ],
+      "richtigeAntwort": "die Frau"
+    },
+    {
+      "id": "a1-vocab-007-vocab-meaning-a1v007",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „das Kind“?",
+      "antworten": [
+        "بلد",
+        "طفل",
+        "الساعة",
+        "أسبوع"
+      ],
+      "richtigeAntwort": "طفل"
+    },
+    {
+      "id": "a1-vocab-008-vocab-gap-a1v008",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „أم“.",
+      "antworten": [
+        "billig",
+        "der Mittag",
+        "die Mutter",
+        "das Geld"
+      ],
+      "richtigeAntwort": "die Mutter"
+    },
+    {
+      "id": "a1-vocab-009-vocab-de-ar-a1v009",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Vater“ auf Arabisch?",
+      "antworten": [
+        "لغة",
+        "الشقة",
+        "أب",
+        "لوح"
+      ],
+      "richtigeAntwort": "أب"
+    },
+    {
+      "id": "a1-vocab-010-vocab-ar-de-a1v010",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „أخ“ auf Deutsch?",
+      "antworten": [
+        "die Tafel",
+        "der Monat",
+        "der Saft",
+        "der Bruder"
+      ],
+      "richtigeAntwort": "der Bruder"
+    },
+    {
+      "id": "a1-vocab-011-vocab-meaning-a1v011",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Schwester“?",
+      "antworten": [
+        "جواب",
+        "مخبز",
+        "صغير",
+        "أخت"
+      ],
+      "richtigeAntwort": "أخت"
+    },
+    {
+      "id": "a1-vocab-012-vocab-gap-a1v012",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اسم“.",
+      "antworten": [
+        "der Name",
+        "der Käse",
+        "warm",
+        "die Küche"
+      ],
+      "richtigeAntwort": "der Name"
+    },
+    {
+      "id": "a1-vocab-013-vocab-de-ar-a1v013",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „das Land“ auf Arabisch?",
+      "antworten": [
+        "بلد",
+        "اليوم",
+        "مفتاح",
+        "بارد"
+      ],
+      "richtigeAntwort": "بلد"
+    },
+    {
+      "id": "a1-vocab-014-vocab-ar-de-a1v014",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „لغة“ auf Deutsch?",
+      "antworten": [
+        "der Schlüssel",
+        "die Gurke",
+        "die Haltestelle",
+        "die Sprache"
+      ],
+      "richtigeAntwort": "die Sprache"
+    },
+    {
+      "id": "a1-vocab-015-vocab-meaning-a1v015",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Lehrer“?",
+      "antworten": [
+        "طماطم",
+        "معلم",
+        "نافذة",
+        "صديقة"
+      ],
+      "richtigeAntwort": "معلم"
+    },
+    {
+      "id": "a1-vocab-016-vocab-gap-a1v016",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „معلمة“.",
+      "antworten": [
+        "der Vorname",
+        "der Zucker",
+        "die Lehrerin",
+        "der Kaffee"
+      ],
+      "richtigeAntwort": "die Lehrerin"
+    },
+    {
+      "id": "a1-vocab-017-vocab-de-ar-a1v017",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Schule“ auf Arabisch?",
+      "antworten": [
+        "الطاولة",
+        "طفل",
+        "مدرسة",
+        "موقف"
+      ],
+      "richtigeAntwort": "مدرسة"
+    },
+    {
+      "id": "a1-vocab-018-vocab-ar-de-a1v018",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „دفتر“ auf Deutsch?",
+      "antworten": [
+        "der Nachname",
+        "das Heft",
+        "die Adresse",
+        "die Tür"
+      ],
+      "richtigeAntwort": "das Heft"
+    },
+    {
+      "id": "a1-vocab-019-vocab-meaning-a1v019",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „das Buch“?",
+      "antworten": [
+        "باب",
+        "كتاب",
+        "اليوم",
+        "حديقة"
+      ],
+      "richtigeAntwort": "كتاب"
+    },
+    {
+      "id": "a1-vocab-020-vocab-gap-a1v106",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „الاسم الأول“.",
+      "antworten": [
+        "der Vorname",
+        "das Wochenende",
+        "die Haltestelle",
+        "die Nacht"
+      ],
+      "richtigeAntwort": "der Vorname"
+    },
+    {
+      "id": "a1-vocab-021-vocab-de-ar-a1v107",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Nachname“ auf Arabisch?",
+      "antworten": [
+        "اسم العائلة",
+        "بصلة",
+        "جواز سفر",
+        "لوح"
+      ],
+      "richtigeAntwort": "اسم العائلة"
+    },
+    {
+      "id": "a1-vocab-022-vocab-ar-de-a1v108",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مكان الميلاد“ auf Deutsch?",
+      "antworten": [
+        "die Gurke",
+        "der Geburtsort",
+        "das Wochenende",
+        "der Kopf"
+      ],
+      "richtigeAntwort": "der Geburtsort"
+    },
+    {
+      "id": "a1-vocab-023-vocab-meaning-a1v109",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „das Telefon“?",
+      "antworten": [
+        "الغرفة",
+        "موسيقى",
+        "هاتف",
+        "معلمة"
+      ],
+      "richtigeAntwort": "هاتف"
+    },
+    {
+      "id": "a1-vocab-024-vocab-gap-a1v110",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „عنوان البريد الإلكتروني“.",
+      "antworten": [
+        "morgen",
+        "die Karte",
+        "die E-Mail-Adresse",
+        "die Lehrerin"
+      ],
+      "richtigeAntwort": "die E-Mail-Adresse"
+    },
+    {
+      "id": "a1-vocab-025-vocab-de-ar-a1v111",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Nationalität“ auf Arabisch?",
+      "antworten": [
+        "جواب",
+        "رخيص",
+        "شرفة",
+        "جنسية"
+      ],
+      "richtigeAntwort": "جنسية"
+    },
+    {
+      "id": "a1-vocab-026-vocab-ar-de-a1v020",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الخبز“ auf Deutsch?",
+      "antworten": [
+        "das Brot",
+        "die Straße",
+        "klein",
+        "der Schrank"
+      ],
+      "richtigeAntwort": "das Brot"
+    },
+    {
+      "id": "a1-vocab-027-vocab-meaning-a1v021",
+      "level": "A1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Milch“?",
+      "antworten": [
+        "قدم",
+        "رجل",
+        "سوبرماركت",
+        "الحليب"
+      ],
+      "richtigeAntwort": "الحليب"
+    },
+    {
+      "id": "a1-vocab-028-vocab-gap-a1v022",
+      "level": "A1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „الماء“.",
+      "antworten": [
+        "das Wasser",
+        "der Rücken",
+        "das Sofa",
+        "der Termin"
+      ],
+      "richtigeAntwort": "das Wasser"
+    },
+    {
+      "id": "a1-vocab-029-vocab-de-ar-a1v023",
+      "level": "A1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Reis“ auf Arabisch?",
+      "antworten": [
+        "الأرز",
+        "سنة",
+        "يد",
+        "رقم"
+      ],
+      "richtigeAntwort": "الأرز"
+    },
+    {
+      "id": "a1-vocab-030-vocab-ar-de-a1v024",
+      "level": "A1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الخضار“ auf Deutsch?",
+      "antworten": [
+        "der Fuß",
+        "die Tür",
+        "Husten",
+        "das Gemüse"
+      ],
+      "richtigeAntwort": "das Gemüse"
+    },
+    {
+      "id": "a1-sentence-001-sentence-de-ar-a1s001",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich heiße Nassim.“?",
+      "antworten": [
+        "اسمي نسيم.",
+        "أبحث عن صندوق الدفع.",
+        "أستطيع الساعة الثامنة، لكن ليس السابعة.",
+        "لدي أخت."
+      ],
+      "richtigeAntwort": "اسمي نسيم."
+    },
+    {
+      "id": "a1-sentence-002-sentence-ar-de-a1s002",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „ما اسمك؟“?",
+      "antworten": [
+        "Die Küche ist klein, aber schön.",
+        "Wie heißt du?",
+        "Ich suche die Kasse.",
+        "Meine Hand tut weh."
+      ],
+      "richtigeAntwort": "Wie heißt du?"
+    },
+    {
+      "id": "a1-sentence-003-sentence-gap-a1s003",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Ich _____ aus Marokko.“",
+      "antworten": [
+        "schnell",
+        "Ich",
+        "komme",
+        "Preis"
+      ],
+      "richtigeAntwort": "komme"
+    },
+    {
+      "id": "a1-sentence-004-sentence-complete-a1s004",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أنا أسكن في برلين.“?",
+      "antworten": [
+        "Ich wohne in Berlin.",
+        "Wir sehen einen Film.",
+        "Das ist zu teuer. Haben Sie etwas Billigeres?",
+        "Der Preis ist hoch."
+      ],
+      "richtigeAntwort": "Ich wohne in Berlin."
+    },
+    {
+      "id": "a1-sentence-005-sentence-de-ar-a1s005",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich bin zu Hause.“?",
+      "antworten": [
+        "أنا جائع.",
+        "أين الحمّام؟",
+        "أين الموقف؟",
+        "أنا في البيت."
+      ],
+      "richtigeAntwort": "أنا في البيت."
+    },
+    {
+      "id": "a1-sentence-006-sentence-ar-de-a1s006",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أنت لطيف.“?",
+      "antworten": [
+        "Die Schuhe sind neu.",
+        "Ich lese ein Buch.",
+        "Du bist nett.",
+        "Am Wochenende besuche ich Freunde."
+      ],
+      "richtigeAntwort": "Du bist nett."
+    },
+    {
+      "id": "a1-sentence-007-sentence-gap-a1s007",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Er _____ heute.“",
+      "antworten": [
+        "brauche",
+        "kommt",
+        "Montag",
+        "nehme"
+      ],
+      "richtigeAntwort": "kommt"
+    },
+    {
+      "id": "a1-sentence-008-sentence-complete-a1s008",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „هي تتعلم الألمانية.“?",
+      "antworten": [
+        "Sie lernt Deutsch.",
+        "Ich gehe in den Park.",
+        "Ich brauche einen Stift.",
+        "Die Lampe ist hell."
+      ],
+      "richtigeAntwort": "Sie lernt Deutsch."
+    },
+    {
+      "id": "a1-sentence-009-sentence-de-ar-a1s009",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wir wohnen in Berlin.“?",
+      "antworten": [
+        "القهوة ساخنة.",
+        "المعلم يتحدث ببطء.",
+        "نحن نسكن في برلين.",
+        "أستمع إلى الموسيقى."
+      ],
+      "richtigeAntwort": "نحن نسكن في برلين."
+    },
+    {
+      "id": "a1-sentence-010-sentence-ar-de-a1s010",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „لدي أخت.“?",
+      "antworten": [
+        "Ich brauche Medizin.",
+        "Das Wörterbuch ist klein.",
+        "Ich habe eine Schwester.",
+        "Die Straße ist lang."
+      ],
+      "richtigeAntwort": "Ich habe eine Schwester."
+    },
+    {
+      "id": "a1-sentence-011-sentence-gap-a1s011",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Mein _____ arbeitet.“",
+      "antworten": [
+        "verstehe",
+        "Straße",
+        "kommt",
+        "Vater"
+      ],
+      "richtigeAntwort": "Vater"
+    },
+    {
+      "id": "a1-sentence-012-sentence-complete-a1s012",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أمي تطبخ.“?",
+      "antworten": [
+        "Gestern war ich krank.",
+        "Der Zug kommt.",
+        "Der Supermarkt ist offen.",
+        "Meine Mutter kocht."
+      ],
+      "richtigeAntwort": "Meine Mutter kocht."
+    },
+    {
+      "id": "a1-sentence-013-sentence-de-ar-a1s013",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Das Kind spielt.“?",
+      "antworten": [
+        "الطفل يلعب.",
+        "المعلم يتحدث ببطء.",
+        "أركب الحافلة.",
+        "أملأ استمارة."
+      ],
+      "richtigeAntwort": "الطفل يلعب."
+    },
+    {
+      "id": "a1-sentence-014-sentence-ar-de-a1s014",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أشرب الماء.“?",
+      "antworten": [
+        "Ich trinke Wasser.",
+        "Ich habe morgen um 10 Uhr einen Termin.",
+        "Mein Kopf tut weh.",
+        "Ich habe ein Rezept."
+      ],
+      "richtigeAntwort": "Ich trinke Wasser."
+    },
+    {
+      "id": "a1-sentence-015-sentence-gap-a1s015",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ esse Brot.“",
+      "antworten": [
+        "Apotheke",
+        "Schuhe",
+        "Ich",
+        "Morgen"
+      ],
+      "richtigeAntwort": "Ich"
+    },
+    {
+      "id": "a1-sentence-016-sentence-complete-a1s016",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „الشاي دافئ.“?",
+      "antworten": [
+        "Das Amt ist dort.",
+        "Meine Adresse ist neu.",
+        "Der Tee ist warm.",
+        "Mein Fuß tut weh."
+      ],
+      "richtigeAntwort": "Der Tee ist warm."
+    },
+    {
+      "id": "a1-sentence-017-sentence-de-ar-a1s017",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Der Kaffee ist heiß.“?",
+      "antworten": [
+        "اليوم الاثنين.",
+        "أبي يعمل.",
+        "المطبخ صغير لكنه جميل.",
+        "القهوة ساخنة."
+      ],
+      "richtigeAntwort": "القهوة ساخنة."
+    },
+    {
+      "id": "a1-sentence-018-sentence-ar-de-a1s018",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أشتري الحليب.“?",
+      "antworten": [
+        "Die Küche ist sauber.",
+        "Bitte wiederholen Sie.",
+        "Der Lehrer spricht langsam.",
+        "Ich kaufe Milch."
+      ],
+      "richtigeAntwort": "Ich kaufe Milch."
+    },
+    {
+      "id": "a1-sentence-019-sentence-gap-a1s019",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Das _____ drei Euro.“",
+      "antworten": [
+        "Schlüssel",
+        "kostet",
+        "wichtig",
+        "heißt"
+      ],
+      "richtigeAntwort": "kostet"
+    },
+    {
+      "id": "a1-sentence-020-sentence-complete-a1s020",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أدفع بالبطاقة.“?",
+      "antworten": [
+        "Ich lerne jeden Tag.",
+        "Ich bezahle mit Karte.",
+        "Ich rufe meine Mutter an.",
+        "Ich gehe zum Arzt."
+      ],
+      "richtigeAntwort": "Ich bezahle mit Karte."
+    },
+    {
+      "id": "a1-sentence-021-sentence-de-ar-a1s021",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Der Supermarkt ist offen.“?",
+      "antworten": [
+        "السرير مريح.",
+        "السوبرماركت مفتوح.",
+        "أين الموقف؟",
+        "أريد خبزًا من فضلك."
+      ],
+      "richtigeAntwort": "السوبرماركت مفتوح."
+    },
+    {
+      "id": "a1-sentence-022-sentence-ar-de-a1s022",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أركب الحافلة.“?",
+      "antworten": [
+        "Ich fahre mit dem Bus.",
+        "Mein Ohr tut weh.",
+        "Das Zimmer ist klein.",
+        "Ich kaufe Tomaten und Gurken."
+      ],
+      "richtigeAntwort": "Ich fahre mit dem Bus."
+    },
+    {
+      "id": "a1-sentence-023-sentence-gap-a1s110",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Ich _____ Ahmad.“",
+      "antworten": [
+        "Freund",
+        "heiße",
+        "Haltestelle",
+        "Mein"
+      ],
+      "richtigeAntwort": "heiße"
+    },
+    {
+      "id": "a1-sentence-024-sentence-complete-a1s111",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „اسم عائلتي علي.“?",
+      "antworten": [
+        "Ich heiße Ahmad.",
+        "Mein Nachname ist Ali.",
+        "Ich verstehe nicht.",
+        "Mein Vater arbeitet."
+      ],
+      "richtigeAntwort": "Mein Nachname ist Ali."
+    },
+    {
+      "id": "a1-sentence-025-sentence-de-ar-a1s112",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich bin neu hier.“?",
+      "antworten": [
+        "أنت لطيف.",
+        "الشقة مضيئة.",
+        "أنا جديد هنا.",
+        "السرير مريح."
+      ],
+      "richtigeAntwort": "أنا جديد هنا."
+    },
+    {
+      "id": "a1-sentence-026-sentence-ar-de-a1s023",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أريد خبزًا من فضلك.“?",
+      "antworten": [
+        "Ich hätte gern ein Brot, bitte.",
+        "Das Sofa ist bequem.",
+        "Mir geht es gut.",
+        "Ich brauche einen Termin beim Arzt."
+      ],
+      "richtigeAntwort": "Ich hätte gern ein Brot, bitte."
+    },
+    {
+      "id": "a1-sentence-027-sentence-gap-a1s024",
+      "level": "A1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wie viel _____ das?“",
+      "antworten": [
+        "Termin",
+        "kostet",
+        "Wann",
+        "Schwester"
+      ],
+      "richtigeAntwort": "kostet"
+    },
+    {
+      "id": "a1-sentence-028-sentence-complete-a1s025",
+      "level": "A1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „هل لديكم أيضًا ماء؟“?",
+      "antworten": [
+        "Ich habe einen Brief.",
+        "Ich habe Hunger.",
+        "Haben Sie auch Wasser?",
+        "Ich brauche einen Stift."
+      ],
+      "richtigeAntwort": "Haben Sie auch Wasser?"
+    },
+    {
+      "id": "a1-sentence-029-sentence-de-ar-a1s026",
+      "level": "A1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Das ist zu teuer. Haben Sie etwas Billigeres?“?",
+      "antworten": [
+        "هذا غالٍ جدًا. هل لديكم أرخص؟",
+        "أنا في البيت.",
+        "أبحث عن صندوق الدفع.",
+        "الشقة مضيئة."
+      ],
+      "richtigeAntwort": "هذا غالٍ جدًا. هل لديكم أرخص؟"
+    },
+    {
+      "id": "a1-sentence-030-sentence-ar-de-a1s027",
+      "level": "A1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „القطار يأتي.“?",
+      "antworten": [
+        "Der Zug kommt.",
+        "Wir essen zusammen.",
+        "Wir wohnen in Berlin.",
+        "Ich bin müde."
+      ],
+      "richtigeAntwort": "Der Zug kommt."
     }
   ],
-  "A1_U2_L3": [
+  "A2": [
     {
-      "q": "Wie fragt man nach dem Preis?",
-      "choices": ["Wie viel kostet das?", "Wo ist das Bad?", "Ich heiße Nassim.", "Guten Appetit!"],
-      "answerIndex": 0
+      "id": "a2-vocab-001-vocab-de-ar-a2v001",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Größe“ auf Arabisch?",
+      "antworten": [
+        "وثيقة",
+        "الشهادة",
+        "المقاس",
+        "سكة/رصيف قطار"
+      ],
+      "richtigeAntwort": "المقاس"
     },
     {
-      "q": "Was passt zu „billig“?",
-      "choices": ["رخيص", "غالي", "موعد", "المترو"],
-      "answerIndex": 0
+      "id": "a2-vocab-002-vocab-ar-de-a2v002",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „كبير جدًا“ auf Deutsch?",
+      "antworten": [
+        "zu groß",
+        "die Heizung",
+        "die Wohnungssuche",
+        "die Farbe"
+      ],
+      "richtigeAntwort": "zu groß"
+    },
+    {
+      "id": "a2-vocab-003-vocab-meaning-a2v003",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „zu klein“?",
+      "antworten": [
+        "دوام جزئي",
+        "صغير جدًا",
+        "المقاس M",
+        "إيجار"
+      ],
+      "richtigeAntwort": "صغير جدًا"
+    },
+    {
+      "id": "a2-vocab-004-vocab-gap-a2v004",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اللون“.",
+      "antworten": [
+        "das Trinkgeld",
+        "die Farbe",
+        "die Terminvereinbarung",
+        "die Überweisung"
+      ],
+      "richtigeAntwort": "die Farbe"
+    },
+    {
+      "id": "a2-vocab-005-vocab-de-ar-a2v005",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „umtauschen“ auf Arabisch?",
+      "antworten": [
+        "تحويلة",
+        "يستبدل",
+        "دوام جزئي",
+        "مدرب الدورة"
+      ],
+      "richtigeAntwort": "يستبدل"
+    },
+    {
+      "id": "a2-vocab-006-vocab-ar-de-a2v006",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الإيصال“ auf Deutsch?",
+      "antworten": [
+        "die Quittung",
+        "die Apothekerin",
+        "die Überweisung",
+        "der Rabatt"
+      ],
+      "richtigeAntwort": "die Quittung"
+    },
+    {
+      "id": "a2-vocab-007-vocab-meaning-a2v007",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Wohnungssuche“?",
+      "antworten": [
+        "تذكرة سفر",
+        "شهادة مشاركة",
+        "البحث عن شقة",
+        "ساعات استقبال الطبيب"
+      ],
+      "richtigeAntwort": "البحث عن شقة"
+    },
+    {
+      "id": "a2-vocab-008-vocab-gap-a2v008",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „معاينة“.",
+      "antworten": [
+        "dringend",
+        "die Krankmeldung",
+        "die Besichtigung",
+        "die Kursleiterin"
+      ],
+      "richtigeAntwort": "die Besichtigung"
+    },
+    {
+      "id": "a2-vocab-009-vocab-de-ar-a2v009",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Miete“ auf Arabisch?",
+      "antworten": [
+        "غرفة انتظار",
+        "إيجار",
+        "المقاس M",
+        "ممكن"
+      ],
+      "richtigeAntwort": "إيجار"
+    },
+    {
+      "id": "a2-vocab-010-vocab-ar-de-a2v010",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مؤجر“ auf Deutsch?",
+      "antworten": [
+        "der Vermieter",
+        "der Eingang",
+        "das Schwimmbad",
+        "die Sprechstunde"
+      ],
+      "richtigeAntwort": "der Vermieter"
+    },
+    {
+      "id": "a2-vocab-011-vocab-meaning-a2v011",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Vermieterin“?",
+      "antworten": [
+        "جواز سفر",
+        "صيدلانية",
+        "فريق",
+        "مؤجرة"
+      ],
+      "richtigeAntwort": "مؤجرة"
+    },
+    {
+      "id": "a2-vocab-012-vocab-gap-a2v012",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „تدفئة“.",
+      "antworten": [
+        "die Kopie",
+        "die Heizung",
+        "die Kollegin",
+        "der Sachbearbeiter"
+      ],
+      "richtigeAntwort": "die Heizung"
+    },
+    {
+      "id": "a2-vocab-013-vocab-de-ar-a2v013",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Strom“ auf Arabisch?",
+      "antworten": [
+        "كهرباء",
+        "جرعة",
+        "المقاس M",
+        "دورة لغة"
+      ],
+      "richtigeAntwort": "كهرباء"
+    },
+    {
+      "id": "a2-vocab-014-vocab-ar-de-a2v014",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „إنترنت“ auf Deutsch?",
+      "antworten": [
+        "das Internet",
+        "die Lösung",
+        "die Speisekarte",
+        "rechts"
+      ],
+      "richtigeAntwort": "das Internet"
+    },
+    {
+      "id": "a2-vocab-015-vocab-meaning-a2v015",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Umzug“?",
+      "antworten": [
+        "انتقال السكن",
+        "معطف",
+        "رقم انتظار",
+        "مسبح"
+      ],
+      "richtigeAntwort": "انتقال السكن"
+    },
+    {
+      "id": "a2-vocab-016-vocab-gap-a2v016",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „صندوق كرتون“.",
+      "antworten": [
+        "das Hustenmittel",
+        "der Bahnsteig",
+        "der Karton",
+        "die Einladung"
+      ],
+      "richtigeAntwort": "der Karton"
+    },
+    {
+      "id": "a2-vocab-017-vocab-de-ar-a2v017",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Lebenslauf“ auf Arabisch?",
+      "antworten": [
+        "إشارة مرور",
+        "سيرة ذاتية",
+        "مكالمة",
+        "مدخل"
+      ],
+      "richtigeAntwort": "سيرة ذاتية"
+    },
+    {
+      "id": "a2-vocab-018-vocab-ar-de-a2v018",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „عقد عمل“ auf Deutsch?",
+      "antworten": [
+        "der Arbeitsvertrag",
+        "das Kino",
+        "die Nebenwirkung",
+        "der Nachtisch"
+      ],
+      "richtigeAntwort": "der Arbeitsvertrag"
+    },
+    {
+      "id": "a2-vocab-019-vocab-meaning-a2v019",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „das Gehalt“?",
+      "antworten": [
+        "قرص دواء",
+        "راتب",
+        "ممكن",
+        "وردية"
+      ],
+      "richtigeAntwort": "راتب"
+    },
+    {
+      "id": "a2-vocab-020-vocab-gap-a2v020",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „وردية“.",
+      "antworten": [
+        "die Schicht",
+        "die Rechnung",
+        "das Original",
+        "die Salbe"
+      ],
+      "richtigeAntwort": "die Schicht"
+    },
+    {
+      "id": "a2-vocab-021-vocab-de-ar-a2v021",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Feierabend“ auf Arabisch?",
+      "antworten": [
+        "تأخير",
+        "نهاية الدوام",
+        "دوام كامل",
+        "تحديد موعد"
+      ],
+      "richtigeAntwort": "نهاية الدوام"
+    },
+    {
+      "id": "a2-vocab-022-vocab-ar-de-a2v108",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „معطف“ auf Deutsch?",
+      "antworten": [
+        "der Mantel",
+        "der Facharzt",
+        "die Bedienung",
+        "die Meldebescheinigung"
+      ],
+      "richtigeAntwort": "der Mantel"
+    },
+    {
+      "id": "a2-vocab-023-vocab-meaning-a2v109",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Pullover“?",
+      "antworten": [
+        "مدخل",
+        "كنزة",
+        "مسبح",
+        "تحلية"
+      ],
+      "richtigeAntwort": "كنزة"
+    },
+    {
+      "id": "a2-vocab-024-vocab-gap-a2v110",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „غرفة تبديل الملابس“.",
+      "antworten": [
+        "das Wörterbuch",
+        "vegetarisch",
+        "die Umkleidekabine",
+        "das Trinkgeld"
+      ],
+      "richtigeAntwort": "die Umkleidekabine"
+    },
+    {
+      "id": "a2-vocab-025-vocab-de-ar-a2v111",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Kassenzettel“ auf Arabisch?",
+      "antworten": [
+        "إيصال",
+        "استراحة",
+        "مؤجر",
+        "سكة/رصيف قطار"
+      ],
+      "richtigeAntwort": "إيصال"
+    },
+    {
+      "id": "a2-vocab-026-vocab-ar-de-a2v022",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „العيادة“ auf Deutsch?",
+      "antworten": [
+        "die Linie",
+        "die Praxis",
+        "die Hose",
+        "die Krankmeldung"
+      ],
+      "richtigeAntwort": "die Praxis"
+    },
+    {
+      "id": "a2-vocab-027-vocab-meaning-a2v023",
+      "level": "A2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Krankenversicherung“?",
+      "antworten": [
+        "التأمين الصحي",
+        "فحص",
+        "إقامة",
+        "صغير جدًا"
+      ],
+      "richtigeAntwort": "التأمين الصحي"
+    },
+    {
+      "id": "a2-vocab-028-vocab-gap-a2v024",
+      "level": "A2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „إجازة مرضية“.",
+      "antworten": [
+        "die Krankmeldung",
+        "der Rabatt",
+        "die Krankenversicherung",
+        "die Teilnahmebescheinigung"
+      ],
+      "richtigeAntwort": "die Krankmeldung"
+    },
+    {
+      "id": "a2-vocab-029-vocab-de-ar-a2v025",
+      "level": "A2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Überweisung“ auf Arabisch?",
+      "antworten": [
+        "واجب منزلي",
+        "تحويل طبي",
+        "اتجاه",
+        "دوام جزئي"
+      ],
+      "richtigeAntwort": "تحويل طبي"
+    },
+    {
+      "id": "a2-vocab-030-vocab-ar-de-a2v026",
+      "level": "A2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مكتب“ auf Deutsch?",
+      "antworten": [
+        "die Hausaufgabe",
+        "bestellen",
+        "die Besichtigung",
+        "das Büro"
+      ],
+      "richtigeAntwort": "das Büro"
+    },
+    {
+      "id": "a2-sentence-001-sentence-de-ar-a2s001",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich möchte das umtauschen.“?",
+      "antworten": [
+        "أريد استبدال هذا.",
+        "تشرح لي الصيدلانية الجرعة.",
+        "أنتظر أمام الشباك.",
+        "غرفة تبديل الملابس هناك في الخلف."
+      ],
+      "richtigeAntwort": "أريد استبدال هذا."
+    },
+    {
+      "id": "a2-sentence-002-sentence-ar-de-a2s002",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „هل لديكم هذا البنطال بمقاس M؟“?",
+      "antworten": [
+        "Ich schreibe heute meinen Lebenslauf.",
+        "Ich habe das Ergebnis der Prüfung bekommen.",
+        "Haben Sie die Hose in Größe M?",
+        "Bitte bringen Sie Ihren Ausweis mit."
+      ],
+      "richtigeAntwort": "Haben Sie die Hose in Größe M?"
+    },
+    {
+      "id": "a2-sentence-003-sentence-gap-a2s003",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Das ist mir zu _____. Haben Sie eine Nummer größer?“",
+      "antworten": [
+        "Unser",
+        "Miete",
+        "klein",
+        "möglich"
+      ],
+      "richtigeAntwort": "klein"
+    },
+    {
+      "id": "a2-sentence-004-sentence-complete-a2s004",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „هذا هو الإيصال.“?",
+      "antworten": [
+        "Hier ist die Quittung.",
+        "Wir möchten die Altstadt besichtigen.",
+        "Meine Nachbarin hilft mir oft.",
+        "Welche Unterlagen brauche ich?"
+      ],
+      "richtigeAntwort": "Hier ist die Quittung."
+    },
+    {
+      "id": "a2-sentence-005-sentence-de-ar-a2s005",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich möchte einen Termin beim Arzt vereinbaren.“?",
+      "antworten": [
+        "الامتحان سيجري يوم الجمعة.",
+        "أريد تحديد موعد عند الطبيب.",
+        "يجب أن أنجز الواجبات حتى الغد.",
+        "يجب أن أدفع الرسوم فورًا."
+      ],
+      "richtigeAntwort": "أريد تحديد موعد عند الطبيب."
+    },
+    {
+      "id": "a2-sentence-006-sentence-ar-de-a2s006",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „هل يمكن أن ترسل لي العنوان من فضلك؟“?",
+      "antworten": [
+        "Die Apothekerin erklärt mir die Dosierung.",
+        "Können Sie mir bitte die Adresse schicken?",
+        "Ich benutze ein Wörterbuch beim Lesen.",
+        "Die Heizung funktioniert seit gestern nicht."
+      ],
+      "richtigeAntwort": "Können Sie mir bitte die Adresse schicken?"
+    },
+    {
+      "id": "a2-sentence-007-sentence-gap-a2s007",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Ich _____ fünf Minuten später.“",
+      "antworten": [
+        "komme",
+        "bringe",
+        "Kopie",
+        "grillen"
+      ],
+      "richtigeAntwort": "komme"
+    },
+    {
+      "id": "a2-sentence-008-sentence-complete-a2s008",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „تأخرت الحافلة هذا الصباح.“?",
+      "antworten": [
+        "Der Kursraum ist im zweiten Stock.",
+        "Ich möchte zwei Wochen Urlaub nehmen.",
+        "Der Bus hatte heute Morgen Verspätung.",
+        "Können wir das Problem zusammen lösen?"
+      ],
+      "richtigeAntwort": "Der Bus hatte heute Morgen Verspätung."
+    },
+    {
+      "id": "a2-sentence-009-sentence-de-ar-a2s009",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich muss an der nächsten Haltestelle aussteigen.“?",
+      "antworten": [
+        "يجب أن أنزل في الموقف القادم.",
+        "ننطلق من الرصيف الثالث.",
+        "حصلت على تأكيد الموعد عبر البريد الإلكتروني.",
+        "تنادي الموظفة المختصة رقمي."
+      ],
+      "richtigeAntwort": "يجب أن أنزل في الموقف القادم."
+    },
+    {
+      "id": "a2-sentence-010-sentence-ar-de-a2s010",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أي خط يذهب إلى محطة القطار؟“?",
+      "antworten": [
+        "Welche Haltestelle ist das?",
+        "Welche Linie fährt zum Bahnhof?",
+        "Ich habe einen Termin bei der Ausländerbehörde.",
+        "Ich benutze ein Wörterbuch beim Lesen."
+      ],
+      "richtigeAntwort": "Welche Linie fährt zum Bahnhof?"
+    },
+    {
+      "id": "a2-sentence-011-sentence-gap-a2s011",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Ich habe _____ Fahrkarte online gekauft.“",
+      "antworten": [
+        "meine",
+        "Pullover",
+        "benutze",
+        "Quittung"
+      ],
+      "richtigeAntwort": "meine"
+    },
+    {
+      "id": "a2-sentence-012-sentence-complete-a2s012",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أبحث عن شقة بغرفتين.“?",
+      "antworten": [
+        "Ich möchte einen Termin vereinbaren.",
+        "Ich suche eine Wohnung mit zwei Zimmern.",
+        "Ich bringe morgen alle Unterlagen mit.",
+        "Das Hotelzimmer ist sauber und ruhig."
+      ],
+      "richtigeAntwort": "Ich suche eine Wohnung mit zwei Zimmern."
+    },
+    {
+      "id": "a2-sentence-013-sentence-de-ar-a2s013",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Die Miete ist für mich zu hoch.“?",
+      "antworten": [
+        "عند حدوث آثار جانبية اتصل بالعيادة.",
+        "نحزم الصناديق يوم الجمعة.",
+        "الإيجار مرتفع جدًا بالنسبة لي.",
+        "أعمل هذا الأسبوع بدوام جزئي."
+      ],
+      "richtigeAntwort": "الإيجار مرتفع جدًا بالنسبة لي."
+    },
+    {
+      "id": "a2-sentence-014-sentence-ar-de-a2s014",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „متى يمكنني معاينة الشقة؟“?",
+      "antworten": [
+        "Wann kann ich die Wohnung besichtigen?",
+        "Bitte lesen Sie die Dosierung genau.",
+        "Ich suche im Supermarkt frisches Gemüse.",
+        "Hier ist die Quittung."
+      ],
+      "richtigeAntwort": "Wann kann ich die Wohnung besichtigen?"
+    },
+    {
+      "id": "a2-sentence-015-sentence-gap-a2s015",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Die _____ funktioniert seit gestern nicht.“",
+      "antworten": [
+        "Heizung",
+        "Hausaufgaben",
+        "Haben",
+        "meine"
+      ],
+      "richtigeAntwort": "Heizung"
+    },
+    {
+      "id": "a2-sentence-016-sentence-complete-a2s016",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „سأنتقل الشهر القادم.“?",
+      "antworten": [
+        "Welche Unterlagen brauche ich?",
+        "Ich ziehe nächsten Monat um.",
+        "Ich möchte die Jacke umtauschen.",
+        "Ich habe morgen ein Bewerbungsgespräch."
+      ],
+      "richtigeAntwort": "Ich ziehe nächsten Monat um."
+    },
+    {
+      "id": "a2-sentence-017-sentence-de-ar-a2s017",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich schreibe heute meinen Lebenslauf.“?",
+      "antworten": [
+        "مدرب الدورة يتحدث بوضوح جدًا.",
+        "أكتب اليوم سيرتي الذاتية.",
+        "الالتزام بالوقت مهم لهذه الوظيفة.",
+        "يرجى قراءة الجرعة بدقة."
+      ],
+      "richtigeAntwort": "أكتب اليوم سيرتي الذاتية."
+    },
+    {
+      "id": "a2-sentence-018-sentence-ar-de-a2s018",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „لدي غدًا مقابلة عمل.“?",
+      "antworten": [
+        "Die Gebühr muss ich sofort bezahlen.",
+        "Geht es auch am Donnerstag?",
+        "Ich habe morgen ein Bewerbungsgespräch.",
+        "Können wir das Problem zusammen lösen?"
+      ],
+      "richtigeAntwort": "Ich habe morgen ein Bewerbungsgespräch."
+    },
+    {
+      "id": "a2-sentence-019-sentence-gap-a2s019",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ Schicht beginnt um sechs Uhr.“",
+      "antworten": [
+        "Salbe",
+        "unterschreiben",
+        "Meine",
+        "nehmen"
+      ],
+      "richtigeAntwort": "Meine"
+    },
+    {
+      "id": "a2-sentence-020-sentence-complete-a2s020",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „سأرسل البريد الإلكتروني لاحقًا.“?",
+      "antworten": [
+        "Das Formular kann man online ausfüllen.",
+        "Ich schicke die E-Mail später.",
+        "Ich habe morgen ein Bewerbungsgespräch.",
+        "Der Vermieter möchte die Kaution vor dem Einzug."
+      ],
+      "richtigeAntwort": "Ich schicke die E-Mail später."
+    },
+    {
+      "id": "a2-sentence-021-sentence-de-ar-a2s021",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Die Besprechung dauert eine Stunde.“?",
+      "antworten": [
+        "الاجتماع يستغرق ساعة.",
+        "المدير ليس في المكتب اليوم.",
+        "أريد ممارسة رياضة أكثر.",
+        "أستخدم قاموسًا أثناء القراءة."
+      ],
+      "richtigeAntwort": "الاجتماع يستغرق ساعة."
+    },
+    {
+      "id": "a2-sentence-022-sentence-ar-de-a2s022",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أريد أخذ إجازة لمدة أسبوعين.“?",
+      "antworten": [
+        "Ich möchte einen Termin beim Arzt vereinbaren.",
+        "Ich möchte zwei Wochen Urlaub nehmen.",
+        "Die Miete ist für mich zu hoch.",
+        "Ich gehe zweimal pro Woche ins Schwimmbad."
+      ],
+      "richtigeAntwort": "Ich möchte zwei Wochen Urlaub nehmen."
+    },
+    {
+      "id": "a2-sentence-023-sentence-gap-a2s111",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Kann ich den _____ anprobieren?“",
+      "antworten": [
+        "Ergebnis",
+        "Formular",
+        "Pullover",
+        "lesen"
+      ],
+      "richtigeAntwort": "Pullover"
+    },
+    {
+      "id": "a2-sentence-024-sentence-complete-a2s112",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „غرفة تبديل الملابس هناك في الخلف.“?",
+      "antworten": [
+        "Die Umkleidekabine ist dort hinten.",
+        "Ich ziehe zuerst eine Wartenummer.",
+        "Ich möchte einen Termin beim Arzt vereinbaren.",
+        "Kann ich eine Bescheinigung bekommen?"
+      ],
+      "richtigeAntwort": "Die Umkleidekabine ist dort hinten."
+    },
+    {
+      "id": "a2-sentence-025-sentence-de-ar-a2s113",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich möchte den Mantel zurückgeben.“?",
+      "antworten": [
+        "غرفة الفندق نظيفة وهادئة.",
+        "أريد إرجاع المعطف.",
+        "هل يمكنني شراء الدواء بدون وصفة؟",
+        "المؤجر يريد التأمين قبل الانتقال."
+      ],
+      "richtigeAntwort": "أريد إرجاع المعطف."
+    },
+    {
+      "id": "a2-sentence-026-sentence-ar-de-a2s023",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أريد حجز موعد.“?",
+      "antworten": [
+        "Ich möchte mich für den Deutschkurs anmelden.",
+        "Ich möchte einen Termin vereinbaren.",
+        "Ich habe die Reservierung per E-Mail bekommen.",
+        "Entschuldigung, wo ist die U-Bahn?"
+      ],
+      "richtigeAntwort": "Ich möchte einen Termin vereinbaren."
+    },
+    {
+      "id": "a2-sentence-027-sentence-gap-a2s024",
+      "level": "A2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Geht es auch am _____?“",
+      "antworten": [
+        "schreibe",
+        "sprechen",
+        "Donnerstag",
+        "unterschreiben"
+      ],
+      "richtigeAntwort": "Donnerstag"
+    },
+    {
+      "id": "a2-sentence-028-sentence-complete-a2s025",
+      "level": "A2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحتاج وصفة طبية وإجازة مرضية.“?",
+      "antworten": [
+        "Ich habe meine Fahrkarte online gekauft.",
+        "Ich brauche ein Rezept und eine Krankmeldung.",
+        "Wir grillen am Wochenende im Park.",
+        "Können Sie mir bitte die Adresse schicken?"
+      ],
+      "richtigeAntwort": "Ich brauche ein Rezept und eine Krankmeldung."
+    },
+    {
+      "id": "a2-sentence-029-sentence-de-ar-a2s026",
+      "level": "A2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Ich habe meine Krankenversicherungskarte dabei.“?",
+      "antworten": [
+        "أحتاج إلى مساعدة في التسجيل.",
+        "غرفة الدورة في الطابق الثاني.",
+        "معي بطاقة التأمين الصحي.",
+        "أريد استبدال هذا."
+      ],
+      "richtigeAntwort": "معي بطاقة التأمين الصحي."
+    },
+    {
+      "id": "a2-sentence-030-sentence-ar-de-a2s027",
+      "level": "A2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أحتاج إلى إجازة مرضية لصاحب العمل.“?",
+      "antworten": [
+        "Ich brauche eine Krankmeldung für meinen Arbeitgeber.",
+        "Meine Schicht beginnt um sechs Uhr.",
+        "Die Salbe hilft gegen die Schmerzen.",
+        "Der Fahrplan ist online verfügbar."
+      ],
+      "richtigeAntwort": "Ich brauche eine Krankmeldung für meinen Arbeitgeber."
     }
   ],
-  "A1_U3_L3": [
+  "B1": [
     {
-      "q": "Was bedeutet „Fieber“?",
-      "choices": ["سعال", "حمّى", "الرأس", "الظهر"],
-      "answerIndex": 1
+      "id": "b1-vocab-001-vocab-de-ar-b1v001",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Erfahrung“ auf Arabisch?",
+      "antworten": [
+        "إلغاء",
+        "التجربة",
+        "صعوبة",
+        "الطلب الرسمي"
+      ],
+      "richtigeAntwort": "التجربة"
     },
     {
-      "q": "Was sagst du beim Arzt, wenn du Kopfschmerzen hast?",
-      "choices": ["Ich habe Kopfschmerzen.", "Ich hätte gern ein Brot.", "Wo ist die U-Bahn?", "Ich möchte umtauschen."],
-      "answerIndex": 0
+      "id": "b1-vocab-002-vocab-ar-de-b1v002",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „القرار“ auf Deutsch?",
+      "antworten": [
+        "die Entscheidung",
+        "die Frist",
+        "die Überstunde",
+        "der Briefkasten"
+      ],
+      "richtigeAntwort": "die Entscheidung"
+    },
+    {
+      "id": "b1-vocab-003-vocab-meaning-b1v003",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Gewohnheit“?",
+      "antworten": [
+        "زميلة عمل",
+        "العادة",
+        "تكاليف السكن",
+        "هدف رحلة"
+      ],
+      "richtigeAntwort": "العادة"
+    },
+    {
+      "id": "b1-vocab-004-vocab-gap-b1v004",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „الرأي“.",
+      "antworten": [
+        "die Meinung",
+        "die Buchung",
+        "die Störung",
+        "die Reparatur"
+      ],
+      "richtigeAntwort": "die Meinung"
+    },
+    {
+      "id": "b1-vocab-005-vocab-de-ar-b1v005",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „das Ziel“ auf Arabisch?",
+      "antworten": [
+        "صورة أشعة",
+        "الهدف",
+        "توقف مؤقت",
+        "حقيبة يد"
+      ],
+      "richtigeAntwort": "الهدف"
+    },
+    {
+      "id": "b1-vocab-006-vocab-ar-de-b1v006",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „النصيحة“ auf Deutsch?",
+      "antworten": [
+        "die Absprache",
+        "der Wasserschaden",
+        "die Reise",
+        "der Ratschlag"
+      ],
+      "richtigeAntwort": "der Ratschlag"
+    },
+    {
+      "id": "b1-vocab-007-vocab-meaning-b1v031",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Absprache“?",
+      "antworten": [
+        "اتفاق شفهي",
+        "طلب التقديم",
+        "حقيبة يد",
+        "إمكانية"
+      ],
+      "richtigeAntwort": "اتفاق شفهي"
+    },
+    {
+      "id": "b1-vocab-008-vocab-gap-b1v032",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „سوء فهم“.",
+      "antworten": [
+        "der Pausenraum",
+        "der Mietvertrag",
+        "das Missverständnis",
+        "der Keller"
+      ],
+      "richtigeAntwort": "das Missverständnis"
+    },
+    {
+      "id": "b1-vocab-009-vocab-de-ar-b1v033",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Gewissheit“ auf Arabisch?",
+      "antworten": [
+        "الهدف",
+        "النصيحة",
+        "يقين",
+        "وصول"
+      ],
+      "richtigeAntwort": "يقين"
+    },
+    {
+      "id": "b1-vocab-010-vocab-ar-de-b1v034",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صبر“ auf Deutsch?",
+      "antworten": [
+        "die Kontrolle",
+        "die Geduld",
+        "die Wohnfläche",
+        "der Arbeitskollege"
+      ],
+      "richtigeAntwort": "die Geduld"
+    },
+    {
+      "id": "b1-vocab-011-vocab-meaning-b1v035",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Eindruck“?",
+      "antworten": [
+        "اعتذار",
+        "انطباع",
+        "نظام السكن",
+        "راكب"
+      ],
+      "richtigeAntwort": "انطباع"
+    },
+    {
+      "id": "b1-vocab-012-vocab-gap-b1v036",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اقتراح“.",
+      "antworten": [
+        "das Röntgenbild",
+        "der Vorschlag",
+        "die Reiseversicherung",
+        "die Genesung"
+      ],
+      "richtigeAntwort": "der Vorschlag"
+    },
+    {
+      "id": "b1-vocab-013-vocab-de-ar-b1v037",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Austausch“ auf Arabisch?",
+      "antworten": [
+        "العادة",
+        "مغادرة السكن",
+        "تبادل",
+        "عينة دم"
+      ],
+      "richtigeAntwort": "تبادل"
+    },
+    {
+      "id": "b1-vocab-014-vocab-ar-de-b1v038",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مراعاة“ auf Deutsch?",
+      "antworten": [
+        "die Reise",
+        "die Rücksicht",
+        "die Arbeitskollegin",
+        "die Alltagssituation"
+      ],
+      "richtigeAntwort": "die Rücksicht"
+    },
+    {
+      "id": "b1-vocab-015-vocab-meaning-b1v039",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Entschuldigung“?",
+      "antworten": [
+        "المعلومة",
+        "العادة",
+        "زميل عمل",
+        "اعتذار"
+      ],
+      "richtigeAntwort": "اعتذار"
+    },
+    {
+      "id": "b1-vocab-016-vocab-gap-b1v040",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „موقف يومي“.",
+      "antworten": [
+        "die Nachbarschaft",
+        "die Alltagssituation",
+        "die Schulung",
+        "die Mieterhöhung"
+      ],
+      "richtigeAntwort": "die Alltagssituation"
+    },
+    {
+      "id": "b1-vocab-017-vocab-de-ar-b1v041",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Erledigung“ auf Arabisch?",
+      "antworten": [
+        "المهمة",
+        "مهمة/مشوار",
+        "عيادة مختصة",
+        "حقيبة يد"
+      ],
+      "richtigeAntwort": "مهمة/مشوار"
+    },
+    {
+      "id": "b1-vocab-018-vocab-ar-de-b1v042",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „سلوك“ auf Deutsch?",
+      "antworten": [
+        "das Dachgeschoss",
+        "das Verhalten",
+        "der Schaden",
+        "die Arbeitskollegin"
+      ],
+      "richtigeAntwort": "das Verhalten"
+    },
+    {
+      "id": "b1-vocab-019-vocab-meaning-b1v043",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Unterstützung“?",
+      "antworten": [
+        "دعم",
+        "الوصفة الطبية",
+        "زميل عمل",
+        "جولة مدينة"
+      ],
+      "richtigeAntwort": "دعم"
+    },
+    {
+      "id": "b1-vocab-020-vocab-gap-b1v044",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اتفاق“.",
+      "antworten": [
+        "die Unverträglichkeit",
+        "die Vereinbarung",
+        "die Wohnungsanzeige",
+        "der Zwischenstopp"
+      ],
+      "richtigeAntwort": "die Vereinbarung"
+    },
+    {
+      "id": "b1-vocab-021-vocab-de-ar-b1v045",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Möglichkeit“ auf Arabisch?",
+      "antworten": [
+        "قسم الطوارئ",
+        "إجازة مرضية",
+        "إمكانية",
+        "كشف راتب"
+      ],
+      "richtigeAntwort": "إمكانية"
+    },
+    {
+      "id": "b1-vocab-022-vocab-ar-de-b1v046",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صعوبة“ auf Deutsch?",
+      "antworten": [
+        "die Schwierigkeit",
+        "die Erledigung",
+        "die Hausordnung",
+        "die Probezeit"
+      ],
+      "richtigeAntwort": "die Schwierigkeit"
+    },
+    {
+      "id": "b1-vocab-023-vocab-meaning-b1v007",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Bewerbung“?",
+      "antworten": [
+        "علاج",
+        "حذاء أمان",
+        "طلب التقديم",
+        "مجلس العمال"
+      ],
+      "richtigeAntwort": "طلب التقديم"
+    },
+    {
+      "id": "b1-vocab-024-vocab-gap-b1v008",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „مقابلة العمل“.",
+      "antworten": [
+        "das Erdgeschoss",
+        "die Kaution",
+        "die Reiseplanung",
+        "das Bewerbungsgespräch"
+      ],
+      "richtigeAntwort": "das Bewerbungsgespräch"
+    },
+    {
+      "id": "b1-vocab-025-vocab-de-ar-b1v009",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Verantwortung“ auf Arabisch?",
+      "antworten": [
+        "إجازة مرضية",
+        "الإصلاح",
+        "المسؤولية",
+        "مساحة السكن"
+      ],
+      "richtigeAntwort": "المسؤولية"
+    },
+    {
+      "id": "b1-vocab-026-vocab-ar-de-b1v010",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „المهمة“ auf Deutsch?",
+      "antworten": [
+        "die Krankschreibung",
+        "das Dachgeschoss",
+        "die Aufgabe",
+        "der Ratschlag"
+      ],
+      "richtigeAntwort": "die Aufgabe"
+    },
+    {
+      "id": "b1-vocab-027-vocab-meaning-b1v011",
+      "level": "B1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Frist“?",
+      "antworten": [
+        "وصول",
+        "الموعد النهائي",
+        "التشخيص",
+        "مقابلة العمل"
+      ],
+      "richtigeAntwort": "الموعد النهائي"
+    },
+    {
+      "id": "b1-vocab-028-vocab-gap-b1v012",
+      "level": "B1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „التقرير“.",
+      "antworten": [
+        "der Bericht",
+        "die Reparatur",
+        "die Anweisung",
+        "die Störung"
+      ],
+      "richtigeAntwort": "der Bericht"
+    },
+    {
+      "id": "b1-vocab-029-vocab-de-ar-b1v047",
+      "level": "B1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Arbeitsstelle“ auf Arabisch?",
+      "antworten": [
+        "مكان عمل",
+        "كشف راتب",
+        "الشفاء",
+        "راكبة"
+      ],
+      "richtigeAntwort": "مكان عمل"
+    },
+    {
+      "id": "b1-vocab-030-vocab-ar-de-b1v048",
+      "level": "B1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „فترة تجربة“ auf Deutsch?",
+      "antworten": [
+        "die Gewissheit",
+        "die Probezeit",
+        "die Erfahrung",
+        "die Arbeitskollegin"
+      ],
+      "richtigeAntwort": "die Probezeit"
+    },
+    {
+      "id": "b1-sentence-001-sentence-de-ar-b1s001",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Meiner Meinung nach ist regelmäßiges Lernen sehr wichtig.“?",
+      "antworten": [
+        "تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (5)",
+        "برأيي، التعلم المنتظم مهم جدًا.",
+        "يصلح مشرف المبنى التدفئة بعد الظهر (5)",
+        "أعطتني الطبيبة تحويلًا إلى الطبيب المختص (5)"
+      ],
+      "richtigeAntwort": "برأيي، التعلم المنتظم مهم جدًا."
+    },
+    {
+      "id": "b1-sentence-002-sentence-ar-de-b1s002",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „لدي تجارب جيدة مع أوقات تعلم قصيرة.“?",
+      "antworten": [
+        "Wegen der Verspätung verpasse ich meine Verbindung 4.",
+        "Nach der Behandlung soll ich viel Wasser trinken 5.",
+        "Ich habe gute Erfahrungen mit kurzen Lernzeiten gemacht.",
+        "Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 3."
+      ],
+      "richtigeAntwort": "Ich habe gute Erfahrungen mit kurzen Lernzeiten gemacht."
+    },
+    {
+      "id": "b1-sentence-003-sentence-gap-b1s003",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wenn ich _____ bin, frage ich nach einem Ratschlag.“",
+      "antworten": [
+        "versuche",
+        "unsicher",
+        "Bevor",
+        "Arbeit"
+      ],
+      "richtigeAntwort": "unsicher"
+    },
+    {
+      "id": "b1-sentence-004-sentence-complete-b1s016",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (1)“?",
+      "antworten": [
+        "Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 4.",
+        "Bevor ich unterschreibe, lese ich den Arbeitsvertrag genau 3.",
+        "Wegen der Verspätung frage ich nach einer neuen Verbindung.",
+        "Ich versuche, das Missverständnis ruhig zu klären 1."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 1."
+    },
+    {
+      "id": "b1-sentence-005-sentence-de-ar-b1s017",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 1.“?",
+      "antworten": [
+        "أعجبتني جولة المدينة كثيرًا (4)",
+        "أسأل في العيادة عن موعد أبكر (4)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (1)",
+        "للطلب الرسمي أحتاج إلى تأكيد كتابي."
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (1)"
+    },
+    {
+      "id": "b1-sentence-006-sentence-ar-de-b1s018",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (1)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 1.",
+        "Wenn ich reise, nehme ich nur wenig Gepäck mit 5.",
+        "Die Stadtführung hat mir sehr gut gefallen 5.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 3."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 1."
+    },
+    {
+      "id": "b1-sentence-007-sentence-gap-b1s019",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 1.“",
+      "antworten": [
+        "Meiner",
+        "Wegen",
+        "brauche",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b1-sentence-008-sentence-complete-b1s020",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (2)“?",
+      "antworten": [
+        "Ich versuche, das Missverständnis ruhig zu klären 5.",
+        "Ich vergleiche die Unterkunftskosten vor der Buchung 3.",
+        "Ich vergleiche die Unterkunftskosten vor der Buchung 1.",
+        "Ich versuche, das Missverständnis ruhig zu klären 2."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 2."
+    },
+    {
+      "id": "b1-sentence-009-sentence-de-ar-b1s021",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 2.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (2)",
+        "بعد العلاج يجب أن أشرب ماء كثيرًا (2)",
+        "عند حدوث ضرر أخبر المؤجر فورًا (5)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (1)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (2)"
+    },
+    {
+      "id": "b1-sentence-010-sentence-ar-de-b1s022",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (2)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 2.",
+        "Bei einem Schaden informiere ich sofort den Vermieter 4.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 2.",
+        "Bei einem Schaden informiere ich sofort den Vermieter 3."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 2."
+    },
+    {
+      "id": "b1-sentence-011-sentence-gap-b1s023",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 2.“",
+      "antworten": [
+        "haben",
+        "Schaden",
+        "Meiner",
+        "Beschwerden"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b1-sentence-012-sentence-complete-b1s024",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (3)“?",
+      "antworten": [
+        "Ich frage in der Praxis nach einem früheren Termin 5.",
+        "Ich bereite mich auf das Bewerbungsgespräch vor.",
+        "Ich versuche, das Missverständnis ruhig zu klären 3.",
+        "Wenn ich unsicher bin, frage ich nach einem Ratschlag."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 3."
+    },
+    {
+      "id": "b1-sentence-013-sentence-de-ar-b1s025",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 3.“?",
+      "antworten": [
+        "أسأل في العيادة عن موعد أبكر (1)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (3)",
+        "أعطتني الطبيبة تحويلًا إلى الطبيب المختص (3)",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (3)"
+    },
+    {
+      "id": "b1-sentence-014-sentence-ar-de-b1s026",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (3)“?",
+      "antworten": [
+        "Die Ärztin erklärt mir die Diagnose in einfachen Worten.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 3.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 3.",
+        "Ich informiere den Vermieter über die Reparatur."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 3."
+    },
+    {
+      "id": "b1-sentence-015-sentence-gap-b1s027",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 3.“",
+      "antworten": [
+        "haben",
+        "unsicher",
+        "Unterkunft",
+        "reise"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b1-sentence-016-sentence-complete-b1s028",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (4)“?",
+      "antworten": [
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 3.",
+        "Wir haben eine klare Vereinbarung getroffen 5.",
+        "Ich versuche, das Missverständnis ruhig zu klären 4.",
+        "Bei einem Schaden informiere ich sofort den Vermieter 4."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 4."
+    },
+    {
+      "id": "b1-sentence-017-sentence-de-ar-b1s029",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 4.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (4)",
+        "تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (1)",
+        "للطلب الرسمي أحتاج إلى تأكيد كتابي.",
+        "يشرح نظام السكن القواعد في المبنى (5)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (4)"
+    },
+    {
+      "id": "b1-sentence-018-sentence-ar-de-b1s030",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (4)“?",
+      "antworten": [
+        "Die Stadtführung hat mir sehr gut gefallen 3.",
+        "Wenn die Beschwerden stärker werden, gehe ich zur Notaufnahme 2.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 1.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 4."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 4."
+    },
+    {
+      "id": "b1-sentence-019-sentence-gap-b1s031",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 4.“",
+      "antworten": [
+        "Beschwerden",
+        "haben",
+        "reise",
+        "krank"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b1-sentence-020-sentence-complete-b1s032",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (5)“?",
+      "antworten": [
+        "Ich frage in der Praxis nach einem früheren Termin 4.",
+        "Bevor ich unterschreibe, lese ich den Arbeitsvertrag genau 4.",
+        "Bevor ich unterschreibe, lese ich den Arbeitsvertrag genau 5.",
+        "Ich versuche, das Missverständnis ruhig zu klären 5."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 5."
+    },
+    {
+      "id": "b1-sentence-021-sentence-de-ar-b1s033",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 5.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (5)",
+        "أحاول توضيح سوء الفهم بهدوء (5)",
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (4)",
+        "أحاول توضيح سوء الفهم بهدوء (2)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (5)"
+    },
+    {
+      "id": "b1-sentence-022-sentence-ar-de-b1s034",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (5)“?",
+      "antworten": [
+        "Der Dienstplan ändert sich manchmal kurzfristig 5.",
+        "Ich versuche, das Missverständnis ruhig zu klären 2.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 5.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 3."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 5."
+    },
+    {
+      "id": "b1-sentence-023-sentence-gap-b1s035",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 5.“",
+      "antworten": [
+        "haben",
+        "frage",
+        "Hausmeister",
+        "Ärztin"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b1-sentence-024-sentence-complete-b1s004",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أستعد لمقابلة العمل.“?",
+      "antworten": [
+        "Vor dem Einzug lese ich den Mietvertrag genau.",
+        "Bei der Arbeit übernehme ich gern Verantwortung.",
+        "Ich bereite mich auf das Bewerbungsgespräch vor.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 2."
+      ],
+      "richtigeAntwort": "Ich bereite mich auf das Bewerbungsgespräch vor."
+    },
+    {
+      "id": "b1-sentence-025-sentence-de-ar-b1s005",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Der Bericht muss vor der Frist fertig sein.“?",
+      "antworten": [
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (1)",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)",
+        "عند حدوث ضرر أخبر المؤجر فورًا (1)",
+        "يجب أن يكون التقرير جاهزًا قبل الموعد النهائي."
+      ],
+      "richtigeAntwort": "يجب أن يكون التقرير جاهزًا قبل الموعد النهائي."
+    },
+    {
+      "id": "b1-sentence-026-sentence-ar-de-b1s006",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „في العمل أحب تحمل المسؤولية.“?",
+      "antworten": [
+        "Bei der Arbeit übernehme ich gern Verantwortung.",
+        "Ich frage in der Praxis nach einem früheren Termin 3.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 2.",
+        "Für den Antrag brauche ich eine schriftliche Bestätigung."
+      ],
+      "richtigeAntwort": "Bei der Arbeit übernehme ich gern Verantwortung."
+    },
+    {
+      "id": "b1-sentence-027-sentence-gap-b1s036",
+      "level": "B1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ ich unterschreibe, lese ich den Arbeitsvertrag genau 1.“",
+      "antworten": [
+        "Nebenkosten",
+        "Meine",
+        "Bevor",
+        "Hausmeister"
+      ],
+      "richtigeAntwort": "Bevor"
+    },
+    {
+      "id": "b1-sentence-028-sentence-complete-b1s037",
+      "level": "B1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (1)“?",
+      "antworten": [
+        "Der Dienstplan ändert sich manchmal kurzfristig 5.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 2.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1.",
+        "Ich frage in der Praxis nach einem früheren Termin 4."
+      ],
+      "richtigeAntwort": "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1."
+    },
+    {
+      "id": "b1-sentence-029-sentence-de-ar-b1s038",
+      "level": "B1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 1.“?",
+      "antworten": [
+        "يتغير جدول الدوام أحيانًا في وقت قصير (5)",
+        "يتغير جدول الدوام أحيانًا في وقت قصير (2)",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)",
+        "يشرح نظام السكن القواعد في المبنى (3)"
+      ],
+      "richtigeAntwort": "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)"
+    },
+    {
+      "id": "b1-sentence-030-sentence-ar-de-b1s039",
+      "level": "B1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „يتغير جدول الدوام أحيانًا في وقت قصير (1)“?",
+      "antworten": [
+        "Ich vergleiche die Unterkunftskosten vor der Buchung 4.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 1.",
+        "Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 4.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 4."
+      ],
+      "richtigeAntwort": "Der Dienstplan ändert sich manchmal kurzfristig 1."
     }
   ],
-  "A2_U1_L3": [
+  "B2": [
     {
-      "q": "Was bedeutet „umtauschen“?",
-      "choices": ["يدفع", "يستبدل", "يطلب", "يسار"],
-      "answerIndex": 1
+      "id": "b2-vocab-001-vocab-de-ar-b2v001",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „das Argument“ auf Arabisch?",
+      "antworten": [
+        "التقدير",
+        "أمتعة",
+        "الدائرة الحكومية",
+        "الحجة"
+      ],
+      "richtigeAntwort": "الحجة"
     },
     {
-      "q": "Welche Frage passt im Kleidungsladen?",
-      "choices": ["Haben Sie die Hose in Größe M?", "Wo ist die Apotheke?", "Wann hast du Zeit?", "Wie spät ist es?"],
-      "answerIndex": 0
+      "id": "b2-vocab-002-vocab-ar-de-b2v002",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „التبرير“ auf Deutsch?",
+      "antworten": [
+        "die Begründung",
+        "die Mieterhöhung",
+        "die Auswirkung",
+        "das Zertifikat"
+      ],
+      "richtigeAntwort": "die Begründung"
+    },
+    {
+      "id": "b2-vocab-003-vocab-meaning-b2v003",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Standpunkt“?",
+      "antworten": [
+        "انطباع",
+        "زيادة إيجار",
+        "مجلس العمال",
+        "وجهة النظر"
+      ],
+      "richtigeAntwort": "وجهة النظر"
+    },
+    {
+      "id": "b2-vocab-004-vocab-gap-b2v004",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „الاعتراض“.",
+      "antworten": [
+        "die Umsetzung",
+        "der Eindruck",
+        "die Unterkunftskosten",
+        "der Widerspruch"
+      ],
+      "richtigeAntwort": "der Widerspruch"
+    },
+    {
+      "id": "b2-vocab-005-vocab-de-ar-b2v005",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Zustimmung“ auf Arabisch?",
+      "antworten": [
+        "التغطية الإعلامية",
+        "مراعاة",
+        "وجهة النظر",
+        "الموافقة"
+      ],
+      "richtigeAntwort": "الموافقة"
+    },
+    {
+      "id": "b2-vocab-006-vocab-ar-de-b2v006",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الاستنتاج“ auf Deutsch?",
+      "antworten": [
+        "die Leistung",
+        "die Nachricht",
+        "die Umsetzung",
+        "die Schlussfolgerung"
+      ],
+      "richtigeAntwort": "die Schlussfolgerung"
+    },
+    {
+      "id": "b2-vocab-007-vocab-meaning-b2v031",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Absprache“?",
+      "antworten": [
+        "نظام السكن",
+        "اتفاق شفهي",
+        "مراعاة",
+        "حقيبة يد"
+      ],
+      "richtigeAntwort": "اتفاق شفهي"
+    },
+    {
+      "id": "b2-vocab-008-vocab-gap-b2v032",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „سوء فهم“.",
+      "antworten": [
+        "die Vereinbarung",
+        "das Röntgenbild",
+        "die Mietdauer",
+        "das Missverständnis"
+      ],
+      "richtigeAntwort": "das Missverständnis"
+    },
+    {
+      "id": "b2-vocab-009-vocab-de-ar-b2v033",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Gewissheit“ auf Arabisch?",
+      "antworten": [
+        "حذاء أمان",
+        "الشهادة",
+        "يقين",
+        "ضرر ماء"
+      ],
+      "richtigeAntwort": "يقين"
+    },
+    {
+      "id": "b2-vocab-010-vocab-ar-de-b2v034",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صبر“ auf Deutsch?",
+      "antworten": [
+        "die Geduld",
+        "der Eindruck",
+        "die Zustimmung",
+        "die Zuständigkeit"
+      ],
+      "richtigeAntwort": "die Geduld"
+    },
+    {
+      "id": "b2-vocab-011-vocab-meaning-b2v035",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Eindruck“?",
+      "antworten": [
+        "قسم الطوارئ",
+        "انطباع",
+        "الموافقة",
+        "رسوم وصفة"
+      ],
+      "richtigeAntwort": "انطباع"
+    },
+    {
+      "id": "b2-vocab-012-vocab-gap-b2v036",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اقتراح“.",
+      "antworten": [
+        "der Keller",
+        "der Vorschlag",
+        "der Nachweis",
+        "die Unterstützung"
+      ],
+      "richtigeAntwort": "der Vorschlag"
+    },
+    {
+      "id": "b2-vocab-013-vocab-de-ar-b2v037",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Austausch“ auf Arabisch?",
+      "antworten": [
+        "الموافقة الرسمية",
+        "مشرف المبنى",
+        "مريض",
+        "تبادل"
+      ],
+      "richtigeAntwort": "تبادل"
+    },
+    {
+      "id": "b2-vocab-014-vocab-ar-de-b2v038",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مراعاة“ auf Deutsch?",
+      "antworten": [
+        "der Standpunkt",
+        "das Schmerzmittel",
+        "die Rücksicht",
+        "die Therapie"
+      ],
+      "richtigeAntwort": "die Rücksicht"
+    },
+    {
+      "id": "b2-vocab-015-vocab-meaning-b2v039",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Entschuldigung“?",
+      "antworten": [
+        "اعتذار",
+        "ضرر",
+        "تمديد المهلة",
+        "الإثبات"
+      ],
+      "richtigeAntwort": "اعتذار"
+    },
+    {
+      "id": "b2-vocab-016-vocab-gap-b2v040",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „موقف يومي“.",
+      "antworten": [
+        "die Reiseplanung",
+        "die Alltagssituation",
+        "die Möglichkeit",
+        "die Abstimmung"
+      ],
+      "richtigeAntwort": "die Alltagssituation"
+    },
+    {
+      "id": "b2-vocab-017-vocab-de-ar-b2v041",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Erledigung“ auf Arabisch?",
+      "antworten": [
+        "إنهاء عقد",
+        "مهمة/مشوار",
+        "تكاليف السكن",
+        "طابق أرضي"
+      ],
+      "richtigeAntwort": "مهمة/مشوار"
+    },
+    {
+      "id": "b2-vocab-018-vocab-ar-de-b2v042",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „سلوك“ auf Deutsch?",
+      "antworten": [
+        "der Zwischenstopp",
+        "die Gewissheit",
+        "die Schlussfolgerung",
+        "das Verhalten"
+      ],
+      "richtigeAntwort": "das Verhalten"
+    },
+    {
+      "id": "b2-vocab-019-vocab-meaning-b2v043",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Unterstützung“?",
+      "antworten": [
+        "دعم",
+        "يقين",
+        "التغطية الإعلامية",
+        "علاج"
+      ],
+      "richtigeAntwort": "دعم"
+    },
+    {
+      "id": "b2-vocab-020-vocab-gap-b2v044",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اتفاق“.",
+      "antworten": [
+        "die Kündigung",
+        "die Vereinbarung",
+        "die Geduld",
+        "die Verbindung"
+      ],
+      "richtigeAntwort": "die Vereinbarung"
+    },
+    {
+      "id": "b2-vocab-021-vocab-de-ar-b2v045",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Möglichkeit“ auf Arabisch?",
+      "antworten": [
+        "دليل سفر",
+        "اعتذار",
+        "إمكانية",
+        "تخطيط الرحلة"
+      ],
+      "richtigeAntwort": "إمكانية"
+    },
+    {
+      "id": "b2-vocab-022-vocab-ar-de-b2v046",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صعوبة“ auf Deutsch?",
+      "antworten": [
+        "die Blutprobe",
+        "die Schwierigkeit",
+        "der Wasserschaden",
+        "die Leistung"
+      ],
+      "richtigeAntwort": "die Schwierigkeit"
+    },
+    {
+      "id": "b2-vocab-023-vocab-meaning-b2v007",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „das Projekt“?",
+      "antworten": [
+        "المستند",
+        "قسم الطوارئ",
+        "المشروع",
+        "دعم"
+      ],
+      "richtigeAntwort": "المشروع"
+    },
+    {
+      "id": "b2-vocab-024-vocab-gap-b2v008",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „التنسيق“.",
+      "antworten": [
+        "die Therapie",
+        "die Abstimmung",
+        "die Reiseversicherung",
+        "das Zertifikat"
+      ],
+      "richtigeAntwort": "die Abstimmung"
+    },
+    {
+      "id": "b2-vocab-025-vocab-de-ar-b2v009",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Priorität“ auf Arabisch?",
+      "antworten": [
+        "الرأي العام",
+        "الأولوية",
+        "يقين",
+        "إعلان شقة"
+      ],
+      "richtigeAntwort": "الأولوية"
+    },
+    {
+      "id": "b2-vocab-026-vocab-ar-de-b2v010",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „المسؤولية المحددة“ auf Deutsch?",
+      "antworten": [
+        "die Zuständigkeit",
+        "die Unverträglichkeit",
+        "der Eindruck",
+        "die Zustimmung"
+      ],
+      "richtigeAntwort": "die Zuständigkeit"
+    },
+    {
+      "id": "b2-vocab-027-vocab-meaning-b2v011",
+      "level": "B2",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Auswertung“?",
+      "antworten": [
+        "التقييم",
+        "انطلاق",
+        "اتفاق شفهي",
+        "اقتراح"
+      ],
+      "richtigeAntwort": "التقييم"
+    },
+    {
+      "id": "b2-vocab-028-vocab-gap-b2v012",
+      "level": "B2",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „التنفيذ“.",
+      "antworten": [
+        "die Erledigung",
+        "die Prüfung",
+        "die Rezeptgebühr",
+        "die Umsetzung"
+      ],
+      "richtigeAntwort": "die Umsetzung"
+    },
+    {
+      "id": "b2-vocab-029-vocab-de-ar-b2v047",
+      "level": "B2",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Arbeitsstelle“ auf Arabisch?",
+      "antworten": [
+        "وجهة النظر",
+        "نظام السكن",
+        "إجازة مرضية",
+        "مكان عمل"
+      ],
+      "richtigeAntwort": "مكان عمل"
+    },
+    {
+      "id": "b2-vocab-030-vocab-ar-de-b2v048",
+      "level": "B2",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „فترة تجربة“ auf Deutsch?",
+      "antworten": [
+        "die Reiseversicherung",
+        "die Probezeit",
+        "die Anweisung",
+        "die Überweisung"
+      ],
+      "richtigeAntwort": "die Probezeit"
+    },
+    {
+      "id": "b2-sentence-001-sentence-de-ar-b2s001",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Aus meiner Sicht spricht vieles für diese Lösung.“?",
+      "antworten": [
+        "قبل الانتقال نفحص الشقة معًا (2)",
+        "أعجبتني جولة المدينة كثيرًا (3)",
+        "من وجهة نظري هناك الكثير مما يؤيد هذا الحل.",
+        "أسأل في العيادة عن موعد أبكر (4)"
+      ],
+      "richtigeAntwort": "من وجهة نظري هناك الكثير مما يؤيد هذا الحل."
+    },
+    {
+      "id": "b2-sentence-002-sentence-ar-de-b2s002",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أستطيع أن أوافق جزئيًا على وجهة نظرك.“?",
+      "antworten": [
+        "Ich beantrage eine Fristverlängerung, weil Unterlagen fehlen.",
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 4.",
+        "Ich kann Ihrem Standpunkt teilweise zustimmen.",
+        "Wenn ich reise, nehme ich nur wenig Gepäck mit 4."
+      ],
+      "richtigeAntwort": "Ich kann Ihrem Standpunkt teilweise zustimmen."
+    },
+    {
+      "id": "b2-sentence-003-sentence-gap-b2s003",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Die _____ ist überzeugend, wenn die Zahlen stimmen.“",
+      "antworten": [
+        "Hausmeister",
+        "Schlussfolgerung",
+        "haben",
+        "Auswirkungen"
+      ],
+      "richtigeAntwort": "Schlussfolgerung"
+    },
+    {
+      "id": "b2-sentence-004-sentence-complete-b2s016",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (1)“?",
+      "antworten": [
+        "Bei einem Schaden informiere ich sofort den Vermieter 2.",
+        "Ich versuche, das Missverständnis ruhig zu klären 1.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 2.",
+        "Wenn ich reise, nehme ich nur wenig Gepäck mit 1."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 1."
+    },
+    {
+      "id": "b2-sentence-005-sentence-de-ar-b2s017",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 1.“?",
+      "antworten": [
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (2)",
+        "عند حدوث ضرر أخبر المؤجر فورًا (5)",
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (5)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (1)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (1)"
+    },
+    {
+      "id": "b2-sentence-006-sentence-ar-de-b2s018",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (1)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 1.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 1.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 4.",
+        "Wir haben eine klare Vereinbarung getroffen 4."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 1."
+    },
+    {
+      "id": "b2-sentence-007-sentence-gap-b2s019",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 1.“",
+      "antworten": [
+        "Beschwerden",
+        "versuche",
+        "haben",
+        "Dienstplan"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b2-sentence-008-sentence-complete-b2s020",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (2)“?",
+      "antworten": [
+        "Wenn die Beschwerden stärker werden, gehe ich zur Notaufnahme 1.",
+        "Bevor ich unterschreibe, lese ich den Arbeitsvertrag genau 2.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 5.",
+        "Ich versuche, das Missverständnis ruhig zu klären 2."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 2."
+    },
+    {
+      "id": "b2-sentence-009-sentence-de-ar-b2s021",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 2.“?",
+      "antworten": [
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (4)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (2)",
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (4)",
+        "الاستنتاج مقنع إذا كانت الأرقام صحيحة."
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (2)"
+    },
+    {
+      "id": "b2-sentence-010-sentence-ar-de-b2s022",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (2)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 3.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 3.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 2."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 2."
+    },
+    {
+      "id": "b2-sentence-011-sentence-gap-b2s023",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 2.“",
+      "antworten": [
+        "Weiterbildung",
+        "Schlussfolgerung",
+        "Dienstplan",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b2-sentence-012-sentence-complete-b2s024",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (3)“?",
+      "antworten": [
+        "Ich versuche, das Missverständnis ruhig zu klären 3.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 3.",
+        "Dieses Thema hat heute Priorität im Team.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 5."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 3."
+    },
+    {
+      "id": "b2-sentence-013-sentence-de-ar-b2s025",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 3.“?",
+      "antworten": [
+        "يتغير جدول الدوام أحيانًا في وقت قصير (2)",
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (4)",
+        "إذا ازدادت الأعراض أذهب إلى الطوارئ (3)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (3)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (3)"
+    },
+    {
+      "id": "b2-sentence-014-sentence-ar-de-b2s026",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (3)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 3.",
+        "Meine Leistung hat sich durch regelmäßige Teilnahme verbessert.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 2.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 4."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 3."
+    },
+    {
+      "id": "b2-sentence-015-sentence-gap-b2s027",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 3.“",
+      "antworten": [
+        "haben",
+        "reise",
+        "vergleiche",
+        "Hausmeister"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b2-sentence-016-sentence-complete-b2s028",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (4)“?",
+      "antworten": [
+        "Die Auswirkungen dieser Entscheidung betreffen viele Menschen.",
+        "Die Stadtführung hat mir sehr gut gefallen 5.",
+        "Die Berichterstattung sollte sachlich und ausgewogen sein.",
+        "Ich versuche, das Missverständnis ruhig zu klären 4."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 4."
+    },
+    {
+      "id": "b2-sentence-017-sentence-de-ar-b2s029",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 4.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (4)",
+        "الاستنتاج مقنع إذا كانت الأرقام صحيحة.",
+        "من وجهة نظري هناك الكثير مما يؤيد هذا الحل.",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (3)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (4)"
+    },
+    {
+      "id": "b2-sentence-018-sentence-ar-de-b2s030",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (4)“?",
+      "antworten": [
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 3.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 4.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 5.",
+        "Nach der Prüfung bekomme ich ein anerkanntes Zertifikat."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 4."
+    },
+    {
+      "id": "b2-sentence-019-sentence-gap-b2s031",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 4.“",
+      "antworten": [
+        "haben",
+        "frage",
+        "Auswirkungen",
+        "Wegen"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b2-sentence-020-sentence-complete-b2s032",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (5)“?",
+      "antworten": [
+        "Nach der Behandlung soll ich viel Wasser trinken 1.",
+        "Die Stadtführung hat mir sehr gut gefallen 2.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 1.",
+        "Ich versuche, das Missverständnis ruhig zu klären 5."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 5."
+    },
+    {
+      "id": "b2-sentence-021-sentence-de-ar-b2s033",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 5.“?",
+      "antworten": [
+        "توصلنا إلى اتفاق واضح (1)",
+        "عندما أسافر آخذ أمتعة قليلة فقط (2)",
+        "يجب أن نوضح المسؤوليات قبل التنفيذ.",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (5)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (5)"
+    },
+    {
+      "id": "b2-sentence-022-sentence-ar-de-b2s034",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (5)“?",
+      "antworten": [
+        "Ich frage in der Praxis nach einem früheren Termin 3.",
+        "Ich frage in der Praxis nach einem früheren Termin 4.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 3.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 5."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 5."
+    },
+    {
+      "id": "b2-sentence-023-sentence-gap-b2s035",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 5.“",
+      "antworten": [
+        "Hilfe",
+        "Schlussfolgerung",
+        "Prüfung",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "b2-sentence-024-sentence-complete-b2s004",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „يجب أن نوضح المسؤوليات قبل التنفيذ.“?",
+      "antworten": [
+        "Dieses Thema hat heute Priorität im Team.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 3.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 4.",
+        "Wir müssen die Zuständigkeiten vor der Umsetzung klären."
+      ],
+      "richtigeAntwort": "Wir müssen die Zuständigkeiten vor der Umsetzung klären."
+    },
+    {
+      "id": "b2-sentence-025-sentence-de-ar-b2s005",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Die Auswertung zeigt, welche Maßnahmen erfolgreich waren.“?",
+      "antworten": [
+        "قبل الانتقال نفحص الشقة معًا (5)",
+        "يُظهر التقييم أي الإجراءات كانت ناجحة.",
+        "بسبب التأخير أفوّت اتصال المواصلات (2)",
+        "أسأل في العيادة عن موعد أبكر (2)"
+      ],
+      "richtigeAntwort": "يُظهر التقييم أي الإجراءات كانت ناجحة."
+    },
+    {
+      "id": "b2-sentence-026-sentence-ar-de-b2s006",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „هذا الموضوع له أولوية اليوم في الفريق.“?",
+      "antworten": [
+        "Wenn ich reise, nehme ich nur wenig Gepäck mit 1.",
+        "Dieses Thema hat heute Priorität im Team.",
+        "Bevor ich eine Nachricht teile, prüfe ich die Quelle.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1."
+      ],
+      "richtigeAntwort": "Dieses Thema hat heute Priorität im Team."
+    },
+    {
+      "id": "b2-sentence-027-sentence-gap-b2s036",
+      "level": "B2",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ ich unterschreibe, lese ich den Arbeitsvertrag genau 1.“",
+      "antworten": [
+        "haben",
+        "Schaden",
+        "vergleiche",
+        "Bevor"
+      ],
+      "richtigeAntwort": "Bevor"
+    },
+    {
+      "id": "b2-sentence-028-sentence-complete-b2s037",
+      "level": "B2",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (1)“?",
+      "antworten": [
+        "Wegen der Verspätung verpasse ich meine Verbindung 5.",
+        "Nach der Prüfung bekomme ich ein anerkanntes Zertifikat.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1.",
+        "Wegen der Verspätung verpasse ich meine Verbindung 4."
+      ],
+      "richtigeAntwort": "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1."
+    },
+    {
+      "id": "b2-sentence-029-sentence-de-ar-b2s038",
+      "level": "B2",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 1.“?",
+      "antworten": [
+        "قبل أن أشارك خبرًا، أتحقق من المصدر.",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)",
+        "قبل أن أوقع أقرأ عقد العمل بدقة (2)",
+        "يُظهر التقييم أي الإجراءات كانت ناجحة."
+      ],
+      "richtigeAntwort": "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)"
+    },
+    {
+      "id": "b2-sentence-030-sentence-ar-de-b2s039",
+      "level": "B2",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „يتغير جدول الدوام أحيانًا في وقت قصير (1)“?",
+      "antworten": [
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 4.",
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 2.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 1.",
+        "Nach der Behandlung soll ich viel Wasser trinken 5."
+      ],
+      "richtigeAntwort": "Der Dienstplan ändert sich manchmal kurzfristig 1."
     }
   ],
-  "A2_U2_L3": [
+  "C1": [
     {
-      "q": "Was brauchst du oft beim Arzt, wenn du arbeiten musst?",
-      "choices": ["eine Krankmeldung", "ein Ticket", "die Speisekarte", "die Quittung"],
-      "answerIndex": 0
+      "id": "c1-vocab-001-vocab-de-ar-c1v001",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Nuance“ auf Arabisch?",
+      "antworten": [
+        "الفارق الدقيق",
+        "طابق علوي",
+        "دليل سفر",
+        "انطلاق"
+      ],
+      "richtigeAntwort": "الفارق الدقيق"
     },
     {
-      "q": "Was bedeutet „Überweisung“?",
-      "choices": ["تحويل طبي", "إيصال", "إجازة مرضية", "مقاس"],
-      "answerIndex": 0
+      "id": "c1-vocab-002-vocab-ar-de-c1v002",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „طريقة التعبير“ auf Deutsch?",
+      "antworten": [
+        "die Unterstützung",
+        "die Sprechstundenhilfe",
+        "die Differenzierung",
+        "die Ausdrucksweise"
+      ],
+      "richtigeAntwort": "die Ausdrucksweise"
+    },
+    {
+      "id": "c1-vocab-003-vocab-meaning-c1v003",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Mehrdeutigkeit“?",
+      "antworten": [
+        "التقديم",
+        "مشرف المبنى",
+        "تعدد المعاني",
+        "مهمة/طلب عمل"
+      ],
+      "richtigeAntwort": "تعدد المعاني"
+    },
+    {
+      "id": "c1-vocab-004-vocab-gap-c1v004",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „التعبير الاصطلاحي“.",
+      "antworten": [
+        "die Entschuldigung",
+        "die Unverträglichkeit",
+        "der Sicherheitsschuh",
+        "die Redewendung"
+      ],
+      "richtigeAntwort": "die Redewendung"
+    },
+    {
+      "id": "c1-vocab-005-vocab-de-ar-c1v005",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Differenzierung“ auf Arabisch?",
+      "antworten": [
+        "التمييز الدقيق",
+        "انتقال إلى السكن",
+        "رسوم وصفة",
+        "الاستنتاج المنهجي"
+      ],
+      "richtigeAntwort": "التمييز الدقيق"
+    },
+    {
+      "id": "c1-vocab-006-vocab-ar-de-c1v006",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الدقة“ auf Deutsch?",
+      "antworten": [
+        "die Präzision",
+        "das Gepäck",
+        "die Unterstützung",
+        "die Rücksicht"
+      ],
+      "richtigeAntwort": "die Präzision"
+    },
+    {
+      "id": "c1-vocab-007-vocab-meaning-c1v031",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Absprache“?",
+      "antworten": [
+        "تخطيط الرحلة",
+        "إعلان شقة",
+        "اتفاق شفهي",
+        "زيادة إيجار"
+      ],
+      "richtigeAntwort": "اتفاق شفهي"
+    },
+    {
+      "id": "c1-vocab-008-vocab-gap-c1v032",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „سوء فهم“.",
+      "antworten": [
+        "das Missverständnis",
+        "die Debatte",
+        "die Verbindung",
+        "die Ankunft"
+      ],
+      "richtigeAntwort": "das Missverständnis"
+    },
+    {
+      "id": "c1-vocab-009-vocab-de-ar-c1v033",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Gewissheit“ auf Arabisch?",
+      "antworten": [
+        "صعوبة",
+        "تدريب",
+        "إنهاء عقد",
+        "يقين"
+      ],
+      "richtigeAntwort": "يقين"
+    },
+    {
+      "id": "c1-vocab-010-vocab-ar-de-c1v034",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صبر“ auf Deutsch?",
+      "antworten": [
+        "die Rücksicht",
+        "die Abfahrt",
+        "die Geduld",
+        "der Pausenraum"
+      ],
+      "richtigeAntwort": "die Geduld"
+    },
+    {
+      "id": "c1-vocab-011-vocab-meaning-c1v035",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „der Eindruck“?",
+      "antworten": [
+        "التمييز الدقيق",
+        "اتفاق شفهي",
+        "اتصال مواصلات",
+        "انطباع"
+      ],
+      "richtigeAntwort": "انطباع"
+    },
+    {
+      "id": "c1-vocab-012-vocab-gap-c1v036",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اقتراح“.",
+      "antworten": [
+        "das Handgepäck",
+        "der Auszug",
+        "der Vorschlag",
+        "der Auftrag"
+      ],
+      "richtigeAntwort": "der Vorschlag"
+    },
+    {
+      "id": "c1-vocab-013-vocab-de-ar-c1v037",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „der Austausch“ auf Arabisch?",
+      "antworten": [
+        "تأمين سفر",
+        "صندوق بريد",
+        "تبادل",
+        "المسؤولية"
+      ],
+      "richtigeAntwort": "تبادل"
+    },
+    {
+      "id": "c1-vocab-014-vocab-ar-de-c1v038",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „مراعاة“ auf Deutsch?",
+      "antworten": [
+        "die Notaufnahme",
+        "die Geduld",
+        "die Rücksicht",
+        "die Stadtführung"
+      ],
+      "richtigeAntwort": "die Rücksicht"
+    },
+    {
+      "id": "c1-vocab-015-vocab-meaning-c1v039",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Entschuldigung“?",
+      "antworten": [
+        "ضرر ماء",
+        "تكاليف السكن",
+        "زميل عمل",
+        "اعتذار"
+      ],
+      "richtigeAntwort": "اعتذار"
+    },
+    {
+      "id": "c1-vocab-016-vocab-gap-c1v040",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „موقف يومي“.",
+      "antworten": [
+        "die Zuständigkeit",
+        "die Perspektive",
+        "die Maßnahme",
+        "die Alltagssituation"
+      ],
+      "richtigeAntwort": "die Alltagssituation"
+    },
+    {
+      "id": "c1-vocab-017-vocab-de-ar-c1v041",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Erledigung“ auf Arabisch?",
+      "antworten": [
+        "مهمة/مشوار",
+        "اعتذار",
+        "طريقة التعبير",
+        "دفتر تطعيم"
+      ],
+      "richtigeAntwort": "مهمة/مشوار"
+    },
+    {
+      "id": "c1-vocab-018-vocab-ar-de-c1v042",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „سلوك“ auf Deutsch?",
+      "antworten": [
+        "die Störung",
+        "die Maßnahme",
+        "das Verhalten",
+        "die Möglichkeit"
+      ],
+      "richtigeAntwort": "das Verhalten"
+    },
+    {
+      "id": "c1-vocab-019-vocab-meaning-c1v043",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Unterstützung“?",
+      "antworten": [
+        "دعم",
+        "انطباع",
+        "وصول",
+        "علاج"
+      ],
+      "richtigeAntwort": "دعم"
+    },
+    {
+      "id": "c1-vocab-020-vocab-gap-c1v044",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „اتفاق“.",
+      "antworten": [
+        "die Ankunft",
+        "das Röntgenbild",
+        "die Wohnungsanzeige",
+        "die Vereinbarung"
+      ],
+      "richtigeAntwort": "die Vereinbarung"
+    },
+    {
+      "id": "c1-vocab-021-vocab-de-ar-c1v045",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Möglichkeit“ auf Arabisch?",
+      "antworten": [
+        "إمكانية",
+        "الأطروحة",
+        "صبر",
+        "طريقة التعبير"
+      ],
+      "richtigeAntwort": "إمكانية"
+    },
+    {
+      "id": "c1-vocab-022-vocab-ar-de-c1v046",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „صعوبة“ auf Deutsch?",
+      "antworten": [
+        "die Schwierigkeit",
+        "die Schlussfolgerung",
+        "der Dienstplan",
+        "der Auszug"
+      ],
+      "richtigeAntwort": "die Schwierigkeit"
+    },
+    {
+      "id": "c1-vocab-023-vocab-meaning-c1v007",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Analyse“?",
+      "antworten": [
+        "انتقال إلى السكن",
+        "التحليل",
+        "إلغاء",
+        "صعوبة"
+      ],
+      "richtigeAntwort": "التحليل"
+    },
+    {
+      "id": "c1-vocab-024-vocab-gap-c1v008",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „الأطروحة“.",
+      "antworten": [
+        "die Gewissheit",
+        "das Gepäck",
+        "die These",
+        "die Notaufnahme"
+      ],
+      "richtigeAntwort": "die These"
+    },
+    {
+      "id": "c1-vocab-025-vocab-de-ar-c1v009",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Herleitung“ auf Arabisch?",
+      "antworten": [
+        "سلوك",
+        "الاستنتاج المنهجي",
+        "العرض التقديمي",
+        "التمييز الدقيق"
+      ],
+      "richtigeAntwort": "الاستنتاج المنهجي"
+    },
+    {
+      "id": "c1-vocab-026-vocab-ar-de-c1v010",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „الخلاصة“ auf Deutsch?",
+      "antworten": [
+        "die Schlussfolgerung",
+        "der Hausmeister",
+        "das Ausflugziel",
+        "die Überstunde"
+      ],
+      "richtigeAntwort": "die Schlussfolgerung"
+    },
+    {
+      "id": "c1-vocab-027-vocab-meaning-c1v011",
+      "level": "C1",
+      "type": "vocab-meaning",
+      "frage": "Welche Bedeutung passt zu „die Präsentation“?",
+      "antworten": [
+        "طابق علوي",
+        "العرض التقديمي",
+        "دعم",
+        "الإجراء"
+      ],
+      "richtigeAntwort": "العرض التقديمي"
+    },
+    {
+      "id": "c1-vocab-028-vocab-gap-c1v012",
+      "level": "C1",
+      "type": "vocab-gap",
+      "frage": "Lückentext: „_____“ bedeutet „السؤال البحثي“.",
+      "antworten": [
+        "der Sicherheitsschuh",
+        "das Dachgeschoss",
+        "die Fragestellung",
+        "die Wohnungsanzeige"
+      ],
+      "richtigeAntwort": "die Fragestellung"
+    },
+    {
+      "id": "c1-vocab-029-vocab-de-ar-c1v047",
+      "level": "C1",
+      "type": "vocab-de-ar",
+      "frage": "Was bedeutet „die Arbeitsstelle“ auf Arabisch?",
+      "antworten": [
+        "مهمة/مشوار",
+        "انتقال إلى السكن",
+        "مشرف المبنى",
+        "مكان عمل"
+      ],
+      "richtigeAntwort": "مكان عمل"
+    },
+    {
+      "id": "c1-vocab-030-vocab-ar-de-c1v048",
+      "level": "C1",
+      "type": "vocab-ar-de",
+      "frage": "Was bedeutet „فترة تجربة“ auf Deutsch?",
+      "antworten": [
+        "die Wohnungsübergabe",
+        "der Pausenraum",
+        "die Probezeit",
+        "die Versorgung"
+      ],
+      "richtigeAntwort": "die Probezeit"
+    },
+    {
+      "id": "c1-sentence-001-sentence-de-ar-c1s001",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Eine kleine Nuance kann die Aussage deutlich verändern.“?",
+      "antworten": [
+        "يصلح مشرف المبنى التدفئة بعد الظهر (5)",
+        "عند حدوث ضرر أخبر المؤجر فورًا (1)",
+        "قد يغير فارق دقيق صغير معنى العبارة بوضوح.",
+        "أسأل في العيادة عن موعد أبكر (4)"
+      ],
+      "richtigeAntwort": "قد يغير فارق دقيق صغير معنى العبارة بوضوح."
+    },
+    {
+      "id": "c1-sentence-002-sentence-ar-de-c1s002",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „في الرسائل الرسمية أهتم بطريقة تعبير دقيقة.“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 2.",
+        "In formellen Schreiben achte ich auf präzise Ausdrucksweise.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 1.",
+        "Eine kleine Nuance kann die Aussage deutlich verändern."
+      ],
+      "richtigeAntwort": "In formellen Schreiben achte ich auf präzise Ausdrucksweise."
+    },
+    {
+      "id": "c1-sentence-003-sentence-gap-c1s003",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ lässt sich durch klare Beispiele vermeiden.“",
+      "antworten": [
+        "Hausmeister",
+        "reise",
+        "Hilfe",
+        "Mehrdeutigkeit"
+      ],
+      "richtigeAntwort": "Mehrdeutigkeit"
+    },
+    {
+      "id": "c1-sentence-004-sentence-complete-c1s016",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (1)“?",
+      "antworten": [
+        "Ich versuche, das Missverständnis ruhig zu klären 1.",
+        "Die Kontroverse zeigt, wie komplex die Verantwortung verteilt ist.",
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 3.",
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 5."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 1."
+    },
+    {
+      "id": "c1-sentence-005-sentence-de-ar-c1s017",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 1.“?",
+      "antworten": [
+        "قبل أن أوقع أقرأ عقد العمل بدقة (1)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (1)",
+        "قبل أن أوقع أقرأ عقد العمل بدقة (4)",
+        "عندما أسافر آخذ أمتعة قليلة فقط (4)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (1)"
+    },
+    {
+      "id": "c1-sentence-006-sentence-ar-de-c1s018",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (1)“?",
+      "antworten": [
+        "Die Stadtführung hat mir sehr gut gefallen 4.",
+        "Ich versuche, das Missverständnis ruhig zu klären 1.",
+        "Die Stadtführung hat mir sehr gut gefallen 3.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 1."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 1."
+    },
+    {
+      "id": "c1-sentence-007-sentence-gap-c1s019",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 1.“",
+      "antworten": [
+        "frage",
+        "Gesellschaftliche",
+        "klare",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "c1-sentence-008-sentence-complete-c1s020",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (2)“?",
+      "antworten": [
+        "Ich versuche, das Missverständnis ruhig zu klären 2.",
+        "Wenn die Beschwerden stärker werden, gehe ich zur Notaufnahme 3.",
+        "Mehrdeutigkeit lässt sich durch klare Beispiele vermeiden.",
+        "Gesellschaftliche Teilhabe ist ein zentraler Bestandteil von Integration."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 2."
+    },
+    {
+      "id": "c1-sentence-009-sentence-de-ar-c1s021",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 2.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (2)",
+        "الموقف الواضح لا يستبعد التفكير المتمايز.",
+        "يصلح مشرف المبنى التدفئة بعد الظهر (4)",
+        "يظهر الجدل مدى تعقيد توزيع المسؤولية."
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (2)"
+    },
+    {
+      "id": "c1-sentence-010-sentence-ar-de-c1s022",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (2)“?",
+      "antworten": [
+        "Bevor ich unterschreibe, lese ich den Arbeitsvertrag genau 3.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 2.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 1.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 3."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 2."
+    },
+    {
+      "id": "c1-sentence-011-sentence-gap-c1s023",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 2.“",
+      "antworten": [
+        "Stadtführung",
+        "Hausordnung",
+        "versuche",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "c1-sentence-012-sentence-complete-c1s024",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (3)“?",
+      "antworten": [
+        "Die Stadtführung hat mir sehr gut gefallen 5.",
+        "Nach der Einreichung prüft die zuständige Stelle das Verfahren.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 5.",
+        "Ich versuche, das Missverständnis ruhig zu klären 3."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 3."
+    },
+    {
+      "id": "c1-sentence-013-sentence-de-ar-c1s025",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 3.“?",
+      "antworten": [
+        "عندما أحتاج إلى مساعدة أسأل جيراني (4)",
+        "يصلح مشرف المبنى التدفئة بعد الظهر (1)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (3)",
+        "أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (1)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (3)"
+    },
+    {
+      "id": "c1-sentence-014-sentence-ar-de-c1s026",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (3)“?",
+      "antworten": [
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 3.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 5.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 4.",
+        "Am Ende der Präsentation fasse ich die Schlussfolgerung zusammen."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 3."
+    },
+    {
+      "id": "c1-sentence-015-sentence-gap-c1s027",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 3.“",
+      "antworten": [
+        "Ärztin",
+        "haben",
+        "Meine",
+        "Mehrdeutigkeit"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "c1-sentence-016-sentence-complete-c1s028",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (4)“?",
+      "antworten": [
+        "Die Stadtführung hat mir sehr gut gefallen 2.",
+        "Ich versuche, das Missverständnis ruhig zu klären 4.",
+        "Wenn die Beschwerden stärker werden, gehe ich zur Notaufnahme 2.",
+        "Ich versuche, das Missverständnis ruhig zu klären 2."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 4."
+    },
+    {
+      "id": "c1-sentence-017-sentence-de-ar-c1s029",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 4.“?",
+      "antworten": [
+        "أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (3)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (4)",
+        "يتغير جدول الدوام أحيانًا في وقت قصير (2)",
+        "يصلح مشرف المبنى التدفئة بعد الظهر (5)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (4)"
+    },
+    {
+      "id": "c1-sentence-018-sentence-ar-de-c1s030",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (4)“?",
+      "antworten": [
+        "Die Ärztin hat mir eine Überweisung zum Facharzt gegeben 5.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 4.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 1.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 3."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 4."
+    },
+    {
+      "id": "c1-sentence-019-sentence-gap-c1s031",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 4.“",
+      "antworten": [
+        "haben",
+        "vergleiche",
+        "Versorgung",
+        "Stellungnahme"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "c1-sentence-020-sentence-complete-c1s032",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „أحاول توضيح سوء الفهم بهدوء (5)“?",
+      "antworten": [
+        "Ich vergleiche die Unterkunftskosten vor der Buchung 1.",
+        "Wenn die Beschwerden stärker werden, gehe ich zur Notaufnahme 3.",
+        "Wir haben eine klare Vereinbarung getroffen 2.",
+        "Ich versuche, das Missverständnis ruhig zu klären 5."
+      ],
+      "richtigeAntwort": "Ich versuche, das Missverständnis ruhig zu klären 5."
+    },
+    {
+      "id": "c1-sentence-021-sentence-de-ar-c1s033",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich Hilfe brauche, frage ich meine Nachbarn 5.“?",
+      "antworten": [
+        "يشرح نظام السكن القواعد في المبنى (2)",
+        "عند حدوث ضرر أخبر المؤجر فورًا (4)",
+        "تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (5)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (5)"
+      ],
+      "richtigeAntwort": "عندما أحتاج إلى مساعدة أسأل جيراني (5)"
+    },
+    {
+      "id": "c1-sentence-022-sentence-ar-de-c1s034",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (5)“?",
+      "antworten": [
+        "Wegen der Verspätung verpasse ich meine Verbindung 4.",
+        "Ich finde es wichtig, im Alltag geduldig zu bleiben 5.",
+        "Die Hausordnung erklärt die Regeln im Gebäude 4.",
+        "Eine gute Versorgung hängt nicht nur von finanziellen Mitteln ab."
+      ],
+      "richtigeAntwort": "Ich finde es wichtig, im Alltag geduldig zu bleiben 5."
+    },
+    {
+      "id": "c1-sentence-023-sentence-gap-c1s035",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „Wir _____ eine klare Vereinbarung getroffen 5.“",
+      "antworten": [
+        "reise",
+        "Analyse",
+        "finde",
+        "haben"
+      ],
+      "richtigeAntwort": "haben"
+    },
+    {
+      "id": "c1-sentence-024-sentence-complete-c1s004",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „يدعم التحليل الأطروحة بعدة أمثلة.“?",
+      "antworten": [
+        "Die Analyse stützt die These mit mehreren Beispielen.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 2.",
+        "Der Hausmeister repariert die Heizung am Nachmittag 5.",
+        "Eine klare Haltung schließt differenziertes Denken nicht aus."
+      ],
+      "richtigeAntwort": "Die Analyse stützt die These mit mehreren Beispielen."
+    },
+    {
+      "id": "c1-sentence-025-sentence-de-ar-c1s005",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Am Ende der Präsentation fasse ich die Schlussfolgerung zusammen.“?",
+      "antworten": [
+        "أعطتني الطبيبة تحويلًا إلى الطبيب المختص (5)",
+        "عندما أحتاج إلى مساعدة أسأل جيراني (1)",
+        "في نهاية العرض ألخص الخلاصة.",
+        "عند حدوث ضرر أخبر المؤجر فورًا (1)"
+      ],
+      "richtigeAntwort": "في نهاية العرض ألخص الخلاصة."
+    },
+    {
+      "id": "c1-sentence-026-sentence-ar-de-c1s006",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „يجب تحديد السؤال البحثي بدقة قبل الدراسة.“?",
+      "antworten": [
+        "Wir haben eine klare Vereinbarung getroffen 4.",
+        "Wir haben eine klare Vereinbarung getroffen 1.",
+        "Die Fragestellung muss vor der Untersuchung präzisiert werden.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 4."
+      ],
+      "richtigeAntwort": "Die Fragestellung muss vor der Untersuchung präzisiert werden."
+    },
+    {
+      "id": "c1-sentence-027-sentence-gap-c1s036",
+      "level": "C1",
+      "type": "sentence-gap",
+      "frage": "Ergänze den Satz: „_____ ich unterschreibe, lese ich den Arbeitsvertrag genau 1.“",
+      "antworten": [
+        "Debatte",
+        "Einreichung",
+        "Bevor",
+        "klare"
+      ],
+      "richtigeAntwort": "Bevor"
+    },
+    {
+      "id": "c1-sentence-028-sentence-complete-c1s037",
+      "level": "C1",
+      "type": "sentence-complete",
+      "frage": "Welcher deutsche Satz passt zu: „تشرح لي زميلتي المهمة الجديدة خطوة بخطوة (1)“?",
+      "antworten": [
+        "Eine klare Haltung schließt differenziertes Denken nicht aus.",
+        "Wenn ich Hilfe brauche, frage ich meine Nachbarn 5.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 2.",
+        "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1."
+      ],
+      "richtigeAntwort": "Meine Kollegin erklärt mir die neue Aufgabe Schritt für Schritt 1."
+    },
+    {
+      "id": "c1-sentence-029-sentence-de-ar-c1s038",
+      "level": "C1",
+      "type": "sentence-de-ar",
+      "frage": "Welche arabische Übersetzung passt zu: „Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 1.“?",
+      "antworten": [
+        "أرى أنه من المهم أن أبقى صبورًا في الحياة اليومية (4)",
+        "قبل الانتقال نفحص الشقة معًا (5)",
+        "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)",
+        "أعطتني الطبيبة تحويلًا إلى الطبيب المختص (2)"
+      ],
+      "richtigeAntwort": "عندما أكون مريضًا أخبر صاحب العمل فورًا (1)"
+    },
+    {
+      "id": "c1-sentence-030-sentence-ar-de-c1s039",
+      "level": "C1",
+      "type": "sentence-ar-de",
+      "frage": "Welche deutsche Übersetzung passt zu: „يتغير جدول الدوام أحيانًا في وقت قصير (1)“?",
+      "antworten": [
+        "Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 1.",
+        "Vor dem Einzug prüfen wir gemeinsam die Wohnung 4.",
+        "Der Dienstplan ändert sich manchmal kurzfristig 1.",
+        "Wenn ich krank bin, informiere ich sofort meinen Arbeitgeber 4."
+      ],
+      "richtigeAntwort": "Der Dienstplan ändert sich manchmal kurzfristig 1."
     }
   ]
 }

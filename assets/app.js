@@ -234,6 +234,32 @@ function renderTree(filter = "") {
       unitsEl.appendChild(unitWrap);
     });
 
+    const levelQuizQuestions = getLevelQuizQuestions(level.id);
+    const quizSearchText = `${level.id} ${level.title} quiz level-quiz`.toLowerCase();
+    if (levelQuizQuestions.length && (!filter || quizSearchText.includes(filter))) {
+      const quizLesson = createLevelQuizLesson(level.id);
+      const quizWrap = document.createElement("div");
+      quizWrap.className = "treeUnit";
+
+      const quizTitle = document.createElement("div");
+      quizTitle.className = "treeUnitTitle";
+      quizTitle.textContent = "Quiz";
+      quizWrap.appendChild(quizTitle);
+
+      const quizLessons = document.createElement("div");
+      quizLessons.className = "treeLessons";
+
+      const quizBtn = document.createElement("button");
+      quizBtn.className = "treeLessonBtn";
+      quizBtn.textContent = `Level-Quiz (${levelQuizQuestions.length})`;
+      if (state.activeLesson?.lesson?.id === quizLesson.id) quizBtn.classList.add("active");
+      quizBtn.addEventListener("click", () => openLevelQuiz(level.id));
+
+      quizLessons.appendChild(quizBtn);
+      quizWrap.appendChild(quizLessons);
+      unitsEl.appendChild(quizWrap);
+    }
+
     levelEl.appendChild(unitsEl);
     root.appendChild(levelEl);
   });
@@ -315,6 +341,79 @@ function getFirstLesson(match) {
   return null;
 }
 
+function createLevelQuizLesson(levelId) {
+  return {
+    id: `${levelId}_LEVEL_QUIZ`,
+    title: `${levelId} Level-Quiz`,
+    type: "quiz",
+    ref: levelId
+  };
+}
+
+function openLevelQuiz(levelId) {
+  state.view = "learn";
+  syncNav();
+  openLesson(createLevelQuizLesson(levelId), levelId, `${levelId}-quiz`);
+}
+
+function getLessonLevel(lesson) {
+  const match = String(lesson.level || lesson.ref || lesson.id || "").match(/^(A1|A2|B1|B2|C1)/);
+  return match?.[1] || state.activeLesson?.levelId || "";
+}
+
+function getLevelQuizQuestions(levelId) {
+  return normalizeQuizQuestions(state.quizzes?.[levelId] || []);
+}
+
+function getQuizQuestions(lesson) {
+  const direct = normalizeQuizQuestions(state.quizzes?.[lesson.ref] || []);
+  if (direct.length) return direct;
+  return getLevelQuizQuestions(getLessonLevel(lesson));
+}
+
+function normalizeQuizQuestions(rawQuestions) {
+  const seen = new Set();
+  const normalized = [];
+
+  rawQuestions.forEach((q, index) => {
+    const frage = q.frage || q.q;
+    const antworten = q.antworten || q.choices;
+    const richtigeAntwort = q.richtigeAntwort ?? (Array.isArray(q.choices) ? q.choices[q.answerIndex] : undefined);
+    const id = q.id || `${q.level || "legacy"}-quiz-${index + 1}`;
+
+    if (!frage || !Array.isArray(antworten) || !richtigeAntwort || seen.has(id)) return;
+    if (!antworten.includes(richtigeAntwort)) return;
+
+    seen.add(id);
+    normalized.push({
+      id,
+      level: q.level || "",
+      type: q.type || "legacy",
+      frage,
+      antworten: [...antworten],
+      richtigeAntwort
+    });
+  });
+
+  return normalized;
+}
+
+function prepareQuizRound(questions) {
+  return shuffleArray(questions).map(q => ({
+    ...q,
+    antworten: shuffleArray(q.antworten)
+  }));
+}
+
+function shuffleArray(items) {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 function syncNav() {
   document.querySelectorAll(".navBtn").forEach(btn => {
     btn.classList.toggle("active", btn.dataset.view === state.view);
@@ -344,12 +443,7 @@ window.openFirstLesson = function () {
 };
 
 window.openFirstQuiz = function () {
-  const found = getFirstLesson(lesson => lesson.type === "quiz");
-  if (!found) return;
-
-  state.view = "learn";
-  syncNav();
-  openLesson(found.lesson, found.levelId, found.unitId);
+  openLevelQuiz("A1");
 };
 
 window.openProgressView = function () {
@@ -538,14 +632,13 @@ function renderQuizLesson(lesson) {
   const body = document.getElementById("contentBody");
   if (!body) return;
 
-  const questions = state.quizzes?.[lesson.ref] || [];
+  const questions = getQuizQuestions(lesson);
   if (!questions.length) {
     body.innerHTML = `<p>Keine Quizfragen vorhanden für <b>${escapeHtml(lesson.ref)}</b>.</p>`;
     return;
   }
 
-  // shuffle questions (copy)
-  const shuffled = [...questions].sort(() => Math.random() - 0.5);
+  const shuffled = prepareQuizRound(questions);
 
   let current = 0;
   let score = 0;
@@ -589,13 +682,13 @@ function renderQuizLesson(lesson) {
     elProgress.textContent = `Frage ${current + 1} / ${shuffled.length}`;
 
     elScore.textContent = `Punkte: ${score} · Streak: ${streak}`;
-    elQ.textContent = q.q;
+    elQ.textContent = q.frage;
 
     elFeedback.textContent = "";
     elFeedback.className = "quizFeedback";
 
     elChoices.innerHTML = "";
-    q.choices.forEach((choice, idx) => {
+    q.antworten.forEach(choice => {
       const btn = document.createElement("button");
       btn.className = "quizChoice";
       btn.textContent = choice;
@@ -604,7 +697,7 @@ function renderQuizLesson(lesson) {
         // disable all choices after pick
         [...elChoices.querySelectorAll("button")].forEach(b => (b.disabled = true));
 
-        const correct = idx === q.answerIndex;
+        const correct = choice === q.richtigeAntwort;
         if (correct) {
           score += 1;
           streak += 1;
@@ -614,7 +707,7 @@ function renderQuizLesson(lesson) {
         } else {
           streak = 0;
           btn.classList.add("wrong");
-          const correctBtn = elChoices.querySelectorAll("button")[q.answerIndex];
+          const correctBtn = [...elChoices.querySelectorAll("button")].find(b => b.textContent === q.richtigeAntwort);
           if (correctBtn) correctBtn.classList.add("correct");
           elFeedback.textContent = "❌ Falsch.";
           elFeedback.classList.add("bad");
